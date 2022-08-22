@@ -7,6 +7,8 @@
 
 import UIKit
 
+import StorageService
+
 class PhotosTableViewCell: UITableViewCell {
 
     private enum Constraints {
