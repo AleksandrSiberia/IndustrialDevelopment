@@ -21,9 +21,9 @@ final class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
 
         #if DEBUG
-        tableView.backgroundColor = .red
-        #else
         tableView.backgroundColor = .white
+        #else
+        tableView.backgroundColor = .red
         #endif
 
         return tableView
