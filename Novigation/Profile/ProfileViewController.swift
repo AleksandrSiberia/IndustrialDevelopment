@@ -19,11 +19,19 @@ final class ProfileViewController: UIViewController {
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView")
         tableView.register(PostCell.self, forCellReuseIdentifier: "PostCell")
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
+
+        #if DEBUG
+        tableView.backgroundColor = .red
+        #else
+        tableView.backgroundColor = .white
+        #endif
+
         return tableView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.view.addSubview(tableView)
         self.setupConstraints()
     }

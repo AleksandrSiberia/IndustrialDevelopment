@@ -11,6 +11,7 @@ class PostCell: UITableViewCell {
 
     private lazy var authorLabel: UILabel = {
         var authorLabel = UILabel()
+
         authorLabel.backgroundColor = .white
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
         authorLabel.numberOfLines = 2
