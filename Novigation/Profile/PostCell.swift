@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PostCell: UITableViewCell {
 
     private lazy var authorLabel: UILabel = {
         var authorLabel = UILabel()
+
         authorLabel.backgroundColor = .white
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
         authorLabel.numberOfLines = 2
@@ -19,12 +21,18 @@ class PostCell: UITableViewCell {
         return authorLabel
     }()
 
+
+
+
     private lazy var postImageView: UIImageView = {
         var postImageView = UIImageView()
         postImageView.translatesAutoresizingMaskIntoConstraints = false
         postImageView.backgroundColor = .black
         postImageView.contentMode = .scaleAspectFit
         postImageView.clipsToBounds = true
+
+
+
         return postImageView
     }()
 
@@ -61,6 +69,7 @@ class PostCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
+
     }
 
     required init?(coder: NSCoder) {
@@ -111,7 +120,16 @@ class PostCell: UITableViewCell {
 
     func setup(this post: ModelPost) {
         self.authorLabel.text = post.author
-        self.postImageView.image = UIImage(named: post.image)
+
+        let filter = ImageProcessor()
+
+        var filteredImage: UIImage?
+
+        filter.processImage(sourceImage: UIImage(named: post.image)!, filter: ColorFilter.noir) { outputImage in
+            filteredImage = outputImage
+        }
+
+        self.postImageView.image = filteredImage
         self.descriptionLabel.text = post.description
         self.likesLabel.text = "Likes: " + String(post.likes)
         self.viewsLabel.text = "Views: " + String(post.views)

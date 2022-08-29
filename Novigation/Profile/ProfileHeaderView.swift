@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class ProfileHeaderView: UITableViewHeaderFooterView {
 
@@ -144,36 +145,44 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
 
         let profileViewController = ProfileViewController()
 
-        NSLayoutConstraint.activate([
-        self.avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-        self.avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-        self.avatarImageView.widthAnchor.constraint(equalToConstant: 100),
-        self.avatarImageView.heightAnchor.constraint(equalToConstant: 100),
+        self.avatarImageView.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).offset(16)
+            make.leading.equalTo(self.snp.leading).offset(16)
+            make.width.height.equalTo(100)
+        }
 
-        self.topStack.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-        self.topStack.leadingAnchor.constraint(equalTo: self.avatarImageView.trailingAnchor, constant: 16),
-        self.topStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-        self.topStack.bottomAnchor.constraint(equalTo: self.avatarImageView.bottomAnchor, constant: -18),
+        self.topStack.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top).offset(16)
+            make.leading.equalTo(self.avatarImageView.snp.trailing).offset(16)
+            make.trailing.equalTo(self.snp.trailing).offset(-16)
+            make.bottom.equalTo(self.avatarImageView.snp.bottom).offset(-18)
+        }
 
-        self.statusTextField.topAnchor.constraint(equalTo: topStack.bottomAnchor),
-        self.statusTextField.leadingAnchor.constraint(equalTo: topStack.leadingAnchor),
-        self.statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-        self.statusTextField.heightAnchor.constraint(equalToConstant: 40),
+        self.statusTextField.snp.makeConstraints { make -> Void in
+            make.top.equalTo(self.topStack.snp.bottom)
+            make.leading.equalTo(self.topStack.snp.leading)
+            make.trailing.equalTo(self.snp.trailing).offset(-16)
+            make.height.equalTo(40)
+        }
 
-        self.setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 18),
-        self.setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-        self.setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-        self.setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-        self.setStatusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
+        self.setStatusButton.snp.makeConstraints { make in
+            make.top.equalTo(self.statusTextField.snp.bottom).offset(18)
+            make.leading.equalTo(self.snp.leading).offset(16)
+            make.trailing.equalTo(self.snp.trailing).offset(-16)
+            make.bottom.equalTo(self.snp.bottom).offset(-16)
+            make.height.equalTo(50)
+        }
 
-        self.viewForAnimation.widthAnchor.constraint(equalToConstant: profileViewController.view.frame.width),
-        self.viewForAnimation.heightAnchor.constraint(equalToConstant:  profileViewController.view.frame.height),
+        self.viewForAnimation.snp.makeConstraints { make in
+            make.width.equalTo(profileViewController.view.frame.width)
+            make.height.equalTo(profileViewController.view.frame.height)
+        }
 
-        self.buttonOffAnimation.topAnchor.constraint(equalTo: self.viewForAnimation.topAnchor, constant: 14),
-        self.buttonOffAnimation.trailingAnchor.constraint(equalTo: self.viewForAnimation.trailingAnchor, constant: -14),
-        self.buttonOffAnimation.widthAnchor.constraint(equalToConstant: 40),
-        self.buttonOffAnimation.heightAnchor.constraint(equalToConstant: 40)
-        ])
+        self.buttonOffAnimation.snp.makeConstraints { make in
+            make.top.equalTo(self.viewForAnimation.snp.top).offset(14)
+            make.trailing.equalTo(self.viewForAnimation.snp.trailing).offset(-14)
+            make.height.width.equalTo(40)
+        }
     }
 
     private func basicAnimation() {

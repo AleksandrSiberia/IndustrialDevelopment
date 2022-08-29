@@ -7,6 +7,8 @@
 
 import UIKit
 
+import StorageService
+
 class FeedViewController: UIViewController {
 
     private lazy var postStack: UIStackView = {
