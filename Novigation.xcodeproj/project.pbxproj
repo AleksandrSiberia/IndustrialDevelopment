@@ -10,6 +10,8 @@
 		8B0F0D1B285728B1008F75C0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F0D1A285728B1008F75C0 /* LoginViewController.swift */; };
 		8B0F0D1D285868FA008F75C0 /* ModelPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F0D1C285868FA008F75C0 /* ModelPost.swift */; };
 		8B14FAB828B8AC9B006DE94A /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 8B14FAB728B8AC9B006DE94A /* iOSIntPackage */; };
+		8B14FABD28BC90A7006DE94A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B14FABC28BC90A7006DE94A /* User.swift */; };
+		8B14FABF28BC9E87006DE94A /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B14FABE28BC9E87006DE94A /* CurrentUserService.swift */; };
 		8B30DF29283A1CC6006763B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30DF28283A1CC6006763B9 /* AppDelegate.swift */; };
 		8B30DF2B283A1CC6006763B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30DF2A283A1CC6006763B9 /* SceneDelegate.swift */; };
 		8B30DF32283A1CC7006763B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B30DF31283A1CC7006763B9 /* Assets.xcassets */; };
@@ -61,6 +63,8 @@
 		3AFE22CABDFE04A9E64E050B /* Pods-StorageService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.release.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.release.xcconfig"; sourceTree = "<group>"; };
 		8B0F0D1A285728B1008F75C0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8B0F0D1C285868FA008F75C0 /* ModelPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPost.swift; sourceTree = "<group>"; };
+		8B14FABC28BC90A7006DE94A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8B14FABE28BC9E87006DE94A /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		8B30DF25283A1CC6006763B9 /* Novigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Novigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B30DF28283A1CC6006763B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B30DF2A283A1CC6006763B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +119,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8B14FAB928BC9043006DE94A /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				8B14FABC28BC90A7006DE94A /* User.swift */,
+				8B14FABE28BC9E87006DE94A /* CurrentUserService.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
 		8B30DF1C283A1CC6006763B9 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +153,7 @@
 			children = (
 				8B30DF28283A1CC6006763B9 /* AppDelegate.swift */,
 				8B30DF2A283A1CC6006763B9 /* SceneDelegate.swift */,
+				8B14FAB928BC9043006DE94A /* Users */,
 				8B30E02B2849EBAA006763B9 /* Profile */,
 				8B30DFFE283F97D6006763B9 /* FeedViewController.swift */,
 				8B0F0D1C285868FA008F75C0 /* ModelPost.swift */,
@@ -377,9 +391,11 @@
 				8B353275285DD5E800704D08 /* PhotosCollectionViewCell.swift in Sources */,
 				8B30E0312849EE7F006763B9 /* ProfileHeaderView.swift in Sources */,
 				8B30E0052840E5BA006763B9 /* InfoViewController.swift in Sources */,
+				8B14FABD28BC90A7006DE94A /* User.swift in Sources */,
 				8B30E001283F98C2006763B9 /* ProfileViewController.swift in Sources */,
 				8B30DFFF283F97D6006763B9 /* FeedViewController.swift in Sources */,
 				8B30DF2B283A1CC6006763B9 /* SceneDelegate.swift in Sources */,
+				8B14FABF28BC9E87006DE94A /* CurrentUserService.swift in Sources */,
 				8B35326D2859F47200704D08 /* PostCell.swift in Sources */,
 				8B353277285DEC1900704D08 /* PhotosViewController.swift in Sources */,
 				8B0F0D1B285728B1008F75C0 /* LoginViewController.swift in Sources */,

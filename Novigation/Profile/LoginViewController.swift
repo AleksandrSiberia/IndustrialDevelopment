@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
     private lazy var loginTextField: UITextField = {
         var loginTextField = UITextField()
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        loginTextField.placeholder = "    Email or phone"
+        loginTextField.placeholder = "    Login"
         loginTextField.textColor = .black
         loginTextField.font = UIFont.systemFont(ofSize: 16)
         loginTextField.layer.cornerRadius = 10
@@ -181,7 +181,23 @@ class LoginViewController: UIViewController {
     }
 
     @objc private func targetLoginButton() {
+
         let profileViewController = ProfileViewController()
-        self.navigationController?.pushViewController(profileViewController, animated: true)
+        let currentUserService = CurrentUserService()
+        let currentUser = User()
+
+        if let user = currentUserService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, user: currentUser ) {
+            profileViewController.currentUser = user
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        }
+
+        else {
+            let alert = UIAlertController(title: "Неверный пароль или логин", message: "", preferredStyle: .alert )
+            let action = UIAlertAction(title: "Ok", style: .cancel) { _ in
+                self.dismiss(animated: true)
+            }
+            alert.addAction(action)
+            present(alert, animated: true)
+        }
     }
 }

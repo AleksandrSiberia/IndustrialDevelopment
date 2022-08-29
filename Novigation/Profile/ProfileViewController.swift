@@ -9,6 +9,7 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
 
+    var currentUser: User?
 
     private lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
@@ -31,7 +32,6 @@ final class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.view.addSubview(tableView)
         self.setupConstraints()
     }
@@ -40,7 +40,6 @@ final class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
     }
-
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -86,6 +85,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             guard let profileHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as? ProfileHeaderView else { return nil }
+            profileHeaderView.setupUser(currentUser!)
+           
             return profileHeaderView
         }
         return nil

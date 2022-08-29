@@ -22,7 +22,6 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         avatarImageView.layer.borderColor = UIColor.white.cgColor
         avatarImageView.layer.masksToBounds = true
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        avatarImageView.image = UIImage(named: "avatar")
         avatarImageView.contentMode = .scaleAspectFill
         avatarImageView.layer.borderWidth = 1
         avatarImageView.isUserInteractionEnabled = true
@@ -40,7 +39,6 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
 
     private lazy var fullNameLabel: UILabel = {
         var titleLabel: UILabel = UILabel()
-        titleLabel.text = "AleksandrSiberia"
         titleLabel.textColor = .black
         titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return titleLabel
@@ -57,6 +55,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         var statusTextField: UITextField = UITextField()
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
         statusTextField.backgroundColor = .white
+        statusTextField.placeholder = "   Новый статус"
         statusTextField.delegate = self
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         statusTextField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
@@ -111,6 +110,8 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         self.setupView()
         self.setupConstraints()
         self.setupGesture()
+
+
     }
 
     required init?(coder: NSCoder) {
@@ -122,6 +123,12 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         super.layoutSubviews()
         self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.height / 2
             }
+
+    func setupUser(_ currentUser: User) {
+        self.avatarImageView.image = currentUser.userImage
+        self.statusLabel.text = currentUser.userStatus
+        self.fullNameLabel.text = currentUser.userFullName
+    }
 
 
     private func setupGesture() {
