@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
         loginTextField.layer.borderColor = UIColor.lightGray.cgColor
         loginTextField.backgroundColor = .systemGray6
         loginTextField.autocapitalizationType = .none
-        loginTextField.keyboardType = .phonePad
+        loginTextField.keyboardType = .namePhonePad
         loginTextField.clearButtonMode = .whileEditing
         return loginTextField
     }()
@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
         passwordTextField.backgroundColor = .systemGray6
         passwordTextField.font = UIFont.systemFont(ofSize: 16)
         passwordTextField.autocapitalizationType = .none
-        passwordTextField.keyboardType = .phonePad
+        passwordTextField.keyboardType = .namePhonePad
         passwordTextField.isSecureTextEntry = true
         passwordTextField.clearButtonMode = .whileEditing
         return passwordTextField
@@ -188,16 +188,14 @@ class LoginViewController: UIViewController {
 
 
 #if DEBUG
-        let currentUser = User("Test AleksandrSiberia", userLogin: "1", userPassword: "1", userStatus: "Test", userImage: UIImage(named: "avatar")! )
         let userService = testUserService
 
 #else
-        let currentUser = User("AleksandrSiberia", userLogin: "1", userPassword: "1", userStatus: "Работаю", userImage: UIImage(named: "avatar")! )
         let userService = currentUserService
 #endif
 
 
-        if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, user: currentUser ) {
+        if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!) {
             profileViewController.currentUser = user
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
