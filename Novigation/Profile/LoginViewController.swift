@@ -184,9 +184,20 @@ class LoginViewController: UIViewController {
 
         let profileViewController = ProfileViewController()
         let currentUserService = CurrentUserService()
-        let currentUser = User()
+        let testUserService = TestUserService()
 
-        if let user = currentUserService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, user: currentUser ) {
+
+#if DEBUG
+        let currentUser = User("Test AleksandrSiberia", userLogin: "1", userPassword: "1", userStatus: "Test", userImage: UIImage(named: "avatar")! )
+        let userService = testUserService
+
+#else
+        let currentUser = User("AleksandrSiberia", userLogin: "1", userPassword: "1", userStatus: "Работаю", userImage: UIImage(named: "avatar")! )
+        let userService = currentUserService
+#endif
+
+
+        if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, user: currentUser ) {
             profileViewController.currentUser = user
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }

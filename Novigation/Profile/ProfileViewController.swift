@@ -24,7 +24,7 @@ final class ProfileViewController: UIViewController {
         #if DEBUG
         tableView.backgroundColor = .white
         #else
-        tableView.backgroundColor = .red
+        tableView.backgroundColor = .systemGray6
         #endif
 
         return tableView
