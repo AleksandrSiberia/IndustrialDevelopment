@@ -8,12 +8,17 @@
 import UIKit
 
 class TestUserService: UserService {
-    
-    private var currentUser: User = User("Test AleksandrSiberia", userLogin: "1", userPassword: "1", userStatus: "Test", userImage: UIImage(named: "avatar")! )
 
-    func checkTheLogin(_ login: String, password: String) -> User? {
+    private var currentUser: User = User("Test AleksandrSiberia",
+                                         
+                                         userStatus: "Test",
+                                         userImage: UIImage(named: "avatar")! )
 
-        guard login == currentUser.userLogin && password == currentUser.userPassword else {
+    func checkTheLogin(_ login: String, password: String, loginInspector: LoginViewControllerDelegate) -> User? {
+
+        let check = loginInspector.check(login, password: password)
+
+        guard check == true else {
             return nil
         }
         return currentUser

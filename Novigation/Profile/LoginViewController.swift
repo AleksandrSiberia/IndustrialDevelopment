@@ -9,6 +9,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    var loginDelegate: LoginViewControllerDelegate?
+
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
         scrollView.backgroundColor = .white
@@ -186,16 +188,15 @@ class LoginViewController: UIViewController {
         let currentUserService = CurrentUserService()
         let testUserService = TestUserService()
 
-
 #if DEBUG
         let userService = testUserService
-
 #else
         let userService = currentUserService
 #endif
 
 
-        if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!) {
+        if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!) {
+
             profileViewController.currentUser = user
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
