@@ -31,6 +31,7 @@
 		8B388D4A28B3825A000FF22E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30E02628424A77006763B9 /* Post.swift */; };
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
 		8BED12C828BF3802006FF146 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12C728BF3801006FF146 /* Checker.swift */; };
+		8BED12CA28BF581F006FF146 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12C928BF581F006FF146 /* MyLoginFactory.swift */; };
 		A9FA78F6BCF85A2EB8A42989 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */; };
 		C5099F1DD9B0E11F9C08BD25 /* Pods_Novigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 		8B388D4028B37D79000FF22E /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		8B695C5428BCEED9008F0414 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		8BED12C728BF3801006FF146 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		8BED12C928BF581F006FF146 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 		A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Novigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE8B5B8C2056D2BE18FF5E0 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,7 +160,7 @@
 			children = (
 				8B30DF28283A1CC6006763B9 /* AppDelegate.swift */,
 				8B30DF2A283A1CC6006763B9 /* SceneDelegate.swift */,
-				8BED12C628BF37AC006FF146 /* Singleton */,
+				8BED12C628BF37AC006FF146 /* Dependency */,
 				8B14FAB928BC9043006DE94A /* Users */,
 				8B30E02B2849EBAA006763B9 /* Profile */,
 				8B30DFFE283F97D6006763B9 /* FeedViewController.swift */,
@@ -195,12 +197,13 @@
 			path = StorageService;
 			sourceTree = "<group>";
 		};
-		8BED12C628BF37AC006FF146 /* Singleton */ = {
+		8BED12C628BF37AC006FF146 /* Dependency */ = {
 			isa = PBXGroup;
 			children = (
 				8BED12C728BF3801006FF146 /* Checker.swift */,
+				8BED12C928BF581F006FF146 /* MyLoginFactory.swift */,
 			);
-			path = Singleton;
+			path = Dependency;
 			sourceTree = "<group>";
 		};
 		91F713A0BD514BC619B6D40D /* Pods */ = {
@@ -409,6 +412,7 @@
 				8B14FABD28BC90A7006DE94A /* User.swift in Sources */,
 				8BED12C828BF3802006FF146 /* Checker.swift in Sources */,
 				8B30E001283F98C2006763B9 /* ProfileViewController.swift in Sources */,
+				8BED12CA28BF581F006FF146 /* MyLoginFactory.swift in Sources */,
 				8B30DFFF283F97D6006763B9 /* FeedViewController.swift in Sources */,
 				8B30DF2B283A1CC6006763B9 /* SceneDelegate.swift in Sources */,
 				8B14FABF28BC9E87006DE94A /* CurrentUserService.swift in Sources */,

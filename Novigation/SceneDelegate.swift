@@ -15,12 +15,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow.init(windowScene: windowScene)
 
-
-
         let navFeedViewController = UINavigationController(rootViewController: FeedViewController())
 
         let loginViewController = LoginViewController()
-        let loginInspector = LoginInspector()
+        let loginInspector = MyLoginFactory().makeLoginInspector()
 
         loginViewController.loginDelegate = loginInspector
         let navLoginViewController = UINavigationController(rootViewController: loginViewController)

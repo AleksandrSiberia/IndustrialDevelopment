@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UserService {
-    func checkTheLogin(_ login: String, password: String, loginInspector: LoginViewControllerDelegate) -> User?
+    func checkTheLogin(_ login: String, password: String, loginInspector: LoginViewControllerDelegate, loginViewController: LoginViewController) -> User?
 }
 
 
@@ -18,9 +18,9 @@ class CurrentUserService: UserService {
                                          userStatus: "Работаю",
                                          userImage: UIImage(named: "avatar")! )
     
-    func checkTheLogin(_ login: String, password: String, loginInspector: LoginViewControllerDelegate ) -> User? {
+    func checkTheLogin(_ login: String, password: String, loginInspector: LoginViewControllerDelegate, loginViewController: LoginViewController ) -> User? {
 
-        let check = loginInspector.check(login, password: password)
+        let check = loginInspector.check(loginViewController, login: login, password: password)
         guard check == true else {
             return nil
         }
