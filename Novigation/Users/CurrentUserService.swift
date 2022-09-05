@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol UserService {
-    func checkTheLogin(_ login: String, password: String, loginInspector: LoginViewControllerDelegate, loginViewController: LoginViewController) -> User?
-}
-
-
 class CurrentUserService: UserService {
 
     private var currentUser: User = User("AleksandrSiberia",

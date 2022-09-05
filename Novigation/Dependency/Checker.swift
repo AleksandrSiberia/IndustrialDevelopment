@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol LoginViewControllerDelegate {
-    func check(_ loginViewController: LoginViewController, login: String, password: String) -> Bool
-}
-
 final class Checker: LoginViewControllerDelegate {
 
     private let login: String = "1"
@@ -25,11 +21,6 @@ final class Checker: LoginViewControllerDelegate {
 }
 
 
-struct LoginInspector: LoginViewControllerDelegate {
 
-    func check(_ loginViewController: LoginViewController, login: String, password: String) -> Bool {
-        return Checker.shared.check(loginViewController, login: login, password: password)
-    }
-}
 
 
