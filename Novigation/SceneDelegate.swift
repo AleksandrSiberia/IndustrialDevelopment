@@ -16,7 +16,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow.init(windowScene: windowScene)
 
         let navFeedViewController = UINavigationController(rootViewController: FeedViewController())
-        let navLoginViewController = UINavigationController(rootViewController: LoginViewController())
+
+        let loginViewController = LoginViewController()
+        let loginInspector = MyLoginFactory().makeLoginInspector()
+
+        loginViewController.loginDelegate = loginInspector
+        let navLoginViewController = UINavigationController(rootViewController: loginViewController)
+
 
         let tabBarController = UITabBarController()
         tabBarController.tabBar.backgroundColor = .white
