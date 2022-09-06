@@ -6,14 +6,17 @@
 //
 
 import UIKit
-
 import StorageService
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
 
     private enum numberItem {
         static let number = 3.0
     }
+
+    var imagePublisherFacade: ImagePublisherFacade? = nil
+    var arrayImage: [UIImage] = []
 
     private lazy var collectionFlowLayout: UICollectionViewFlowLayout = {
         var collectionFlowLayout = UICollectionViewFlowLayout()
@@ -42,6 +45,16 @@ class PhotosViewController: UIViewController {
         self.navigationItem.title = "Photos Gallery"
         self.view.addSubview(self.collectionView)
         setupConstraints()
+
+        let imagePublisherFacade = ImagePublisherFacade()
+        self.imagePublisherFacade = imagePublisherFacade
+        imagePublisherFacade.subscribe(self)
+        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 10, userImages: arrayImages)
+    }
+
+    deinit {
+        imagePublisherFacade?.removeSubscription(for: self)
+        print("jnvtyf gjlgbcrb")
     }
 
     private func setupConstraints() {
@@ -57,7 +70,8 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        arrayPhoto.count
+
+        self.arrayImage.count
 
     }
 
@@ -66,7 +80,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
             return cell
         }
         cell.backgroundColor = .black
-        cell.setupImage(arrayPhoto[indexPath.row])
+        cell.setupImage(self.arrayImage[indexPath.row])
         return cell
     }
 
@@ -79,4 +93,14 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
         screenWidth = floor (screenWidth / numberItem.number)
         return  CGSize(width: screenWidth, height: screenWidth)
     }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    
+    func receive(images: [UIImage]) {
+        print("PhotosViewController: обновление фотографий в массиве")
+        self.arrayImage = images
+        collectionView.reloadData()
+    }
+
 }

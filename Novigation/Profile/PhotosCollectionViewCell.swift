@@ -42,8 +42,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         ])
     }
 
-    func setupImage(_ name: String) {
-        imageView.image = UIImage(named: name)
+    func setupImage(_ name: UIImage) {
+        imageView.image = name
     }
 
     required init?(coder: NSCoder) {

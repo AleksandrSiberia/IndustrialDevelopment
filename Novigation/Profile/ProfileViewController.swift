@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 final class ProfileViewController: UIViewController {
 
     var currentUser: User?
+
 
     private lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
@@ -97,15 +99,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             let photosViewController = PhotosViewController()
             photosViewController.navigationItem.title = "Photos Gallery"
 
-
             self.navigationController?.pushViewController(photosViewController, animated: true)
         }
     }
-
-
-
 }
-
 
 
 
