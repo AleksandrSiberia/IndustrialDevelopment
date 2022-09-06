@@ -16,7 +16,7 @@ class PhotosViewController: UIViewController {
     }
 
     var imagePublisherFacade: ImagePublisherFacade? = nil
-    var arrayImages: [UIImage] = []
+    var arrayImage: [UIImage] = []
 
     private lazy var collectionFlowLayout: UICollectionViewFlowLayout = {
         var collectionFlowLayout = UICollectionViewFlowLayout()
@@ -45,6 +45,11 @@ class PhotosViewController: UIViewController {
         self.navigationItem.title = "Photos Gallery"
         self.view.addSubview(self.collectionView)
         setupConstraints()
+
+        let imagePublisherFacade = ImagePublisherFacade()
+        self.imagePublisherFacade = imagePublisherFacade
+        imagePublisherFacade.subscribe(self)
+        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 10, userImages: arrayImages)
     }
 
     deinit {
@@ -66,7 +71,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        self.arrayImages.count
+        self.arrayImage.count
 
     }
 
@@ -75,7 +80,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
             return cell
         }
         cell.backgroundColor = .black
-        cell.setupImage(self.arrayImages[indexPath.row])
+        cell.setupImage(self.arrayImage[indexPath.row])
         return cell
     }
 
@@ -94,7 +99,7 @@ extension PhotosViewController: ImageLibrarySubscriber {
     
     func receive(images: [UIImage]) {
         print("PhotosViewController: обновление фотографий в массиве")
-        self.arrayImages = images
+        self.arrayImage = images
         collectionView.reloadData()
     }
 
