@@ -103,7 +103,7 @@ class PhotosTableViewCell: UITableViewCell {
 extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        arrayImages.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -114,7 +114,7 @@ extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionV
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 8
         cell.layer.masksToBounds = true
-        cell.setupImage(arrayPhoto[indexPath.row])
+        cell.setupImage(arrayImages[indexPath.row])
         return cell
     }
 

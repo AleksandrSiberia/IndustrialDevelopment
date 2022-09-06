@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 final class ProfileViewController: UIViewController {
 
     var currentUser: User?
+
 
     private lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
@@ -97,16 +99,23 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             let photosViewController = PhotosViewController()
             photosViewController.navigationItem.title = "Photos Gallery"
 
+            let imagePublisherFacade = ImagePublisherFacade()
+            photosViewController.imagePublisherFacade = imagePublisherFacade
+            imagePublisherFacade.subscribe(photosViewController)
+            imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 10, userImages: arrayImages)
 
             self.navigationController?.pushViewController(photosViewController, animated: true)
         }
     }
-
-
-
 }
 
+extension ProfileViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
 
+        arrayImages = images
+        tableView.reloadData()
+    }
+}
 
 
 

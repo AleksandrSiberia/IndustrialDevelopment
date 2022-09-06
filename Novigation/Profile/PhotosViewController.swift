@@ -6,14 +6,17 @@
 //
 
 import UIKit
-
 import StorageService
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
 
     private enum numberItem {
         static let number = 3.0
     }
+
+    var imagePublisherFacade: ImagePublisherFacade? = nil
+    var arrayImages: [UIImage] = []
 
     private lazy var collectionFlowLayout: UICollectionViewFlowLayout = {
         var collectionFlowLayout = UICollectionViewFlowLayout()
@@ -44,6 +47,11 @@ class PhotosViewController: UIViewController {
         setupConstraints()
     }
 
+    deinit {
+        imagePublisherFacade?.removeSubscription(for: self)
+        print("jnvtyf gjlgbcrb")
+    }
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             self.collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -57,7 +65,8 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        arrayPhoto.count
+
+        self.arrayImages.count
 
     }
 
@@ -66,7 +75,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
             return cell
         }
         cell.backgroundColor = .black
-        cell.setupImage(arrayPhoto[indexPath.row])
+        cell.setupImage(self.arrayImages[indexPath.row])
         return cell
     }
 
@@ -79,4 +88,14 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
         screenWidth = floor (screenWidth / numberItem.number)
         return  CGSize(width: screenWidth, height: screenWidth)
     }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    
+    func receive(images: [UIImage]) {
+        print("PhotosViewController: обновление фотографий в массиве")
+        self.arrayImages = images
+        collectionView.reloadData()
+    }
+
 }
