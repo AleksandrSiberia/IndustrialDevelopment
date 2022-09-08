@@ -102,5 +102,4 @@ extension PhotosViewController: ImageLibrarySubscriber {
         self.arrayImage = images
         collectionView.reloadData()
     }
-
 }

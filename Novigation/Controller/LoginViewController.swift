@@ -36,6 +36,7 @@ class LoginViewController: UIViewController {
         return stackView
     }()
 
+
     private lazy var loginTextField: UITextField = {
         var loginTextField = UITextField()
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +52,7 @@ class LoginViewController: UIViewController {
         loginTextField.clearButtonMode = .whileEditing
         return loginTextField
     }()
+
 
     private lazy var passwordTextField: UITextField = {
         var passwordTextField = UITextField()
@@ -69,21 +71,38 @@ class LoginViewController: UIViewController {
         return passwordTextField
     }()
 
-    private lazy var bluePixel: UIImage? = {
-        var bluePixel = UIImage(named: "blue_pixel")
-        return bluePixel
+
+    private lazy var loginButton: CustomButton = {
+
+        var loginButton = CustomButton( "Авторизоваться",
+                                        color: .red,
+                                        targetAction: {
+
+            let profileViewController = ProfileViewController()
+            let currentUserService = CurrentUserService()
+            let testUserService = TestUserService()
+    #if DEBUG
+            let userService = testUserService
+    #else
+            let userService = currentUserService
+    #endif
+            if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!, loginViewController: self) {
+                profileViewController.currentUser = user
+                self.navigationController?.pushViewController(profileViewController, animated: true)
+            }
+            else {
+                let alert = UIAlertController(title: "Неверный пароль или логин", message: "", preferredStyle: .alert )
+                let action = UIAlertAction(title: "Ok", style: .cancel) { _ in
+                    self.dismiss(animated: true)
+                }
+                alert.addAction(action)
+                self.present(alert, animated: true)
+            }
+          },
+                                        frame: CGRect())
+        return loginButton.autoSetupButton
     }()
 
-    private lazy var loginButton: UIButton = {
-        var loginButton = UIButton()
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.layer.cornerRadius = 10
-        loginButton.layer.masksToBounds = true
-        loginButton.setBackgroundImage(bluePixel, for: .normal)
-        loginButton.setTitle("Авторизоваться", for: .normal)
-        loginButton.addTarget(self, action: #selector(targetLoginButton), for: .touchUpInside)
-        return loginButton
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -182,32 +201,5 @@ class LoginViewController: UIViewController {
         scrollView.contentOffset = CGPoint(x: 0, y: 0)
     }
 
-    @objc private func targetLoginButton() {
 
-        let profileViewController = ProfileViewController()
-        let currentUserService = CurrentUserService()
-        let testUserService = TestUserService()
-
-#if DEBUG
-        let userService = testUserService
-#else
-        let userService = currentUserService
-#endif
-
-
-        if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!, loginViewController: self) {
-
-            profileViewController.currentUser = user
-            self.navigationController?.pushViewController(profileViewController, animated: true)
-        }
-
-        else {
-            let alert = UIAlertController(title: "Неверный пароль или логин", message: "", preferredStyle: .alert )
-            let action = UIAlertAction(title: "Ok", style: .cancel) { _ in
-                self.dismiss(animated: true)
-            }
-            alert.addAction(action)
-            present(alert, animated: true)
-        }
-    }
 }
