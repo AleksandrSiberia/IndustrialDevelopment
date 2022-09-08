@@ -71,7 +71,8 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
                                         color: .white,
                                         targetAction: { self.statusLabel.text = self.statusText },
                                         frame: CGRect())
-        return statusButton.autoSetupButton
+
+        return statusButton.giveMeCustomButton()
     }()
 
     private lazy var statusText: String = {
@@ -104,8 +105,6 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         self.setupView()
         self.setupConstraints()
         self.setupGesture()
-
-
     }
 
     required init?(coder: NSCoder) {

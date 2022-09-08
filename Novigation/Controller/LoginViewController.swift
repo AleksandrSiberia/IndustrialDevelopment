@@ -99,8 +99,9 @@ class LoginViewController: UIViewController {
                 self.present(alert, animated: true)
             }
           },
-                                        frame: CGRect())
-        return loginButton.autoSetupButton
+                                        frame: CGRect()
+        )
+        return loginButton.giveMeCustomButton()
     }()
 
 

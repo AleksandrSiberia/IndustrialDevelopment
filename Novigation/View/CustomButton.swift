@@ -12,39 +12,23 @@ class CustomButton: UIButton {
     private var action: () -> Void = {}
     private var title: String = ""
     private var colorText: UIColor = UIColor(ciColor: .red)
-    private lazy var bluePixel: UIImage? = {
-        var bluePixel = UIImage(named: "blue_pixel")
-        return bluePixel
-    }()
 
-    lazy var autoSetupButton: CustomButton = {
-        var targetAction = UIAction(handler: {_ in
+    func giveMeCustomButton() -> CustomButton {
+        let targetAction = UIAction(handler: {_ in
             self.action()
         } )
-        var customButton = CustomButton(self.title,
+        let customButton = CustomButton(self.title,
                                         color: self.colorText,
                                         targetAction: self.action,
-                                        frame: CGRect())
+                                        frame: CGRect()
+                                        )
         customButton.addAction(targetAction, for: .touchUpInside)
         customButton.translatesAutoresizingMaskIntoConstraints = false
         customButton.setBackgroundImage(bluePixel, for: .normal)
         customButton.layer.cornerRadius = 12
         customButton.layer.masksToBounds = true
-        
-//        customButton.layer.shadowOffset = CGSize(width: 4, height: 4)
-//        customButton.layer.shadowRadius = 4
-//        customButton.layer.shadowColor = UIColor.black.cgColor
-//        customButton.layer.shadowOpacity = 0.7
-//        customButton.layer.cornerRadius = 12
-
-
         customButton.setTitle(title, for: .normal)
         return customButton
-    }()
-
-    override func setTitle(_ title: String?, for state: UIControl.State) {
-        let uppercasedTitle = title?.uppercased()
-        super.setTitle(uppercasedTitle, for: state)
     }
 
     init(_ title: String, color: UIColor, targetAction: @escaping () -> Void, frame: CGRect) {
@@ -58,6 +42,9 @@ class CustomButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
-
+    override func setTitle(_ title: String?, for state: UIControl.State) {
+           let uppercasedTitle = title?.uppercased()
+           super.setTitle(uppercasedTitle, for: state)
+       }
 }
 
