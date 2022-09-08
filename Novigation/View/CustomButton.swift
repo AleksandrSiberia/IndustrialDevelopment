@@ -25,11 +25,19 @@ class CustomButton: UIButton {
                                         color: self.colorText,
                                         targetAction: self.action,
                                         frame: CGRect())
+        customButton.addAction(targetAction, for: .touchUpInside)
         customButton.translatesAutoresizingMaskIntoConstraints = false
         customButton.setBackgroundImage(bluePixel, for: .normal)
         customButton.layer.cornerRadius = 12
         customButton.layer.masksToBounds = true
-        customButton.addAction(targetAction, for: .touchUpInside)
+        
+//        customButton.layer.shadowOffset = CGSize(width: 4, height: 4)
+//        customButton.layer.shadowRadius = 4
+//        customButton.layer.shadowColor = UIColor.black.cgColor
+//        customButton.layer.shadowOpacity = 0.7
+//        customButton.layer.cornerRadius = 12
+
+
         customButton.setTitle(title, for: .normal)
         return customButton
     }()

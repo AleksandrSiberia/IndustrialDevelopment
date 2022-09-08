@@ -66,18 +66,12 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         return statusTextField
     }()
 
-    private lazy var setStatusButton: UIButton = {
-        var statusButton: UIButton = UIButton()
-        statusButton.backgroundColor = .blue
-        statusButton.translatesAutoresizingMaskIntoConstraints = false
-        statusButton.setTitle("Поменять статус", for: .normal)
-        statusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        statusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
-        statusButton.layer.shadowRadius = 4
-        statusButton.layer.shadowColor = UIColor.black.cgColor
-        statusButton.layer.shadowOpacity = 0.7
-        statusButton.layer.cornerRadius = 12
-        return statusButton
+    private lazy var setStatusButton: CustomButton = {
+        var statusButton = CustomButton("Поменять статус",
+                                        color: .white,
+                                        targetAction: { self.statusLabel.text = self.statusText },
+                                        frame: CGRect())
+        return statusButton.autoSetupButton
     }()
 
     private lazy var statusText: String = {
@@ -219,10 +213,6 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         basicAnimation()
     }
 
-    @objc private func buttonPressed() {
-        statusLabel.text = statusText
-        print(statusText)
-    }
 
     @objc private func statusTextChanged(_ TextField: UITextField) {
         let statusTextField: UITextField = TextField
