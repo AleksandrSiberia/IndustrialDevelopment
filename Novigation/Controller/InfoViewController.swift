@@ -52,9 +52,6 @@ class InfoViewController: UIViewController {
            print("Delete")
         })
         alertDelete.addAction(deleteAction)
-
-
-
         present(alertDelete, animated: true)
     }
 }

@@ -12,7 +12,6 @@ final class ProfileViewController: UIViewController {
 
     var currentUser: User?
 
-
     private lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false

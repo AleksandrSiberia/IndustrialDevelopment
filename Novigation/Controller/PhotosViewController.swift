@@ -54,7 +54,6 @@ class PhotosViewController: UIViewController {
 
     deinit {
         imagePublisherFacade?.removeSubscription(for: self)
-        print("jnvtyf gjlgbcrb")
     }
 
     private func setupConstraints() {
@@ -102,5 +101,4 @@ extension PhotosViewController: ImageLibrarySubscriber {
         self.arrayImage = images
         collectionView.reloadData()
     }
-
 }
