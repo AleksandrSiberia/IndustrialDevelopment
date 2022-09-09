@@ -41,6 +41,9 @@
 		8BED12D928C6848D006FF146 /* ArrayFoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12D828C6848D006FF146 /* ArrayFoto.swift */; };
 		8BED12E028C8C01D006FF146 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12DF28C8C01D006FF146 /* CustomButton.swift */; };
 		8BED12E228CA061C006FF146 /* bluePixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12E128CA061C006FF146 /* bluePixel.swift */; };
+		8BED12E428CA0D61006FF146 /* FeedModelPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12E328CA0D61006FF146 /* FeedModelPublisher.swift */; };
+		8BED12E628CA1680006FF146 /* CheckWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12E528CA1680006FF146 /* CheckWord.swift */; };
+		8BED12E828CB2109006FF146 /* FeedModelSubscribers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12E728CB2109006FF146 /* FeedModelSubscribers.swift */; };
 		A9FA78F6BCF85A2EB8A42989 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */; };
 		C5099F1DD9B0E11F9C08BD25 /* Pods_Novigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */; };
 /* End PBXBuildFile section */
@@ -106,6 +109,9 @@
 		8BED12D828C6848D006FF146 /* ArrayFoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayFoto.swift; sourceTree = "<group>"; };
 		8BED12DF28C8C01D006FF146 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		8BED12E128CA061C006FF146 /* bluePixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bluePixel.swift; sourceTree = "<group>"; };
+		8BED12E328CA0D61006FF146 /* FeedModelPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModelPublisher.swift; sourceTree = "<group>"; };
+		8BED12E528CA1680006FF146 /* CheckWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckWord.swift; sourceTree = "<group>"; };
+		8BED12E728CB2109006FF146 /* FeedModelSubscribers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModelSubscribers.swift; sourceTree = "<group>"; };
 		A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Novigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE8B5B8C2056D2BE18FF5E0 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +236,8 @@
 				8BED12D828C6848D006FF146 /* ArrayFoto.swift */,
 				8B30E002283FAF91006763B9 /* PostViewController.swift */,
 				8BED12E128CA061C006FF146 /* bluePixel.swift */,
+				8BED12E728CB2109006FF146 /* FeedModelSubscribers.swift */,
+				8BED12E328CA0D61006FF146 /* FeedModelPublisher.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				8BED12DF28C8C01D006FF146 /* CustomButton.swift */,
+				8BED12E528CA1680006FF146 /* CheckWord.swift */,
 				8B30E02B2849EBAA006763B9 /* Profile */,
 			);
 			path = View;
@@ -463,12 +472,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */,
+				8BED12E428CA0D61006FF146 /* FeedModelPublisher.swift in Sources */,
 				8BED12CE28C5DBD5006FF146 /* LoginViewControllerDelegate.swift in Sources */,
 				8B353271285DCE3A00704D08 /* PhotosTableViewCell.swift in Sources */,
 				8B30E003283FAF91006763B9 /* PostViewController.swift in Sources */,
 				8BED12E028C8C01D006FF146 /* CustomButton.swift in Sources */,
 				8B30DF29283A1CC6006763B9 /* AppDelegate.swift in Sources */,
 				8B353275285DD5E800704D08 /* PhotosCollectionViewCell.swift in Sources */,
+				8BED12E828CB2109006FF146 /* FeedModelSubscribers.swift in Sources */,
 				8BED12D228C5DCA6006FF146 /* UserService.swift in Sources */,
 				8BED12CC28C5DB70006FF146 /* LoginInspector.swift in Sources */,
 				8B30E0312849EE7F006763B9 /* ProfileHeaderView.swift in Sources */,
@@ -481,6 +492,7 @@
 				8BED12CA28BF581F006FF146 /* MyLoginFactory.swift in Sources */,
 				8B30DFFF283F97D6006763B9 /* FeedViewController.swift in Sources */,
 				8B30DF2B283A1CC6006763B9 /* SceneDelegate.swift in Sources */,
+				8BED12E628CA1680006FF146 /* CheckWord.swift in Sources */,
 				8BED12D028C5DC2E006FF146 /* LogicFactory.swift in Sources */,
 				8B14FABF28BC9E87006DE94A /* CurrentUserService.swift in Sources */,
 				8B35326D2859F47200704D08 /* PostCell.swift in Sources */,

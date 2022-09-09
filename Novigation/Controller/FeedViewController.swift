@@ -11,6 +11,37 @@ import StorageService
 
 class FeedViewController: UIViewController {
 
+    private var publisher: FeedModelPublisher?
+
+    private lazy var viewCheckWord: CheckWord = {
+        var viewCheckWord = CheckWord()
+        viewCheckWord.backgroundColor = .systemGray5
+        viewCheckWord.translatesAutoresizingMaskIntoConstraints = false
+        viewCheckWord.layer.cornerRadius = 12
+        return viewCheckWord
+    }()
+
+    private lazy var textFieldCheckWord: UITextField = {
+        var textFieldCheckWord = UITextField()
+        textFieldCheckWord.translatesAutoresizingMaskIntoConstraints = false
+        textFieldCheckWord.clearButtonMode = .whileEditing
+        textFieldCheckWord.backgroundColor = .systemGray5
+        textFieldCheckWord.layer.cornerRadius = 12
+        textFieldCheckWord.placeholder = "    Напиши слово"
+        return  textFieldCheckWord
+    }()
+
+    private lazy var buttonCheckWord: CustomButton = {
+        var buttonCheckWord = CustomButton("Проверить слово",
+                                           color: .white,
+                                           targetAction: {
+
+            self.publisher?.check(self.textFieldCheckWord.text)
+        },
+                                           frame: CGRect())
+        return buttonCheckWord.giveMeCustomButton()
+    }()
+
     private lazy var postStack: UIStackView = {
         var postStack = UIStackView()
         postStack.backgroundColor = .white
@@ -48,6 +79,8 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        self.publisher = FeedModelPublisher()
+        self.publisher?.add(subscriber: self)
     }
 
     override func viewDidLayoutSubviews() {
@@ -60,17 +93,17 @@ class FeedViewController: UIViewController {
         self.view.backgroundColor = .white
         self.navigationItem.title = "Лента"
         self.view.addSubview(postStack)
-        self.postStack.addArrangedSubview(postButton)
-        self.postStack.addArrangedSubview(postButton2)
+        [viewCheckWord, textFieldCheckWord, buttonCheckWord, postButton, postButton2].forEach({ self.postStack.addArrangedSubview($0)})
         self.navigationItem.rightBarButtonItem = buttonRightNavInfo
+
 
 
         NSLayoutConstraint.activate([
 
             self.postStack.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             self.postStack.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.postStack.widthAnchor.constraint(equalToConstant: 200),
-            self.postStack.heightAnchor.constraint(equalToConstant: 200),
+            self.postStack.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 40),
+            self.postStack.heightAnchor.constraint(equalToConstant: 300),
         ])
     }
 
@@ -97,4 +130,13 @@ class FeedViewController: UIViewController {
     }
 
 }
+
+extension FeedViewController: FeedModelSubscribers {
+    func changeTheColor(_ color: UIColor) {
+        self.viewCheckWord.backgroundColor = color
+    }
+
+
+}
+
 

@@ -20,8 +20,7 @@ class CustomButton: UIButton {
         let customButton = CustomButton(self.title,
                                         color: self.colorText,
                                         targetAction: self.action,
-                                        frame: CGRect()
-                                        )
+                                        frame: CGRect())
         customButton.addAction(targetAction, for: .touchUpInside)
         customButton.translatesAutoresizingMaskIntoConstraints = false
         customButton.setBackgroundImage(bluePixel, for: .normal)
