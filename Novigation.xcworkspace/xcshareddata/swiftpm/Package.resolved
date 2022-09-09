@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "iosintpackage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TrueMax/iOSIntPackage.git",
+      "state" : {
+        "branch" : "imagepublisher",
+        "revision" : "e1cc0e1b76d7cb8f770d903d85ae9ed91ae026bd"
+      }
+    }
+  ],
+  "version" : 2
+}
