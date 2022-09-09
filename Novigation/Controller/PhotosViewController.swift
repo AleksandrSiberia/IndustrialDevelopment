@@ -54,7 +54,6 @@ class PhotosViewController: UIViewController {
 
     deinit {
         imagePublisherFacade?.removeSubscription(for: self)
-        print("jnvtyf gjlgbcrb")
     }
 
     private func setupConstraints() {

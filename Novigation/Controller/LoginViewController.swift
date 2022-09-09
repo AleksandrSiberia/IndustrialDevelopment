@@ -74,8 +74,7 @@ class LoginViewController: UIViewController {
 
     private lazy var loginButton: CustomButton = {
 
-        var loginButton = CustomButton( "Авторизоваться",
-                                        color: .red,
+        var loginButton = CustomButton( title: "Авторизоваться",
                                         targetAction: {
 
             let profileViewController = ProfileViewController()
@@ -98,10 +97,9 @@ class LoginViewController: UIViewController {
                 alert.addAction(action)
                 self.present(alert, animated: true)
             }
-          },
-                                        frame: CGRect()
+          }
         )
-        return loginButton.giveMeCustomButton()
+        return loginButton
     }()
 
 

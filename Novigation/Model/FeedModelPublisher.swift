@@ -18,7 +18,7 @@ class FeedModelPublisher {
     }
 
     
-    func delete(subscriber filter: (FeedModelSubscribers) -> Bool) {
+    func delete(subscriber filter: (FeedModelSubscribers) -> Bool ) {
         guard let index = subscribers.firstIndex(where: filter) else { return }
         self.subscribers.remove(at: index)
     }

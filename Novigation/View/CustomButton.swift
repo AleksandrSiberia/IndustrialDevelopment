@@ -7,34 +7,23 @@
 
 import UIKit
 
-class CustomButton: UIButton {
+final class CustomButton: UIButton {
 
-    private var action: () -> Void = {}
-    private var title: String = ""
-    private var colorText: UIColor = UIColor(ciColor: .red)
+    typealias Action = () -> Void
 
-    func giveMeCustomButton() -> CustomButton {
-        let targetAction = UIAction(handler: {_ in
-            self.action()
-        } )
-        let customButton = CustomButton(self.title,
-                                        color: self.colorText,
-                                        targetAction: self.action,
-                                        frame: CGRect())
-        customButton.addAction(targetAction, for: .touchUpInside)
-        customButton.translatesAutoresizingMaskIntoConstraints = false
-        customButton.setBackgroundImage(bluePixel, for: .normal)
-        customButton.layer.cornerRadius = 12
-        customButton.layer.masksToBounds = true
-        customButton.setTitle(title, for: .normal)
-        return customButton
-    }
+    var buttonAction: Action
 
-    init(_ title: String, color: UIColor, targetAction: @escaping () -> Void, frame: CGRect) {
-        super.init(frame: frame)
-        self.title = title
-        self.colorText = color
-        self.action = targetAction
+    init(title: String, titleColor: UIColor = .white, bgColor: UIColor = .blue, targetAction: @escaping Action) {
+        self.buttonAction = targetAction
+        super.init(frame: .zero)
+        layer.cornerRadius = 12
+        clipsToBounds = true
+        backgroundColor = bgColor
+        setBackgroundImage(bluePixel, for: .normal)
+        setTitleColor(titleColor, for: .normal)
+        translatesAutoresizingMaskIntoConstraints = false
+        setTitle(title, for: .normal)
+        addTarget(self, action: #selector(actionButton), for: .touchUpInside)
     }
 
     required init?(coder: NSCoder) {
@@ -45,5 +34,9 @@ class CustomButton: UIButton {
            let uppercasedTitle = title?.uppercased()
            super.setTitle(uppercasedTitle, for: state)
        }
+
+    @objc private func actionButton() {
+        buttonAction()
+    }
 }
 

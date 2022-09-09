@@ -31,16 +31,14 @@ class FeedViewController: UIViewController {
         return  textFieldCheckWord
     }()
 
+    
     private lazy var buttonCheckWord: CustomButton = {
-        var buttonCheckWord = CustomButton("Проверить слово",
-                                           color: .white,
-                                           targetAction: {
-
+        var buttonCheckWord = CustomButton(title: "Проверить слово") {
             self.publisher?.check(self.textFieldCheckWord.text)
-        },
-                                           frame: CGRect())
-        return buttonCheckWord.giveMeCustomButton()
+        }
+        return buttonCheckWord
     }()
+
 
     private lazy var postStack: UIStackView = {
         var postStack = UIStackView()
@@ -88,6 +86,11 @@ class FeedViewController: UIViewController {
         self.postButton.layer.cornerRadius = self.postButton.frame.height / 2
         self.postButton2.layer.cornerRadius = self.postButton2.frame.height / 2
     }
+
+//    deinit {
+//        self.publisher?.delete(subscriber: { _ in
+//            return true })
+//    }
 
     private func setupView() {
         self.view.backgroundColor = .white
