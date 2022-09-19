@@ -11,6 +11,8 @@ import StorageService
 
 class FeedViewController: UIViewController {
 
+    private let output: FeedViewControllerDelegate? = nil
+
     private var publisher: FeedModelPublisher?
 
     private lazy var viewCheckWord: CheckWord = {
