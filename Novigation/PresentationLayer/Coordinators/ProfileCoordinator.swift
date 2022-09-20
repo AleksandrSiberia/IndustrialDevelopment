@@ -8,20 +8,21 @@
 import UIKit
 
 class ProfileCoordinator: AppCoordinator {
+    
 
-    private weak var transitionHandler: UITabBarController?
+
+    private weak var transitionHandler: UINavigationController?
     var childs: [AppCoordinator] = []
-    init(transitionHandler: UITabBarController) {
+    init(transitionHandler: UINavigationController) {
         self.transitionHandler = transitionHandler
     }
 
 
-    func start(){
-        return showFeedScreen()
-    }
+    func start(user: User) {
 
+        let profileViewController = ProfileAssembly.createProfileViewController()
+        profileViewController.currentUser = user
 
-    fileprivate func showFeedScreen() {
-        self.transitionHandler?.navigationController?.pushViewController(ProfileAssembly.createProfileViewController(), animated: true)
+        self.transitionHandler?.pushViewController(profileViewController, animated: true)
     }
 }

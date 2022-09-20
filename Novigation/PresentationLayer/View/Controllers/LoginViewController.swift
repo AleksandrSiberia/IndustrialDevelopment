@@ -9,6 +9,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    var output: LoginViewProtocol!
+
     var loginDelegate: LoginViewControllerDelegate?
 
     private lazy var scrollView: UIScrollView = {
@@ -86,8 +88,10 @@ class LoginViewController: UIViewController {
             let userService = currentUserService
     #endif
             if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!, loginViewController: self) {
-                profileViewController.currentUser = user
-                self.navigationController?.pushViewController(profileViewController, animated: true)
+
+                self.output.coordinator.startProfileCoordinator(user: user)
+                
+
             }
             else {
                 let alert = UIAlertController(title: "Неверный пароль или логин", message: "", preferredStyle: .alert )

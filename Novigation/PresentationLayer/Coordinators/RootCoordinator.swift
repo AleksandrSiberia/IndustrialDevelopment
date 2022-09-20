@@ -9,6 +9,8 @@ import UIKit
 
 // обертка UITabBarController
 class RootCoordinator: AppCoordinator {
+ 
+
 
     private weak var transitionHandler: UITabBarController?
     var childs: [AppCoordinator] = []
@@ -25,13 +27,18 @@ class RootCoordinator: AppCoordinator {
         return nil
     }
 
+    var navLoginView: UINavigationController?
+
 
     fileprivate func showTabBarScreen() -> UITabBarController? {
 
         let navFeedView = UINavigationController(rootViewController: FeedAssembly.createFeedViewController())
         let feedCoordinator = FeedCoordinator(transitionHandler: navFeedView)
 
-        let navLoginView = UINavigationController(rootViewController: LoginAssembly.createLoginViewController())
+        let navLoginView = UINavigationController(rootViewController: LoginAssembly.createLoginViewController(coordinator: self))
+
+        self.navLoginView = navLoginView
+        
         navLoginView.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 2)
         self.childs.append(feedCoordinator)
 
@@ -48,11 +55,12 @@ class RootCoordinator: AppCoordinator {
     }
 
 
-    func startProfileCoordinator() {
+    func startProfileCoordinator(user: User) {
+        
 
-        let profileCoordinator = ProfileCoordinator(transitionHandler: self.transitionHandler!)
+        let profileCoordinator = ProfileCoordinator(transitionHandler: self.navLoginView!)
         self.childs.append(profileCoordinator)
-        profileCoordinator.start()
+        profileCoordinator.start(user: user)
     }
 }
 

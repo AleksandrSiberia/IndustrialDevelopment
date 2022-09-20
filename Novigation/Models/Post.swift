@@ -63,7 +63,7 @@ struct Post4: ModelPost {
 var post4 = Post4()
 
 
-var arrayModelPost: [ModelPost] = [post1, post2, post3, post4]
+ var arrayModelPost: [ModelPost] = [post1, post2, post3, post4]
 
 
 

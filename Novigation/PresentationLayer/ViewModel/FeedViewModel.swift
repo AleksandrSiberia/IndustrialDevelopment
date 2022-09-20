@@ -14,9 +14,12 @@ final class FeedViewModel: FeedViewDelegate {
     var director: AnyObject
 
     private let secretWord: String
+    
     var colorWordVerification: CGColor = CGColor(gray: 0, alpha: 0)
+    
     var wordVerification: String? {
         didSet {
+            print("wordVerification")
             verification()
             self.didChange?(self)
         }

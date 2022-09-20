@@ -11,15 +11,14 @@ import StorageService
 class FeedViewController: UIViewController {
 
     var delegate: FeedViewDelegate! {
+
         didSet {
             self.delegate.didChange = { [ unowned self ] viewModel in
-
                 self.viewCheckWord.backgroundColor = UIColor(cgColor: viewModel.colorWordVerification)
             }
         }
     }
 
- //   private var publisher: FeedModelPublisher?
 
     private lazy var viewCheckWord: CheckWord = {
         var viewCheckWord = CheckWord()
@@ -80,18 +79,20 @@ class FeedViewController: UIViewController {
         return postButton2
     }()
 
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-//        self.publisher = FeedModelPublisher()
-//        self.publisher?.add(subscriber: self)
+       
+
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.postButton.layer.cornerRadius = self.postButton.frame.height / 2
         self.postButton2.layer.cornerRadius = self.postButton2.frame.height / 2
+
     }
 
 //    deinit {

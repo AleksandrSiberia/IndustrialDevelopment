@@ -10,6 +10,19 @@ import iOSIntPackage
 
 final class ProfileViewController: UIViewController {
 
+    var delegate: ProfileViewDelegate! {
+
+        didSet {
+
+            self.delegate.didChange = { [ unowned self ] delegate in
+                self.posts = delegate.posts!
+                self.tableView.reloadData()
+            }
+        }
+    }
+
+    private var posts: [ModelPost] = []
+
     var currentUser: User?
 
     private lazy var tableView: UITableView = {
@@ -31,15 +44,20 @@ final class ProfileViewController: UIViewController {
         return tableView
     }()
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(tableView)
         self.setupConstraints()
+       
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        self.delegate.showPost()
+
+   
     }
 
     private func setupConstraints() {
@@ -56,7 +74,8 @@ final class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        section == 1 ? arrayModelPost.count : 1
+    
+        return section == 1 ? self.posts.count : 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,8 +92,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
         }
 
         let indexPathRow = indexPath.row
-        let post = arrayModelPost[indexPathRow]
-        cell.setup(this: post)
+            let post = self.posts[indexPathRow]
+            cell.setup(this: post)
         return cell
         }
     }

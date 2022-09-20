@@ -15,4 +15,5 @@ protocol AppCoordinator {
     // для того чтобы все держалось в памяти
 
     var childs: [AppCoordinator] { get set }
+ 
 }
