@@ -11,7 +11,9 @@ import Foundation
 final class ProfileAssembly {
 
     static func createProfileViewController() -> ProfileViewController {
+
         let view = ProfileViewController()
+        
         return  view
     }
 }

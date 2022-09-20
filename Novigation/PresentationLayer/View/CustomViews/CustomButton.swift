@@ -9,7 +9,7 @@ import UIKit
 
 final class CustomButton: UIButton {
 
-    typealias Action = () -> Void
+    typealias Action = (() -> Void)
 
     var buttonAction: Action
 
