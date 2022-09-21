@@ -1,0 +1,6 @@
+framework module Pods_Novigation {
+  umbrella header "Pods-Novigation-umbrella.h"
+
+  export *
+  module * { export * }
+}
