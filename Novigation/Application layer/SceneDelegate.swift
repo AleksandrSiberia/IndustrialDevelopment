@@ -10,40 +10,31 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var rootCoordinator: AppCoordinator?
+
+
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow.init(windowScene: windowScene)
 
-        let navFeedViewController = UINavigationController(rootViewController: FeedViewController())
-
-        let loginViewController = LoginViewController()
-        let loginInspector = MyLoginFactory().makeLoginInspector()
-
-        loginViewController.loginDelegate = loginInspector
-        let navLoginViewController = UINavigationController(rootViewController: loginViewController)
-
-
         let tabBarController = UITabBarController()
-        tabBarController.tabBar.backgroundColor = .white
-        tabBarController.viewControllers = [navFeedViewController, navLoginViewController]
 
-        navFeedViewController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "house"), tag: 1)
+        let coordinator = RootCoordinator(transitionHandler: tabBarController)
+        self.rootCoordinator = coordinator
 
-        navLoginViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 2)
 
-        
-        self.window?.rootViewController = tabBarController
+
+        self.window?.rootViewController = coordinator.start()
         self.window?.makeKeyAndVisible()
+
+
     }
 
 
-
-
-
-
-    
     func sceneDidDisconnect(_ scene: UIScene) {
+
+
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.

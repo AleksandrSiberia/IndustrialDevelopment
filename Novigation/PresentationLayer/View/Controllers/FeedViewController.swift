@@ -6,16 +6,22 @@
 //
 
 import UIKit
-
 import StorageService
 
 class FeedViewController: UIViewController {
 
-    private var publisher: FeedModelPublisher?
+    var delegate: FeedViewDelegate! {
+
+        didSet {
+            self.delegate.didChange = { [ unowned self ] viewModel in
+                self.viewCheckWord.backgroundColor = UIColor(cgColor: viewModel.colorWordVerification)
+            }
+        }
+    }
+
 
     private lazy var viewCheckWord: CheckWord = {
         var viewCheckWord = CheckWord()
-        viewCheckWord.backgroundColor = .systemGray5
         viewCheckWord.translatesAutoresizingMaskIntoConstraints = false
         viewCheckWord.layer.cornerRadius = 12
         return viewCheckWord
@@ -34,7 +40,7 @@ class FeedViewController: UIViewController {
     
     private lazy var buttonCheckWord: CustomButton = {
         var buttonCheckWord = CustomButton(title: "Проверить слово") {
-            self.publisher?.check(self.textFieldCheckWord.text)
+         self.delegate.wordVerification = self.textFieldCheckWord.text
         }
         return buttonCheckWord
     }()
@@ -73,18 +79,20 @@ class FeedViewController: UIViewController {
         return postButton2
     }()
 
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        self.publisher = FeedModelPublisher()
-        self.publisher?.add(subscriber: self)
+       
+
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.postButton.layer.cornerRadius = self.postButton.frame.height / 2
         self.postButton2.layer.cornerRadius = self.postButton2.frame.height / 2
+
     }
 
 //    deinit {
