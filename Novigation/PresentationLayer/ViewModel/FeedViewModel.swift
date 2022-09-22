@@ -19,7 +19,7 @@ final class FeedViewModel: FeedViewDelegate {
     
     var wordVerification: String? {
         didSet {
-            print("wordVerification")
+        
             verification()
             self.didChange?(self)
         }

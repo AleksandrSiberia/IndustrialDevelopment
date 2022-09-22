@@ -114,10 +114,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == 0 {
-            let photosViewController = PhotosViewController()
-            photosViewController.navigationItem.title = "Photos Gallery"
 
-            self.navigationController?.pushViewController(photosViewController, animated: true)
+            self.navigationController?.pushViewController(PhotosAssembly.showPhotosViewController(), animated: true)
         }
     }
 }
