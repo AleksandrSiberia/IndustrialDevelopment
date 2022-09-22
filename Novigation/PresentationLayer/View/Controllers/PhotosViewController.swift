@@ -15,8 +15,10 @@ class PhotosViewController: UIViewController {
         static let number = 3.0
     }
 
-    var imagePublisherFacade: ImagePublisherFacade? = nil
-    var arrayImage: [UIImage] = []
+    var imageProcessor: ImageProcessor?
+    
+    var arrayUIImage: [UIImage] = []
+
 
     private lazy var collectionFlowLayout: UICollectionViewFlowLayout = {
         var collectionFlowLayout = UICollectionViewFlowLayout()
@@ -46,15 +48,38 @@ class PhotosViewController: UIViewController {
         self.view.addSubview(self.collectionView)
         setupConstraints()
 
-        let imagePublisherFacade = ImagePublisherFacade()
-        self.imagePublisherFacade = imagePublisherFacade
-        imagePublisherFacade.subscribe(self)
-        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 10, userImages: arrayImages)
+        let queue = DispatchQueue.global(qos: .userInteractive)
+        let workItem = DispatchWorkItem.init(qos: .userInteractive) {
+
+            let start = DispatchTime.now()
+            self.imageProcessor?.processImagesOnThread(sourceImages: arrayImages, filter: .chrome, qos: .utility, completion:
+
+                                                        { arrayNewImage in
+                arrayNewImage.forEach { fotoCG in
+                    self.arrayUIImage.append(UIImage(cgImage: fotoCG!))
+                }
+
+                let end = DispatchTime.now()
+                let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
+                let timeInterval = Double(nanoTime) / 1_000_000_000
+
+                print("Время исполнения метода \(timeInterval) секунд")
+
+                //  Время исполнения метода processImagesOnThread:
+                //    .background 8.463020833 секунд
+                //    .utility    1.70017675 секунд
+                //    .userInitiated 1.76629675 секунд
+                //    .userInteractive  1.751627459 сукунд
+
+
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            })
+        }
+        queue.sync(execute: workItem)
     }
 
-    deinit {
-        imagePublisherFacade?.removeSubscription(for: self)
-    }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -70,7 +95,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        self.arrayImage.count
+        self.arrayUIImage.count
 
     }
 
@@ -79,7 +104,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
             return cell
         }
         cell.backgroundColor = .black
-        cell.setupImage(self.arrayImage[indexPath.row])
+        cell.setupImage(self.arrayUIImage[indexPath.row])
         return cell
     }
 
@@ -94,11 +119,3 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
 }
 
-extension PhotosViewController: ImageLibrarySubscriber {
-    
-    func receive(images: [UIImage]) {
-        print("PhotosViewController: обновление фотографий в массиве")
-        self.arrayImage = images
-        collectionView.reloadData()
-    }
-}
