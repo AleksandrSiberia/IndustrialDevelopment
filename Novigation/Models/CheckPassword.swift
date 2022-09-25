@@ -7,8 +7,11 @@
 
 import Foundation
 
+
 protocol LoginViewControllerOutput {
+    var thisIsPassword: String { get set }
     func bruteForce()
+
 }
 
 protocol CheckPasswordOutput {
@@ -17,11 +20,13 @@ protocol CheckPasswordOutput {
     func activityIndicatorOff()
 }
 
+
+
 class CheckPassword: LoginViewControllerOutput {
 
     var view: CheckPasswordOutput?
 
-    var password = "05HFIO"
+    var password = Checker.password
 
     var s1: String?
     var s2: String?
@@ -46,23 +51,26 @@ class CheckPassword: LoginViewControllerOutput {
 
     func bruteForce() {
 
-        
-        self.view?.activityIndicatorOn()
+        if  self.thisIsPassword != self.password {
+            self.view?.activityIndicatorOn()
+        }
 
         let dispatchQueue = DispatchQueue.init(label: "checkArraySymbols", qos: .userInitiated)
         let workItem = DispatchWorkItem { [self] in
 
-
+            
             while(self.thisIsPassword != self.password) {
 
                 for number in self.arraySymbols {
                     s1 = number
                     let numberString = "\(s1!)"
                     self.symbols = numberString
-                    print(self.symbols)
                     if self.password == self.symbols {
                         self.thisIsPassword = self.symbols
                         print("Пароль: \(self.symbols)")
+                        DispatchQueue.main.async {
+                            self.view?.activityIndicatorOff()
+                        }
                         return
                     }
 
@@ -70,10 +78,12 @@ class CheckPassword: LoginViewControllerOutput {
                         s2 = number
                         let numberString = "\(s1!)\(s2!)"
                         self.symbols = numberString
-                        print(self.symbols)
                         if password == self.symbols {
                             self.thisIsPassword = self.symbols
                             print("Пароль: \(self.symbols)")
+                            DispatchQueue.main.async {
+                                self.view?.activityIndicatorOff()
+                            }
                             return
                         }
 
@@ -81,10 +91,12 @@ class CheckPassword: LoginViewControllerOutput {
                             s3 = number
                             let numberString = "\(s1!)\(s2!)\(s3!)"
                             self.symbols = numberString
-
                             if password == self.symbols {
                                 self.thisIsPassword = self.symbols
                                 print("Пароль: \(self.symbols)")
+                                DispatchQueue.main.async {
+                                    self.view?.activityIndicatorOff()
+                                }
                                 return
                             }
 
@@ -92,9 +104,13 @@ class CheckPassword: LoginViewControllerOutput {
                                 s4 = number
                                 let numberString = "\(s1!)\(s2!)\(s3!)\(s4!)"
                                 self.symbols = numberString
+       //                         print(self.symbols)
                                 if password == self.symbols {
                                     self.thisIsPassword = self.symbols
                                     print("Пароль: \(self.symbols)")
+                                    DispatchQueue.main.async {
+                                        self.view?.activityIndicatorOff()
+                                    }
                                     return
                                 }
 
@@ -102,10 +118,12 @@ class CheckPassword: LoginViewControllerOutput {
                                     s5 = number
                                     let numberString = "\(s1!)\(s2!)\(s3!)\(s4!)\(s5!)"
                                     self.symbols = numberString
-                                    print(self.symbols)
                                     if password == self.symbols {
                                         self.thisIsPassword = self.symbols
                                         print("Пароль: \(self.symbols)")
+                                        DispatchQueue.main.async {
+                                            self.view?.activityIndicatorOff()
+                                        }
                                         return
                                     }
 
@@ -116,6 +134,9 @@ class CheckPassword: LoginViewControllerOutput {
                                         if password == self.symbols {
                                             self.thisIsPassword = self.symbols
                                             print("Пароль: \(self.symbols)")
+                                            DispatchQueue.main.async {
+                                                self.view?.activityIndicatorOff()
+                                            }
                                             return
                                         }
                                     }

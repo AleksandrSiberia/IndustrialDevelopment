@@ -49,15 +49,12 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(tableView)
         self.setupConstraints()
-       
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.delegate.showPost()
-
-   
     }
 
     private func setupConstraints() {

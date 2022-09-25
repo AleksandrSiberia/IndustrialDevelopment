@@ -10,12 +10,12 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-
     var output: LoginViewProtocol!
 
     var loginDelegate: LoginViewControllerDelegate?
 
-    var OutputCheckPassword: LoginViewControllerOutput?
+    var outputCheckPassword: LoginViewControllerOutput?
+
 
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
@@ -24,12 +24,14 @@ class LoginViewController: UIViewController {
         return scrollView
     }()
 
+
     private lazy var imageVkView: UIImageView = {
         var imageVk = UIImage(named: "logoVK")
         var imageVkView = UIImageView(image: imageVk)
         imageVkView.translatesAutoresizingMaskIntoConstraints = false
         return imageVkView
     }()
+
 
     private lazy var stackView: UIStackView = {
         var stackView = UIStackView()
@@ -110,13 +112,11 @@ class LoginViewController: UIViewController {
     private lazy var buttonCheckPassword: CustomButton = {
         var buttonCheckPassword = CustomButton(title: "Подобрать пароль", targetAction: {
             
-            self.OutputCheckPassword?.bruteForce()
+            self.outputCheckPassword?.bruteForce()
 
         })
         return buttonCheckPassword
     }()
-
-
 
 
 
@@ -230,5 +230,7 @@ extension LoginViewController: CheckPasswordOutput {
 
    func activityIndicatorOff() {
         self.passwordTextField.backgroundColor = .systemGray6
+        self.passwordTextField.isSecureTextEntry = false
+        self.passwordTextField.text = self.outputCheckPassword?.thisIsPassword
      }
 }

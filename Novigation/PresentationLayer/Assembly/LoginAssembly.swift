@@ -21,7 +21,7 @@ final class LoginAssembly {
         checkPassword.view = view
 
         view.loginDelegate = loginInspector
-        view.OutputCheckPassword = checkPassword
+        view.outputCheckPassword = checkPassword
 
         view.output = viewModel
 
