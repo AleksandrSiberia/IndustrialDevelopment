@@ -3,7 +3,7 @@
 //  Novigation
 //
 //  Created by Александр Хмыров on 18.06.2022.
-//
+
 
 import UIKit
 import StorageService
@@ -49,20 +49,17 @@ class PhotosViewController: UIViewController {
         setupConstraints()
 
         let queue = DispatchQueue.global(qos: .userInteractive)
-        let workItem = DispatchWorkItem.init(qos: .userInteractive) {
 
+        let workItem = DispatchWorkItem.init(qos: .userInteractive) {
             let start = DispatchTime.now()
             self.imageProcessor?.processImagesOnThread(sourceImages: arrayImages, filter: .chrome, qos: .utility, completion:
-
                                                         { arrayNewImage in
                 arrayNewImage.forEach { fotoCG in
                     self.arrayUIImage.append(UIImage(cgImage: fotoCG!))
                 }
-
                 let end = DispatchTime.now()
                 let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
                 let timeInterval = Double(nanoTime) / 1_000_000_000
-
                 print("Время исполнения метода \(timeInterval) секунд")
 
                 //  Время исполнения метода processImagesOnThread:
@@ -70,7 +67,6 @@ class PhotosViewController: UIViewController {
                 //    .utility    1.70017675 секунд
                 //    .userInitiated 1.76629675 секунд
                 //    .userInteractive  1.751627459 сукунд
-
 
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()

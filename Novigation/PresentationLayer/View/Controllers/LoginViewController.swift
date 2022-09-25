@@ -14,6 +14,16 @@ class LoginViewController: UIViewController {
 
     var loginDelegate: LoginViewControllerDelegate?
 
+    var outputCheckPassword: LoginViewControllerOutput?
+
+
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        var activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+
+
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
         scrollView.backgroundColor = .white
@@ -21,12 +31,14 @@ class LoginViewController: UIViewController {
         return scrollView
     }()
 
+
     private lazy var imageVkView: UIImageView = {
         var imageVk = UIImage(named: "logoVK")
         var imageVkView = UIImageView(image: imageVk)
         imageVkView.translatesAutoresizingMaskIntoConstraints = false
         return imageVkView
     }()
+
 
     private lazy var stackView: UIStackView = {
         var stackView = UIStackView()
@@ -76,7 +88,6 @@ class LoginViewController: UIViewController {
 
 
     private lazy var loginButton: CustomButton = {
-
         var loginButton = CustomButton( title: "Авторизоваться",
                                         targetAction: {
 
@@ -89,10 +100,7 @@ class LoginViewController: UIViewController {
             let userService = currentUserService
     #endif
             if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!, loginViewController: self) {
-
                 self.output.coordinator.startProfileCoordinator(user: user)
-                
-
             }
             else {
                 let alert = UIAlertController(title: "Неверный пароль или логин", message: "", preferredStyle: .alert )
@@ -108,6 +116,17 @@ class LoginViewController: UIViewController {
     }()
 
 
+    private lazy var buttonCheckPassword: CustomButton = {
+        var buttonCheckPassword = CustomButton(title: "Подобрать пароль", targetAction: {
+            
+            self.outputCheckPassword?.bruteForce()
+
+        })
+        return buttonCheckPassword
+    }()
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGestures()
@@ -117,12 +136,18 @@ class LoginViewController: UIViewController {
         self.scrollView.addSubview(stackView)
         self.stackView.addArrangedSubview(loginTextField)
         self.stackView.addArrangedSubview(passwordTextField)
-        self.scrollView.addSubview(loginButton)
+        self.stackView.addArrangedSubview(buttonCheckPassword)
+        self.stackView.addArrangedSubview(loginButton)
+        self.passwordTextField.addSubview(activityIndicator)
+
+
         let scrollViewConstraint: [NSLayoutConstraint] = scrollViewConstraint()
         let logoVkViewConstraint: [NSLayoutConstraint] = logoVkViewConstraint()
         let stackViewConstraints: [NSLayoutConstraint] = stackViewConstraints()
         let loginButtonConstraints: [NSLayoutConstraint] = loginButtonConstraints()
         let loginTextFieldConstraints: [NSLayoutConstraint] = loginTextFieldConstraints()
+
+
 
         NSLayoutConstraint.activate(
             scrollViewConstraint +
@@ -130,6 +155,8 @@ class LoginViewController: UIViewController {
             stackViewConstraints +
             loginTextFieldConstraints +
             loginButtonConstraints
+
+
             )
     }
 
@@ -163,14 +190,18 @@ class LoginViewController: UIViewController {
 
     private func stackViewConstraints() -> [NSLayoutConstraint] {
         let topAnchor = stackView.topAnchor.constraint(equalTo: self.imageVkView.bottomAnchor, constant: 120)
-        let heightAnchor = stackView.heightAnchor.constraint(equalToConstant: 100)
+        let heightAnchor = stackView.heightAnchor.constraint(equalToConstant: 200)
         return [topAnchor, heightAnchor]
     }
 
     private func loginTextFieldConstraints() -> [NSLayoutConstraint] {
         let trailingAnchor = self.loginTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
         let leadingAnchor = self.loginTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
-        return [trailingAnchor, leadingAnchor]
+
+        let activityIndicatorX  = self.activityIndicator.centerXAnchor.constraint(equalTo: self.passwordTextField.centerXAnchor)
+        let activityIndicatorY  = self.activityIndicator.centerYAnchor.constraint(equalTo: self.passwordTextField.centerYAnchor)
+
+        return [trailingAnchor, leadingAnchor, activityIndicatorX, activityIndicatorY]
     }
 
     private func loginButtonConstraints() -> [NSLayoutConstraint] {
@@ -207,3 +238,16 @@ class LoginViewController: UIViewController {
 }
 
 
+extension LoginViewController: CheckPasswordOutput {
+
+   func activityIndicatorOn() {
+       self.activityIndicator.startAnimating()
+    }
+
+   func activityIndicatorOff() {
+        self.activityIndicator.stopAnimating()
+        self.buttonCheckPassword.isHidden = true
+        self.passwordTextField.isSecureTextEntry = false
+        self.passwordTextField.text = self.outputCheckPassword?.thisIsPassword
+     }
+}
