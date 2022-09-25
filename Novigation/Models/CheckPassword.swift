@@ -58,7 +58,7 @@ class CheckPassword: LoginViewControllerOutput {
         let dispatchQueue = DispatchQueue.init(label: "checkArraySymbols", qos: .userInitiated)
         let workItem = DispatchWorkItem { [self] in
 
-            
+
             while(self.thisIsPassword != self.password) {
 
                 for number in self.arraySymbols {

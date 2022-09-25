@@ -17,6 +17,13 @@ class LoginViewController: UIViewController {
     var outputCheckPassword: LoginViewControllerOutput?
 
 
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        var activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+
+
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
         scrollView.backgroundColor = .white
@@ -131,6 +138,8 @@ class LoginViewController: UIViewController {
         self.stackView.addArrangedSubview(passwordTextField)
         self.stackView.addArrangedSubview(buttonCheckPassword)
         self.stackView.addArrangedSubview(loginButton)
+        self.passwordTextField.addSubview(activityIndicator)
+
 
         let scrollViewConstraint: [NSLayoutConstraint] = scrollViewConstraint()
         let logoVkViewConstraint: [NSLayoutConstraint] = logoVkViewConstraint()
@@ -139,12 +148,15 @@ class LoginViewController: UIViewController {
         let loginTextFieldConstraints: [NSLayoutConstraint] = loginTextFieldConstraints()
 
 
+
         NSLayoutConstraint.activate(
             scrollViewConstraint +
             logoVkViewConstraint +
             stackViewConstraints +
             loginTextFieldConstraints +
             loginButtonConstraints
+
+
             )
     }
 
@@ -185,7 +197,11 @@ class LoginViewController: UIViewController {
     private func loginTextFieldConstraints() -> [NSLayoutConstraint] {
         let trailingAnchor = self.loginTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
         let leadingAnchor = self.loginTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
-        return [trailingAnchor, leadingAnchor]
+
+        let activityIndicatorX  = self.activityIndicator.centerXAnchor.constraint(equalTo: self.passwordTextField.centerXAnchor)
+        let activityIndicatorY  = self.activityIndicator.centerYAnchor.constraint(equalTo: self.passwordTextField.centerYAnchor)
+
+        return [trailingAnchor, leadingAnchor, activityIndicatorX, activityIndicatorY]
     }
 
     private func loginButtonConstraints() -> [NSLayoutConstraint] {
@@ -225,11 +241,12 @@ class LoginViewController: UIViewController {
 extension LoginViewController: CheckPasswordOutput {
 
    func activityIndicatorOn() {
-        self.passwordTextField.backgroundColor = .black
+       self.activityIndicator.startAnimating()
     }
 
    func activityIndicatorOff() {
-        self.passwordTextField.backgroundColor = .systemGray6
+        self.activityIndicator.stopAnimating()
+        self.buttonCheckPassword.isHidden = true
         self.passwordTextField.isSecureTextEntry = false
         self.passwordTextField.text = self.outputCheckPassword?.thisIsPassword
      }
