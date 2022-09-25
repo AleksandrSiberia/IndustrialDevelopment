@@ -8,9 +8,8 @@
 import Foundation
 
 
+
 final class LoginAssembly {
-
-
 
     static func createLoginViewController(coordinator: RootCoordinator) -> LoginViewController {
 
@@ -18,7 +17,11 @@ final class LoginAssembly {
         let view = LoginViewController()
         let viewModel = LoginViewModel(coordinator: coordinator)
         let loginInspector = MyLoginFactory().makeLoginInspector()
+        let checkPassword = CheckPassword()
+        checkPassword.view = view
+
         view.loginDelegate = loginInspector
+        view.OutputCheckPassword = checkPassword
 
         view.output = viewModel
 

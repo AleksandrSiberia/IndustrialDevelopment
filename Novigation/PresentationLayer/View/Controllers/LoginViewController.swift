@@ -10,9 +10,12 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+
     var output: LoginViewProtocol!
 
     var loginDelegate: LoginViewControllerDelegate?
+
+    var OutputCheckPassword: LoginViewControllerOutput?
 
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
@@ -76,7 +79,6 @@ class LoginViewController: UIViewController {
 
 
     private lazy var loginButton: CustomButton = {
-
         var loginButton = CustomButton( title: "Авторизоваться",
                                         targetAction: {
 
@@ -89,10 +91,7 @@ class LoginViewController: UIViewController {
             let userService = currentUserService
     #endif
             if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!, loginViewController: self) {
-
                 self.output.coordinator.startProfileCoordinator(user: user)
-                
-
             }
             else {
                 let alert = UIAlertController(title: "Неверный пароль или логин", message: "", preferredStyle: .alert )
@@ -108,6 +107,19 @@ class LoginViewController: UIViewController {
     }()
 
 
+    private lazy var buttonCheckPassword: CustomButton = {
+        var buttonCheckPassword = CustomButton(title: "Подобрать пароль", targetAction: {
+            
+            self.OutputCheckPassword?.bruteForce()
+
+        })
+        return buttonCheckPassword
+    }()
+
+
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGestures()
@@ -117,12 +129,15 @@ class LoginViewController: UIViewController {
         self.scrollView.addSubview(stackView)
         self.stackView.addArrangedSubview(loginTextField)
         self.stackView.addArrangedSubview(passwordTextField)
-        self.scrollView.addSubview(loginButton)
+        self.stackView.addArrangedSubview(buttonCheckPassword)
+        self.stackView.addArrangedSubview(loginButton)
+
         let scrollViewConstraint: [NSLayoutConstraint] = scrollViewConstraint()
         let logoVkViewConstraint: [NSLayoutConstraint] = logoVkViewConstraint()
         let stackViewConstraints: [NSLayoutConstraint] = stackViewConstraints()
         let loginButtonConstraints: [NSLayoutConstraint] = loginButtonConstraints()
         let loginTextFieldConstraints: [NSLayoutConstraint] = loginTextFieldConstraints()
+
 
         NSLayoutConstraint.activate(
             scrollViewConstraint +
@@ -163,7 +178,7 @@ class LoginViewController: UIViewController {
 
     private func stackViewConstraints() -> [NSLayoutConstraint] {
         let topAnchor = stackView.topAnchor.constraint(equalTo: self.imageVkView.bottomAnchor, constant: 120)
-        let heightAnchor = stackView.heightAnchor.constraint(equalToConstant: 100)
+        let heightAnchor = stackView.heightAnchor.constraint(equalToConstant: 200)
         return [topAnchor, heightAnchor]
     }
 
@@ -207,3 +222,13 @@ class LoginViewController: UIViewController {
 }
 
 
+extension LoginViewController: CheckPasswordOutput {
+
+   func activityIndicatorOn() {
+        self.passwordTextField.backgroundColor = .black
+    }
+
+   func activityIndicatorOff() {
+        self.passwordTextField.backgroundColor = .systemGray6
+     }
+}
