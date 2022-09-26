@@ -10,7 +10,7 @@ import Foundation
 final class Checker: LoginViewControllerDelegate {
 
     private let login: String = "1"
-    static let password: String = "0GIYVB"
+    static let password: String = "03IYVB"
     private init () {}
 
     static let shared = Checker()

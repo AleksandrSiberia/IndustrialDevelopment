@@ -34,6 +34,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
 
     private func setupConstraint() {
 
+
         NSLayoutConstraint.activate([
             self.imageView.topAnchor.constraint(equalTo: self.topAnchor),
             self.imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),

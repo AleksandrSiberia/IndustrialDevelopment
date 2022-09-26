@@ -11,6 +11,9 @@ import StorageService
 
 class PhotosTableViewCell: UITableViewCell {
 
+
+    private var widthItem: CGFloat = 0
+
     private enum Constraints {
         static let NumberItemInLine: CGFloat = 4
     }
@@ -44,7 +47,8 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var photoCollectionView: UICollectionView = {
         var photoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: self.collectionFlowLayout)
         photoCollectionView.delegate = self
-        photoCollectionView.dataSource = self 
+        photoCollectionView.dataSource = self
+
         photoCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DefaultCell")
         photoCollectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.nameCollectionCell)
         photoCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,17 +60,40 @@ class PhotosTableViewCell: UITableViewCell {
         self.contentView.addSubview(labelCollectionPhoto)
         self.contentView.addSubview(arrow)
         self.contentView.addSubview(photoCollectionView)
-       
+
         setupConstraints()
 
+
+        // Я думаю удобно с помощью таймера скролить CollectionView с
+       // фотографиями в профиле для демонстрации того что можно посмотреть в
+       // следующем представлении
+
+        var count: Int = 1
+
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { timer in
+            let width: Int = ((Int(self.widthItem) * 4) + 18 + (8 * 3))
+            var contentSizeWidth = Int(self.photoCollectionView.contentSize.width)
+            let contentOffset = count * width
+            self.photoCollectionView.contentOffset = CGPoint(x: contentOffset, y: 0)
+            count += 1
+            if contentOffset + width + 20 > contentSizeWidth {
+                count = 1
+            }
+        }
     }
+
+
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+   
 
     private func setupConstraints() {
+
+
+
         let sectionInsetLR = collectionFlowLayout.sectionInset.left + collectionFlowLayout.sectionInset.right
 
         let allInteritemSpacing = collectionFlowLayout.minimumInteritemSpacing * 3
@@ -94,6 +121,7 @@ class PhotosTableViewCell: UITableViewCell {
             self.photoCollectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             self.photoCollectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             self.photoCollectionView.heightAnchor.constraint(equalToConstant: widthHeightCollection )
+
          ])
     }
 }
@@ -125,7 +153,9 @@ extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionV
 
         let neededWidth = collectionView.frame.width - (Constraints.NumberItemInLine - 1) * spacingItem - sectionInsetAll.left - sectionInsetAll.right
 
+
         let widthItem = floor (neededWidth / Constraints.NumberItemInLine)
+        self.widthItem = widthItem
         return CGSize(width: widthItem, height: widthItem)
     }
 }
