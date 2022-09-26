@@ -147,8 +147,6 @@ class LoginViewController: UIViewController {
         let loginButtonConstraints: [NSLayoutConstraint] = loginButtonConstraints()
         let loginTextFieldConstraints: [NSLayoutConstraint] = loginTextFieldConstraints()
 
-
-
         NSLayoutConstraint.activate(
             scrollViewConstraint +
             logoVkViewConstraint +

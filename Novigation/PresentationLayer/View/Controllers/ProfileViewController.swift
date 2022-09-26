@@ -8,6 +8,10 @@
 import UIKit
 import iOSIntPackage
 
+protocol ProfileViewControllerOutput {
+    func timerStop()
+}
+
 final class ProfileViewController: UIViewController {
 
     var delegate: ProfileViewDelegate! {
@@ -20,6 +24,8 @@ final class ProfileViewController: UIViewController {
             }
         }
     }
+
+    var output: ProfileViewControllerOutput?
 
     private var posts: [ModelPost] = []
 
@@ -57,6 +63,11 @@ final class ProfileViewController: UIViewController {
         self.delegate.showPost()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.output?.timerStop()
+    }
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
         self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -80,6 +91,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell else { let cell = self.tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
                 return cell
             }
+            self.output = cell
             return cell
         }
 

@@ -9,10 +9,13 @@ import UIKit
 
 import StorageService
 
+
 class PhotosTableViewCell: UITableViewCell {
 
 
     private var widthItem: CGFloat = 0
+    private var neededWidth: CGFloat = 0
+    var timer: Timer?
 
     private enum Constraints {
         static let NumberItemInLine: CGFloat = 4
@@ -71,28 +74,31 @@ class PhotosTableViewCell: UITableViewCell {
         var count: Int = 1
 
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { timer in
-            let width: Int = ((Int(self.widthItem) * 4) + 18 + (8 * 3))
-            var contentSizeWidth = Int(self.photoCollectionView.contentSize.width)
+
+
+            let width: Int = Int(self.neededWidth)
+
+            let contentSizeWidth = Int(self.photoCollectionView.contentSize.width)
             let contentOffset = count * width
             self.photoCollectionView.contentOffset = CGPoint(x: contentOffset, y: 0)
             count += 1
             if contentOffset + width + 20 > contentSizeWidth {
-                count = 1
+                count = 0
+                self.photoCollectionView.contentOffset = CGPoint(x: 0, y: 0)
+                self.timer = timer
+            //    timer.invalidate()
             }
+
         }
     }
-
-
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-   
+
 
     private func setupConstraints() {
-
-
 
         let sectionInsetLR = collectionFlowLayout.sectionInset.left + collectionFlowLayout.sectionInset.right
 
@@ -149,13 +155,24 @@ extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionV
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let spacingItem = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing ?? 0
+
         let sectionInsetAll = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset ?? .zero
 
         let neededWidth = collectionView.frame.width - (Constraints.NumberItemInLine - 1) * spacingItem - sectionInsetAll.left - sectionInsetAll.right
+
+        self.neededWidth = collectionView.frame.width - sectionInsetAll.left + spacingItem - 5
 
 
         let widthItem = floor (neededWidth / Constraints.NumberItemInLine)
         self.widthItem = widthItem
         return CGSize(width: widthItem, height: widthItem)
     }
+}
+
+extension PhotosTableViewCell: ProfileViewControllerOutput {
+    func timerStop() {
+        self.timer?.invalidate()
+    }
+
+
 }
