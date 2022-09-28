@@ -57,11 +57,13 @@ final class ProfileViewController: UIViewController {
         self.setupConstraints()
     }
 
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.delegate.showPost()
     }
+
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

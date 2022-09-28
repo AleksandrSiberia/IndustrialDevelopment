@@ -90,26 +90,7 @@ class LoginViewController: UIViewController {
     private lazy var loginButton: CustomButton = {
         var loginButton = CustomButton( title: "Авторизоваться",
                                         targetAction: {
-
-            let profileViewController = ProfileViewController()
-            let currentUserService = CurrentUserService()
-            let testUserService = TestUserService()
-    #if DEBUG
-            let userService = testUserService
-    #else
-            let userService = currentUserService
-    #endif
-            if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!, loginViewController: self) {
-                self.output.coordinator.startProfileCoordinator(user: user)
-            }
-            else {
-                let alert = UIAlertController(title: "Неверный пароль или логин", message: "", preferredStyle: .alert )
-                let action = UIAlertAction(title: "Ok", style: .cancel) { _ in
-                    self.dismiss(animated: true)
-                }
-                alert.addAction(action)
-                self.present(alert, animated: true)
-            }
+            self.openActionLoginButton()
           }
         )
         return loginButton
@@ -118,9 +99,7 @@ class LoginViewController: UIViewController {
 
     private lazy var buttonCheckPassword: CustomButton = {
         var buttonCheckPassword = CustomButton(title: "Подобрать пароль", targetAction: {
-            
             self.outputCheckPassword?.bruteForce()
-
         })
         return buttonCheckPassword
     }()
@@ -169,6 +148,7 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
+
     private func scrollViewConstraint() -> [NSLayoutConstraint] {
         let topAnchor = scrollView.topAnchor.constraint(equalTo: self.view.topAnchor)
         let leadingAnchor = scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
@@ -177,6 +157,40 @@ class LoginViewController: UIViewController {
         return [topAnchor, leadingAnchor, trailingAnchor, bottomAnchor]
     }
 
+    private func actionLoginButton()throws {
+
+        let currentUserService = CurrentUserService()
+        let testUserService = TestUserService()
+#if DEBUG
+        let userService = testUserService
+#else
+        let userService = currentUserService
+#endif
+        if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!, loginViewController: self) {
+            self.output.coordinator.startProfileCoordinator(user: user)
+        }
+        else {
+            throw CustomErrorNovigation.invalidPasswordOrLogin
+        }
+    }
+
+    private func openActionLoginButton() {
+        do {
+            try actionLoginButton()
+        }
+        catch {
+            print(CustomErrorNovigation.invalidPasswordOrLogin.description)
+
+            let alert = UIAlertController(title: "Неверный пароль или логин", message: "", preferredStyle: .alert )
+            let action = UIAlertAction(title: "Ok", style: .cancel) { _ in
+                self.dismiss(animated: true)
+            }
+            alert.addAction(action)
+            self.present(alert, animated: true)
+        }
+    }
+
+    
     private func logoVkViewConstraint() -> [NSLayoutConstraint] {
         let topAnchor = imageVkView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant:  120)
         let centerXAnchor = imageVkView.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor)
