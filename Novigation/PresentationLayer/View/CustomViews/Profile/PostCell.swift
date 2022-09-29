@@ -125,6 +125,7 @@ class PostCell: UITableViewCell {
 
         var filteredImage: UIImage?
 
+
         filter.processImage(sourceImage: UIImage(named: post.image)!, filter: ColorFilter.noir) { outputImage in
             filteredImage = outputImage
         }

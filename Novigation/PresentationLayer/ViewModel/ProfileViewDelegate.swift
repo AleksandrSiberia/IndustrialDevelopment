@@ -15,5 +15,8 @@ protocol ProfileViewDelegate {
 
     func showPost()
 
+    func extractPostsArray(this array: [ModelPost]?,
+                           completion: @escaping (Result< [ModelPost], CustomErrorNovigation >) -> Void)
+
 }
 

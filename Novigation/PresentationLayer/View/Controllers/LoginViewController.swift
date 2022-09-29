@@ -179,6 +179,7 @@ class LoginViewController: UIViewController {
             try actionLoginButton()
         }
         catch {
+
             print(CustomErrorNovigation.invalidPasswordOrLogin.description)
 
             let alert = UIAlertController(title: "Неверный пароль или логин", message: "", preferredStyle: .alert )

@@ -10,6 +10,8 @@ import Foundation
 
 enum CustomErrorNovigation: Error {
     case invalidPasswordOrLogin
+
+    case noPost
 }
 
 
@@ -18,6 +20,8 @@ extension CustomErrorNovigation: CustomStringConvertible {
         switch self {
         case .invalidPasswordOrLogin:
             return "Неправильный пароль или логин"
+        case .noPost:
+            return "Отсутствует контент"
         }
     }
 }

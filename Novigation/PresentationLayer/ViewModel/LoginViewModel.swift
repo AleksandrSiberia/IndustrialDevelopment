@@ -14,8 +14,6 @@ class LoginViewModel: LoginViewProtocol {
 
     init(coordinator: RootCoordinator) {
         self.coordinator = coordinator
+
     }
-
-
-
 }

@@ -37,7 +37,7 @@
 		8B388D4528B37D79000FF22E /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B388D3E28B37D79000FF22E /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B388D4A28B3825A000FF22E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30E02628424A77006763B9 /* Post.swift */; };
 		8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */; };
-		8B510F2F28E43F7700698606 /* LoginViewModelOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F2E28E43F7700698606 /* LoginViewModelOutput.swift */; };
+		8B510F3128E46A2700698606 /* ResultError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F3028E46A2700698606 /* ResultError.swift */; };
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
 		8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */; };
 		8B975F3B28D0B5E100CC47D9 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */; };
@@ -126,7 +126,7 @@
 		8B388D3E28B37D79000FF22E /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B388D4028B37D79000FF22E /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorNovigation.swift; sourceTree = "<group>"; };
-		8B510F2E28E43F7700698606 /* LoginViewModelOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelOutput.swift; sourceTree = "<group>"; };
+		8B510F3028E46A2700698606 /* ResultError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultError.swift; sourceTree = "<group>"; };
 		8B695C5428BCEED9008F0414 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
@@ -197,7 +197,6 @@
 				8B138F2928D9B4DF00ACA1B9 /* ProfileViewDelegate.swift */,
 				8B138F2B28D9B70C00ACA1B9 /* ProfileViewModel.swift */,
 				8B138F2D28D9E86000ACA1B9 /* LoginViewProtocol.swift */,
-				8B510F2E28E43F7700698606 /* LoginViewModelOutput.swift */,
 				8B138F2F28D9E8C600ACA1B9 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
@@ -345,6 +344,7 @@
 				8BED12E128CA061C006FF146 /* bluePixel.swift */,
 				8BEB523328DF0C3100482193 /* CheckPassword.swift */,
 				8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */,
+				8B510F3028E46A2700698606 /* ResultError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -590,6 +590,7 @@
 				8B138F3028D9E8C600ACA1B9 /* LoginViewModel.swift in Sources */,
 				8BED12E028C8C01D006FF146 /* CustomButton.swift in Sources */,
 				8B138F2828D8890A00ACA1B9 /* FeedModel.swift in Sources */,
+				8B510F3128E46A2700698606 /* ResultError.swift in Sources */,
 				8B30DF29283A1CC6006763B9 /* AppDelegate.swift in Sources */,
 				8B353275285DD5E800704D08 /* PhotosCollectionViewCell.swift in Sources */,
 				8B975F3B28D0B5E100CC47D9 /* RootCoordinator.swift in Sources */,
@@ -627,7 +628,6 @@
 				8B0F0D1B285728B1008F75C0 /* LoginViewController.swift in Sources */,
 				8B0F0D1D285868FA008F75C0 /* ModelPost.swift in Sources */,
 				8B138F2428D87F8700ACA1B9 /* FeedViewModel.swift in Sources */,
-				8B510F2F28E43F7700698606 /* LoginViewModelOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

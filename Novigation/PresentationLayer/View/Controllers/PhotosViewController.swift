@@ -50,8 +50,6 @@ class PhotosViewController: UIViewController {
 
         let queue = DispatchQueue.global(qos: .userInteractive)
 
-
-
         let workItem = DispatchWorkItem.init(qos: .userInteractive) {
 
             guard arrayImages.isEmpty == false else {

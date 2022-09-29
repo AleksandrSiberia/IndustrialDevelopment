@@ -18,19 +18,25 @@ class ProfileViewModel: ProfileViewDelegate {
         }
     }
 
-
-    var didChange: ((ProfileViewDelegate) -> Void)? 
+    var didChange: ((ProfileViewDelegate) -> Void)?
 
     init(director: AnyObject) {
-       
         self.director = director
     }
 
-    func showPost() {
 
+    func showPost() {
         self.posts = arrayModelPost
     }
 
 
+    func extractPostsArray(this array: [ModelPost]?,
+                           completion: @escaping (Result<[ModelPost], CustomErrorNovigation> ) -> Void) {
+        guard array?.isEmpty == false else {
+            completion(.failure(.noPost ) )
+            return
+        }
+        completion(.success(array!) )
+    }
 
 }

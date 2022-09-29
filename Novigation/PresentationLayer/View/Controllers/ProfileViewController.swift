@@ -99,13 +99,31 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
         else {
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell else { let cell = self.tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
-            return cell
-        }
+                return cell
+            }
 
-        let indexPathRow = indexPath.row
-            let post = self.posts[indexPathRow]
-            cell.setup(this: post)
-        return cell
+
+
+
+            let indexPathRow = indexPath.row
+
+    //        let post = self.posts[indexPathRow]
+
+            //       let post = self.posts[indexPathRow]
+
+            self.delegate.extractPostsArray(this: self.posts) { result in
+
+                switch result {
+
+                case .success(let posts):
+                    let post = posts[indexPathRow]
+                    cell.setup(this: post)
+                case .failure(let error):
+                    print(error.description)
+                }
+            }
+            //      cell.setup(this: post)
+            return cell
         }
     }
 

@@ -19,7 +19,7 @@ final class FeedViewModel: FeedViewDelegate {
     
     var wordVerification: String? {
         didSet {
-        
+
             verification()
             self.didChange?(self)
         }
@@ -40,5 +40,8 @@ final class FeedViewModel: FeedViewDelegate {
         else {
             print("Напишите слово")
         }
-       }
+    }
+
+    
+
 }
