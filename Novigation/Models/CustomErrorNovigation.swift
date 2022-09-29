@@ -8,23 +8,16 @@
 import Foundation
 
 
-enum CustomErrorNovigation: Error {
-    case invalidPasswordOrLogin
+enum CustomErrorNovigation: String, Error {
 
-    case noPost
+    case invalidPasswordOrLogin = "Неправильный пароль или логин"
+
+    case noPost = "Отсутствует контент"
+
+    case noWord = "Набрано неправильное слово"
 }
 
 
-extension CustomErrorNovigation: CustomStringConvertible {
-    public var description: String {
-        switch self {
-        case .invalidPasswordOrLogin:
-            return "Неправильный пароль или логин"
-        case .noPost:
-            return "Отсутствует контент"
-        }
-    }
-}
 
 
 

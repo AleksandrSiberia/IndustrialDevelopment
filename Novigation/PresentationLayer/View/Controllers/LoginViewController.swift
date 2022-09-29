@@ -180,7 +180,7 @@ class LoginViewController: UIViewController {
         }
         catch {
 
-            print(CustomErrorNovigation.invalidPasswordOrLogin.description)
+            print(CustomErrorNovigation.invalidPasswordOrLogin.rawValue)
 
             let alert = UIAlertController(title: "Неверный пароль или логин", message: "", preferredStyle: .alert )
             let action = UIAlertAction(title: "Ok", style: .cancel) { _ in

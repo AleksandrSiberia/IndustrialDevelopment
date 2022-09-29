@@ -103,26 +103,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             }
 
 
-
+            if self.posts.isEmpty == true {
+                 assertionFailure(CustomErrorNovigation.noPost.rawValue)
+            }
 
             let indexPathRow = indexPath.row
-
-    //        let post = self.posts[indexPathRow]
-
-            //       let post = self.posts[indexPathRow]
-
-            self.delegate.extractPostsArray(this: self.posts) { result in
-
-                switch result {
-
-                case .success(let posts):
-                    let post = posts[indexPathRow]
-                    cell.setup(this: post)
-                case .failure(let error):
-                    print(error.description)
-                }
-            }
-            //      cell.setup(this: post)
+            let post = self.posts[indexPathRow]
+            cell.setup(this: post)
             return cell
         }
     }

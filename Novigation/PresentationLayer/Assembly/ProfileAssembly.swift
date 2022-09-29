@@ -8,7 +8,6 @@
 import Foundation
 
 
-
 final class ProfileAssembly {
 
     static func createProfileViewController() -> ProfileViewController {

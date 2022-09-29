@@ -11,6 +11,7 @@ import CoreGraphics
 
 final class FeedViewModel: FeedViewDelegate {
 
+
     var director: AnyObject
 
     private let secretWord: String
@@ -32,16 +33,34 @@ final class FeedViewModel: FeedViewDelegate {
         self.director = director
     }
 
+
+    func takeTheWord(this word: String,
+                           completion: @escaping (Result<String, CustomErrorNovigation> ) -> Void) {
+        guard word == self.secretWord else {
+            completion(.failure(.noWord) )
+            return
+        }
+        completion(.success(word) )
+    }
+
+
+
     private func verification() {
+
         if self.wordVerification != "" {
-            if self.secretWord == wordVerification { self.colorWordVerification = CGColor(red: 0, green: 1.0, blue: 0, alpha: 0.4) }
-            else { self.colorWordVerification = CGColor(red: 1.0, green: 0, blue: 0, alpha: 0.5) }
+            takeTheWord(this: self.wordVerification!) { result in
+                switch result {
+                case .success(let word):
+                    self.colorWordVerification = CGColor(red: 0, green: 1.0, blue: 0, alpha: 0.4)
+                    print("Слово \(word) подошло")
+                case .failure(let error):
+                    self.colorWordVerification = CGColor(red: 1.0, green: 0, blue: 0, alpha: 0.5)
+                    print(error.rawValue)
+                }
+            }
         }
         else {
             print("Напишите слово")
         }
     }
-
-    
-
 }
