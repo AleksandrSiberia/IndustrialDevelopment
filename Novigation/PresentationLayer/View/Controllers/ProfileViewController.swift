@@ -57,11 +57,13 @@ final class ProfileViewController: UIViewController {
         self.setupConstraints()
     }
 
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.delegate.showPost()
     }
+
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -97,13 +99,18 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
         else {
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell else { let cell = self.tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
-            return cell
-        }
+                return cell
+            }
 
-        let indexPathRow = indexPath.row
+
+            if self.posts.isEmpty == true {
+                 assertionFailure(CustomErrorNovigation.noPost.rawValue)
+            }
+
+            let indexPathRow = indexPath.row
             let post = self.posts[indexPathRow]
             cell.setup(this: post)
-        return cell
+            return cell
         }
     }
 

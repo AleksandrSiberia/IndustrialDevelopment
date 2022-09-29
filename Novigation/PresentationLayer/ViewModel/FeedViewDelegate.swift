@@ -15,4 +15,8 @@ protocol FeedViewDelegate {
     var colorWordVerification: CGColor { get set }
     var wordVerification: String? { get set }
 
+    func takeTheWord(this word: String,
+                           completion: @escaping (Result< String, CustomErrorNovigation >) -> Void)
+
+
 }

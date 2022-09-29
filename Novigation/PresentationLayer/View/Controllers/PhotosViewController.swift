@@ -51,6 +51,11 @@ class PhotosViewController: UIViewController {
         let queue = DispatchQueue.global(qos: .userInteractive)
 
         let workItem = DispatchWorkItem.init(qos: .userInteractive) {
+
+            guard arrayImages.isEmpty == false else {
+                preconditionFailure("Массив с фотографиями пуст")
+                    }
+
             let start = DispatchTime.now()
             self.imageProcessor?.processImagesOnThread(sourceImages: arrayImages, filter: .chrome, qos: .utility, completion:
                                                         { arrayNewImage in

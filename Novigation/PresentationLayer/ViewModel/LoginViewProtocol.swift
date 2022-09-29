@@ -9,4 +9,5 @@ import Foundation
 
 protocol LoginViewProtocol {
     var coordinator: RootCoordinator { get set }
+    
 }

@@ -18,19 +18,14 @@ class ProfileViewModel: ProfileViewDelegate {
         }
     }
 
-
-    var didChange: ((ProfileViewDelegate) -> Void)? 
+    var didChange: ((ProfileViewDelegate) -> Void)?
 
     init(director: AnyObject) {
-       
         self.director = director
     }
 
-    func showPost() {
 
+    func showPost() {
         self.posts = arrayModelPost
     }
-
-
-
 }

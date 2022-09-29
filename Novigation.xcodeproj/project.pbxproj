@@ -36,6 +36,7 @@
 		8B388D4428B37D79000FF22E /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B388D3E28B37D79000FF22E /* StorageService.framework */; };
 		8B388D4528B37D79000FF22E /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B388D3E28B37D79000FF22E /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B388D4A28B3825A000FF22E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30E02628424A77006763B9 /* Post.swift */; };
+		8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */; };
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
 		8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */; };
 		8B975F3B28D0B5E100CC47D9 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */; };
@@ -123,6 +124,7 @@
 		8B353276285DEC1900704D08 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		8B388D3E28B37D79000FF22E /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B388D4028B37D79000FF22E /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
+		8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorNovigation.swift; sourceTree = "<group>"; };
 		8B695C5428BCEED9008F0414 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				8BED12D828C6848D006FF146 /* ArrayFoto.swift */,
 				8BED12E128CA061C006FF146 /* bluePixel.swift */,
 				8BEB523328DF0C3100482193 /* CheckPassword.swift */,
+				8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				8BED12E828CB2109006FF146 /* FeedModelSubscribers.swift in Sources */,
 				8B975F5228D3308300CC47D9 /* ProfileAssembly.swift in Sources */,
 				8BED12D228C5DCA6006FF146 /* UserService.swift in Sources */,
+				8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */,
 				8BED12CC28C5DB70006FF146 /* LoginInspector.swift in Sources */,
 				8BEB523228DC356500482193 /* PhotosAssembly.swift in Sources */,
 				8B30E0312849EE7F006763B9 /* ProfileHeaderView.swift in Sources */,
