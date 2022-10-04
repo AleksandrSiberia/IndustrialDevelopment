@@ -45,6 +45,16 @@ class FeedViewController: UIViewController {
         return buttonCheckWord
     }()
 
+    private lazy var buttonAudioPlayer: CustomButton = {
+        var buttonAudioPlayer = CustomButton(title: "Аудио плеер", targetAction: {
+
+            let audioViewController = AudioViewController()
+            audioViewController.view.backgroundColor = .white
+            self.present(audioViewController, animated: true)
+        })
+        return buttonAudioPlayer
+    }()
+
 
     private lazy var postStack: UIStackView = {
         var postStack = UIStackView()
@@ -67,6 +77,7 @@ class FeedViewController: UIViewController {
         postButton.backgroundColor = .systemYellow
         postButton.setTitle("Пост1", for: .normal)
         postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
+        postButton.isHidden = true
         return postButton
     }()
 
@@ -76,6 +87,7 @@ class FeedViewController: UIViewController {
         postButton2.backgroundColor = .systemYellow
         postButton2.setTitle("Пост2", for: .normal)
         postButton2.addTarget(self, action: #selector(didTapPostButton2), for: .touchUpInside)
+        postButton2.isHidden = true
         return postButton2
     }()
 
@@ -84,9 +96,6 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-       
-        
-       
 
     }
 
@@ -106,7 +115,7 @@ class FeedViewController: UIViewController {
         self.view.backgroundColor = .white
         self.navigationItem.title = "Лента"
         self.view.addSubview(postStack)
-        [viewCheckWord, textFieldCheckWord, buttonCheckWord, postButton, postButton2].forEach({ self.postStack.addArrangedSubview($0)})
+        [viewCheckWord, textFieldCheckWord, buttonCheckWord, postButton, postButton2, buttonAudioPlayer].forEach({ self.postStack.addArrangedSubview($0)})
         self.navigationItem.rightBarButtonItem = buttonRightNavInfo
 
 
