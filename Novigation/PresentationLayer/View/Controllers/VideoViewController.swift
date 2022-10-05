@@ -8,12 +8,15 @@
 import UIKit
 import AVFoundation
 
-
+protocol VideoViewControllerOutput {
+    func playPauseVideo()
+}
 
 class VideoViewController: UIViewController {
 
     private var videos: [String] = []
 
+    private var cells: [VideoViewControllerOutput] = []
 
     private lazy var tableViewVideo: UITableView = {
         var tableViewVideo = UITableView()
@@ -24,6 +27,7 @@ class VideoViewController: UIViewController {
         tableViewVideo.backgroundColor = .orange
         return tableViewVideo
     }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,19 +50,27 @@ class VideoViewController: UIViewController {
 extension VideoViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return 1
+       return 2
  //       self.videos.count
     }
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableViewVideo.dequeueReusableCell(withIdentifier: VideoTableViewCell.name, for: indexPath) as! VideoTableViewCell
+        self.cells.append(cell)
         return cell
     }
 
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        200
+        300
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        var cell = self.cells[indexPath.row]
+        cell.playPauseVideo()
+
     }
 
 

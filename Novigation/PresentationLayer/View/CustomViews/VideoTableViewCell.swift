@@ -14,14 +14,14 @@ protocol NameClass {
 
 class VideoTableViewCell: UITableViewCell {
 
+    private var play: Bool = false
 
- //   var nameVideo: String = "https://www.youtube.com/watch?v=K49ZBgp6b1M"
+    private var nameVideo: String = "Record"
 
     private lazy var player: AVPlayer = {
-        var player = AVPlayer()
+        var player =  AVPlayer()
 
-
-        var url = Bundle.main.url(forResource: "AH1V", withExtension: "mp4")
+        var url = Bundle.main.url(forResource: self.nameVideo, withExtension: "mp4" )
 
         guard
             let urlVideo = url
@@ -46,40 +46,40 @@ class VideoTableViewCell: UITableViewCell {
         return videoPlayerView
     }()
 
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
         self.contentView.addSubview(self.videoPlayerView)
-
-        self.playerLayer.frame = self.videoPlayerView.bounds
-
-        self.player.play()
-
 
         NSLayoutConstraint.activate([
             self.videoPlayerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 6),
             self.videoPlayerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -6),
             self.videoPlayerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 6),
             self.videoPlayerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -6),
-
         ])
-
-        
     }
+
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        self.playerLayer.frame = self.videoPlayerView.bounds
+    }
+
+
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-
     }
 
 }
@@ -89,3 +89,20 @@ extension VideoTableViewCell: NameClass {
         return String(describing: self)
     }
 }
+
+
+extension VideoTableViewCell: VideoViewControllerOutput {
+    func playPauseVideo() {
+
+        guard self.play == false
+        else  {
+            self.player.pause()
+            self.play = false
+            return
+        }
+        self.player.play()
+        self.play = true
+    }
+}
+
+

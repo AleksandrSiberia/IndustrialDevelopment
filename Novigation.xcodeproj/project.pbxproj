@@ -43,6 +43,8 @@
 		8B4749C228EC2335007DE402 /* Tinlicker_Robert_Miles_-_Children.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749C128EC2335007DE402 /* Tinlicker_Robert_Miles_-_Children.mp3 */; };
 		8B4749C428ED5FBD007DE402 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4749C328ED5FBD007DE402 /* VideoViewController.swift */; };
 		8B4749C628ED75A3007DE402 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4749C528ED75A3007DE402 /* VideoTableViewCell.swift */; };
+		8B4749C928EDA32C007DE402 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749C828EDA32B007DE402 /* Assets.xcassets */; };
+		8B4749CB28EDA4C9007DE402 /* Record.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749C728ED9771007DE402 /* Record.mp4 */; };
 		8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */; };
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
 		8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */; };
@@ -139,6 +141,7 @@
 		8B4749C328ED5FBD007DE402 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		8B4749C528ED75A3007DE402 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		8B4749C728ED9771007DE402 /* Record.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Record.mp4; sourceTree = "<group>"; };
+		8B4749C828EDA32B007DE402 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorNovigation.swift; sourceTree = "<group>"; };
 		8B695C5428BCEED9008F0414 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 				8BED12DE28C8BD9B006FF146 /* Application layer */,
 				8BED12C628BF37AC006FF146 /* Dependency */,
 				8B30DF33283A1CC7006763B9 /* LaunchScreen.storyboard */,
+				8B4749C828EDA32B007DE402 /* Assets.xcassets */,
 				8B4749C728ED9771007DE402 /* Record.mp4 */,
 				8B4749C128EC2335007DE402 /* Tinlicker_Robert_Miles_-_Children.mp3 */,
 				8B4749BF28EC2310007DE402 /* Paul_Van_Dyk_Aly_Fila_-_SHINE_Ibiza_Anthem.mp3 */,
@@ -516,10 +520,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B4749CB28EDA4C9007DE402 /* Record.mp4 in Resources */,
 				8B4749C028EC2310007DE402 /* Paul_Van_Dyk_Aly_Fila_-_SHINE_Ibiza_Anthem.mp3 in Resources */,
 				8B4749BA28EC22A5007DE402 /* Armin_van_Buuren_-_In_And_Out_Of_Love.mp3 in Resources */,
 				8B30DF35283A1CC7006763B9 /* LaunchScreen.storyboard in Resources */,
 				8B4749BE28EC22F4007DE402 /* Ben_Gold_-_Xtravaganza.mp3 in Resources */,
+				8B4749C928EDA32C007DE402 /* Assets.xcassets in Resources */,
 				8B4749BC28EC22CF007DE402 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 in Resources */,
 				8B4749C228EC2335007DE402 /* Tinlicker_Robert_Miles_-_Children.mp3 in Resources */,
 			);
