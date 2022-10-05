@@ -22,8 +22,6 @@ class PostCell: UITableViewCell {
     }()
 
 
-
-
     private lazy var postImageView: UIImageView = {
         var postImageView = UIImageView()
         postImageView.translatesAutoresizingMaskIntoConstraints = false

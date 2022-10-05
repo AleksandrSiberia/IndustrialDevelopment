@@ -55,6 +55,16 @@ class FeedViewController: UIViewController {
         return buttonAudioPlayer
     }()
 
+    private lazy var buttonVideoPlayer: CustomButton = {
+        var buttonVideoPlayer = CustomButton(title: "Видео плеер", targetAction: {
+
+            let videoViewController = VideoViewController()
+            videoViewController.view.backgroundColor = .white
+            self.present(videoViewController, animated: true)
+        })
+        return buttonVideoPlayer
+    }()
+
 
     private lazy var postStack: UIStackView = {
         var postStack = UIStackView()
@@ -115,7 +125,7 @@ class FeedViewController: UIViewController {
         self.view.backgroundColor = .white
         self.navigationItem.title = "Лента"
         self.view.addSubview(postStack)
-        [viewCheckWord, textFieldCheckWord, buttonCheckWord, postButton, postButton2, buttonAudioPlayer].forEach({ self.postStack.addArrangedSubview($0)})
+        [viewCheckWord, textFieldCheckWord, buttonCheckWord, postButton, postButton2, buttonAudioPlayer, buttonVideoPlayer].forEach({ self.postStack.addArrangedSubview($0)})
         self.navigationItem.rightBarButtonItem = buttonRightNavInfo
 
 
