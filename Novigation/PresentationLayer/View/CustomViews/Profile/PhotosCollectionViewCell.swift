@@ -8,6 +8,7 @@
 import UIKit
 
 protocol CellProtocol: AnyObject {
+    
     static var nameCollectionCell: String { get }
 }
 
