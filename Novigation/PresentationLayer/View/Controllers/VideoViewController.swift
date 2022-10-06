@@ -11,6 +11,7 @@ import AVFoundation
 protocol VideoViewControllerOutput {
     func playPauseVideo(videoViewController: VideoViewController)
 
+    func stopVideo()
 }
 
 
@@ -42,12 +43,17 @@ class VideoViewController: UIViewController {
             self.tableViewVideo.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.tableViewVideo.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.tableViewVideo.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-      
         ])
     }
 
     func reloadTableViewVideo() {
         self.tableViewVideo.reloadData()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        self.cells.forEach {  $0.stopVideo() }
     }
 
 }

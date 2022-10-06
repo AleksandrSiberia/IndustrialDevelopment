@@ -82,7 +82,7 @@ class VideoTableViewCell: UITableViewCell {
 
 
     func setupVideoTableViewCell(nameVideo: String, nameFoto: String, videoViewController: VideoViewController) {
-        
+
         self.videoImageView.image = UIImage(named: nameFoto)
 
         self.videoViewController = videoViewController
@@ -103,6 +103,9 @@ extension VideoTableViewCell: NameClass {
 
 extension VideoTableViewCell: VideoViewControllerOutput {
 
+    func stopVideo() {
+        self.player?.pause()
+    }
 
     func playPauseVideo(videoViewController: VideoViewController) {
 
