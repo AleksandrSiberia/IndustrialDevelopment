@@ -16,48 +16,46 @@ class VideoTableViewCell: UITableViewCell {
 
     private var play: Bool = false
 
-    private var nameVideo: String = "Record"
+    private var videoViewController: VideoViewController?
 
-    private lazy var player: AVPlayer = {
-        var player =  AVPlayer()
-
-        var url = Bundle.main.url(forResource: self.nameVideo, withExtension: "mp4" )
-
-        guard
-            let urlVideo = url
-        else {
-            return AVPlayer()
-        }
-        player = AVPlayer(url: urlVideo)
-        return player
+    private var videoImageView: UIImageView = {
+        var videoImageView = UIImageView()
+        videoImageView.translatesAutoresizingMaskIntoConstraints = false
+        videoImageView.contentMode = .scaleAspectFit
+        return videoImageView
     }()
 
+    private var player: AVPlayer?
 
-    private lazy var playerLayer: AVPlayerLayer = {
-        var playerLayer = AVPlayerLayer(player: self.player)
-        return playerLayer
-    }()
+    private var playerLayer: AVPlayerLayer?
 
     private lazy var videoPlayerView: UIView = {
         var videoPlayerView = UIView()
         videoPlayerView.backgroundColor = .black
         videoPlayerView.translatesAutoresizingMaskIntoConstraints = false
-        videoPlayerView.layer.addSublayer(playerLayer)
+        videoPlayerView.layer.cornerRadius = 20
+        videoPlayerView.layer.masksToBounds = true
         return videoPlayerView
     }()
 
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        self.videoPlayerView.addSubview(self.videoImageView)
         self.contentView.addSubview(self.videoPlayerView)
+
 
         NSLayoutConstraint.activate([
             self.videoPlayerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 6),
             self.videoPlayerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -6),
             self.videoPlayerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 6),
             self.videoPlayerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -6),
+
+            self.videoImageView.centerYAnchor.constraint(equalTo: self.videoPlayerView.centerYAnchor),
+            self.videoImageView.widthAnchor.constraint(equalTo: self.videoPlayerView.widthAnchor),
+            self.videoImageView.heightAnchor
+                .constraint(equalTo: self.videoPlayerView.widthAnchor)
         ])
     }
 
@@ -69,8 +67,7 @@ class VideoTableViewCell: UITableViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        self.playerLayer.frame = self.videoPlayerView.bounds
+        self.playerLayer!.frame = self.videoPlayerView.bounds
     }
 
 
@@ -78,11 +75,24 @@ class VideoTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 
+
+    func setupVideoTableViewCell(nameVideo: String, nameFoto: String, videoViewController: VideoViewController) {
+        
+        self.videoImageView.image = UIImage(named: nameFoto)
+
+        self.videoViewController = videoViewController
+
+        self.player = AVPlayer(url: Bundle.main.url(forResource:  nameVideo, withExtension: "mp4")!)
+        self.playerLayer = AVPlayerLayer(player: self.player)
+        self.videoPlayerView.layer.addSublayer(self.playerLayer!)
+    }
 }
+
 
 extension VideoTableViewCell: NameClass {
     static var name: String {
@@ -92,17 +102,21 @@ extension VideoTableViewCell: NameClass {
 
 
 extension VideoTableViewCell: VideoViewControllerOutput {
-    func playPauseVideo() {
 
-        guard self.play == false
+
+    func playPauseVideo(videoViewController: VideoViewController) {
+
+        guard
+            self.play == false
         else  {
-            self.player.pause()
+            self.player!.pause()
             self.play = false
             return
         }
-        self.player.play()
+        self.player!.play()
         self.play = true
+        self.videoImageView.isHidden = true
     }
+
+
 }
-
-

@@ -9,12 +9,16 @@ import UIKit
 import AVFoundation
 
 protocol VideoViewControllerOutput {
-    func playPauseVideo()
+    func playPauseVideo(videoViewController: VideoViewController)
+
 }
+
 
 class VideoViewController: UIViewController {
 
-    private var videos: [String] = []
+    private var videos: [String] = ["Record", "record2", "Siberia"]
+
+    private var fotos: [String] = ["photo_1", "photo_2", "photo_3"]
 
     private var cells: [VideoViewControllerOutput] = []
 
@@ -32,8 +36,6 @@ class VideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(self.tableViewVideo)
-        
-
 
         NSLayoutConstraint.activate([
             self.tableViewVideo.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -43,6 +45,11 @@ class VideoViewController: UIViewController {
       
         ])
     }
+
+    func reloadTableViewVideo() {
+        self.tableViewVideo.reloadData()
+    }
+
 }
 
 
@@ -50,26 +57,27 @@ class VideoViewController: UIViewController {
 extension VideoViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return 2
- //       self.videos.count
+       return self.videos.count
     }
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableViewVideo.dequeueReusableCell(withIdentifier: VideoTableViewCell.name, for: indexPath) as! VideoTableViewCell
+        cell.setupVideoTableViewCell(nameVideo: self.videos[indexPath.row], nameFoto: self.fotos[indexPath.row], videoViewController: self)
         self.cells.append(cell)
         return cell
     }
 
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        300
+        400
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        var cell = self.cells[indexPath.row]
-        cell.playPauseVideo()
+        let cell = self.cells[indexPath.row]
+
+        cell.playPauseVideo(videoViewController: self)
 
     }
 
