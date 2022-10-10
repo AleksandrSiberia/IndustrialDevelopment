@@ -11,12 +11,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var rootCoordinator: AppCoordinator?
-    var appConfiguration: AppConfiguration?
+    var appConfiguration: String?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-        self.appConfiguration = AppConfiguration(id: ((1...3).randomElement()) ?? 1)
+        self.appConfiguration = AppConfiguration.url
 
 
         // Код ошибки без интернета:
@@ -34,9 +34,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let queue = DispatchQueue(label: "serial")
         queue.async {
             NetworkService.request(for: self.appConfiguration!) { people in
-                if people != nil {
-                    print(people!)
-                }
+//                if people != nil {
+//                    print(people!)
+ //                           }
             }
         }
         
@@ -88,9 +88,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
-
-
 }
 
