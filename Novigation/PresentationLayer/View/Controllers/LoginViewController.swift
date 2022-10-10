@@ -65,6 +65,8 @@ class LoginViewController: UIViewController {
         loginTextField.autocapitalizationType = .none
         loginTextField.keyboardType = .namePhonePad
         loginTextField.clearButtonMode = .whileEditing
+        
+        loginTextField.text = "1"
         return loginTextField
     }()
 

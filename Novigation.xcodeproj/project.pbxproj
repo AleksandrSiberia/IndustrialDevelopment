@@ -47,6 +47,7 @@
 		8B4749CB28EDA4C9007DE402 /* Record.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749C728ED9771007DE402 /* Record.mp4 */; };
 		8B4749CE28EEA756007DE402 /* record2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749CC28EEA752007DE402 /* record2.mp4 */; };
 		8B4749CF28EEA75A007DE402 /* Siberia.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749CD28EEA752007DE402 /* Siberia.mp4 */; };
+		8B4749D128F018EF007DE402 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4749D028F018EF007DE402 /* NetworkService.swift */; };
 		8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */; };
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
 		8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */; };
@@ -146,6 +147,7 @@
 		8B4749C828EDA32B007DE402 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B4749CC28EEA752007DE402 /* record2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = record2.mp4; sourceTree = "<group>"; };
 		8B4749CD28EEA752007DE402 /* Siberia.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Siberia.mp4; sourceTree = "<group>"; };
+		8B4749D028F018EF007DE402 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorNovigation.swift; sourceTree = "<group>"; };
 		8B695C5428BCEED9008F0414 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 		8B138F3228DA489900ACA1B9 /* Service layer */ = {
 			isa = PBXGroup;
 			children = (
+				8B4749D028F018EF007DE402 /* NetworkService.swift */,
 			);
 			path = "Service layer";
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 				8B353277285DEC1900704D08 /* PhotosViewController.swift in Sources */,
 				8B0F0D1B285728B1008F75C0 /* LoginViewController.swift in Sources */,
 				8B0F0D1D285868FA008F75C0 /* ModelPost.swift in Sources */,
+				8B4749D128F018EF007DE402 /* NetworkService.swift in Sources */,
 				8B138F2428D87F8700ACA1B9 /* FeedViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
