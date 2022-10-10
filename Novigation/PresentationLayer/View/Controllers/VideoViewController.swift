@@ -55,7 +55,6 @@ class VideoViewController: UIViewController {
 
         self.cells.forEach {  $0.stopVideo() }
     }
-
 }
 
 
