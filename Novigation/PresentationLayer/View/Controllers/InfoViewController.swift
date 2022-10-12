@@ -14,6 +14,15 @@ class InfoViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .systemGray6
         label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+
+    private lazy var labelPlanetOrbitalPeriod: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .systemGray6
+        label.textAlignment = .center
         return label
     }()
     
@@ -37,6 +46,7 @@ class InfoViewController: UIViewController {
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(self.alertButton)
         self.view.addSubview(self.label)
+        self.view.addSubview(self.labelPlanetOrbitalPeriod)
         self.navigationItem.title = "Настройки"
 
         requestForModelData { string in
@@ -45,10 +55,20 @@ class InfoViewController: UIViewController {
             }
         }
 
+        requestModelPlanet { string in
+            DispatchQueue.main.async {
+                self.labelPlanetOrbitalPeriod.text = string
+            }
+        }
+
         NSLayoutConstraint.activate([
             self.label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             self.label.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.label.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+            self.label.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+
+            self.labelPlanetOrbitalPeriod.topAnchor.constraint(equalTo: self.label.bottomAnchor, constant: 30),
+            self.labelPlanetOrbitalPeriod.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.labelPlanetOrbitalPeriod.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ])
     }
 

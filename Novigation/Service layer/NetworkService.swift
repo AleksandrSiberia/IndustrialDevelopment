@@ -17,8 +17,6 @@ enum AppConfiguration: String, CaseIterable {
 }
 
 
-
-
 struct NetworkService {
 
     static func request(for configuration: String, completion: @escaping (_ people: [String: [String]]? ) -> Void ) {
@@ -40,75 +38,6 @@ struct NetworkService {
         task.resume()
     }
 }
-
-
-
-//            if let error {
-//                print(error.localizedDescription)
-//                completion(nil)
-//            }
-//
-//            if (urlResponse as? HTTPURLResponse)?.statusCode != 200 {
-//                print("Status code != 200, statusCode = \(String(describing: (urlResponse as? HTTPURLResponse)?.statusCode))")
-//                completion(nil)
-//            }
-//
-//            guard let data else
-//            {
-//                print("data = nil")
-//                completion(nil)
-//                return
-//            }
-//
-//
-//            do {
-//
-//                let answer = try JSONSerialization.jsonObject(with: data) as! [ String: Any]
-//
-//                var dictionaryActor: [ String: [String] ] = [:]
-//
-//                for (key, value) in answer {
-//                    if key != "starships" || key != "films" || key != "vehicles"  {
-//                        let any = [(value as? String)]
-//                        if any != [nil] {
-//                            dictionaryActor[key] = (any as! [String])
-//                        }
-//                    }
-//                }
-//
-//
-//                let starships = answer["starships"] as! [ Any ]
-//                var starshipsString: [String] = []
-//                for url in starships {
-//                    starshipsString.append(url as! String)
-//                }
-//                dictionaryActor["starships"] = starshipsString
-//
-//
-//                let films = answer["films"] as! [ Any ]
-//                var filmsString: [String] = []
-//                for url in films {
-//                    filmsString.append((url as! String))
-//                }
-//                dictionaryActor["films"] = filmsString
-//
-//
-//                let vehicles = answer["vehicles"] as! [ Any ]
-//                var vehiclesString: [String] = []
-//                for url in vehicles {
-//                    vehiclesString.append((url as! String))
-//                }
-//                dictionaryActor["vehicles"] = vehiclesString
-//
-//                completion( dictionaryActor )
-//                return
-//
-//            }
-//            catch{
-//                print(error.localizedDescription)
-//            }
-//            completion(nil)
-
 
 
 
