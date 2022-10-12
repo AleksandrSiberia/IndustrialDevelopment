@@ -31,16 +31,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        Status code != 200, statusCode = nil
 //        data = nil
 
-        let queue = DispatchQueue(label: "serial")
-        queue.async {
-            NetworkService.request(for: self.appConfiguration!) { people in
+//        let queue = DispatchQueue(label: "serial")
+//        queue.async {
+ //           NetworkService.request(for: self.appConfiguration!) { people in
 //                if people != nil {
 //                    print(people!)
  //                           }
-            }
-        }
+ //           }
+ //       }
         
 
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         self.window = UIWindow.init(windowScene: windowScene)

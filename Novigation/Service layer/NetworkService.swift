@@ -17,6 +17,8 @@ enum AppConfiguration: String, CaseIterable {
 }
 
 
+
+
 struct NetworkService {
 
     static func request(for configuration: String, completion: @escaping (_ people: [String: [String]]? ) -> Void ) {
@@ -28,13 +30,18 @@ struct NetworkService {
         let task = session.dataTask(with: url!) { data, urlResponse, error in
 
             if error == nil, let data = data, let response = urlResponse as? HTTPURLResponse {
-                                print("\nDATA: \(String(decoding: data, as: UTF8.self))")
-                                print("\nRESPONSE STATUS: \(response.statusCode)")
-                                print("\nRESPONSE HEADER: \(response.allHeaderFields)")
-                            } else {
-                                print("\nERROR: \(error?.localizedDescription ?? "Unknown error")")
-                            }
-                        }
+                print("\nDATA: \(String(decoding: data, as: UTF8.self))")
+                print("\nRESPONSE STATUS: \(response.statusCode)")
+                print("\nRESPONSE HEADER: \(response.allHeaderFields)")
+            } else {
+                print("\nERROR: \(error?.localizedDescription ?? "Unknown error")")
+            }
+        }
+        task.resume()
+    }
+}
+
+
 
 //            if let error {
 //                print(error.localizedDescription)
@@ -102,9 +109,8 @@ struct NetworkService {
 //            }
 //            completion(nil)
 
-        task.resume()
-    }
-}
+
+
 
 
 

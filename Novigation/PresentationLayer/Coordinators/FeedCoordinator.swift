@@ -20,16 +20,17 @@ class FeedCoordinator: AppCoordinator {
     }
 
 
-    func start() -> FeedViewController {
+    func start() -> UINavigationController {
         return showFeedScreen()
     }
 
     
-    fileprivate func showFeedScreen() -> FeedViewController  {
+    fileprivate func showFeedScreen() -> UINavigationController {
         
-        let feedScreen = FeedAssembly.createFeedViewController()
-        feedScreen.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "house"), tag: 1)
-        return feedScreen
+        let feedScreen = transitionHandler
+        feedScreen?.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "house"), tag: 1)
+        
+        return feedScreen ?? UINavigationController()
     }
 }
 
