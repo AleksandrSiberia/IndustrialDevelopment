@@ -87,7 +87,7 @@ class FeedViewController: UIViewController {
         postButton.backgroundColor = .systemYellow
         postButton.setTitle("Пост1", for: .normal)
         postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
-   //     postButton.isHidden = true
+        postButton.isHidden = true
         return postButton
     }()
 

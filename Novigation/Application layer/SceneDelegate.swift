@@ -18,10 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         self.appConfiguration = AppConfiguration.url
 
-        
-        loadResidentsPlanet()
 
-        
         // Код ошибки без интернета:
 //         2022-10-10 17:52:13.115317+0800 Novigation[58973:2094250] Connection 1: received failure notification
 //        2022-10-10 17:52:13.115458+0800 Novigation[58973:2094250] Connection 1: failed to connect 1:50, reason -1
@@ -34,16 +31,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        Status code != 200, statusCode = nil
 //        data = nil
 
-//        let queue = DispatchQueue(label: "serial")
-//        queue.async {
-//            NetworkService.request(for: self.appConfiguration!) { people in
+        let queue = DispatchQueue(label: "serial")
+        queue.async {
+            NetworkService.request(for: self.appConfiguration!) { people in
 //                if people != nil {
 //                    print(people!)
-//                            }
-//            }
-//        }
+ //                           }
+            }
+        }
         
-
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
 

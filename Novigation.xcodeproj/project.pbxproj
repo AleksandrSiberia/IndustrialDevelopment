@@ -48,10 +48,6 @@
 		8B4749CE28EEA756007DE402 /* record2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749CC28EEA752007DE402 /* record2.mp4 */; };
 		8B4749CF28EEA75A007DE402 /* Siberia.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749CD28EEA752007DE402 /* Siberia.mp4 */; };
 		8B4749D128F018EF007DE402 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4749D028F018EF007DE402 /* NetworkService.swift */; };
-		8B4749D328F58C1A007DE402 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4749D228F58C1A007DE402 /* ModelData.swift */; };
-		8B4749D528F6BF26007DE402 /* ModelPlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4749D428F6BF26007DE402 /* ModelPlanet.swift */; };
-		8B4749D728F7FB13007DE402 /* ModelResident.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4749D628F7FB13007DE402 /* ModelResident.swift */; };
-		8B4749D928F82A9F007DE402 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4749D828F82A9F007DE402 /* InfoTableViewCell.swift */; };
 		8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */; };
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
 		8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */; };
@@ -152,10 +148,6 @@
 		8B4749CC28EEA752007DE402 /* record2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = record2.mp4; sourceTree = "<group>"; };
 		8B4749CD28EEA752007DE402 /* Siberia.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Siberia.mp4; sourceTree = "<group>"; };
 		8B4749D028F018EF007DE402 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		8B4749D228F58C1A007DE402 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
-		8B4749D428F6BF26007DE402 /* ModelPlanet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPlanet.swift; sourceTree = "<group>"; };
-		8B4749D628F7FB13007DE402 /* ModelResident.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelResident.swift; sourceTree = "<group>"; };
-		8B4749D828F82A9F007DE402 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorNovigation.swift; sourceTree = "<group>"; };
 		8B695C5428BCEED9008F0414 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -245,9 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				8B4749D028F018EF007DE402 /* NetworkService.swift */,
-				8B4749D228F58C1A007DE402 /* ModelData.swift */,
-				8B4749D428F6BF26007DE402 /* ModelPlanet.swift */,
-				8B4749D628F7FB13007DE402 /* ModelResident.swift */,
 			);
 			path = "Service layer";
 			sourceTree = "<group>";
@@ -397,7 +386,6 @@
 				8BED12E528CA1680006FF146 /* CheckWord.swift */,
 				8B30E02B2849EBAA006763B9 /* Profile */,
 				8B4749C528ED75A3007DE402 /* VideoTableViewCell.swift */,
-				8B4749D828F82A9F007DE402 /* InfoTableViewCell.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -645,7 +633,6 @@
 				8BED12E028C8C01D006FF146 /* CustomButton.swift in Sources */,
 				8B138F2828D8890A00ACA1B9 /* FeedModel.swift in Sources */,
 				8B30DF29283A1CC6006763B9 /* AppDelegate.swift in Sources */,
-				8B4749D328F58C1A007DE402 /* ModelData.swift in Sources */,
 				8B353275285DD5E800704D08 /* PhotosCollectionViewCell.swift in Sources */,
 				8B975F3B28D0B5E100CC47D9 /* RootCoordinator.swift in Sources */,
 				8BED12E828CB2109006FF146 /* FeedModelSubscribers.swift in Sources */,
@@ -657,17 +644,14 @@
 				8BEB523228DC356500482193 /* PhotosAssembly.swift in Sources */,
 				8B30E0312849EE7F006763B9 /* ProfileHeaderView.swift in Sources */,
 				8B975F4E28D1FE4400CC47D9 /* FeedCoordinator.swift in Sources */,
-				8B4749D928F82A9F007DE402 /* InfoTableViewCell.swift in Sources */,
 				8B975F4328D1B58600CC47D9 /* FeedViewControllerDelegate.swift in Sources */,
 				8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */,
-				8B4749D728F7FB13007DE402 /* ModelResident.swift in Sources */,
 				8BED12D928C6848D006FF146 /* ArrayFoto.swift in Sources */,
 				8B30E0052840E5BA006763B9 /* InfoViewController.swift in Sources */,
 				8B14FABD28BC90A7006DE94A /* User.swift in Sources */,
 				8B138F2E28D9E86000ACA1B9 /* LoginViewProtocol.swift in Sources */,
 				8BED12C828BF3802006FF146 /* Checker.swift in Sources */,
 				8BED12D428C5DD91006FF146 /* Post.swift in Sources */,
-				8B4749D528F6BF26007DE402 /* ModelPlanet.swift in Sources */,
 				8B30E001283F98C2006763B9 /* ProfileViewController.swift in Sources */,
 				8BED12CA28BF581F006FF146 /* MyLoginFactory.swift in Sources */,
 				8B138F2C28D9B70C00ACA1B9 /* ProfileViewModel.swift in Sources */,
