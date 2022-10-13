@@ -96,8 +96,8 @@ func requestModelPlanet(completion: @escaping ((ModelPlanet?) -> Void)) {
 
                         let resident = try JSONDecoder().decode(ModelResident.self, from: data2)
                         
-               //         residentsPlanet.append(resident)
-            //            saveResidentsPlanet()
+                        residentsPlanet.append(resident)
+                        saveResidentsPlanet()
 
                     }
 

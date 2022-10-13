@@ -52,7 +52,6 @@ class InfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(alertButton)
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(self.alertButton)
         self.view.addSubview(self.label)
@@ -90,7 +89,7 @@ class InfoViewController: UIViewController {
             self.tableViewPlanetResident.topAnchor.constraint(equalTo: self.labelPlanetOrbitalPeriod.bottomAnchor, constant: 30),
             self.tableViewPlanetResident.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.tableViewPlanetResident.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.tableViewPlanetResident.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            self.tableViewPlanetResident.bottomAnchor.constraint(equalTo: self.alertButton.topAnchor)
         ])
     }
 
