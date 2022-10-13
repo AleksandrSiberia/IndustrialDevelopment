@@ -25,6 +25,16 @@ class InfoViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
+
+    private lazy var tableViewPlanetResident: UITableView = {
+        var tableViewPlanetResident = UITableView(frame: .zero, style: .grouped)
+        tableViewPlanetResident.translatesAutoresizingMaskIntoConstraints = false
+        tableViewPlanetResident.delegate = self
+        tableViewPlanetResident.dataSource = self
+        tableViewPlanetResident.register(InfoTableViewCell.self, forCellReuseIdentifier: InfoTableViewCell.name)
+        tableViewPlanetResident.register(UITableViewCell.self, forCellReuseIdentifier: "Default")
+        return tableViewPlanetResident
+    }()
     
     private lazy var alertButton: UIButton = {
         let button = UIButton()
@@ -47,6 +57,7 @@ class InfoViewController: UIViewController {
         self.view.addSubview(self.alertButton)
         self.view.addSubview(self.label)
         self.view.addSubview(self.labelPlanetOrbitalPeriod)
+        self.view.addSubview(self.tableViewPlanetResident)
         self.navigationItem.title = "Настройки"
 
         requestForModelData { string in
@@ -55,11 +66,17 @@ class InfoViewController: UIViewController {
             }
         }
 
-        requestModelPlanet { string in
+        requestModelPlanet { planet in
+            guard let planet else {
+                print("planet = nil")
+                return
+            }
+
             DispatchQueue.main.async {
-                self.labelPlanetOrbitalPeriod.text = string
+                self.labelPlanetOrbitalPeriod.text = planet.orbitalPeriod
             }
         }
+
 
         NSLayoutConstraint.activate([
             self.label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -68,7 +85,12 @@ class InfoViewController: UIViewController {
 
             self.labelPlanetOrbitalPeriod.topAnchor.constraint(equalTo: self.label.bottomAnchor, constant: 30),
             self.labelPlanetOrbitalPeriod.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.labelPlanetOrbitalPeriod.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+            self.labelPlanetOrbitalPeriod.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+
+            self.tableViewPlanetResident.topAnchor.constraint(equalTo: self.labelPlanetOrbitalPeriod.bottomAnchor, constant: 30),
+            self.tableViewPlanetResident.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.tableViewPlanetResident.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.tableViewPlanetResident.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
 
@@ -94,6 +116,28 @@ class InfoViewController: UIViewController {
         present(alertDelete, animated: true)
     }
     
+}
+
+extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       return  residentsPlanetUserDefaults.count
+
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+
+        guard let cell = self.tableViewPlanetResident.dequeueReusableCell(withIdentifier: InfoTableViewCell.name, for: indexPath) as? InfoTableViewCell
+        else
+        {
+            let cell = self.tableViewPlanetResident.dequeueReusableCell(withIdentifier: "Default", for: indexPath)
+            return cell
+        }
+        cell.setupInfoTableViewCell(residentsPlanetUserDefaults[indexPath.row].name)
+        
+        return cell
+    }
 }
 
 

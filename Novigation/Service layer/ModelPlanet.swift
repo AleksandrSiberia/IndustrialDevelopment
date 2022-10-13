@@ -40,12 +40,11 @@ struct ModelPlanet: Decodable {
         case edited
         case url
     }
-
 }
 
 
 
-func requestModelPlanet(completion: @escaping ((String?) -> Void)) {
+func requestModelPlanet(completion: @escaping ((ModelPlanet?) -> Void)) {
 
     guard let url = URL(string: "https://swapi.dev/api/planets/1") else { return }
     let session = URLSession(configuration: .default)
@@ -71,15 +70,50 @@ func requestModelPlanet(completion: @escaping ((String?) -> Void)) {
 
         do {
             let planet = try JSONDecoder().decode(ModelPlanet.self, from: data)
-            completion(planet.orbitalPeriod)
-        }
+            completion(planet)
 
+
+            for resident in planet.residents {
+
+                guard let url = URL(string: resident) else {
+                    print("url = nil")
+                    return
+                }
+                let session = URLSession(configuration: .default)
+
+                let task = session.dataTask(with: url) { data2, response, error in
+                    if let error {
+                        print(error)
+                    }
+                    if (response as? HTTPURLResponse)?.statusCode != 200 {
+                        print("Response statusCode = \(String(describing: (response as? HTTPURLResponse)?.statusCode))" )
+                    }
+                    guard let data2 else {
+                        print("data = nil")
+                        return
+                    }
+                    do {
+
+                        let resident = try JSONDecoder().decode(ModelResident.self, from: data2)
+                        
+               //         residentsPlanet.append(resident)
+            //            saveResidentsPlanet()
+
+                    }
+
+                    catch {
+                        print(error)
+                    }
+                }
+                task.resume()
+            }
+            
+        }
         catch {
             print(error)
             completion(nil)
             return
         }
-
     }
     task.resume()
 }
