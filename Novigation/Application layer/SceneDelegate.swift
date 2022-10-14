@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.appConfiguration = AppConfiguration.url
 
         
-        loadResidentsPlanet()
+        ManagerDataResidentsPlanet.loadResidentsPlanet()
 
         
         // Код ошибки без интернета:

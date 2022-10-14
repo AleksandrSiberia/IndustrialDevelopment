@@ -59,13 +59,13 @@ class InfoViewController: UIViewController {
         self.view.addSubview(self.tableViewPlanetResident)
         self.navigationItem.title = "Настройки"
 
-        requestForModelData { string in
+        ManagerDataModelData.requestForModelData { string in
             DispatchQueue.main.async {
                 self.label.text = string
             }
         }
 
-        requestModelPlanet { planet in
+        ManagerDataModelPlanet.requestModelPlanet { planet in
             guard let planet else {
                 print("planet = nil")
                 return
@@ -120,7 +120,7 @@ class InfoViewController: UIViewController {
 extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return  residentsPlanetUserDefaults.count
+        return  ManagerDataResidentsPlanet.residentsPlanetUserDefaults.count
 
     }
 
@@ -133,7 +133,7 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = self.tableViewPlanetResident.dequeueReusableCell(withIdentifier: "Default", for: indexPath)
             return cell
         }
-        cell.setupInfoTableViewCell(residentsPlanetUserDefaults[indexPath.row].name)
+        cell.setupInfoTableViewCell(ManagerDataResidentsPlanet.residentsPlanetUserDefaults[indexPath.row].name)
         
         return cell
     }
