@@ -52,7 +52,6 @@ class InfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(alertButton)
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(self.alertButton)
         self.view.addSubview(self.label)
@@ -60,13 +59,13 @@ class InfoViewController: UIViewController {
         self.view.addSubview(self.tableViewPlanetResident)
         self.navigationItem.title = "Настройки"
 
-        requestForModelData { string in
+        ManagerDataModelData.requestForModelData { string in
             DispatchQueue.main.async {
                 self.label.text = string
             }
         }
 
-        requestModelPlanet { planet in
+        ManagerDataModelPlanet.requestModelPlanet { planet in
             guard let planet else {
                 print("planet = nil")
                 return
@@ -90,7 +89,7 @@ class InfoViewController: UIViewController {
             self.tableViewPlanetResident.topAnchor.constraint(equalTo: self.labelPlanetOrbitalPeriod.bottomAnchor, constant: 30),
             self.tableViewPlanetResident.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.tableViewPlanetResident.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.tableViewPlanetResident.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            self.tableViewPlanetResident.bottomAnchor.constraint(equalTo: self.alertButton.topAnchor)
         ])
     }
 
@@ -121,7 +120,7 @@ class InfoViewController: UIViewController {
 extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return  residentsPlanetUserDefaults.count
+        return  ManagerDataResidentsPlanet.residentsPlanetUserDefaults.count
 
     }
 
@@ -134,7 +133,7 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = self.tableViewPlanetResident.dequeueReusableCell(withIdentifier: "Default", for: indexPath)
             return cell
         }
-        cell.setupInfoTableViewCell(residentsPlanetUserDefaults[indexPath.row].name)
+        cell.setupInfoTableViewCell(ManagerDataResidentsPlanet.residentsPlanetUserDefaults[indexPath.row].name)
         
         return cell
     }
