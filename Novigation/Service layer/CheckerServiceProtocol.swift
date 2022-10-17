@@ -11,7 +11,7 @@ import FirebaseAuth
 
 protocol CheckerServiceProtocol {
 
-    func checkCredentials(withEmail: String, password: String)
+    func checkCredentials(withEmail: String, password: String, completion: @escaping (String?) -> Void )
     
     func signUp(withEmail: String, password: String, completion: @escaping (String?) -> Void )
 }

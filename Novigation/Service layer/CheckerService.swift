@@ -11,34 +11,31 @@ import FirebaseAuth
 final class CheckerService: LoginViewControllerDelegate {
 
 
-
     private let login: String = "1@mail.ru"
     static let password: String = "03IYVB"
     private init () {}
 
     static let shared = CheckerService()
-    
-    func check(_ loginViewController: LoginViewController, login: String, password: String) -> Bool {
-        return self.login == login && CheckerService.password == password
-    }
+
 }
 
 extension CheckerService: CheckerServiceProtocol {
  
 
-
- //   AuthDataResult?, Error?
-
-    func checkCredentials(withEmail: String, password: String) {
-        Auth.auth().signIn(withEmail: withEmail, password: password) { [weak self] authDataResult, error in
+    func checkCredentials(withEmail: String, password: String, completion: @escaping (String?) -> Void ) {
+        Auth.auth().signIn(withEmail: withEmail, password: password) {
+            [weak self] authDataResult, error in
 
             guard self != nil else { return }
 
             if let error {
                 print(withEmail, password, "error >>>>>", error)
+                completion(error.localizedDescription)
             }
+            
             if let authDataResult {
                 print("authDataResult >>>>>", authDataResult)
+                completion("Открыть доступ")
             }
                 }
     }
@@ -47,7 +44,6 @@ extension CheckerService: CheckerServiceProtocol {
     func signUp(withEmail: String, password: String, completion: @escaping (String?) -> Void )  {
 
         // FirebaseAuth.Auth.auth().currentUser
-
 
         Auth.auth().createUser(withEmail: withEmail, password: password){
 
@@ -58,8 +54,8 @@ extension CheckerService: CheckerServiceProtocol {
 
             if let authDataResult {
                 print(withEmail, password, "authDataResult >>>>>", authDataResult)
+                completion("Пользователь зарегистрирован")
             }
-
         }
 
     }

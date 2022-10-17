@@ -9,17 +9,22 @@ import UIKit
 
 class TestUserService: UserServiceProtocol {
 
+
     private var currentUser: User = User("Test AleksandrSiberia",
                                          
                                          userStatus: "Test",
                                          userImage: UIImage(named: "avatar")! )
 
-    func checkTheLogin(_ login: String, password: String, loginInspector: LoginViewControllerDelegate, loginViewController: LoginViewController) -> User? {
+    func checkTheLogin(_ login: String, password: String, loginInspector: LoginViewControllerDelegate, loginViewController: LoginViewController, completion: @escaping (User?) -> Void ) {
 
-        let check: () = loginInspector.checkCredentials(withEmail: login, password: password)
-        print(check)
+        loginInspector.checkCredentials(withEmail: login, password: password) {string in
 
-        return nil
+            guard string == "Открыть доступ" else {
+                completion(nil)
+                return
+            }
+            completion(self.currentUser)
+        }
 
         //        let check = loginInspector.check(loginViewController, login: login, password: password)
 
@@ -27,9 +32,8 @@ class TestUserService: UserServiceProtocol {
         //            return nil
         //        }
         //        return currentUser
-    }
 
-    
+    }
 
 }
 

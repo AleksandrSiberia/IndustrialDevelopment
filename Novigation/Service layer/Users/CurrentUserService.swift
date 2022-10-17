@@ -8,19 +8,20 @@
 import UIKit
 
 class CurrentUserService: UserServiceProtocol {
-
+    
     private var currentUser: User = User("AleksandrSiberia",
                                          userStatus: "Работаю",
                                          userImage: UIImage(named: "avatar")! )
     
-    func checkTheLogin(_ login: String, password: String, loginInspector: LoginViewControllerDelegate, loginViewController: LoginViewController ) -> User? {
-
-        let check = loginInspector.check(loginViewController, login: login, password: password)
-        guard check == true else {
-            return nil
+    func checkTheLogin(_ login: String, password: String, loginInspector: LoginViewControllerDelegate, loginViewController: LoginViewController, completion: @escaping (User?) -> Void ) {
+        
+        loginInspector.checkCredentials(withEmail: login, password: password) {string in
+            
+            guard string == "Открыть доступ" else {
+                completion(nil)
+                return
+            }
+            completion(self.currentUser)
         }
-        return currentUser
     }
 }
-
-

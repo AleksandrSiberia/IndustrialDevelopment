@@ -101,7 +101,7 @@ class LoginViewController: UIViewController {
                                         targetAction: {
 
             if self.loginTextField.text != "" && self.passwordTextField.text != "" {
-                self.openActionLoginButton()
+                self.actionLoginButton()
             }
             else {
                 let alertAction = UIAlertAction(title: "Введите пароль и логин", style: .default)
@@ -120,6 +120,14 @@ class LoginViewController: UIViewController {
             if self.loginTextField.text != "" && self.passwordTextField.text != "" {
                 self.loginDelegate?.signUp(withEmail: self.loginTextField.text!, password: self.passwordTextField.text!) { string in
 
+                    if string == "Пользователь зарегистрирован" {
+                        let alert = UIAlertController()
+                        let alertAction = UIAlertAction(title: "Вы зарегистрировались", style: .default)
+                        alert.addAction(alertAction)
+                        self.present(alert, animated: true)
+                        return
+                    }
+
                     if let string {
                         let alert = UIAlertController()
                         let alertAction = UIAlertAction(title: string, style: .default)
@@ -127,15 +135,13 @@ class LoginViewController: UIViewController {
                         self.present(alert, animated: true)
                         return
                     }
-
-                    let alert = UIAlertController()
-                    let alertAction = UIAlertAction(title: "Вы зарегистрировались", style: .default)
-                    alert.addAction(alertAction)
-                    self.present(alert, animated: true)
-                    return
                 }
             }
             else {
+                let alert = UIAlertController()
+                let alertAction = UIAlertAction(title: "Заполните поля для ркгистрации", style: .default)
+                alert.addAction(alertAction)
+                self.present(alert, animated: true)
                 return
             }
         }
@@ -148,6 +154,7 @@ class LoginViewController: UIViewController {
 
             self.outputCheckPassword?.bruteForce()
         })
+        buttonCheckPassword.isHidden = true
         return buttonCheckPassword
     }()
 
@@ -213,7 +220,7 @@ class LoginViewController: UIViewController {
         return [topAnchor, leadingAnchor, trailingAnchor, bottomAnchor]
     }
 
-    private func actionLoginButton()throws {
+    private func actionLoginButton() {
 
         let currentUserService = CurrentUserService()
         let testUserService = TestUserService()
@@ -223,32 +230,24 @@ class LoginViewController: UIViewController {
         let userService = currentUserService
 #endif
 
+        userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!, loginViewController: self) { user in
 
-        if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!, loginViewController: self) {
-            self.output.coordinator.startProfileCoordinator(user: user)
-        }
-        else {
-            throw CustomErrorNovigation.invalidPasswordOrLogin
-        }
-    }
+            guard user != nil else {
 
+                print(CustomErrorNovigation.invalidPasswordOrLogin.rawValue)
 
-    private func openActionLoginButton() {
-        do {
-                try actionLoginButton()
-        }
-        catch {
-
-            print(CustomErrorNovigation.invalidPasswordOrLogin.rawValue)
-
-            let alert = UIAlertController(title: "Неверный пароль или логин", message: "", preferredStyle: .alert )
-            let action = UIAlertAction(title: "Ok", style: .cancel) { _ in
-                self.dismiss(animated: true)
+                let alert = UIAlertController(title: "Неверный пароль или логин", message: "", preferredStyle: .alert )
+                let action = UIAlertAction(title: "Ok", style: .cancel) { _ in
+                    self.dismiss(animated: true)
+                }
+                alert.addAction(action)
+                self.present(alert, animated: true)
+                return
             }
-            alert.addAction(action)
-            self.present(alert, animated: true)
+            self.output.coordinator.startProfileCoordinator(user: user!)
         }
     }
+
 
     
     private func logoVkViewConstraint() -> [NSLayoutConstraint] {
