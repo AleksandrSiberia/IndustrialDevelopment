@@ -63,7 +63,7 @@ class ManagerDataModelPlanet {
             }
 
             guard let data else {
-                print("data = nil")
+                print("ManagerDataModelPlanet: data = nil")
                 completion(nil)
                 return
             }
@@ -96,8 +96,8 @@ class ManagerDataModelPlanet {
 
                             let resident = try JSONDecoder().decode(ModelResident.self, from: data2)
 
-                              // residentsPlanet.append(resident)
-                              // saveResidentsPlanet()
+                            ManagerDataResidentsPlanet.residentsPlanet.append(resident)
+                            ManagerDataResidentsPlanet.saveResidentsPlanet()
 
                         }
 

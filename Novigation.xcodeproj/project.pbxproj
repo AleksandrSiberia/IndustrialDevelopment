@@ -52,6 +52,10 @@
 		8B4749D528F6BF26007DE402 /* ManagerDataModelPlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4749D428F6BF26007DE402 /* ManagerDataModelPlanet.swift */; };
 		8B4749D728F7FB13007DE402 /* ManagerDataResidentsPlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4749D628F7FB13007DE402 /* ManagerDataResidentsPlanet.swift */; };
 		8B4749D928F82A9F007DE402 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4749D828F82A9F007DE402 /* InfoTableViewCell.swift */; };
+		8B474A1228FAC698007DE402 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B474A1128FAC697007DE402 /* GoogleService-Info.plist */; };
+		8B474A1328FAC698007DE402 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B474A1128FAC697007DE402 /* GoogleService-Info.plist */; };
+		8B474A1628FAD9B1007DE402 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8B474A1528FAD9B1007DE402 /* FirebaseAuth */; };
+		8B474A1A28FD37D7007DE402 /* CheckerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A1928FD37D7007DE402 /* CheckerServiceProtocol.swift */; };
 		8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */; };
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
 		8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */; };
@@ -65,12 +69,12 @@
 		8B975F5228D3308300CC47D9 /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F5128D3308300CC47D9 /* ProfileAssembly.swift */; };
 		8BEB523228DC356500482193 /* PhotosAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB523128DC356500482193 /* PhotosAssembly.swift */; };
 		8BEB523428DF0C3100482193 /* CheckPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB523328DF0C3100482193 /* CheckPassword.swift */; };
-		8BED12C828BF3802006FF146 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12C728BF3801006FF146 /* Checker.swift */; };
+		8BED12C828BF3802006FF146 /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12C728BF3801006FF146 /* CheckerService.swift */; };
 		8BED12CA28BF581F006FF146 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12C928BF581F006FF146 /* MyLoginFactory.swift */; };
 		8BED12CC28C5DB70006FF146 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12CB28C5DB70006FF146 /* LoginInspector.swift */; };
 		8BED12CE28C5DBD5006FF146 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12CD28C5DBD5006FF146 /* LoginViewControllerDelegate.swift */; };
-		8BED12D028C5DC2E006FF146 /* LogicFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12CF28C5DC2E006FF146 /* LogicFactory.swift */; };
-		8BED12D228C5DCA6006FF146 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12D128C5DCA6006FF146 /* UserService.swift */; };
+		8BED12D028C5DC2E006FF146 /* LogicFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12CF28C5DC2E006FF146 /* LogicFactoryProtocol.swift */; };
+		8BED12D228C5DCA6006FF146 /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12D128C5DCA6006FF146 /* UserServiceProtocol.swift */; };
 		8BED12D428C5DD91006FF146 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12D328C5DD91006FF146 /* Post.swift */; };
 		8BED12D728C6018D006FF146 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 8BED12D628C6018D006FF146 /* iOSIntPackage */; };
 		8BED12D928C6848D006FF146 /* ArrayFoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12D828C6848D006FF146 /* ArrayFoto.swift */; };
@@ -156,6 +160,8 @@
 		8B4749D428F6BF26007DE402 /* ManagerDataModelPlanet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerDataModelPlanet.swift; sourceTree = "<group>"; };
 		8B4749D628F7FB13007DE402 /* ManagerDataResidentsPlanet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerDataResidentsPlanet.swift; sourceTree = "<group>"; };
 		8B4749D828F82A9F007DE402 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		8B474A1128FAC697007DE402 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8B474A1928FD37D7007DE402 /* CheckerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerServiceProtocol.swift; sourceTree = "<group>"; };
 		8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorNovigation.swift; sourceTree = "<group>"; };
 		8B695C5428BCEED9008F0414 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -169,12 +175,12 @@
 		8B975F5128D3308300CC47D9 /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
 		8BEB523128DC356500482193 /* PhotosAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAssembly.swift; sourceTree = "<group>"; };
 		8BEB523328DF0C3100482193 /* CheckPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPassword.swift; sourceTree = "<group>"; };
-		8BED12C728BF3801006FF146 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		8BED12C728BF3801006FF146 /* CheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerService.swift; sourceTree = "<group>"; };
 		8BED12C928BF581F006FF146 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 		8BED12CB28C5DB70006FF146 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		8BED12CD28C5DBD5006FF146 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
-		8BED12CF28C5DC2E006FF146 /* LogicFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicFactory.swift; sourceTree = "<group>"; };
-		8BED12D128C5DCA6006FF146 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		8BED12CF28C5DC2E006FF146 /* LogicFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicFactoryProtocol.swift; sourceTree = "<group>"; };
+		8BED12D128C5DCA6006FF146 /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
 		8BED12D328C5DD91006FF146 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		8BED12D828C6848D006FF146 /* ArrayFoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayFoto.swift; sourceTree = "<group>"; };
 		8BED12DF28C8C01D006FF146 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -193,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B14FAB828B8AC9B006DE94A /* iOSIntPackage in Frameworks */,
+				8B474A1628FAD9B1007DE402 /* FirebaseAuth in Frameworks */,
 				8B388D4428B37D79000FF22E /* StorageService.framework in Frameworks */,
 				C5099F1DD9B0E11F9C08BD25 /* Pods_Novigation.framework in Frameworks */,
 				8BED12D728C6018D006FF146 /* iOSIntPackage in Frameworks */,
@@ -244,6 +251,13 @@
 		8B138F3228DA489900ACA1B9 /* Service layer */ = {
 			isa = PBXGroup;
 			children = (
+				8BED12CF28C5DC2E006FF146 /* LogicFactoryProtocol.swift */,
+				8BED12C928BF581F006FF146 /* MyLoginFactory.swift */,
+				8BED12CD28C5DBD5006FF146 /* LoginViewControllerDelegate.swift */,
+				8BED12CB28C5DB70006FF146 /* LoginInspector.swift */,
+				8B474A1928FD37D7007DE402 /* CheckerServiceProtocol.swift */,
+				8BED12C728BF3801006FF146 /* CheckerService.swift */,
+				8B14FAB928BC9043006DE94A /* Users */,
 				8B4749D028F018EF007DE402 /* NetworkService.swift */,
 				8B4749D228F58C1A007DE402 /* ManagerDataModelData.swift */,
 				8B4749D428F6BF26007DE402 /* ManagerDataModelPlanet.swift */,
@@ -256,9 +270,9 @@
 			isa = PBXGroup;
 			children = (
 				8B14FABC28BC90A7006DE94A /* User.swift */,
+				8BED12D128C5DCA6006FF146 /* UserServiceProtocol.swift */,
 				8B14FABE28BC9E87006DE94A /* CurrentUserService.swift */,
 				8B695C5428BCEED9008F0414 /* TestUserService.swift */,
-				8BED12D128C5DCA6006FF146 /* UserService.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -286,6 +300,7 @@
 		8B30DF27283A1CC6006763B9 /* Novigation */ = {
 			isa = PBXGroup;
 			children = (
+				8B474A1128FAC697007DE402 /* GoogleService-Info.plist */,
 				8B138F3228DA489900ACA1B9 /* Service layer */,
 				8BED12DA28C8BD59006FF146 /* Models */,
 				8B975F4928D1C91200CC47D9 /* PresentationLayer */,
@@ -366,12 +381,6 @@
 			children = (
 				8BED12E328CA0D61006FF146 /* FeedModelPublisher.swift */,
 				8BED12E728CB2109006FF146 /* FeedModelSubscribers.swift */,
-				8B14FAB928BC9043006DE94A /* Users */,
-				8BED12CD28C5DBD5006FF146 /* LoginViewControllerDelegate.swift */,
-				8BED12CB28C5DB70006FF146 /* LoginInspector.swift */,
-				8BED12CF28C5DC2E006FF146 /* LogicFactory.swift */,
-				8BED12C928BF581F006FF146 /* MyLoginFactory.swift */,
-				8BED12C728BF3801006FF146 /* Checker.swift */,
 			);
 			path = Dependency;
 			sourceTree = "<group>";
@@ -395,9 +404,9 @@
 			children = (
 				8BED12DF28C8C01D006FF146 /* CustomButton.swift */,
 				8BED12E528CA1680006FF146 /* CheckWord.swift */,
-				8B30E02B2849EBAA006763B9 /* Profile */,
 				8B4749C528ED75A3007DE402 /* VideoTableViewCell.swift */,
 				8B4749D828F82A9F007DE402 /* InfoTableViewCell.swift */,
+				8B30E02B2849EBAA006763B9 /* Profile */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -471,6 +480,7 @@
 			packageProductDependencies = (
 				8B14FAB728B8AC9B006DE94A /* iOSIntPackage */,
 				8BED12D628C6018D006FF146 /* iOSIntPackage */,
+				8B474A1528FAD9B1007DE402 /* FirebaseAuth */,
 			);
 			productName = Novigation;
 			productReference = 8B30DF25283A1CC6006763B9 /* Novigation.app */;
@@ -525,6 +535,7 @@
 			packageReferences = (
 				8B14FAB628B8AC9B006DE94A /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 				8BED12D528C6018D006FF146 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				8B474A1428FAD9B1007DE402 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 8B30DF26283A1CC6006763B9 /* Products */;
 			projectDirPath = "";
@@ -549,6 +560,7 @@
 				8B4749BE28EC22F4007DE402 /* Ben_Gold_-_Xtravaganza.mp3 in Resources */,
 				8B4749C928EDA32C007DE402 /* Assets.xcassets in Resources */,
 				8B4749CF28EEA75A007DE402 /* Siberia.mp4 in Resources */,
+				8B474A1228FAC698007DE402 /* GoogleService-Info.plist in Resources */,
 				8B4749BC28EC22CF007DE402 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 in Resources */,
 				8B4749C228EC2335007DE402 /* Tinlicker_Robert_Miles_-_Children.mp3 in Resources */,
 			);
@@ -558,6 +570,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B474A1328FAC698007DE402 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,7 +664,7 @@
 				8BED12E828CB2109006FF146 /* FeedModelSubscribers.swift in Sources */,
 				8B975F5228D3308300CC47D9 /* ProfileAssembly.swift in Sources */,
 				8B4749C628ED75A3007DE402 /* VideoTableViewCell.swift in Sources */,
-				8BED12D228C5DCA6006FF146 /* UserService.swift in Sources */,
+				8BED12D228C5DCA6006FF146 /* UserServiceProtocol.swift in Sources */,
 				8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */,
 				8BED12CC28C5DB70006FF146 /* LoginInspector.swift in Sources */,
 				8BEB523228DC356500482193 /* PhotosAssembly.swift in Sources */,
@@ -665,7 +678,7 @@
 				8B30E0052840E5BA006763B9 /* InfoViewController.swift in Sources */,
 				8B14FABD28BC90A7006DE94A /* User.swift in Sources */,
 				8B138F2E28D9E86000ACA1B9 /* LoginViewProtocol.swift in Sources */,
-				8BED12C828BF3802006FF146 /* Checker.swift in Sources */,
+				8BED12C828BF3802006FF146 /* CheckerService.swift in Sources */,
 				8BED12D428C5DD91006FF146 /* Post.swift in Sources */,
 				8B4749D528F6BF26007DE402 /* ManagerDataModelPlanet.swift in Sources */,
 				8B30E001283F98C2006763B9 /* ProfileViewController.swift in Sources */,
@@ -673,8 +686,9 @@
 				8B138F2C28D9B70C00ACA1B9 /* ProfileViewModel.swift in Sources */,
 				8B30DFFF283F97D6006763B9 /* FeedViewController.swift in Sources */,
 				8B30DF2B283A1CC6006763B9 /* SceneDelegate.swift in Sources */,
+				8B474A1A28FD37D7007DE402 /* CheckerServiceProtocol.swift in Sources */,
 				8BED12E628CA1680006FF146 /* CheckWord.swift in Sources */,
-				8BED12D028C5DC2E006FF146 /* LogicFactory.swift in Sources */,
+				8BED12D028C5DC2E006FF146 /* LogicFactoryProtocol.swift in Sources */,
 				8BEB523428DF0C3100482193 /* CheckPassword.swift in Sources */,
 				8B138F2A28D9B4DF00ACA1B9 /* ProfileViewDelegate.swift in Sources */,
 				8B14FABF28BC9E87006DE94A /* CurrentUserService.swift in Sources */,
@@ -857,7 +871,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-.Novigation";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.aleksandrsiberia.Novigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -887,7 +901,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-.Novigation";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.aleksandrsiberia.Novigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1002,6 +1016,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		8B474A1428FAD9B1007DE402 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		8BED12D528C6018D006FF146 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage.git";
@@ -1017,6 +1039,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B14FAB628B8AC9B006DE94A /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
 			productName = iOSIntPackage;
+		};
+		8B474A1528FAD9B1007DE402 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B474A1428FAD9B1007DE402 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 		8BED12D628C6018D006FF146 /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;

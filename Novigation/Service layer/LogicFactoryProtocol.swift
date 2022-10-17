@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol LogicFactory {
+protocol LogicFactoryProtocol {
     func makeLoginInspector() -> LoginInspector
 }

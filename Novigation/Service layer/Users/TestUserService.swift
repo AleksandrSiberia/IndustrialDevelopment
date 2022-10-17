@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TestUserService: UserService {
+class TestUserService: UserServiceProtocol {
 
     private var currentUser: User = User("Test AleksandrSiberia",
                                          
@@ -16,15 +16,20 @@ class TestUserService: UserService {
 
     func checkTheLogin(_ login: String, password: String, loginInspector: LoginViewControllerDelegate, loginViewController: LoginViewController) -> User? {
 
-        let check = loginInspector.check(loginViewController, login: login, password: password)
+        let check: () = loginInspector.checkCredentials(withEmail: login, password: password)
+        print(check)
 
-        guard check == true else {
-            return nil
-        }
-        return currentUser
+        return nil
+
+        //        let check = loginInspector.check(loginViewController, login: login, password: password)
+
+        //        guard check == true else {
+        //            return nil
+        //        }
+        //        return currentUser
     }
 
+    
+
 }
-
-
 

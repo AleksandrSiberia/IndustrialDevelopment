@@ -24,7 +24,7 @@ class ManagerDataModelData {
                 completion(nil)
             }
             guard let data else {
-                print("data = nil")
+                print("ManagerDataModelData: data = nil")
                 completion(nil)
                 return
             }

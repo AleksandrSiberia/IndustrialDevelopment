@@ -67,7 +67,7 @@ class InfoViewController: UIViewController {
 
         ManagerDataModelPlanet.requestModelPlanet { planet in
             guard let planet else {
-                print("planet = nil")
+                print("ManagerDataModelPlanet: planet = nil")
                 return
             }
 
@@ -75,6 +75,7 @@ class InfoViewController: UIViewController {
                 self.labelPlanetOrbitalPeriod.text = planet.orbitalPeriod
             }
         }
+        
 
 
         NSLayoutConstraint.activate([

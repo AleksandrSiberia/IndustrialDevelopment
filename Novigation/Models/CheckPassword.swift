@@ -26,7 +26,7 @@ class CheckPassword: LoginViewControllerOutput {
 
     var view: CheckPasswordOutput?
 
-    var password = Checker.password
+    var password = CheckerService.password
 
     var s1: String?
     var s2: String?

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrentUserService: UserService {
+class CurrentUserService: UserServiceProtocol {
 
     private var currentUser: User = User("AleksandrSiberia",
                                          userStatus: "Работаю",

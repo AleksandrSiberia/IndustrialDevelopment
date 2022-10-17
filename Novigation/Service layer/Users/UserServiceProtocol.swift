@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol UserService {
+protocol UserServiceProtocol {
     func checkTheLogin(_ login: String, password: String, loginInspector: LoginViewControllerDelegate, loginViewController: LoginViewController) -> User?
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 
 class LoginViewController: UIViewController {
@@ -16,13 +17,16 @@ class LoginViewController: UIViewController {
 
     var outputCheckPassword: LoginViewControllerOutput?
 
+    var handle: AuthStateDidChangeListenerHandle?
+
+    var userDatabase: [ String: String] = [:]
+
 
     private lazy var activityIndicator: UIActivityIndicatorView = {
         var activityIndicator = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicator
     }()
-
 
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
@@ -55,7 +59,7 @@ class LoginViewController: UIViewController {
     private lazy var loginTextField: UITextField = {
         var loginTextField = UITextField()
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        loginTextField.placeholder = "    Login"
+        loginTextField.placeholder = "    Email"
         loginTextField.textColor = .black
         loginTextField.font = UIFont.systemFont(ofSize: 16)
         loginTextField.layer.cornerRadius = 10
@@ -65,8 +69,9 @@ class LoginViewController: UIViewController {
         loginTextField.autocapitalizationType = .none
         loginTextField.keyboardType = .namePhonePad
         loginTextField.clearButtonMode = .whileEditing
+        loginTextField.keyboardType = .emailAddress
         
-        loginTextField.text = "1"
+        loginTextField.text = ""
         return loginTextField
     }()
 
@@ -85,6 +90,8 @@ class LoginViewController: UIViewController {
         passwordTextField.keyboardType = .namePhonePad
         passwordTextField.isSecureTextEntry = true
         passwordTextField.clearButtonMode = .whileEditing
+
+        passwordTextField.text = ""
         return passwordTextField
     }()
 
@@ -92,15 +99,53 @@ class LoginViewController: UIViewController {
     private lazy var loginButton: CustomButton = {
         var loginButton = CustomButton( title: "Авторизоваться",
                                         targetAction: {
-            self.openActionLoginButton()
-          }
-        )
+
+            if self.loginTextField.text != "" && self.passwordTextField.text != "" {
+                self.openActionLoginButton()
+            }
+            else {
+                let alertAction = UIAlertAction(title: "Введите пароль и логин", style: .default)
+                let alert = UIAlertController()
+                alert.addAction(alertAction)
+                self.present(alert, animated: true)
+            }
+
+        })
         return loginButton
+    }()
+
+    private lazy var buttonSignUp: CustomButton = {
+        var buttonSignUp = CustomButton(title: "Зарегистрироваться") {
+
+            if self.loginTextField.text != "" && self.passwordTextField.text != "" {
+                self.loginDelegate?.signUp(withEmail: self.loginTextField.text!, password: self.passwordTextField.text!) { string in
+
+                    if let string {
+                        let alert = UIAlertController()
+                        let alertAction = UIAlertAction(title: string, style: .default)
+                        alert.addAction(alertAction)
+                        self.present(alert, animated: true)
+                        return
+                    }
+
+                    let alert = UIAlertController()
+                    let alertAction = UIAlertAction(title: "Вы зарегистрировались", style: .default)
+                    alert.addAction(alertAction)
+                    self.present(alert, animated: true)
+                    return
+                }
+            }
+            else {
+                return
+            }
+        }
+        return buttonSignUp
     }()
 
 
     private lazy var buttonCheckPassword: CustomButton = {
         var buttonCheckPassword = CustomButton(title: "Подобрать пароль", targetAction: {
+
             self.outputCheckPassword?.bruteForce()
         })
         return buttonCheckPassword
@@ -109,6 +154,7 @@ class LoginViewController: UIViewController {
 
 
     override func viewDidLoad() {
+
         super.viewDidLoad()
         setupGestures()
         view.backgroundColor = .white
@@ -119,6 +165,7 @@ class LoginViewController: UIViewController {
         self.stackView.addArrangedSubview(passwordTextField)
         self.stackView.addArrangedSubview(buttonCheckPassword)
         self.stackView.addArrangedSubview(loginButton)
+        self.stackView.addArrangedSubview(buttonSignUp)
         self.passwordTextField.addSubview(activityIndicator)
 
 
@@ -134,20 +181,27 @@ class LoginViewController: UIViewController {
             stackViewConstraints +
             loginTextFieldConstraints +
             loginButtonConstraints
-
-
             )
-    }
+        }
 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        handle = Auth.auth().addStateDidChangeListener { auth, user in
+          // ...
+        }
 
         self.navigationController?.navigationBar.isHidden = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
 
 
@@ -168,6 +222,8 @@ class LoginViewController: UIViewController {
 #else
         let userService = currentUserService
 #endif
+
+
         if let user = userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!, loginViewController: self) {
             self.output.coordinator.startProfileCoordinator(user: user)
         }
@@ -176,9 +232,10 @@ class LoginViewController: UIViewController {
         }
     }
 
+
     private func openActionLoginButton() {
         do {
-            try actionLoginButton()
+                try actionLoginButton()
         }
         catch {
 
@@ -199,13 +256,12 @@ class LoginViewController: UIViewController {
         let centerXAnchor = imageVkView.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor)
         let widthAnchor = imageVkView.widthAnchor.constraint(equalToConstant: 100)
         let heightAnchor = imageVkView.heightAnchor.constraint(equalToConstant: 100)
-        let bottomAnchor = imageVkView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor, constant: -50)
-        return [topAnchor, centerXAnchor, widthAnchor, heightAnchor, bottomAnchor]
+        return [topAnchor, centerXAnchor, widthAnchor, heightAnchor]
     }
 
     private func stackViewConstraints() -> [NSLayoutConstraint] {
         let topAnchor = stackView.topAnchor.constraint(equalTo: self.imageVkView.bottomAnchor, constant: 120)
-        let heightAnchor = stackView.heightAnchor.constraint(equalToConstant: 200)
+        let heightAnchor = stackView.heightAnchor.constraint(equalToConstant: 230)
         return [topAnchor, heightAnchor]
     }
 
@@ -220,11 +276,9 @@ class LoginViewController: UIViewController {
     }
 
     private func loginButtonConstraints() -> [NSLayoutConstraint] {
-        let topAnchor = self.loginButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 16)
         let leadingAnchor = self.loginButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
         let trailingAnchor =  self.loginButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
-        let heightAnchor = self.loginButton.heightAnchor.constraint(equalToConstant: 50)
-        return [topAnchor, leadingAnchor, trailingAnchor, heightAnchor]
+        return [ leadingAnchor, trailingAnchor]
     }
 
     private func setupGestures() {
@@ -238,7 +292,7 @@ class LoginViewController: UIViewController {
 
     @objc private func keyboardWillShow(_ notification: Notification ) {
         if let keyboard: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let bottomButton =  loginButton.frame.origin.y + loginButton.frame.height
+            let bottomButton =  buttonSignUp.frame.origin.y + buttonSignUp.frame.height
             let keyboardOriginY = self.view.frame.height - keyboard.cgRectValue.height
             if bottomButton > keyboardOriginY {
                 let hidingSize = bottomButton - keyboardOriginY + 16

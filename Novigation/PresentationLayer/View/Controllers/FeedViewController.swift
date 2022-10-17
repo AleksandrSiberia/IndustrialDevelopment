@@ -56,7 +56,7 @@ class FeedViewController: UIViewController {
     }()
 
     private lazy var buttonVideoPlayer: CustomButton = {
-        var buttonVideoPlayer = CustomButton(title: "Видео плеер", targetAction: {
+        var buttonVideoPlayer = CustomButton(title: "Видео плеер", targetAction: { 
 
             let videoViewController = VideoViewController()
             videoViewController.view.backgroundColor = .white

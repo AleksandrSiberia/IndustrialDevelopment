@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct MyLoginFactory: LogicFactory {
+struct MyLoginFactory: LogicFactoryProtocol {
     func makeLoginInspector() -> LoginInspector {
         return LoginInspector()
     }
