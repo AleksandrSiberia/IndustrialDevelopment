@@ -125,6 +125,7 @@ class LoginViewController: UIViewController {
                         let alertAction = UIAlertAction(title: "Вы зарегистрировались", style: .default)
                         alert.addAction(alertAction)
                         self.present(alert, animated: true)
+                        self.actionLoginButton()
                         return
                     }
 

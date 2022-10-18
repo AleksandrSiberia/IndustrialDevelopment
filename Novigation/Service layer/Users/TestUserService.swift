@@ -25,14 +25,6 @@ class TestUserService: UserServiceProtocol {
             }
             completion(self.currentUser)
         }
-
-        //        let check = loginInspector.check(loginViewController, login: login, password: password)
-
-        //        guard check == true else {
-        //            return nil
-        //        }
-        //        return currentUser
-
     }
 
 }
