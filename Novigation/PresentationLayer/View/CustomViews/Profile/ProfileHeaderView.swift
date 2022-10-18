@@ -67,7 +67,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     }()
 
     private lazy var setStatusButton: CustomButton = {
-        var statusButton = CustomButton(title: "Поменять статус") { self.statusLabel.text = self.statusText }
+        var statusButton = CustomButton(title: "Поменять статус") {  self.statusLabel.text = self.statusText }
         return statusButton
     }()
 

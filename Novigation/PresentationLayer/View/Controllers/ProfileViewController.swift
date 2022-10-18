@@ -7,12 +7,15 @@
 
 import UIKit
 import iOSIntPackage
+import FirebaseAuth
 
 protocol ProfileViewControllerOutput {
     func timerStop()
 }
 
 final class ProfileViewController: UIViewController {
+
+    var handle: AuthStateDidChangeListenerHandle?
 
     var delegate: ProfileViewDelegate! {
 
@@ -62,12 +65,18 @@ final class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.delegate.showPost()
+
+        handle = Auth.auth().addStateDidChangeListener { auth, user in
+          // ...
+        }
     }
 
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.output?.timerStop()
+
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
 
     private func setupConstraints() {

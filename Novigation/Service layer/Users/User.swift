@@ -12,6 +12,7 @@ class User {
     var userStatus: String
     var userImage: UIImage
 
+
     init (_ userFullName: String, userStatus: String, userImage: UIImage) {
         self.userFullName = userFullName
         self.userStatus = userStatus
