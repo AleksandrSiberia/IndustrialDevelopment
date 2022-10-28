@@ -221,10 +221,14 @@ class LoginViewController: UIViewController {
         return [topAnchor, leadingAnchor, trailingAnchor, bottomAnchor]
     }
 
+
+
+
     private func actionLoginButton() {
 
         let currentUserService = CurrentUserService()
         let testUserService = TestUserService()
+        
 #if DEBUG
         let userService = testUserService
 #else
@@ -233,7 +237,7 @@ class LoginViewController: UIViewController {
 
         userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!, loginViewController: self) { user in
 
-            guard user != nil else {
+            guard user != nil  else {
 
                 print(CustomErrorNovigation.invalidPasswordOrLogin.rawValue)
 
@@ -245,6 +249,7 @@ class LoginViewController: UIViewController {
                 self.present(alert, animated: true)
                 return
             }
+
             self.output.coordinator.startProfileCoordinator(user: user!)
         }
     }
@@ -300,6 +305,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
+
 
     @objc private func keyboardWillHide(_ notification: Notification) {
         scrollView.contentOffset = CGPoint(x: 0, y: 0)

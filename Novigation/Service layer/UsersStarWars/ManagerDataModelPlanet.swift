@@ -44,6 +44,7 @@ struct ModelPlanet: Decodable {
 
 class ManagerDataModelPlanet {
 
+
     static func requestModelPlanet(completion: @escaping ((ModelPlanet?) -> Void)) {
 
         guard let url = URL(string: "https://swapi.dev/api/planets/1") else { return }

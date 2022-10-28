@@ -45,6 +45,7 @@ class FeedViewController: UIViewController {
         return buttonCheckWord
     }()
 
+
     private lazy var buttonAudioPlayer: CustomButton = {
         var buttonAudioPlayer = CustomButton(title: "Аудио плеер", targetAction: {
 
@@ -64,6 +65,7 @@ class FeedViewController: UIViewController {
         })
         return buttonVideoPlayer
     }()
+
 
 
     private lazy var postStack: UIStackView = {
@@ -104,6 +106,10 @@ class FeedViewController: UIViewController {
     
 
     override func viewDidLoad() {
+
+      
+        
+
         super.viewDidLoad()
         setupView()
 
@@ -127,8 +133,6 @@ class FeedViewController: UIViewController {
         self.view.addSubview(postStack)
         [viewCheckWord, textFieldCheckWord, buttonCheckWord, postButton, postButton2, buttonAudioPlayer, buttonVideoPlayer].forEach({ self.postStack.addArrangedSubview($0)})
         self.navigationItem.rightBarButtonItem = buttonRightNavInfo
-
-
 
         NSLayoutConstraint.activate([
 
@@ -160,14 +164,6 @@ class FeedViewController: UIViewController {
         let navInfoViewController = UINavigationController(rootViewController: InfoViewController())
         present(navInfoViewController, animated: true, completion: nil)
     }
-
-}
-
-extension FeedViewController: FeedModelSubscribers {
-    func changeTheColor(_ color: UIColor) {
-        self.viewCheckWord.backgroundColor = color
-    }
-
 
 }
 
