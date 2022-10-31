@@ -243,7 +243,8 @@ class LoginViewController: UIViewController {
 
             let loginUserOnline = UserDefaults.standard.object(forKey: "userOnline") as! String
 
-            if RealmService.shared.getAllUsers() != nil {
+            if RealmService.shared.getAllUsers() != nil && RealmService.shared.getAllUsers()?.isEmpty == false {
+
                 for user in RealmService.shared.getAllUsers()! {
                     if user.login == loginUserOnline {
 

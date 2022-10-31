@@ -114,9 +114,9 @@ class InfoViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "Выйти",
                                          style: .destructive,
                                          handler: {_ in
-            self.dismiss(animated: true)
-            
             UserDefaults.standard.removeObject(forKey: "userOnline")
+            self.dismiss(animated: true)
+
         })
         alertDelete.addAction(deleteAction)
         present(alertDelete, animated: true)
