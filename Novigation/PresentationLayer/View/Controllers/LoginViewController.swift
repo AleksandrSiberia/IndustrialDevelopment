@@ -29,6 +29,7 @@ class LoginViewController: UIViewController {
     }()
 
 
+
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
         scrollView.backgroundColor = .white
@@ -37,12 +38,14 @@ class LoginViewController: UIViewController {
     }()
 
 
+
     private lazy var imageVkView: UIImageView = {
         var imageVk = UIImage(named: "logoVK")
         var imageVkView = UIImageView(image: imageVk)
         imageVkView.translatesAutoresizingMaskIntoConstraints = false
         return imageVkView
     }()
+
 
 
     private lazy var stackView: UIStackView = {
@@ -55,6 +58,7 @@ class LoginViewController: UIViewController {
         stackView.spacing = 0.5
         return stackView
     }()
+
 
 
     private lazy var textFieldLogin: UITextField = {
@@ -71,10 +75,10 @@ class LoginViewController: UIViewController {
         loginTextField.keyboardType = .namePhonePad
         loginTextField.clearButtonMode = .whileEditing
         loginTextField.keyboardType = .emailAddress
-        
         loginTextField.text = ""
         return loginTextField
     }()
+
 
 
     private lazy var textFieldPassword: UITextField = {
@@ -91,12 +95,12 @@ class LoginViewController: UIViewController {
         passwordTextField.keyboardType = .namePhonePad
         passwordTextField.isSecureTextEntry = true
         passwordTextField.clearButtonMode = .whileEditing
-
         passwordTextField.text = ""
         return passwordTextField
     }()
 
 
+    
     private lazy var buttonLogin: CustomButton = {
         var loginButton = CustomButton( title: "Авторизоваться",
                                         targetAction: {
@@ -110,7 +114,6 @@ class LoginViewController: UIViewController {
                 alert.addAction(alertAction)
                 self.present(alert, animated: true)
             }
-
         })
         return loginButton
     }()
@@ -141,6 +144,7 @@ class LoginViewController: UIViewController {
                     }
                 }
             }
+
             else {
                 let alert = UIAlertController()
                 let alertAction = UIAlertAction(title: "Заполните поля для ркгистрации", style: .default)
@@ -182,7 +186,6 @@ class LoginViewController: UIViewController {
         self.stackView.addArrangedSubview(buttonSignUp)
         self.textFieldPassword.addSubview(activityIndicator)
 
-
         let scrollViewConstraint: [NSLayoutConstraint] = scrollViewConstraint()
         let logoVkViewConstraint: [NSLayoutConstraint] = logoVkViewConstraint()
         let stackViewConstraints: [NSLayoutConstraint] = stackViewConstraints()
@@ -199,14 +202,13 @@ class LoginViewController: UIViewController {
         }
 
 
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         handle = Auth.auth().addStateDidChangeListener { auth, user in
           // ...
         }
-
-   //     print("userOnline >>>>>>>>>", UserDefaults.standard.object(forKey: "userOnline") ?? "no" )
 
         self.navigationController?.navigationBar.isHidden = true
 
@@ -278,7 +280,6 @@ class LoginViewController: UIViewController {
         let userService = currentUserService
 #endif
 
-
         userService.checkTheLogin( self.textFieldLogin.text!, password: self.textFieldPassword.text!, loginInspector: self.loginDelegate!, loginViewController: self) { user in
 
             guard user != nil  else {
@@ -295,8 +296,6 @@ class LoginViewController: UIViewController {
             }
 
             UserDefaults.standard.set(self.textFieldLogin.text, forKey: "userOnline")
-
-    //        print("UserD", UserDefaults.standard.object(forKey: "userOnline") ?? "no")
 
             for (index, user) in RealmService.shared.getAllUsers()!.enumerated() {
                 if user.login == self.textFieldLogin.text {

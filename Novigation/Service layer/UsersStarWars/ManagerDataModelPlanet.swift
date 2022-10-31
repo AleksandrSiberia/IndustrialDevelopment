@@ -42,8 +42,9 @@ struct ModelPlanet: Decodable {
     }
 }
 
-class ManagerDataModelPlanet {
 
+
+class ManagerDataModelPlanet {
 
     static func requestModelPlanet(completion: @escaping ((ModelPlanet?) -> Void)) {
 
@@ -99,7 +100,6 @@ class ManagerDataModelPlanet {
 
                             ManagerDataResidentsPlanet.residentsPlanet.append(resident)
                             ManagerDataResidentsPlanet.saveResidentsPlanet()
-
                         }
 
                         catch {

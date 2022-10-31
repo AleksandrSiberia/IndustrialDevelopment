@@ -11,6 +11,8 @@ import RealmSwift
 
 class FeedViewController: UIViewController {
 
+
+    
     var delegate: FeedViewDelegate! {
 
         didSet {
@@ -27,6 +29,8 @@ class FeedViewController: UIViewController {
         viewCheckWord.layer.cornerRadius = 12
         return viewCheckWord
     }()
+
+
 
     private lazy var textFieldCheckWord: UITextField = {
         var textFieldCheckWord = UITextField()
@@ -57,6 +61,8 @@ class FeedViewController: UIViewController {
         return buttonAudioPlayer
     }()
 
+
+
     private lazy var buttonVideoPlayer: CustomButton = {
         var buttonVideoPlayer = CustomButton(title: "Видео плеер", targetAction: { 
 
@@ -79,10 +85,14 @@ class FeedViewController: UIViewController {
         return postStack
     }()
 
+
+
     private lazy var buttonRightNavInfo: UIBarButtonItem = {
-        var buttonRightNavInfo = UIBarButtonItem(title: "Информация", style: .done, target: self, action: #selector(actionButtonRightNavInfo))
+        var buttonRightNavInfo = UIBarButtonItem(title: "Настройки", style: .done, target: self, action: #selector(actionButtonRightNavInfo))
         return buttonRightNavInfo
     }()
+
+
 
     private lazy var postButton: UIButton = {
         var postButton = UIButton()
@@ -109,32 +119,6 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
 
         print(RealmService.shared.realm.configuration.fileURL!)
-
-     // RealmService.shared.setCategory(name: "AllUsers")
-
-//        let user1 = RealmUserModel()
-//        user1.login = "1@m.ru"
-//        user1.password = "123456"
-
-    //    RealmService.shared.setUser(categoryId: RealmService.shared.getAllCategory()[0].id, user: user1)
-
-    //    RealmService.shared.deleteUser(indexInArrayUsers: 0, category: RealmService.shared.getAllCategory()[0].id)
-        
-//        let newUser = RealmUserModel()
-//        newUser.login = "12121"
-//        newUser.password = "scscsdc"
-//
-//        RealmService.shared.setUser(user: newUser)
-
-
-//        for (index, user) in RealmService.shared.getAllUsers()!.enumerated() {
-//            if user.login == "1@m.ru" {
-//                RealmService.shared.deleteUser(indexInArrayUsers: index)
-//            }
-//        }
-
-        
-
 
         setupView()
 
