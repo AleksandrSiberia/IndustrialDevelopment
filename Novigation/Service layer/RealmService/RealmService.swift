@@ -50,9 +50,9 @@ final class RealmService {
 
     func getAllCategory() -> [RealmCategoryModel] {
 
-        let arrayCategory = realm.objects(RealmCategoryModel.self)
-
-        return Array(arrayCategory)
+        let arrayRealmCategory = realm.objects(RealmCategoryModel.self)
+        let arrayCategory = Array(arrayRealmCategory)
+        return arrayCategory
 
     }
 
@@ -61,6 +61,15 @@ final class RealmService {
 
     func getAllUsers() -> [RealmUserModel]? {
 
+        if self.getAllCategory().isEmpty {
+                    self.setCategory(name: "AllUser")
+                }
+
+        guard self.getAllCategory().isEmpty == false else {
+            print("нет категории")
+            return nil
+        }
+
         let idAllCategory = realm.objects(RealmCategoryModel.self)[0].id
 
         guard let categoryUsers = realm.object(ofType: RealmCategoryModel.self, forPrimaryKey: idAllCategory)?.users else {
@@ -68,7 +77,8 @@ final class RealmService {
             return nil
         }
 
-        return Array(categoryUsers)
+            return Array(categoryUsers)
+
     }
 
 
@@ -82,7 +92,6 @@ final class RealmService {
 
             let user = self.getAllUsers()?[indexInArrayUsers]
 
-            print("user >>>>>", user)
             try! realm.write {
                 realm.delete(user!)
             }

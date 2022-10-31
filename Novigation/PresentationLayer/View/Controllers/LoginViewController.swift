@@ -243,13 +243,15 @@ class LoginViewController: UIViewController {
 
             let loginUserOnline = UserDefaults.standard.object(forKey: "userOnline") as! String
 
-            for user in RealmService.shared.getAllUsers()! {
-                if user.login == loginUserOnline {
+            if RealmService.shared.getAllUsers() != nil {
+                for user in RealmService.shared.getAllUsers()! {
+                    if user.login == loginUserOnline {
 
-                    userService.checkTheLogin(user.login, password: user.password, loginInspector: self.loginDelegate!, loginViewController: self) {  user in
+                        userService.checkTheLogin(user.login, password: user.password, loginInspector: self.loginDelegate!, loginViewController: self) {  user in
 
-                        self.output.coordinator.startProfileCoordinator(user: user!)
-                                }
+                            self.output.coordinator.startProfileCoordinator(user: user!)
+                        }
+                    }
                 }
             }
         }

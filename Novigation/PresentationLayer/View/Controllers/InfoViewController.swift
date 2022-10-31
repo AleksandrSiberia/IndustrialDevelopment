@@ -115,6 +115,7 @@ class InfoViewController: UIViewController {
                                          style: .destructive,
                                          handler: {_ in
             self.dismiss(animated: true)
+            
             UserDefaults.standard.removeObject(forKey: "userOnline")
         })
         alertDelete.addAction(deleteAction)
@@ -132,7 +133,6 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
 
         guard let cell = self.tableViewPlanetResident.dequeueReusableCell(withIdentifier: InfoTableViewCell.name, for: indexPath) as? InfoTableViewCell
         else

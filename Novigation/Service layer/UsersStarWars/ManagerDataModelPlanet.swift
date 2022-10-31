@@ -98,6 +98,7 @@ class ManagerDataModelPlanet {
 
                             let resident = try JSONDecoder().decode(ModelResident.self, from: data2)
 
+                           
                             ManagerDataResidentsPlanet.residentsPlanet.append(resident)
                             ManagerDataResidentsPlanet.saveResidentsPlanet()
                         }
