@@ -7,6 +7,7 @@
 
 import UIKit
 import StorageService
+import RealmSwift
 
 class FeedViewController: UIViewController {
 
@@ -89,7 +90,6 @@ class FeedViewController: UIViewController {
         postButton.backgroundColor = .systemYellow
         postButton.setTitle("Пост1", for: .normal)
         postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
-   //     postButton.isHidden = true
         return postButton
     }()
 
@@ -106,11 +106,36 @@ class FeedViewController: UIViewController {
     
 
     override func viewDidLoad() {
+        super.viewDidLoad()
 
-      
+        print(RealmService.shared.realm.configuration.fileURL!)
+
+     // RealmService.shared.setCategory(name: "AllUsers")
+
+//        let user1 = RealmUserModel()
+//        user1.login = "1@m.ru"
+//        user1.password = "123456"
+
+    //    RealmService.shared.setUser(categoryId: RealmService.shared.getAllCategory()[0].id, user: user1)
+
+    //    RealmService.shared.deleteUser(indexInArrayUsers: 0, category: RealmService.shared.getAllCategory()[0].id)
+        
+//        let newUser = RealmUserModel()
+//        newUser.login = "12121"
+//        newUser.password = "scscsdc"
+//
+//        RealmService.shared.setUser(user: newUser)
+
+
+//        for (index, user) in RealmService.shared.getAllUsers()!.enumerated() {
+//            if user.login == "1@m.ru" {
+//                RealmService.shared.deleteUser(indexInArrayUsers: index)
+//            }
+//        }
+
         
 
-        super.viewDidLoad()
+
         setupView()
 
     }

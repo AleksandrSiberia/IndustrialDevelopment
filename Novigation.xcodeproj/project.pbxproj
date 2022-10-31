@@ -57,7 +57,8 @@
 		8B474A1628FAD9B1007DE402 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8B474A1528FAD9B1007DE402 /* FirebaseAuth */; };
 		8B474A1A28FD37D7007DE402 /* CheckServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A1928FD37D7007DE402 /* CheckServiceProtocol.swift */; };
 		8B474A6D290BBC5E007DE402 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B474A6C290BBC5E007DE402 /* RealmSwift */; };
-		8B474A6F290BBF12007DE402 /* UserRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A6E290BBF12007DE402 /* UserRealmModel.swift */; };
+		8B474A6F290BBF12007DE402 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A6E290BBF12007DE402 /* RealmModel.swift */; };
+		8B474A75290BEEB5007DE402 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A74290BEEB5007DE402 /* RealmService.swift */; };
 		8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */; };
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
 		8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */; };
@@ -162,7 +163,8 @@
 		8B4749D828F82A9F007DE402 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		8B474A1128FAC697007DE402 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B474A1928FD37D7007DE402 /* CheckServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckServiceProtocol.swift; sourceTree = "<group>"; };
-		8B474A6E290BBF12007DE402 /* UserRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealmModel.swift; sourceTree = "<group>"; };
+		8B474A6E290BBF12007DE402 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		8B474A74290BEEB5007DE402 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorNovigation.swift; sourceTree = "<group>"; };
 		8B695C5428BCEED9008F0414 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 		8B138F3228DA489900ACA1B9 /* Service layer */ = {
 			isa = PBXGroup;
 			children = (
+				8B474A73290BEE73007DE402 /* RealmService */,
 				8B474A71290BC455007DE402 /* Users */,
 				8B14FAB928BC9043006DE94A /* UsersStarWars */,
 				8B4749D228F58C1A007DE402 /* ManagerDataModelData.swift */,
@@ -337,8 +340,6 @@
 		8B474A71290BC455007DE402 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				8B474A6E290BBF12007DE402 /* UserRealmModel.swift */,
-				8B14FABC28BC90A7006DE94A /* User.swift */,
 				8BED12CF28C5DC2E006FF146 /* LogicFactoryProtocol.swift */,
 				8BED12C928BF581F006FF146 /* MyLoginFactory.swift */,
 				8B474A1928FD37D7007DE402 /* CheckServiceProtocol.swift */,
@@ -347,6 +348,7 @@
 				8BED12D128C5DCA6006FF146 /* UserServiceProtocol.swift */,
 				8B14FABE28BC9E87006DE94A /* CurrentUserService.swift */,
 				8B695C5428BCEED9008F0414 /* TestUserService.swift */,
+				8B14FABC28BC90A7006DE94A /* User.swift */,
 				8B474A72290BC5CB007DE402 /* OffService */,
 			);
 			path = Users;
@@ -357,6 +359,15 @@
 			children = (
 			);
 			path = OffService;
+			sourceTree = "<group>";
+		};
+		8B474A73290BEE73007DE402 /* RealmService */ = {
+			isa = PBXGroup;
+			children = (
+				8B474A6E290BBF12007DE402 /* RealmModel.swift */,
+				8B474A74290BEEB5007DE402 /* RealmService.swift */,
+			);
+			path = RealmService;
 			sourceTree = "<group>";
 		};
 		8B975F3328D0A87A00CC47D9 /* Coordinators */ = {
@@ -674,7 +685,7 @@
 				8BED12D228C5DCA6006FF146 /* UserServiceProtocol.swift in Sources */,
 				8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */,
 				8BED12CC28C5DB70006FF146 /* LoginInspector.swift in Sources */,
-				8B474A6F290BBF12007DE402 /* UserRealmModel.swift in Sources */,
+				8B474A6F290BBF12007DE402 /* RealmModel.swift in Sources */,
 				8BEB523228DC356500482193 /* PhotosAssembly.swift in Sources */,
 				8B30E0312849EE7F006763B9 /* ProfileHeaderView.swift in Sources */,
 				8B975F4E28D1FE4400CC47D9 /* FeedCoordinator.swift in Sources */,
@@ -706,6 +717,7 @@
 				8B975F5028D1FE8100CC47D9 /* ProfileCoordinator.swift in Sources */,
 				8BED12E228CA061C006FF146 /* bluePixel.swift in Sources */,
 				8B353277285DEC1900704D08 /* PhotosViewController.swift in Sources */,
+				8B474A75290BEEB5007DE402 /* RealmService.swift in Sources */,
 				8B0F0D1B285728B1008F75C0 /* LoginViewController.swift in Sources */,
 				8B0F0D1D285868FA008F75C0 /* ModelPost.swift in Sources */,
 				8B4749D128F018EF007DE402 /* NetworkService.swift in Sources */,

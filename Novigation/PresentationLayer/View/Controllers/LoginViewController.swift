@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import RealmSwift
 
 
 class LoginViewController: UIViewController {
@@ -21,12 +22,12 @@ class LoginViewController: UIViewController {
 
     var userDatabase: [ String: String] = [:]
 
-
     private lazy var activityIndicator: UIActivityIndicatorView = {
         var activityIndicator = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicator
     }()
+
 
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
@@ -56,7 +57,7 @@ class LoginViewController: UIViewController {
     }()
 
 
-    private lazy var loginTextField: UITextField = {
+    private lazy var textFieldLogin: UITextField = {
         var loginTextField = UITextField()
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
         loginTextField.placeholder = "    Email"
@@ -76,7 +77,7 @@ class LoginViewController: UIViewController {
     }()
 
 
-    private lazy var passwordTextField: UITextField = {
+    private lazy var textFieldPassword: UITextField = {
         var passwordTextField = UITextField()
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.placeholder = "    Password"
@@ -96,11 +97,11 @@ class LoginViewController: UIViewController {
     }()
 
 
-    private lazy var loginButton: CustomButton = {
+    private lazy var buttonLogin: CustomButton = {
         var loginButton = CustomButton( title: "Авторизоваться",
                                         targetAction: {
 
-            if self.loginTextField.text != "" && self.passwordTextField.text != "" {
+            if self.textFieldLogin.text != "" && self.textFieldPassword.text != "" {
                 self.actionLoginButton()
             }
             else {
@@ -114,11 +115,13 @@ class LoginViewController: UIViewController {
         return loginButton
     }()
 
+
+
     private lazy var buttonSignUp: CustomButton = {
         var buttonSignUp = CustomButton(title: "Зарегистрироваться") {
 
-            if self.loginTextField.text != "" && self.passwordTextField.text != "" {
-                self.loginDelegate?.signUp(withEmail: self.loginTextField.text!, password: self.passwordTextField.text!) { string in
+            if self.textFieldLogin.text != "" && self.textFieldPassword.text != "" {
+                self.loginDelegate?.signUp(withEmail: self.textFieldLogin.text!, password: self.textFieldPassword.text!) { string in
 
                     if string == "Пользователь зарегистрирован" {
                         let alert = UIAlertController()
@@ -150,6 +153,7 @@ class LoginViewController: UIViewController {
     }()
 
 
+
     private lazy var buttonCheckPassword: CustomButton = {
         var buttonCheckPassword = CustomButton(title: "Подобрать пароль", targetAction: {
 
@@ -162,19 +166,21 @@ class LoginViewController: UIViewController {
 
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
+
+        autoAuthorization()
+
         setupGestures()
         view.backgroundColor = .white
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(imageVkView)
         self.scrollView.addSubview(stackView)
-        self.stackView.addArrangedSubview(loginTextField)
-        self.stackView.addArrangedSubview(passwordTextField)
+        self.stackView.addArrangedSubview(textFieldLogin)
+        self.stackView.addArrangedSubview(textFieldPassword)
         self.stackView.addArrangedSubview(buttonCheckPassword)
-        self.stackView.addArrangedSubview(loginButton)
+        self.stackView.addArrangedSubview(buttonLogin)
         self.stackView.addArrangedSubview(buttonSignUp)
-        self.passwordTextField.addSubview(activityIndicator)
+        self.textFieldPassword.addSubview(activityIndicator)
 
 
         let scrollViewConstraint: [NSLayoutConstraint] = scrollViewConstraint()
@@ -200,6 +206,8 @@ class LoginViewController: UIViewController {
           // ...
         }
 
+   //     print("userOnline >>>>>>>>>", UserDefaults.standard.object(forKey: "userOnline") ?? "no" )
+
         self.navigationController?.navigationBar.isHidden = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -207,10 +215,45 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
+
+
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         Auth.auth().removeStateDidChangeListener(handle!)
     }
+
+
+
+
+    func autoAuthorization() {
+
+        if (UserDefaults.standard.object(forKey: "userOnline") != nil) {
+
+            let currentUserService = CurrentUserService()
+            let testUserService = TestUserService()
+
+    #if DEBUG
+            let userService = testUserService
+    #else
+            let userService = currentUserService
+    #endif
+
+            let loginUserOnline = UserDefaults.standard.object(forKey: "userOnline") as! String
+
+            for user in RealmService.shared.getAllUsers()! {
+                if user.login == loginUserOnline {
+
+                    userService.checkTheLogin(user.login, password: user.password, loginInspector: self.loginDelegate!, loginViewController: self) {  user in
+
+                        self.output.coordinator.startProfileCoordinator(user: user!)
+                                }
+                }
+            }
+        }
+    }
+
+
 
 
     private func scrollViewConstraint() -> [NSLayoutConstraint] {
@@ -235,7 +278,8 @@ class LoginViewController: UIViewController {
         let userService = currentUserService
 #endif
 
-        userService.checkTheLogin( self.loginTextField.text!, password: self.passwordTextField.text!, loginInspector: self.loginDelegate!, loginViewController: self) { user in
+
+        userService.checkTheLogin( self.textFieldLogin.text!, password: self.textFieldPassword.text!, loginInspector: self.loginDelegate!, loginViewController: self) { user in
 
             guard user != nil  else {
 
@@ -250,7 +294,24 @@ class LoginViewController: UIViewController {
                 return
             }
 
+            UserDefaults.standard.set(self.textFieldLogin.text, forKey: "userOnline")
+
+    //        print("UserD", UserDefaults.standard.object(forKey: "userOnline") ?? "no")
+
+            for (index, user) in RealmService.shared.getAllUsers()!.enumerated() {
+                if user.login == self.textFieldLogin.text {
+                    RealmService.shared.deleteUser(indexInArrayUsers: index)
+                }
+            }
+
+            let newUser = RealmUserModel()
+            newUser.login = self.textFieldLogin.text!
+            newUser.password = self.textFieldPassword.text!
+
+            RealmService.shared.setUser(user: newUser)
+            
             self.output.coordinator.startProfileCoordinator(user: user!)
+
         }
     }
 
@@ -264,36 +325,48 @@ class LoginViewController: UIViewController {
         return [topAnchor, centerXAnchor, widthAnchor, heightAnchor]
     }
 
+
+
     private func stackViewConstraints() -> [NSLayoutConstraint] {
         let topAnchor = stackView.topAnchor.constraint(equalTo: self.imageVkView.bottomAnchor, constant: 120)
         let heightAnchor = stackView.heightAnchor.constraint(equalToConstant: 230)
         return [topAnchor, heightAnchor]
     }
 
-    private func loginTextFieldConstraints() -> [NSLayoutConstraint] {
-        let trailingAnchor = self.loginTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
-        let leadingAnchor = self.loginTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
 
-        let activityIndicatorX  = self.activityIndicator.centerXAnchor.constraint(equalTo: self.passwordTextField.centerXAnchor)
-        let activityIndicatorY  = self.activityIndicator.centerYAnchor.constraint(equalTo: self.passwordTextField.centerYAnchor)
+
+    private func loginTextFieldConstraints() -> [NSLayoutConstraint] {
+        let trailingAnchor = self.textFieldLogin.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
+        let leadingAnchor = self.textFieldLogin.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
+
+        let activityIndicatorX  = self.activityIndicator.centerXAnchor.constraint(equalTo: self.textFieldPassword.centerXAnchor)
+        let activityIndicatorY  = self.activityIndicator.centerYAnchor.constraint(equalTo: self.textFieldPassword.centerYAnchor)
 
         return [trailingAnchor, leadingAnchor, activityIndicatorX, activityIndicatorY]
     }
 
+
+
     private func loginButtonConstraints() -> [NSLayoutConstraint] {
-        let leadingAnchor = self.loginButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
-        let trailingAnchor =  self.loginButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
+        let leadingAnchor = self.buttonLogin.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
+        let trailingAnchor =  self.buttonLogin.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
         return [ leadingAnchor, trailingAnchor]
     }
+
+
 
     private func setupGestures() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(offKeyboard))
         self.view.addGestureRecognizer(gesture)
     }
 
+
+
     @objc private func offKeyboard() {
         self.view.endEditing(true)
     }
+
+
 
     @objc private func keyboardWillShow(_ notification: Notification ) {
         if let keyboard: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
@@ -307,10 +380,12 @@ class LoginViewController: UIViewController {
     }
 
 
+
     @objc private func keyboardWillHide(_ notification: Notification) {
         scrollView.contentOffset = CGPoint(x: 0, y: 0)
     }
 }
+
 
 
 extension LoginViewController: CheckPasswordOutput {
@@ -322,7 +397,7 @@ extension LoginViewController: CheckPasswordOutput {
    func activityIndicatorOff() {
         self.activityIndicator.stopAnimating()
         self.buttonCheckPassword.isHidden = true
-        self.passwordTextField.isSecureTextEntry = false
-        self.passwordTextField.text = self.outputCheckPassword?.thisIsPassword
+        self.textFieldPassword.isSecureTextEntry = false
+        self.textFieldPassword.text = self.outputCheckPassword?.thisIsPassword
      }
 }
