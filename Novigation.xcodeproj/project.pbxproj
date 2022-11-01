@@ -55,7 +55,12 @@
 		8B474A1228FAC698007DE402 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B474A1128FAC697007DE402 /* GoogleService-Info.plist */; };
 		8B474A1328FAC698007DE402 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B474A1128FAC697007DE402 /* GoogleService-Info.plist */; };
 		8B474A1628FAD9B1007DE402 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8B474A1528FAD9B1007DE402 /* FirebaseAuth */; };
-		8B474A1A28FD37D7007DE402 /* CheckerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A1928FD37D7007DE402 /* CheckerServiceProtocol.swift */; };
+		8B474A1A28FD37D7007DE402 /* CheckServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A1928FD37D7007DE402 /* CheckServiceProtocol.swift */; };
+		8B474A6D290BBC5E007DE402 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B474A6C290BBC5E007DE402 /* RealmSwift */; };
+		8B474A6F290BBF12007DE402 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A6E290BBF12007DE402 /* RealmModel.swift */; };
+		8B474A75290BEEB5007DE402 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A74290BEEB5007DE402 /* RealmService.swift */; };
+		8B474A782910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A762910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld */; };
+		8B474A7B2910F386007DE402 /* CoreDataCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A7A2910F386007DE402 /* CoreDataCoordinator.swift */; };
 		8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */; };
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
 		8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */; };
@@ -68,8 +73,8 @@
 		8B975F5028D1FE8100CC47D9 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F4F28D1FE8100CC47D9 /* ProfileCoordinator.swift */; };
 		8B975F5228D3308300CC47D9 /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F5128D3308300CC47D9 /* ProfileAssembly.swift */; };
 		8BEB523228DC356500482193 /* PhotosAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB523128DC356500482193 /* PhotosAssembly.swift */; };
-		8BEB523428DF0C3100482193 /* CheckPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB523328DF0C3100482193 /* CheckPassword.swift */; };
-		8BED12C828BF3802006FF146 /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12C728BF3801006FF146 /* CheckerService.swift */; };
+		8BEB523428DF0C3100482193 /* CheckerPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB523328DF0C3100482193 /* CheckerPassword.swift */; };
+		8BED12C828BF3802006FF146 /* CheckService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12C728BF3801006FF146 /* CheckService.swift */; };
 		8BED12CA28BF581F006FF146 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12C928BF581F006FF146 /* MyLoginFactory.swift */; };
 		8BED12CC28C5DB70006FF146 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12CB28C5DB70006FF146 /* LoginInspector.swift */; };
 		8BED12CE28C5DBD5006FF146 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12CD28C5DBD5006FF146 /* LoginViewControllerDelegate.swift */; };
@@ -80,9 +85,7 @@
 		8BED12D928C6848D006FF146 /* ArrayFoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12D828C6848D006FF146 /* ArrayFoto.swift */; };
 		8BED12E028C8C01D006FF146 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12DF28C8C01D006FF146 /* CustomButton.swift */; };
 		8BED12E228CA061C006FF146 /* bluePixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12E128CA061C006FF146 /* bluePixel.swift */; };
-		8BED12E428CA0D61006FF146 /* FeedModelPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12E328CA0D61006FF146 /* FeedModelPublisher.swift */; };
 		8BED12E628CA1680006FF146 /* CheckWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12E528CA1680006FF146 /* CheckWord.swift */; };
-		8BED12E828CB2109006FF146 /* FeedModelSubscribers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12E728CB2109006FF146 /* FeedModelSubscribers.swift */; };
 		A9FA78F6BCF85A2EB8A42989 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */; };
 		C5099F1DD9B0E11F9C08BD25 /* Pods_Novigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */; };
 /* End PBXBuildFile section */
@@ -161,7 +164,11 @@
 		8B4749D628F7FB13007DE402 /* ManagerDataResidentsPlanet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerDataResidentsPlanet.swift; sourceTree = "<group>"; };
 		8B4749D828F82A9F007DE402 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		8B474A1128FAC697007DE402 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8B474A1928FD37D7007DE402 /* CheckerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerServiceProtocol.swift; sourceTree = "<group>"; };
+		8B474A1928FD37D7007DE402 /* CheckServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckServiceProtocol.swift; sourceTree = "<group>"; };
+		8B474A6E290BBF12007DE402 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		8B474A74290BEEB5007DE402 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		8B474A772910F19E007DE402 /* PostCoreDadaModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PostCoreDadaModel.xcdatamodel; sourceTree = "<group>"; };
+		8B474A7A2910F386007DE402 /* CoreDataCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCoordinator.swift; sourceTree = "<group>"; };
 		8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorNovigation.swift; sourceTree = "<group>"; };
 		8B695C5428BCEED9008F0414 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -174,8 +181,8 @@
 		8B975F4F28D1FE8100CC47D9 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		8B975F5128D3308300CC47D9 /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
 		8BEB523128DC356500482193 /* PhotosAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAssembly.swift; sourceTree = "<group>"; };
-		8BEB523328DF0C3100482193 /* CheckPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPassword.swift; sourceTree = "<group>"; };
-		8BED12C728BF3801006FF146 /* CheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerService.swift; sourceTree = "<group>"; };
+		8BEB523328DF0C3100482193 /* CheckerPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerPassword.swift; sourceTree = "<group>"; };
+		8BED12C728BF3801006FF146 /* CheckService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckService.swift; sourceTree = "<group>"; };
 		8BED12C928BF581F006FF146 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 		8BED12CB28C5DB70006FF146 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		8BED12CD28C5DBD5006FF146 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -185,9 +192,7 @@
 		8BED12D828C6848D006FF146 /* ArrayFoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayFoto.swift; sourceTree = "<group>"; };
 		8BED12DF28C8C01D006FF146 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		8BED12E128CA061C006FF146 /* bluePixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bluePixel.swift; sourceTree = "<group>"; };
-		8BED12E328CA0D61006FF146 /* FeedModelPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModelPublisher.swift; sourceTree = "<group>"; };
 		8BED12E528CA1680006FF146 /* CheckWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckWord.swift; sourceTree = "<group>"; };
-		8BED12E728CB2109006FF146 /* FeedModelSubscribers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModelSubscribers.swift; sourceTree = "<group>"; };
 		A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Novigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE8B5B8C2056D2BE18FF5E0 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B474A6D290BBC5E007DE402 /* RealmSwift in Frameworks */,
 				8B14FAB828B8AC9B006DE94A /* iOSIntPackage in Frameworks */,
 				8B474A1628FAD9B1007DE402 /* FirebaseAuth in Frameworks */,
 				8B388D4428B37D79000FF22E /* StorageService.framework in Frameworks */,
@@ -243,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				8BED12DD28C8BD84006FF146 /* Controllers */,
+				8B474A70290BC0D0007DE402 /* Cells */,
 				8BED12DB28C8BD6D006FF146 /* CustomViews */,
 			);
 			path = View;
@@ -251,30 +258,23 @@
 		8B138F3228DA489900ACA1B9 /* Service layer */ = {
 			isa = PBXGroup;
 			children = (
-				8BED12CF28C5DC2E006FF146 /* LogicFactoryProtocol.swift */,
-				8BED12C928BF581F006FF146 /* MyLoginFactory.swift */,
-				8BED12CD28C5DBD5006FF146 /* LoginViewControllerDelegate.swift */,
-				8BED12CB28C5DB70006FF146 /* LoginInspector.swift */,
-				8B474A1928FD37D7007DE402 /* CheckerServiceProtocol.swift */,
-				8BED12C728BF3801006FF146 /* CheckerService.swift */,
-				8B14FAB928BC9043006DE94A /* Users */,
-				8B4749D028F018EF007DE402 /* NetworkService.swift */,
+				8B474A792910F1B2007DE402 /* CoreDataCoordinator */,
+				8B474A73290BEE73007DE402 /* RealmService */,
+				8B474A71290BC455007DE402 /* Users */,
+				8B14FAB928BC9043006DE94A /* UsersStarWars */,
 				8B4749D228F58C1A007DE402 /* ManagerDataModelData.swift */,
-				8B4749D428F6BF26007DE402 /* ManagerDataModelPlanet.swift */,
-				8B4749D628F7FB13007DE402 /* ManagerDataResidentsPlanet.swift */,
 			);
 			path = "Service layer";
 			sourceTree = "<group>";
 		};
-		8B14FAB928BC9043006DE94A /* Users */ = {
+		8B14FAB928BC9043006DE94A /* UsersStarWars */ = {
 			isa = PBXGroup;
 			children = (
-				8B14FABC28BC90A7006DE94A /* User.swift */,
-				8BED12D128C5DCA6006FF146 /* UserServiceProtocol.swift */,
-				8B14FABE28BC9E87006DE94A /* CurrentUserService.swift */,
-				8B695C5428BCEED9008F0414 /* TestUserService.swift */,
+				8B4749D028F018EF007DE402 /* NetworkService.swift */,
+				8B4749D428F6BF26007DE402 /* ManagerDataModelPlanet.swift */,
+				8B4749D628F7FB13007DE402 /* ManagerDataResidentsPlanet.swift */,
 			);
-			path = Users;
+			path = UsersStarWars;
 			sourceTree = "<group>";
 		};
 		8B30DF1C283A1CC6006763B9 = {
@@ -301,11 +301,10 @@
 			isa = PBXGroup;
 			children = (
 				8B474A1128FAC697007DE402 /* GoogleService-Info.plist */,
+				8BED12DE28C8BD9B006FF146 /* Application layer */,
 				8B138F3228DA489900ACA1B9 /* Service layer */,
 				8BED12DA28C8BD59006FF146 /* Models */,
 				8B975F4928D1C91200CC47D9 /* PresentationLayer */,
-				8BED12DE28C8BD9B006FF146 /* Application layer */,
-				8BED12C628BF37AC006FF146 /* Dependency */,
 				8B30DF33283A1CC7006763B9 /* LaunchScreen.storyboard */,
 				8B4749C828EDA32B007DE402 /* Assets.xcassets */,
 				8B4749C728ED9771007DE402 /* Record.mp4 */,
@@ -321,17 +320,6 @@
 			path = Novigation;
 			sourceTree = "<group>";
 		};
-		8B30E02B2849EBAA006763B9 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				8B30E0302849EE7F006763B9 /* ProfileHeaderView.swift */,
-				8B35326C2859F47200704D08 /* PostCell.swift */,
-				8B353270285DCE3A00704D08 /* PhotosTableViewCell.swift */,
-				8B353274285DD5E800704D08 /* PhotosCollectionViewCell.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
 		8B388D3F28B37D79000FF22E /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +327,60 @@
 				8B388D4028B37D79000FF22E /* StorageService.h */,
 			);
 			path = StorageService;
+			sourceTree = "<group>";
+		};
+		8B474A70290BC0D0007DE402 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8B30E0302849EE7F006763B9 /* ProfileHeaderView.swift */,
+				8B35326C2859F47200704D08 /* PostCell.swift */,
+				8B353270285DCE3A00704D08 /* PhotosTableViewCell.swift */,
+				8B353274285DD5E800704D08 /* PhotosCollectionViewCell.swift */,
+				8B4749C528ED75A3007DE402 /* VideoTableViewCell.swift */,
+				8B4749D828F82A9F007DE402 /* InfoTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8B474A71290BC455007DE402 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				8BED12CF28C5DC2E006FF146 /* LogicFactoryProtocol.swift */,
+				8BED12C928BF581F006FF146 /* MyLoginFactory.swift */,
+				8B474A1928FD37D7007DE402 /* CheckServiceProtocol.swift */,
+				8BED12C728BF3801006FF146 /* CheckService.swift */,
+				8BED12CB28C5DB70006FF146 /* LoginInspector.swift */,
+				8BED12D128C5DCA6006FF146 /* UserServiceProtocol.swift */,
+				8B14FABE28BC9E87006DE94A /* CurrentUserService.swift */,
+				8B695C5428BCEED9008F0414 /* TestUserService.swift */,
+				8B14FABC28BC90A7006DE94A /* User.swift */,
+				8B474A72290BC5CB007DE402 /* OffService */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		8B474A72290BC5CB007DE402 /* OffService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OffService;
+			sourceTree = "<group>";
+		};
+		8B474A73290BEE73007DE402 /* RealmService */ = {
+			isa = PBXGroup;
+			children = (
+				8B474A6E290BBF12007DE402 /* RealmModel.swift */,
+				8B474A74290BEEB5007DE402 /* RealmService.swift */,
+			);
+			path = RealmService;
+			sourceTree = "<group>";
+		};
+		8B474A792910F1B2007DE402 /* CoreDataCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				8B474A7A2910F386007DE402 /* CoreDataCoordinator.swift */,
+			);
+			path = CoreDataCoordinator;
 			sourceTree = "<group>";
 		};
 		8B975F3328D0A87A00CC47D9 /* Coordinators */ = {
@@ -357,9 +399,9 @@
 		8B975F4928D1C91200CC47D9 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				8B138F2228D87EAF00ACA1B9 /* View */,
 				8B975F4A28D1CAFE00CC47D9 /* Assembly */,
 				8B138F1F28D87E1B00ACA1B9 /* ViewModel */,
-				8B138F2228D87EAF00ACA1B9 /* View */,
 				8B975F3328D0A87A00CC47D9 /* Coordinators */,
 			);
 			path = PresentationLayer;
@@ -376,24 +418,16 @@
 			path = Assembly;
 			sourceTree = "<group>";
 		};
-		8BED12C628BF37AC006FF146 /* Dependency */ = {
-			isa = PBXGroup;
-			children = (
-				8BED12E328CA0D61006FF146 /* FeedModelPublisher.swift */,
-				8BED12E728CB2109006FF146 /* FeedModelSubscribers.swift */,
-			);
-			path = Dependency;
-			sourceTree = "<group>";
-		};
 		8BED12DA28C8BD59006FF146 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8B474A762910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld */,
+				8BED12D328C5DD91006FF146 /* Post.swift */,
 				8B138F2728D8890A00ACA1B9 /* FeedModel.swift */,
 				8B0F0D1C285868FA008F75C0 /* ModelPost.swift */,
-				8BED12D328C5DD91006FF146 /* Post.swift */,
 				8BED12D828C6848D006FF146 /* ArrayFoto.swift */,
 				8BED12E128CA061C006FF146 /* bluePixel.swift */,
-				8BEB523328DF0C3100482193 /* CheckPassword.swift */,
+				8BEB523328DF0C3100482193 /* CheckerPassword.swift */,
 				8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */,
 			);
 			path = Models;
@@ -404,9 +438,6 @@
 			children = (
 				8BED12DF28C8C01D006FF146 /* CustomButton.swift */,
 				8BED12E528CA1680006FF146 /* CheckWord.swift */,
-				8B4749C528ED75A3007DE402 /* VideoTableViewCell.swift */,
-				8B4749D828F82A9F007DE402 /* InfoTableViewCell.swift */,
-				8B30E02B2849EBAA006763B9 /* Profile */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -416,6 +447,7 @@
 			children = (
 				8B30DFFE283F97D6006763B9 /* FeedViewController.swift */,
 				8B0F0D1A285728B1008F75C0 /* LoginViewController.swift */,
+				8BED12CD28C5DBD5006FF146 /* LoginViewControllerDelegate.swift */,
 				8B30E000283F98C2006763B9 /* ProfileViewController.swift */,
 				8B353276285DEC1900704D08 /* PhotosViewController.swift */,
 				8B30E0042840E5BA006763B9 /* InfoViewController.swift */,
@@ -481,6 +513,7 @@
 				8B14FAB728B8AC9B006DE94A /* iOSIntPackage */,
 				8BED12D628C6018D006FF146 /* iOSIntPackage */,
 				8B474A1528FAD9B1007DE402 /* FirebaseAuth */,
+				8B474A6C290BBC5E007DE402 /* RealmSwift */,
 			);
 			productName = Novigation;
 			productReference = 8B30DF25283A1CC6006763B9 /* Novigation.app */;
@@ -536,6 +569,7 @@
 				8B14FAB628B8AC9B006DE94A /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 				8BED12D528C6018D006FF146 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 				8B474A1428FAD9B1007DE402 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8B474A6B290BBC5D007DE402 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 8B30DF26283A1CC6006763B9 /* Products */;
 			projectDirPath = "";
@@ -646,7 +680,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */,
-				8BED12E428CA0D61006FF146 /* FeedModelPublisher.swift in Sources */,
 				8BED12CE28C5DBD5006FF146 /* LoginViewControllerDelegate.swift in Sources */,
 				8B975F3F28D1B37A00CC47D9 /* ViewModel.swift in Sources */,
 				8B353271285DCE3A00704D08 /* PhotosTableViewCell.swift in Sources */,
@@ -661,15 +694,16 @@
 				8B4749D328F58C1A007DE402 /* ManagerDataModelData.swift in Sources */,
 				8B353275285DD5E800704D08 /* PhotosCollectionViewCell.swift in Sources */,
 				8B975F3B28D0B5E100CC47D9 /* RootCoordinator.swift in Sources */,
-				8BED12E828CB2109006FF146 /* FeedModelSubscribers.swift in Sources */,
 				8B975F5228D3308300CC47D9 /* ProfileAssembly.swift in Sources */,
 				8B4749C628ED75A3007DE402 /* VideoTableViewCell.swift in Sources */,
 				8BED12D228C5DCA6006FF146 /* UserServiceProtocol.swift in Sources */,
 				8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */,
 				8BED12CC28C5DB70006FF146 /* LoginInspector.swift in Sources */,
+				8B474A6F290BBF12007DE402 /* RealmModel.swift in Sources */,
 				8BEB523228DC356500482193 /* PhotosAssembly.swift in Sources */,
 				8B30E0312849EE7F006763B9 /* ProfileHeaderView.swift in Sources */,
 				8B975F4E28D1FE4400CC47D9 /* FeedCoordinator.swift in Sources */,
+				8B474A782910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld in Sources */,
 				8B4749D928F82A9F007DE402 /* InfoTableViewCell.swift in Sources */,
 				8B975F4328D1B58600CC47D9 /* FeedViewControllerDelegate.swift in Sources */,
 				8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */,
@@ -678,7 +712,7 @@
 				8B30E0052840E5BA006763B9 /* InfoViewController.swift in Sources */,
 				8B14FABD28BC90A7006DE94A /* User.swift in Sources */,
 				8B138F2E28D9E86000ACA1B9 /* LoginViewProtocol.swift in Sources */,
-				8BED12C828BF3802006FF146 /* CheckerService.swift in Sources */,
+				8BED12C828BF3802006FF146 /* CheckService.swift in Sources */,
 				8BED12D428C5DD91006FF146 /* Post.swift in Sources */,
 				8B4749D528F6BF26007DE402 /* ManagerDataModelPlanet.swift in Sources */,
 				8B30E001283F98C2006763B9 /* ProfileViewController.swift in Sources */,
@@ -686,10 +720,10 @@
 				8B138F2C28D9B70C00ACA1B9 /* ProfileViewModel.swift in Sources */,
 				8B30DFFF283F97D6006763B9 /* FeedViewController.swift in Sources */,
 				8B30DF2B283A1CC6006763B9 /* SceneDelegate.swift in Sources */,
-				8B474A1A28FD37D7007DE402 /* CheckerServiceProtocol.swift in Sources */,
+				8B474A1A28FD37D7007DE402 /* CheckServiceProtocol.swift in Sources */,
 				8BED12E628CA1680006FF146 /* CheckWord.swift in Sources */,
 				8BED12D028C5DC2E006FF146 /* LogicFactoryProtocol.swift in Sources */,
-				8BEB523428DF0C3100482193 /* CheckPassword.swift in Sources */,
+				8BEB523428DF0C3100482193 /* CheckerPassword.swift in Sources */,
 				8B138F2A28D9B4DF00ACA1B9 /* ProfileViewDelegate.swift in Sources */,
 				8B14FABF28BC9E87006DE94A /* CurrentUserService.swift in Sources */,
 				8B4749B828EC1757007DE402 /* AudioViewController.swift in Sources */,
@@ -698,7 +732,9 @@
 				8B975F5028D1FE8100CC47D9 /* ProfileCoordinator.swift in Sources */,
 				8BED12E228CA061C006FF146 /* bluePixel.swift in Sources */,
 				8B353277285DEC1900704D08 /* PhotosViewController.swift in Sources */,
+				8B474A75290BEEB5007DE402 /* RealmService.swift in Sources */,
 				8B0F0D1B285728B1008F75C0 /* LoginViewController.swift in Sources */,
+				8B474A7B2910F386007DE402 /* CoreDataCoordinator.swift in Sources */,
 				8B0F0D1D285868FA008F75C0 /* ModelPost.swift in Sources */,
 				8B4749D128F018EF007DE402 /* NetworkService.swift in Sources */,
 				8B138F2428D87F8700ACA1B9 /* FeedViewModel.swift in Sources */,
@@ -1024,6 +1060,14 @@
 				kind = branch;
 			};
 		};
+		8B474A6B290BBC5D007DE402 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		8BED12D528C6018D006FF146 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage.git";
@@ -1045,12 +1089,30 @@
 			package = 8B474A1428FAD9B1007DE402 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
+		8B474A6C290BBC5E007DE402 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B474A6B290BBC5D007DE402 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		8BED12D628C6018D006FF146 /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8BED12D528C6018D006FF146 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		8B474A762910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8B474A772910F19E007DE402 /* PostCoreDadaModel.xcdatamodel */,
+			);
+			currentVersion = 8B474A772910F19E007DE402 /* PostCoreDadaModel.xcdatamodel */;
+			path = PostsCoreDadaModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8B30DF1D283A1CC6006763B9 /* Project object */;
 }
