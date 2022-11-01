@@ -59,6 +59,8 @@
 		8B474A6D290BBC5E007DE402 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B474A6C290BBC5E007DE402 /* RealmSwift */; };
 		8B474A6F290BBF12007DE402 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A6E290BBF12007DE402 /* RealmModel.swift */; };
 		8B474A75290BEEB5007DE402 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A74290BEEB5007DE402 /* RealmService.swift */; };
+		8B474A782910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A762910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld */; };
+		8B474A7B2910F386007DE402 /* CoreDataCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A7A2910F386007DE402 /* CoreDataCoordinator.swift */; };
 		8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */; };
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
 		8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */; };
@@ -165,6 +167,8 @@
 		8B474A1928FD37D7007DE402 /* CheckServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckServiceProtocol.swift; sourceTree = "<group>"; };
 		8B474A6E290BBF12007DE402 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		8B474A74290BEEB5007DE402 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		8B474A772910F19E007DE402 /* PostCoreDadaModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PostCoreDadaModel.xcdatamodel; sourceTree = "<group>"; };
+		8B474A7A2910F386007DE402 /* CoreDataCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCoordinator.swift; sourceTree = "<group>"; };
 		8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorNovigation.swift; sourceTree = "<group>"; };
 		8B695C5428BCEED9008F0414 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -254,6 +258,7 @@
 		8B138F3228DA489900ACA1B9 /* Service layer */ = {
 			isa = PBXGroup;
 			children = (
+				8B474A792910F1B2007DE402 /* CoreDataCoordinator */,
 				8B474A73290BEE73007DE402 /* RealmService */,
 				8B474A71290BC455007DE402 /* Users */,
 				8B14FAB928BC9043006DE94A /* UsersStarWars */,
@@ -370,6 +375,14 @@
 			path = RealmService;
 			sourceTree = "<group>";
 		};
+		8B474A792910F1B2007DE402 /* CoreDataCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				8B474A7A2910F386007DE402 /* CoreDataCoordinator.swift */,
+			);
+			path = CoreDataCoordinator;
+			sourceTree = "<group>";
+		};
 		8B975F3328D0A87A00CC47D9 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,9 +421,10 @@
 		8BED12DA28C8BD59006FF146 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8B474A762910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld */,
+				8BED12D328C5DD91006FF146 /* Post.swift */,
 				8B138F2728D8890A00ACA1B9 /* FeedModel.swift */,
 				8B0F0D1C285868FA008F75C0 /* ModelPost.swift */,
-				8BED12D328C5DD91006FF146 /* Post.swift */,
 				8BED12D828C6848D006FF146 /* ArrayFoto.swift */,
 				8BED12E128CA061C006FF146 /* bluePixel.swift */,
 				8BEB523328DF0C3100482193 /* CheckerPassword.swift */,
@@ -689,6 +703,7 @@
 				8BEB523228DC356500482193 /* PhotosAssembly.swift in Sources */,
 				8B30E0312849EE7F006763B9 /* ProfileHeaderView.swift in Sources */,
 				8B975F4E28D1FE4400CC47D9 /* FeedCoordinator.swift in Sources */,
+				8B474A782910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld in Sources */,
 				8B4749D928F82A9F007DE402 /* InfoTableViewCell.swift in Sources */,
 				8B975F4328D1B58600CC47D9 /* FeedViewControllerDelegate.swift in Sources */,
 				8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */,
@@ -719,6 +734,7 @@
 				8B353277285DEC1900704D08 /* PhotosViewController.swift in Sources */,
 				8B474A75290BEEB5007DE402 /* RealmService.swift in Sources */,
 				8B0F0D1B285728B1008F75C0 /* LoginViewController.swift in Sources */,
+				8B474A7B2910F386007DE402 /* CoreDataCoordinator.swift in Sources */,
 				8B0F0D1D285868FA008F75C0 /* ModelPost.swift in Sources */,
 				8B4749D128F018EF007DE402 /* NetworkService.swift in Sources */,
 				8B138F2428D87F8700ACA1B9 /* FeedViewModel.swift in Sources */,
@@ -1084,6 +1100,19 @@
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		8B474A762910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8B474A772910F19E007DE402 /* PostCoreDadaModel.xcdatamodel */,
+			);
+			currentVersion = 8B474A772910F19E007DE402 /* PostCoreDadaModel.xcdatamodel */;
+			path = PostsCoreDadaModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8B30DF1D283A1CC6006763B9 /* Project object */;
 }
