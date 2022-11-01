@@ -7,9 +7,12 @@
 
 import UIKit
 import StorageService
+import RealmSwift
 
 class FeedViewController: UIViewController {
 
+
+    
     var delegate: FeedViewDelegate! {
 
         didSet {
@@ -26,6 +29,8 @@ class FeedViewController: UIViewController {
         viewCheckWord.layer.cornerRadius = 12
         return viewCheckWord
     }()
+
+
 
     private lazy var textFieldCheckWord: UITextField = {
         var textFieldCheckWord = UITextField()
@@ -45,6 +50,7 @@ class FeedViewController: UIViewController {
         return buttonCheckWord
     }()
 
+
     private lazy var buttonAudioPlayer: CustomButton = {
         var buttonAudioPlayer = CustomButton(title: "Аудио плеер", targetAction: {
 
@@ -54,6 +60,8 @@ class FeedViewController: UIViewController {
         })
         return buttonAudioPlayer
     }()
+
+
 
     private lazy var buttonVideoPlayer: CustomButton = {
         var buttonVideoPlayer = CustomButton(title: "Видео плеер", targetAction: { 
@@ -66,6 +74,7 @@ class FeedViewController: UIViewController {
     }()
 
 
+
     private lazy var postStack: UIStackView = {
         var postStack = UIStackView()
         postStack.backgroundColor = .white
@@ -76,10 +85,14 @@ class FeedViewController: UIViewController {
         return postStack
     }()
 
+
+
     private lazy var buttonRightNavInfo: UIBarButtonItem = {
-        var buttonRightNavInfo = UIBarButtonItem(title: "Информация", style: .done, target: self, action: #selector(actionButtonRightNavInfo))
+        var buttonRightNavInfo = UIBarButtonItem(title: "Настройки", style: .done, target: self, action: #selector(actionButtonRightNavInfo))
         return buttonRightNavInfo
     }()
+
+
 
     private lazy var postButton: UIButton = {
         var postButton = UIButton()
@@ -87,7 +100,6 @@ class FeedViewController: UIViewController {
         postButton.backgroundColor = .systemYellow
         postButton.setTitle("Пост1", for: .normal)
         postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
-   //     postButton.isHidden = true
         return postButton
     }()
 
@@ -105,6 +117,9 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        print(RealmService.shared.realm.configuration.fileURL!)
+
         setupView()
 
     }
@@ -127,8 +142,6 @@ class FeedViewController: UIViewController {
         self.view.addSubview(postStack)
         [viewCheckWord, textFieldCheckWord, buttonCheckWord, postButton, postButton2, buttonAudioPlayer, buttonVideoPlayer].forEach({ self.postStack.addArrangedSubview($0)})
         self.navigationItem.rightBarButtonItem = buttonRightNavInfo
-
-
 
         NSLayoutConstraint.activate([
 
@@ -160,14 +173,6 @@ class FeedViewController: UIViewController {
         let navInfoViewController = UINavigationController(rootViewController: InfoViewController())
         present(navInfoViewController, animated: true, completion: nil)
     }
-
-}
-
-extension FeedViewController: FeedModelSubscribers {
-    func changeTheColor(_ color: UIColor) {
-        self.viewCheckWord.backgroundColor = color
-    }
-
 
 }
 

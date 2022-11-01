@@ -18,6 +18,8 @@ class InfoViewController: UIViewController {
         return label
     }()
 
+
+
     private lazy var labelPlanetOrbitalPeriod: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -25,6 +27,8 @@ class InfoViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
+
+
 
     private lazy var tableViewPlanetResident: UITableView = {
         var tableViewPlanetResident = UITableView(frame: .zero, style: .grouped)
@@ -35,8 +39,10 @@ class InfoViewController: UIViewController {
         tableViewPlanetResident.register(UITableViewCell.self, forCellReuseIdentifier: "Default")
         return tableViewPlanetResident
     }()
-    
-    private lazy var alertButton: UIButton = {
+
+
+
+    private lazy var buttonDelete: UIButton = {
         let button = UIButton()
         let screen = UIScreen.main.bounds.width
         let screenH = UIScreen.main.bounds.height
@@ -44,16 +50,18 @@ class InfoViewController: UIViewController {
         button.frame = CGRect(x: 20, y: screenH / 2, width: screen - 40, height: 30)
         button.backgroundColor = .systemPink
         button.addTarget(self, action: #selector(didTagButton), for: .touchUpInside)
-        button.setTitle("Удалить аккаунт", for: .normal)
+        button.setTitle("Выйти из акаунта", for: .normal)
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         return button
     }()
-    
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
-        self.view.addSubview(self.alertButton)
+        self.view.addSubview(self.buttonDelete)
         self.view.addSubview(self.label)
         self.view.addSubview(self.labelPlanetOrbitalPeriod)
         self.view.addSubview(self.tableViewPlanetResident)
@@ -75,8 +83,6 @@ class InfoViewController: UIViewController {
                 self.labelPlanetOrbitalPeriod.text = planet.orbitalPeriod
             }
         }
-        
-
 
         NSLayoutConstraint.activate([
             self.label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -90,33 +96,34 @@ class InfoViewController: UIViewController {
             self.tableViewPlanetResident.topAnchor.constraint(equalTo: self.labelPlanetOrbitalPeriod.bottomAnchor, constant: 30),
             self.tableViewPlanetResident.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.tableViewPlanetResident.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.tableViewPlanetResident.bottomAnchor.constraint(equalTo: self.alertButton.topAnchor)
+            self.tableViewPlanetResident.bottomAnchor.constraint(equalTo: self.buttonDelete.topAnchor)
         ])
     }
 
 
+
     @objc private func didTagButton() {
-        let alertDelete = UIAlertController(title: "Удалить акаунт", message: "Вы хотите удалить аккаунт?", preferredStyle: .alert)
-        
-        
+        let alertDelete = UIAlertController(title: "Выйти из акаунта", message: "Выйти из аккаунта?", preferredStyle: .alert)
+
         let cancelAction = UIAlertAction(title: "Отмена",
                                          style: .cancel,
                                          handler: {_ in
-            print("Cancel")
         })
         alertDelete.addAction(cancelAction)
         
-        let deleteAction = UIAlertAction(title: "Удалить",
+        let deleteAction = UIAlertAction(title: "Выйти",
                                          style: .destructive,
                                          handler: {_ in
+            UserDefaults.standard.removeObject(forKey: "userOnline")
             self.dismiss(animated: true)
-            print("Delete")
+
         })
         alertDelete.addAction(deleteAction)
         present(alertDelete, animated: true)
     }
-    
 }
+
+
 
 extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
 
@@ -126,7 +133,6 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
 
         guard let cell = self.tableViewPlanetResident.dequeueReusableCell(withIdentifier: InfoTableViewCell.name, for: indexPath) as? InfoTableViewCell
         else

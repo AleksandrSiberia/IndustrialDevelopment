@@ -7,6 +7,8 @@
 
 import Foundation
 
+var passwordTest = "03IYVB"
+
 
 protocol LoginViewControllerOutput {
     var thisIsPassword: String { get set }
@@ -22,11 +24,11 @@ protocol CheckPasswordOutput {
 
 
 
-class CheckPassword: LoginViewControllerOutput {
+class CheckerPassword: LoginViewControllerOutput {
 
     var view: CheckPasswordOutput?
 
-    var password = CheckerService.password
+    var password = passwordTest
 
     var s1: String?
     var s2: String?
