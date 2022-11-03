@@ -41,8 +41,8 @@ class RootCoordinator: AppCoordinator {
                 self.childs.append(feedCoordinator)
 
 
-        let profileSavedPostsViewController = ProfileViewController()
-        profileSavedPostsViewController.savedPostsController = true
+        let profileSavedPostsViewController = SavedPostsViewController()
+
         let navSavedPosts = UINavigationController(rootViewController: profileSavedPostsViewController)
         self.navSavedPosts = navSavedPosts
         navSavedPosts.tabBarItem = UITabBarItem(title: "Сохраненные", image: UIImage(systemName: "square.and.arrow.down"), tag: 3)

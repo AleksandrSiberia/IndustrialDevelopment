@@ -77,9 +77,8 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
 
     override func viewDidLoad() {
-
-
         super.viewDidLoad()
+        
         self.view.addSubview(self.tableView)
         self.view.addGestureRecognizer(self.tapGestureRecogniser)
         self.setupConstraints()
@@ -106,8 +105,8 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.output?.timerStop()
 
+        self.output?.timerStop()
         Auth.auth().removeStateDidChangeListener(handle!)
     }
 
@@ -148,12 +147,9 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
             }
         }
     }
-
-
-
-
-
 }
+
+
 
 
 
@@ -208,9 +204,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
         }
     }
 
+
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
+
+
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {

@@ -19,6 +19,7 @@
 		8B14FAB828B8AC9B006DE94A /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 8B14FAB728B8AC9B006DE94A /* iOSIntPackage */; };
 		8B14FABD28BC90A7006DE94A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B14FABC28BC90A7006DE94A /* User.swift */; };
 		8B14FABF28BC9E87006DE94A /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B14FABE28BC9E87006DE94A /* CurrentUserService.swift */; };
+		8B2D2CA3291429B80090498C /* SavedPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2D2CA2291429B80090498C /* SavedPostsViewController.swift */; };
 		8B30DF29283A1CC6006763B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30DF28283A1CC6006763B9 /* AppDelegate.swift */; };
 		8B30DF2B283A1CC6006763B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30DF2A283A1CC6006763B9 /* SceneDelegate.swift */; };
 		8B30DF35283A1CC7006763B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B30DF33283A1CC7006763B9 /* LaunchScreen.storyboard */; };
@@ -129,6 +130,7 @@
 		8B138F2F28D9E8C600ACA1B9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8B14FABC28BC90A7006DE94A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8B14FABE28BC9E87006DE94A /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
+		8B2D2CA2291429B80090498C /* SavedPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPostsViewController.swift; sourceTree = "<group>"; };
 		8B30DF25283A1CC6006763B9 /* Novigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Novigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B30DF28283A1CC6006763B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B30DF2A283A1CC6006763B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				8B0F0D1A285728B1008F75C0 /* LoginViewController.swift */,
 				8BED12CD28C5DBD5006FF146 /* LoginViewControllerDelegate.swift */,
 				8B30E000283F98C2006763B9 /* ProfileViewController.swift */,
+				8B2D2CA2291429B80090498C /* SavedPostsViewController.swift */,
 				8B353276285DEC1900704D08 /* PhotosViewController.swift */,
 				8B30E0042840E5BA006763B9 /* InfoViewController.swift */,
 				8B30E002283FAF91006763B9 /* PostViewController.swift */,
@@ -703,6 +706,7 @@
 				8BEB523228DC356500482193 /* PhotosAssembly.swift in Sources */,
 				8B30E0312849EE7F006763B9 /* ProfileHeaderView.swift in Sources */,
 				8B975F4E28D1FE4400CC47D9 /* FeedCoordinator.swift in Sources */,
+				8B2D2CA3291429B80090498C /* SavedPostsViewController.swift in Sources */,
 				8B474A782910F19E007DE402 /* CoreDadaModel.xcdatamodeld in Sources */,
 				8B4749D928F82A9F007DE402 /* InfoTableViewCell.swift in Sources */,
 				8B975F4328D1B58600CC47D9 /* FeedViewControllerDelegate.swift in Sources */,
