@@ -8,39 +8,37 @@
 import Foundation
 import FirebaseAuth
 
-final class CheckerService: LoginViewControllerDelegate {
 
 
-    private let login: String = "1@mail.ru"
-    static let password: String = "03IYVB"
-    private init () {}
+final class CheckService: LoginViewControllerDelegate {
 
-    static let shared = CheckerService()
-
+    static let shared = CheckService()
 }
 
-extension CheckerService: CheckerServiceProtocol {
- 
+
+extension CheckService: CheckServiceProtocol {
 
     func checkCredentials(withEmail: String, password: String, completion: @escaping (String?) -> Void ) {
+
+
         Auth.auth().signIn(withEmail: withEmail, password: password) {
             [weak self] authDataResult, error in
 
             guard self != nil else { return }
 
+
             if let error {
-                print(withEmail, password, "error >>>>>", error)
                 completion(error.localizedDescription)
             }
-            
-            if let authDataResult {
-                print("authDataResult >>>>>", authDataResult)
+
+            if authDataResult != nil {
                 completion("Открыть доступ")
             }
                 }
     }
 
-    
+
+
     func signUp(withEmail: String, password: String, completion: @escaping (String?) -> Void )  {
 
         // FirebaseAuth.Auth.auth().currentUser
@@ -48,12 +46,13 @@ extension CheckerService: CheckerServiceProtocol {
         Auth.auth().createUser(withEmail: withEmail, password: password){
 
             authDataResult, error in
+
             if let error {
                 completion(error.localizedDescription)
             }
 
             if let authDataResult {
-                print(withEmail, password, "authDataResult >>>>>", authDataResult)
+
                 completion("Пользователь зарегистрирован")
             }
         }
