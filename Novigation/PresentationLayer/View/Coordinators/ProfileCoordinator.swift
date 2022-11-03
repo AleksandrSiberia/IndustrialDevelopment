@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ProfileCoordinator: AppCoordinator {
+class ProfileCoordinator: AppCoordinatorProtocol {
     
 
 
     private weak var transitionHandler: UINavigationController?
-    var childs: [AppCoordinator] = []
+    var childs: [AppCoordinatorProtocol] = []
     init(transitionHandler: UINavigationController) {
         self.transitionHandler = transitionHandler
     }

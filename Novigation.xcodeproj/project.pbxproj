@@ -19,6 +19,7 @@
 		8B14FAB828B8AC9B006DE94A /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 8B14FAB728B8AC9B006DE94A /* iOSIntPackage */; };
 		8B14FABD28BC90A7006DE94A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B14FABC28BC90A7006DE94A /* User.swift */; };
 		8B14FABF28BC9E87006DE94A /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B14FABE28BC9E87006DE94A /* CurrentUserService.swift */; };
+		8B2D2CA3291429B80090498C /* SavedPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2D2CA2291429B80090498C /* SavedPostsViewController.swift */; };
 		8B30DF29283A1CC6006763B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30DF28283A1CC6006763B9 /* AppDelegate.swift */; };
 		8B30DF2B283A1CC6006763B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30DF2A283A1CC6006763B9 /* SceneDelegate.swift */; };
 		8B30DF35283A1CC7006763B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B30DF33283A1CC7006763B9 /* LaunchScreen.storyboard */; };
@@ -59,9 +60,11 @@
 		8B474A6D290BBC5E007DE402 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B474A6C290BBC5E007DE402 /* RealmSwift */; };
 		8B474A6F290BBF12007DE402 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A6E290BBF12007DE402 /* RealmModel.swift */; };
 		8B474A75290BEEB5007DE402 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A74290BEEB5007DE402 /* RealmService.swift */; };
+		8B474A782910F19E007DE402 /* CoreDadaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A762910F19E007DE402 /* CoreDadaModel.xcdatamodeld */; };
+		8B474A7B2910F386007DE402 /* CoreDataCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A7A2910F386007DE402 /* CoreDataCoordinator.swift */; };
 		8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */; };
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
-		8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */; };
+		8B975F3228D0A71500CC47D9 /* AppCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinatorProtocol.swift */; };
 		8B975F3B28D0B5E100CC47D9 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */; };
 		8B975F3F28D1B37A00CC47D9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3E28D1B37A00CC47D9 /* ViewModel.swift */; };
 		8B975F4328D1B58600CC47D9 /* FeedViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F4228D1B58600CC47D9 /* FeedViewControllerDelegate.swift */; };
@@ -127,6 +130,7 @@
 		8B138F2F28D9E8C600ACA1B9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8B14FABC28BC90A7006DE94A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8B14FABE28BC9E87006DE94A /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
+		8B2D2CA2291429B80090498C /* SavedPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPostsViewController.swift; sourceTree = "<group>"; };
 		8B30DF25283A1CC6006763B9 /* Novigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Novigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B30DF28283A1CC6006763B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B30DF2A283A1CC6006763B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,9 +169,11 @@
 		8B474A1928FD37D7007DE402 /* CheckServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckServiceProtocol.swift; sourceTree = "<group>"; };
 		8B474A6E290BBF12007DE402 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		8B474A74290BEEB5007DE402 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		8B474A772910F19E007DE402 /* PostCoreDadaModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PostCoreDadaModel.xcdatamodel; sourceTree = "<group>"; };
+		8B474A7A2910F386007DE402 /* CoreDataCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCoordinator.swift; sourceTree = "<group>"; };
 		8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorNovigation.swift; sourceTree = "<group>"; };
 		8B695C5428BCEED9008F0414 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
-		8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		8B975F3128D0A71500CC47D9 /* AppCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		8B975F3E28D1B37A00CC47D9 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		8B975F4228D1B58600CC47D9 /* FeedViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -244,6 +250,8 @@
 		8B138F2228D87EAF00ACA1B9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8B975F4A28D1CAFE00CC47D9 /* Assembly */,
+				8B975F3328D0A87A00CC47D9 /* Coordinators */,
 				8BED12DD28C8BD84006FF146 /* Controllers */,
 				8B474A70290BC0D0007DE402 /* Cells */,
 				8BED12DB28C8BD6D006FF146 /* CustomViews */,
@@ -254,6 +262,7 @@
 		8B138F3228DA489900ACA1B9 /* Service layer */ = {
 			isa = PBXGroup;
 			children = (
+				8B474A792910F1B2007DE402 /* CoreDataCoordinator */,
 				8B474A73290BEE73007DE402 /* RealmService */,
 				8B474A71290BC455007DE402 /* Users */,
 				8B14FAB928BC9043006DE94A /* UsersStarWars */,
@@ -370,10 +379,18 @@
 			path = RealmService;
 			sourceTree = "<group>";
 		};
+		8B474A792910F1B2007DE402 /* CoreDataCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				8B474A7A2910F386007DE402 /* CoreDataCoordinator.swift */,
+			);
+			path = CoreDataCoordinator;
+			sourceTree = "<group>";
+		};
 		8B975F3328D0A87A00CC47D9 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				8B975F3128D0A71500CC47D9 /* AppCoordinator.swift */,
+				8B975F3128D0A71500CC47D9 /* AppCoordinatorProtocol.swift */,
 				8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */,
 				8B975F4D28D1FE4400CC47D9 /* FeedCoordinator.swift */,
 				8B975F4F28D1FE8100CC47D9 /* ProfileCoordinator.swift */,
@@ -387,9 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				8B138F2228D87EAF00ACA1B9 /* View */,
-				8B975F4A28D1CAFE00CC47D9 /* Assembly */,
 				8B138F1F28D87E1B00ACA1B9 /* ViewModel */,
-				8B975F3328D0A87A00CC47D9 /* Coordinators */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -408,9 +423,10 @@
 		8BED12DA28C8BD59006FF146 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8B474A762910F19E007DE402 /* CoreDadaModel.xcdatamodeld */,
+				8BED12D328C5DD91006FF146 /* Post.swift */,
 				8B138F2728D8890A00ACA1B9 /* FeedModel.swift */,
 				8B0F0D1C285868FA008F75C0 /* ModelPost.swift */,
-				8BED12D328C5DD91006FF146 /* Post.swift */,
 				8BED12D828C6848D006FF146 /* ArrayFoto.swift */,
 				8BED12E128CA061C006FF146 /* bluePixel.swift */,
 				8BEB523328DF0C3100482193 /* CheckerPassword.swift */,
@@ -435,6 +451,7 @@
 				8B0F0D1A285728B1008F75C0 /* LoginViewController.swift */,
 				8BED12CD28C5DBD5006FF146 /* LoginViewControllerDelegate.swift */,
 				8B30E000283F98C2006763B9 /* ProfileViewController.swift */,
+				8B2D2CA2291429B80090498C /* SavedPostsViewController.swift */,
 				8B353276285DEC1900704D08 /* PhotosViewController.swift */,
 				8B30E0042840E5BA006763B9 /* InfoViewController.swift */,
 				8B30E002283FAF91006763B9 /* PostViewController.swift */,
@@ -689,9 +706,11 @@
 				8BEB523228DC356500482193 /* PhotosAssembly.swift in Sources */,
 				8B30E0312849EE7F006763B9 /* ProfileHeaderView.swift in Sources */,
 				8B975F4E28D1FE4400CC47D9 /* FeedCoordinator.swift in Sources */,
+				8B2D2CA3291429B80090498C /* SavedPostsViewController.swift in Sources */,
+				8B474A782910F19E007DE402 /* CoreDadaModel.xcdatamodeld in Sources */,
 				8B4749D928F82A9F007DE402 /* InfoTableViewCell.swift in Sources */,
 				8B975F4328D1B58600CC47D9 /* FeedViewControllerDelegate.swift in Sources */,
-				8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */,
+				8B975F3228D0A71500CC47D9 /* AppCoordinatorProtocol.swift in Sources */,
 				8B4749D728F7FB13007DE402 /* ManagerDataResidentsPlanet.swift in Sources */,
 				8BED12D928C6848D006FF146 /* ArrayFoto.swift in Sources */,
 				8B30E0052840E5BA006763B9 /* InfoViewController.swift in Sources */,
@@ -719,6 +738,7 @@
 				8B353277285DEC1900704D08 /* PhotosViewController.swift in Sources */,
 				8B474A75290BEEB5007DE402 /* RealmService.swift in Sources */,
 				8B0F0D1B285728B1008F75C0 /* LoginViewController.swift in Sources */,
+				8B474A7B2910F386007DE402 /* CoreDataCoordinator.swift in Sources */,
 				8B0F0D1D285868FA008F75C0 /* ModelPost.swift in Sources */,
 				8B4749D128F018EF007DE402 /* NetworkService.swift in Sources */,
 				8B138F2428D87F8700ACA1B9 /* FeedViewModel.swift in Sources */,
@@ -1084,6 +1104,19 @@
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		8B474A762910F19E007DE402 /* CoreDadaModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8B474A772910F19E007DE402 /* PostCoreDadaModel.xcdatamodel */,
+			);
+			currentVersion = 8B474A772910F19E007DE402 /* PostCoreDadaModel.xcdatamodel */;
+			path = CoreDadaModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8B30DF1D283A1CC6006763B9 /* Project object */;
 }

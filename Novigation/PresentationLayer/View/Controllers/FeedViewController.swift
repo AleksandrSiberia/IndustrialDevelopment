@@ -9,6 +9,7 @@ import UIKit
 import StorageService
 import RealmSwift
 
+
 class FeedViewController: UIViewController {
 
 
@@ -41,6 +42,7 @@ class FeedViewController: UIViewController {
         textFieldCheckWord.placeholder = "    Напиши слово"
         return  textFieldCheckWord
     }()
+
 
     
     private lazy var buttonCheckWord: CustomButton = {
@@ -103,6 +105,9 @@ class FeedViewController: UIViewController {
         return postButton
     }()
 
+
+
+
     private lazy var postButton2: UIButton = {
         var postButton2 = UIButton()
         postButton2.translatesAutoresizingMaskIntoConstraints = false
@@ -115,14 +120,17 @@ class FeedViewController: UIViewController {
 
     
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(RealmService.shared.realm.configuration.fileURL!)
+ //       print(RealmService.shared.realm.configuration.fileURL!)
 
         setupView()
-
     }
+
+
+
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -161,6 +169,8 @@ class FeedViewController: UIViewController {
         }
     }
 
+
+    
     @objc private func didTapPostButton2() {
         let postViewController = PostViewController()
         self.navigationController?.pushViewController(postViewController, animated: true)
