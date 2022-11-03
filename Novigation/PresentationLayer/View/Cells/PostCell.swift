@@ -10,6 +10,11 @@ import iOSIntPackage
 
 class PostCell: UITableViewCell {
 
+
+    private var nameImage: String?
+
+
+
     private lazy var authorLabel: UILabel = {
         var authorLabel = UILabel()
 
@@ -22,17 +27,19 @@ class PostCell: UITableViewCell {
     }()
 
 
+
+
     private lazy var postImageView: UIImageView = {
         var postImageView = UIImageView()
         postImageView.translatesAutoresizingMaskIntoConstraints = false
         postImageView.backgroundColor = .black
         postImageView.contentMode = .scaleAspectFit
         postImageView.clipsToBounds = true
-
-
-
         return postImageView
     }()
+
+
+
 
     private lazy var descriptionLabel: UILabel = {
         var descriptionLabel = UILabel()
@@ -44,6 +51,9 @@ class PostCell: UITableViewCell {
         return descriptionLabel
     }()
 
+
+
+
     private lazy var likesLabel: UILabel = {
         var likesLabel = UILabel()
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -53,6 +63,9 @@ class PostCell: UITableViewCell {
         likesLabel.textColor = .black
         return likesLabel
     }()
+
+
+
 
     private lazy var viewsLabel: UILabel = {
         var viewsLabel = UILabel()
@@ -64,15 +77,26 @@ class PostCell: UITableViewCell {
         return viewsLabel
     }()
 
+
+
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
 
+     //   self.addGestureRecognizer(self.tapGestureRecogniser)
+
     }
+
+
+
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+
+
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -81,6 +105,17 @@ class PostCell: UITableViewCell {
             self.viewsLabel.widthAnchor.constraint(equalToConstant: (self.frame.width / 2) - 16)
         ])
     }
+
+
+
+
+    func savePost() {
+        
+        CoreDataCoordinator.shared.appendPost(author: self.authorLabel.text, image: self.nameImage, likes: self.likesLabel.text, text: self.descriptionLabel.text, views: self.viewsLabel.text, folder: nil)
+    }
+
+
+
 
     private func setupView() {
         self.addSubview(authorLabel)
@@ -116,22 +151,27 @@ class PostCell: UITableViewCell {
         ])
     }
 
-    func setup(this post: ModelPost) {
-        self.authorLabel.text = post.author
+
+
+    
+    func setup(author: String?, image: String?, likes: String?, text: String?, views: String?) {
+        self.authorLabel.text = author
+
+        self.nameImage = image
 
         let filter = ImageProcessor()
 
         var filteredImage: UIImage?
 
 
-        filter.processImage(sourceImage: UIImage(named: post.image)!, filter: ColorFilter.noir) { outputImage in
+        filter.processImage(sourceImage: UIImage(named: image ?? "")!, filter: ColorFilter.noir) { outputImage in
             filteredImage = outputImage
         }
 
         self.postImageView.image = filteredImage
-        self.descriptionLabel.text = post.description
-        self.likesLabel.text = "Likes: " + String(post.likes)
-        self.viewsLabel.text = "Views: " + String(post.views)
+        self.descriptionLabel.text = text
+        self.likesLabel.text = "Likes: " + String(likes ?? "")
+        self.viewsLabel.text = "Views: " + String(views ?? "")
             }
 }
 

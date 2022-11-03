@@ -9,11 +9,17 @@ import UIKit
 import iOSIntPackage
 import FirebaseAuth
 
+
+
 protocol ProfileViewControllerOutput {
     func timerStop()
 }
 
-final class ProfileViewController: UIViewController {
+
+
+final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
+
+    var savedPostsController: Bool = false
 
     var handle: AuthStateDidChangeListenerHandle?
 
@@ -33,6 +39,20 @@ final class ProfileViewController: UIViewController {
     private var posts: [ModelPost] = []
 
     var currentUser: User?
+
+
+
+
+
+    private lazy var tapGestureRecogniser: UITapGestureRecognizer = {
+        var tapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.actionTapGestureRecogniser(recogniser:)))
+            tapGestureRecogniser.delegate = self
+        tapGestureRecogniser.numberOfTapsRequired = 2
+        return tapGestureRecogniser
+    }()
+
+
+
 
     private lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
@@ -54,22 +74,32 @@ final class ProfileViewController: UIViewController {
     }()
 
 
+
+
     override func viewDidLoad() {
+
         super.viewDidLoad()
         self.view.addSubview(tableView)
+        self.view.addGestureRecognizer(self.tapGestureRecogniser)
         self.setupConstraints()
     }
+
+
 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
-        self.delegate.showPost()
 
+        if self.delegate != nil {
+            self.delegate.showPost()
+        }
         handle = Auth.auth().addStateDidChangeListener { auth, user in
           // ...
         }
     }
+
+
 
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -79,6 +109,9 @@ final class ProfileViewController: UIViewController {
         Auth.auth().removeStateDidChangeListener(handle!)
     }
 
+
+
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
         self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -87,14 +120,39 @@ final class ProfileViewController: UIViewController {
         self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
+
+    
+
+
+    @objc private func actionTapGestureRecogniser(recogniser: UITapGestureRecognizer) {
+
+        if recogniser.state == .ended {
+            let tapLocation = recogniser.location(in: self.tableView)
+            if let tapIndexPathTableView = self.tableView.indexPathForRow(at: tapLocation) {
+                if let tappedCell = self.tableView.cellForRow(at: tapIndexPathTableView) as? PostCell {
+
+                    tappedCell.savePost()
+                    print("posts >>>>>>>>", self.posts[0])
+
+                }
+            }
+        }
+    }
 }
+
 
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
-        return section == 1 ? self.posts.count : 1
+
+        if self.savedPostsController == false {
+            return section == 1 ? self.posts.count : 1
+        }
+        else {
+            print("count >>>>", CoreDataCoordinator.shared.posts.count)
+            return section == 1 ? CoreDataCoordinator.shared.posts.count : 1
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,14 +170,27 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             }
 
 
-            if self.posts.isEmpty == true {
+            if self.posts.isEmpty == true && CoreDataCoordinator.shared.posts.isEmpty == true {
                  assertionFailure(CustomErrorNovigation.noPost.rawValue)
             }
 
             let indexPathRow = indexPath.row
-            let post = self.posts[indexPathRow]
-            cell.setup(this: post)
-            return cell
+
+
+            if self.savedPostsController == false {
+                let post = self.posts[indexPathRow]
+            
+                cell.setup(author: post.author, image: post.image, likes: String(post.likes), text: post.description, views: String(post.views))
+                return cell
+            }
+            else {
+                let postCoreData = CoreDataCoordinator.shared.posts[indexPathRow]
+
+                print("postCoreData  >>>>>>>>", postCoreData)
+                cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.description, views: postCoreData.views)
+                return cell
+            }
+
         }
     }
 
@@ -130,8 +201,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             guard let profileHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView") as? ProfileHeaderView else { return nil }
-            profileHeaderView.setupUser(currentUser!)
-           
+            if currentUser != nil {
+                profileHeaderView.setupUser(currentUser!)
+            }
             return profileHeaderView
         }
         return nil

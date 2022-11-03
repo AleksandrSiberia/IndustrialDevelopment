@@ -59,7 +59,7 @@
 		8B474A6D290BBC5E007DE402 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B474A6C290BBC5E007DE402 /* RealmSwift */; };
 		8B474A6F290BBF12007DE402 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A6E290BBF12007DE402 /* RealmModel.swift */; };
 		8B474A75290BEEB5007DE402 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A74290BEEB5007DE402 /* RealmService.swift */; };
-		8B474A782910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A762910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld */; };
+		8B474A782910F19E007DE402 /* CoreDadaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A762910F19E007DE402 /* CoreDadaModel.xcdatamodeld */; };
 		8B474A7B2910F386007DE402 /* CoreDataCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A7A2910F386007DE402 /* CoreDataCoordinator.swift */; };
 		8B510F2D28E4339100698606 /* CustomErrorNovigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */; };
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
@@ -248,6 +248,8 @@
 		8B138F2228D87EAF00ACA1B9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8B975F4A28D1CAFE00CC47D9 /* Assembly */,
+				8B975F3328D0A87A00CC47D9 /* Coordinators */,
 				8BED12DD28C8BD84006FF146 /* Controllers */,
 				8B474A70290BC0D0007DE402 /* Cells */,
 				8BED12DB28C8BD6D006FF146 /* CustomViews */,
@@ -400,9 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				8B138F2228D87EAF00ACA1B9 /* View */,
-				8B975F4A28D1CAFE00CC47D9 /* Assembly */,
 				8B138F1F28D87E1B00ACA1B9 /* ViewModel */,
-				8B975F3328D0A87A00CC47D9 /* Coordinators */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -421,7 +421,7 @@
 		8BED12DA28C8BD59006FF146 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8B474A762910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld */,
+				8B474A762910F19E007DE402 /* CoreDadaModel.xcdatamodeld */,
 				8BED12D328C5DD91006FF146 /* Post.swift */,
 				8B138F2728D8890A00ACA1B9 /* FeedModel.swift */,
 				8B0F0D1C285868FA008F75C0 /* ModelPost.swift */,
@@ -703,7 +703,7 @@
 				8BEB523228DC356500482193 /* PhotosAssembly.swift in Sources */,
 				8B30E0312849EE7F006763B9 /* ProfileHeaderView.swift in Sources */,
 				8B975F4E28D1FE4400CC47D9 /* FeedCoordinator.swift in Sources */,
-				8B474A782910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld in Sources */,
+				8B474A782910F19E007DE402 /* CoreDadaModel.xcdatamodeld in Sources */,
 				8B4749D928F82A9F007DE402 /* InfoTableViewCell.swift in Sources */,
 				8B975F4328D1B58600CC47D9 /* FeedViewControllerDelegate.swift in Sources */,
 				8B975F3228D0A71500CC47D9 /* AppCoordinator.swift in Sources */,
@@ -1102,13 +1102,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		8B474A762910F19E007DE402 /* PostsCoreDadaModel.xcdatamodeld */ = {
+		8B474A762910F19E007DE402 /* CoreDadaModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				8B474A772910F19E007DE402 /* PostCoreDadaModel.xcdatamodel */,
 			);
 			currentVersion = 8B474A772910F19E007DE402 /* PostCoreDadaModel.xcdatamodel */;
-			path = PostsCoreDadaModel.xcdatamodeld;
+			path = CoreDadaModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

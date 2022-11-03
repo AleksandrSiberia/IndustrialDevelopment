@@ -9,6 +9,7 @@ import UIKit
 import StorageService
 import RealmSwift
 
+
 class FeedViewController: UIViewController {
 
 
@@ -118,7 +119,9 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(RealmService.shared.realm.configuration.fileURL!)
+        CoreDataCoordinator.shared
+
+ //       print(RealmService.shared.realm.configuration.fileURL!)
 
         setupView()
 
@@ -161,6 +164,8 @@ class FeedViewController: UIViewController {
         }
     }
 
+
+    
     @objc private func didTapPostButton2() {
         let postViewController = PostViewController()
         self.navigationController?.pushViewController(postViewController, animated: true)
