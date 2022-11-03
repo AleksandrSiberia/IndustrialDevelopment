@@ -83,7 +83,7 @@ class CoreDataCoordinator {
 
         let request = PostCoreData.fetchRequest()
 
-    //    request.sortDescriptors = [NSSortDescriptor(key: "likes", ascending: true)]
+        //    request.sortDescriptors = [NSSortDescriptor(key: "likes", ascending: true)]
 
         do {
 
@@ -109,7 +109,7 @@ class CoreDataCoordinator {
 
 
 
-    func appendPost(author: String?, image: String?, likes: String?, text: String?, views: String?, folder: FoldersPostCoreData?) {
+    func appendPost(author: String?, image: String?, likes: String?, text: String?, views: String?, folder: FoldersPostCoreData?, completion: (String?) -> Void) {
 
         var folderObject: FoldersPostCoreData
 
@@ -127,10 +127,20 @@ class CoreDataCoordinator {
         post.likes = likes
         post.views = views
 
+
         post.relationFolder = folderObject
 
+        for postInCoreData in self.savedPosts {
+
+            if postInCoreData.text == post.text {
+                self.deletePost(post: post)
+                completion("Этот пост уже сохранен")
+            }
+        }
         self.savePersistentContainerContext()
         self.reloadPosts()
+
+
     }
 
 

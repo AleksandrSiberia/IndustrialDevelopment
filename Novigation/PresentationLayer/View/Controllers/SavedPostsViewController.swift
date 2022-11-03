@@ -31,10 +31,7 @@ class SavedPostsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
         self.view.addSubview(self.tableView)
-
-        self.tableView.reloadData()
 
         NSLayoutConstraint.activate([
             self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -44,10 +41,13 @@ class SavedPostsViewController: UIViewController {
         ])
     }
 
+
+
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        print("Сохраненные посты", CoreDataCoordinator.shared.savedPosts.count)
+
         self.tableView.reloadData()
 
     }
@@ -61,9 +61,10 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-
             return CoreDataCoordinator.shared.savedPosts.count
     }
+
+
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,7 +74,6 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
         else { let cell = self.tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
             return cell
         }
-
 
         if  CoreDataCoordinator.shared.savedPosts.isEmpty == true {
              assertionFailure(CustomErrorNovigation.noPost.rawValue)
@@ -96,8 +96,6 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
             let post = CoreDataCoordinator.shared.savedPosts[indexPath.row]
             CoreDataCoordinator.shared.deletePost(post: post)
             self.tableView.reloadData()
-
-
     }
     
 }

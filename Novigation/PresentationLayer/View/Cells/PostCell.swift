@@ -109,9 +109,14 @@ class PostCell: UITableViewCell {
 
 
 
-    func savePost() {
+    func savePost() -> String? {
+
+        var errorSave: String?
         
-        CoreDataCoordinator.shared.appendPost(author: self.authorLabel.text, image: self.nameImage, likes: self.likesLabel.text, text: self.descriptionLabel.text, views: self.viewsLabel.text, folder: nil)
+        CoreDataCoordinator.shared.appendPost(author: self.authorLabel.text, image: self.nameImage, likes: self.likesLabel.text, text: self.descriptionLabel.text, views: self.viewsLabel.text, folder: nil) { error in
+            errorSave = error
+        }
+        return errorSave
     }
 
 

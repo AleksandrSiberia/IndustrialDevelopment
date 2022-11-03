@@ -8,12 +8,15 @@
 import UIKit
 
 // обертка UITabBarController
-class RootCoordinator: AppCoordinator {
+class RootCoordinator: AppCoordinatorProtocol {
  
 
 
     private weak var transitionHandler: UITabBarController?
-    var childs: [AppCoordinator] = []
+
+    var childs: [AppCoordinatorProtocol] = []
+
+
     init(transitionHandler : UITabBarController) {
         self.transitionHandler = transitionHandler
     }
@@ -41,9 +44,9 @@ class RootCoordinator: AppCoordinator {
                 self.childs.append(feedCoordinator)
 
 
-        let profileSavedPostsViewController = SavedPostsViewController()
-
-        let navSavedPosts = UINavigationController(rootViewController: profileSavedPostsViewController)
+        let savedPostsViewController = SavedPostsViewController()
+        savedPostsViewController.navigationItem.title = "Сохраненные посты"
+        let navSavedPosts = UINavigationController(rootViewController: savedPostsViewController)
         self.navSavedPosts = navSavedPosts
         navSavedPosts.tabBarItem = UITabBarItem(title: "Сохраненные", image: UIImage(systemName: "square.and.arrow.down"), tag: 3)
 

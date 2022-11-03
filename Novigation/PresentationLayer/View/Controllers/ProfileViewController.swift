@@ -19,7 +19,6 @@ protocol ProfileViewControllerOutput {
 
 final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 
-    var savedPostsController: Bool = false
 
     var handle: AuthStateDidChangeListenerHandle?
 
@@ -127,23 +126,24 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
     @objc private func actionTapGestureRecogniser(recogniser: UITapGestureRecognizer) {
 
-        if self.savedPostsController == false {
+        if recogniser.state == .ended {
+            let tapLocation = recogniser.location(in: self.tableView)
+            if let tapIndexPathTableView = self.tableView.indexPathForRow(at: tapLocation) {
+                if let tappedCell = self.tableView.cellForRow(at: tapIndexPathTableView) as? PostCell {
 
-            if recogniser.state == .ended {
-                let tapLocation = recogniser.location(in: self.tableView)
-                if let tapIndexPathTableView = self.tableView.indexPathForRow(at: tapLocation) {
-                    if let tappedCell = self.tableView.cellForRow(at: tapIndexPathTableView) as? PostCell {
+                    var error = tappedCell.savePost()
 
-                        tappedCell.savePost()
-
-
-                        let alert = UIAlertController(title: "Пост сохранен", message: nil, preferredStyle: .alert)
-                        let action = UIAlertAction(title: "Ok", style: .cancel)
-                        alert.addAction(action)
-
-                        self.present(alert, animated: true)
+                    if error == nil {
+                        error = "Пост сохранен"
                     }
+
+                    let alert = UIAlertController(title: error, message: nil, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .cancel)
+                    alert.addAction(action)
+
+                    self.present(alert, animated: true)
                 }
+
             }
         }
     }
@@ -157,13 +157,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if self.savedPostsController == false {
             return section == 1 ? self.posts.count : 1
-        }
-        else {
-            return section == 1 ? CoreDataCoordinator.shared.savedPosts.count : 1
-        }
     }
+
+
+
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
@@ -174,7 +172,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             return cell
         }
 
-
         else {
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell else { let cell = self.tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
                 return cell
@@ -182,25 +179,15 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
 
             if self.posts.isEmpty == true && CoreDataCoordinator.shared.savedPosts.isEmpty == true {
-                 assertionFailure(CustomErrorNovigation.noPost.rawValue)
+                assertionFailure(CustomErrorNovigation.noPost.rawValue)
             }
 
             let indexPathRow = indexPath.row
 
-
-            if self.savedPostsController == false {
-                let post = self.posts[indexPathRow]
+            let post = self.posts[indexPathRow]
             
-                cell.setup(author: post.author, image: post.image, likes: String(post.likes), text: post.description, views: String(post.views))
-                return cell
-            }
-            else {
-                let postCoreData = CoreDataCoordinator.shared.savedPosts[indexPathRow]
-
-                cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views)
-                return cell
-            }
-
+            cell.setup(author: post.author, image: post.image, likes: String(post.likes), text: post.description, views: String(post.views))
+            return cell
         }
     }
 
@@ -223,28 +210,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
         return nil
     }
 
+
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == 0 {
 
             self.navigationController?.pushViewController(PhotosAssembly.showPhotosViewController(), animated: true)
         }
     }
-
-
-        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
-            if self.savedPostsController == true {
-                let post = CoreDataCoordinator.shared.savedPosts[indexPath.row]
-                CoreDataCoordinator.shared.deletePost(post: post)
-                self.tableView.reloadData()
-            }
-            else {
-
-                print("можно удалять только в сохраненных")
-            }
-
-        }
-
 }
 
 
