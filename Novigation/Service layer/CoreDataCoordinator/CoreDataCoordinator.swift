@@ -17,7 +17,7 @@ class CoreDataCoordinator {
 
     var folder: [FoldersPostCoreData] = []
 
-    var posts: [PostCoreData] = []
+    var savedPosts: [PostCoreData] = []
 
 
 
@@ -44,8 +44,6 @@ class CoreDataCoordinator {
         if self.folder == [] {
             self.appendFolder(name: "SavedPosts")
         }
-        print("folder >>>>>>>>", self.folder[0].name)
-     //   print("posts >>>>>>>>", self.posts[0])
     }
 
 
@@ -89,7 +87,7 @@ class CoreDataCoordinator {
 
         do {
 
-            self.posts = try persistentContainer.viewContext.fetch(request)
+            self.savedPosts = try persistentContainer.viewContext.fetch(request)
         }
         catch {
             print(error.localizedDescription)

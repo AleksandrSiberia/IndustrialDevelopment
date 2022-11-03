@@ -78,8 +78,9 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
     override func viewDidLoad() {
 
+
         super.viewDidLoad()
-        self.view.addSubview(tableView)
+        self.view.addSubview(self.tableView)
         self.view.addGestureRecognizer(self.tapGestureRecogniser)
         self.setupConstraints()
     }
@@ -97,6 +98,7 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
         handle = Auth.auth().addStateDidChangeListener { auth, user in
           // ...
         }
+        self.tableView.reloadData()
     }
 
 
@@ -126,18 +128,31 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
     @objc private func actionTapGestureRecogniser(recogniser: UITapGestureRecognizer) {
 
-        if recogniser.state == .ended {
-            let tapLocation = recogniser.location(in: self.tableView)
-            if let tapIndexPathTableView = self.tableView.indexPathForRow(at: tapLocation) {
-                if let tappedCell = self.tableView.cellForRow(at: tapIndexPathTableView) as? PostCell {
+        if self.savedPostsController == false {
 
-                    tappedCell.savePost()
-                    print("posts >>>>>>>>", self.posts[0])
+            if recogniser.state == .ended {
+                let tapLocation = recogniser.location(in: self.tableView)
+                if let tapIndexPathTableView = self.tableView.indexPathForRow(at: tapLocation) {
+                    if let tappedCell = self.tableView.cellForRow(at: tapIndexPathTableView) as? PostCell {
 
+                        tappedCell.savePost()
+
+
+                        let alert = UIAlertController(title: "Пост сохранен", message: nil, preferredStyle: .alert)
+                        let action = UIAlertAction(title: "Ok", style: .cancel)
+                        alert.addAction(action)
+
+                        self.present(alert, animated: true)
+                    }
                 }
             }
         }
     }
+
+
+
+
+
 }
 
 
@@ -150,8 +165,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             return section == 1 ? self.posts.count : 1
         }
         else {
-            print("count >>>>", CoreDataCoordinator.shared.posts.count)
-            return section == 1 ? CoreDataCoordinator.shared.posts.count : 1
+            return section == 1 ? CoreDataCoordinator.shared.savedPosts.count : 1
         }
     }
 
@@ -164,13 +178,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             return cell
         }
 
+
         else {
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell else { let cell = self.tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
                 return cell
             }
 
 
-            if self.posts.isEmpty == true && CoreDataCoordinator.shared.posts.isEmpty == true {
+            if self.posts.isEmpty == true && CoreDataCoordinator.shared.savedPosts.isEmpty == true {
                  assertionFailure(CustomErrorNovigation.noPost.rawValue)
             }
 
@@ -184,10 +199,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
                 return cell
             }
             else {
-                let postCoreData = CoreDataCoordinator.shared.posts[indexPathRow]
+                let postCoreData = CoreDataCoordinator.shared.savedPosts[indexPathRow]
 
-                print("postCoreData  >>>>>>>>", postCoreData)
-                cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.description, views: postCoreData.views)
+                cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views)
                 return cell
             }
 
@@ -215,6 +229,22 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             self.navigationController?.pushViewController(PhotosAssembly.showPhotosViewController(), animated: true)
         }
     }
+
+
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+            if self.savedPostsController == true {
+                let post = CoreDataCoordinator.shared.savedPosts[indexPath.row]
+                CoreDataCoordinator.shared.deletePost(post: post)
+                self.tableView.reloadData()
+            }
+            else {
+
+                print("можно удалять только в сохраненных")
+            }
+
+        }
+
 }
 
 

@@ -43,6 +43,7 @@ class FeedViewController: UIViewController {
         return  textFieldCheckWord
     }()
 
+
     
     private lazy var buttonCheckWord: CustomButton = {
         var buttonCheckWord = CustomButton(title: "Проверить слово") {
@@ -104,6 +105,9 @@ class FeedViewController: UIViewController {
         return postButton
     }()
 
+
+
+
     private lazy var postButton2: UIButton = {
         var postButton2 = UIButton()
         postButton2.translatesAutoresizingMaskIntoConstraints = false
@@ -116,16 +120,17 @@ class FeedViewController: UIViewController {
 
     
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        CoreDataCoordinator.shared
 
  //       print(RealmService.shared.realm.configuration.fileURL!)
 
         setupView()
-
     }
+
+
+
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
