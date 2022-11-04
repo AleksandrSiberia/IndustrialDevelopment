@@ -10,6 +10,21 @@ import UIKit
 class SavedPostsViewController: UIViewController {
 
 
+    private lazy var barButtonItemSearch: UIBarButtonItem = {
+        var barButtonItemSearch = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(actionBarButtonItemSearch))
+        return barButtonItemSearch
+    }()
+
+
+
+
+    private lazy var barButtonItemCancelSearch: UIBarButtonItem = {
+        var barButtonItemCancelSearch = UIBarButtonItem(image: UIImage( systemName: "minus.circle"), style: .plain, target: self, action: #selector(actionBarButtonItemCancelSearch))
+        return barButtonItemCancelSearch
+    }()
+
+
+
 
     private lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
@@ -31,6 +46,7 @@ class SavedPostsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.rightBarButtonItems = [self.barButtonItemCancelSearch, self.barButtonItemSearch ]
         self.view.addSubview(self.tableView)
 
         NSLayoutConstraint.activate([
@@ -46,13 +62,30 @@ class SavedPostsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-
         self.tableView.reloadData()
 
     }
 
+    func deleteSavedPost() {
+        print("deleteSavedPost")
+    }
+
+    @objc private func actionBarButtonItemSearch() {
+        print("actionBarButtonItemSearch")
+    }
+
+
+
+    @objc private func actionBarButtonItemCancelSearch() {
+        print("actionBarButtonItemCancelSearch")
+    }
+
+
 }
+
+
+
+
 
 
 
@@ -90,14 +123,31 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
 
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//
+//
+//            let post = CoreDataCoordinator.shared.savedPosts[indexPath.row]
+//            CoreDataCoordinator.shared.deletePost(post: post)
+//            self.tableView.reloadData()
+//    }
 
+
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        let action = UIContextualAction(style: .normal, title: "Удалить из сохраненного") { [weak self] (uiContextualAction, uiView, completionHandler) in
 
             let post = CoreDataCoordinator.shared.savedPosts[indexPath.row]
-            CoreDataCoordinator.shared.deletePost(post: post)
-            self.tableView.reloadData()
+                        CoreDataCoordinator.shared.deletePost(post: post)
+            self!.tableView.reloadData()
+
+            completionHandler(true)
+        }
+
+        action.backgroundColor = UIColor( named: "MyColorSet")
+
+        return UISwipeActionsConfiguration(actions: [action])
     }
-    
 }
 
 
