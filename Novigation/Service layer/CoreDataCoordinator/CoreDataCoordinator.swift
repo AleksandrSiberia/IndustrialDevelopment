@@ -16,7 +16,7 @@ final class CoreDataCoordinator {
 
     static var shared = CoreDataCoordinator()
 
-    var folder: [FoldersPostCoreData] = []
+    lazy var folder: [FoldersPostCoreData] = []
 
     var savedPosts: [PostCoreData] = []
 
@@ -50,7 +50,6 @@ final class CoreDataCoordinator {
         self.reloadFolders()
         self.reloadPosts()
 
-        print("count", self.folder.count)
         if  self.folder == [] {
                 self.appendFolder(name: "SavedPosts")
             }
@@ -89,7 +88,7 @@ final class CoreDataCoordinator {
 
 
 
-    func reloadFolders()  {
+    func reloadFolders() {
 
         
         let request = FoldersPostCoreData.fetchRequest()
@@ -100,6 +99,7 @@ final class CoreDataCoordinator {
 
             self.folder = folderBackgroundQueue
 
+
 //            DispatchQueue.main.async {
 //                self.folder = folderBackgroundQueue
 //                completionHandler(folderBackgroundQueue)
@@ -107,6 +107,7 @@ final class CoreDataCoordinator {
         }
         catch {
             print(error.localizedDescription)
+
 
         }
     }
@@ -205,7 +206,7 @@ final class CoreDataCoordinator {
     func deleteFolder(folder: FoldersPostCoreData) {
 
 
-        self.persistentContainer.viewContext.delete(folder)
+        self.backgroundContext.delete(folder)
         self.savePersistentContainerContext()
         self.reloadFolders()
     }
@@ -213,7 +214,6 @@ final class CoreDataCoordinator {
 
 
     func deletePost(post: PostCoreData) {
-
 
         self.backgroundContext.delete(post)
         self.savePersistentContainerContext()

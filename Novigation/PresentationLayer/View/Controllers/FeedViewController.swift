@@ -125,12 +125,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
        
         
-        CoreDataCoordinator.shared.reloadPosts()
 
-        CoreDataCoordinator.shared.reloadFolders()
-
-        print(">>>>>>>>>>>>", CoreDataCoordinator.shared.savedPosts,
-              CoreDataCoordinator.shared.folder)
  
  //       print(RealmService.shared.realm.configuration.fileURL!)
 
