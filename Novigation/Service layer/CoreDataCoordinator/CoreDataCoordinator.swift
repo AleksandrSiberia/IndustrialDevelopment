@@ -9,7 +9,8 @@ import Foundation
 import CoreData
 
 
-class CoreDataCoordinator {
+
+final class CoreDataCoordinator {
 
 
 
@@ -18,6 +19,7 @@ class CoreDataCoordinator {
     var folder: [FoldersPostCoreData] = []
 
     var savedPosts: [PostCoreData] = []
+
 
 
 
@@ -38,25 +40,49 @@ class CoreDataCoordinator {
 
 
 
+    lazy var backgroundContext: NSManagedObjectContext = {
+        return persistentContainer.newBackgroundContext()
+    }()
+
+
+
     private init() {
         self.reloadFolders()
         self.reloadPosts()
-        if self.folder == [] {
-            self.appendFolder(name: "SavedPosts")
+
+        print("count", self.folder.count)
+        if  self.folder == [] {
+                self.appendFolder(name: "SavedPosts")
+            }
+
         }
-    }
 
 
 
 
     func savePersistentContainerContext() {
 
-        do {
-            try persistentContainer.viewContext.save()
-        }
-        catch {
-            let nsError = error as NSError?
-            fatalError("nsCoreDataError \(String(describing: nsError)), \(String(describing: nsError?.userInfo))")
+//        if  self.persistentContainer.viewContext.hasChanges {
+//
+//            do {
+//                try persistentContainer.viewContext.save()
+//            }
+//            catch {
+//                let nsError = error as NSError?
+//                fatalError("Error viewContext.save = \(String(describing: nsError)), \(String(describing: nsError?.userInfo))")
+//            }
+//        }
+
+        if self.backgroundContext.hasChanges {
+
+            do {
+                try self.backgroundContext.save()
+            }
+            catch {
+                if let error = error as NSError? {
+                    print("Error backgroundContext.save = \(error), \(error.userInfo)")
+                }
+            }
         }
     }
 
@@ -65,10 +91,19 @@ class CoreDataCoordinator {
 
     func reloadFolders()  {
 
+        
         let request = FoldersPostCoreData.fetchRequest()
 
         do {
-            self.folder = try self.persistentContainer.viewContext.fetch(request)
+
+            let folderBackgroundQueue = try self.backgroundContext.fetch(request)
+
+            self.folder = folderBackgroundQueue
+
+//            DispatchQueue.main.async {
+//                self.folder = folderBackgroundQueue
+//                completionHandler(folderBackgroundQueue)
+//            }
         }
         catch {
             print(error.localizedDescription)
@@ -83,11 +118,33 @@ class CoreDataCoordinator {
 
         let request = PostCoreData.fetchRequest()
 
-        //    request.sortDescriptors = [NSSortDescriptor(key: "likes", ascending: true)]
+
+        // сортировка
+        //   request.sortDescriptors = [
+        //   NSSortDescriptor(key: "likes", ascending: true)
+        //    ]
+
+        // для фильтрации постов
+       // request.predicate
+
+       // получить 12 элементов
+       // request.fetchLimit = 12
+        // начиная с 11
+        // request.fetchOffset = 11
+
+        // оптимизация это загружаем сохраняем изменяем в бэкграунд контексте а в комплишени обрисовываем в главном
+
+
 
         do {
 
-            self.savedPosts = try persistentContainer.viewContext.fetch(request)
+            let savedPosts = try self.backgroundContext.fetch(request)
+            self.savedPosts = savedPosts
+
+//            DispatchQueue.main.async {
+//                self.savedPosts = savedPosts
+//                completionHandler(savedPosts)
+//            }
         }
         catch {
             print(error.localizedDescription)
@@ -99,7 +156,7 @@ class CoreDataCoordinator {
 
     func appendFolder(name: String) {
 
-        let folder = FoldersPostCoreData(context: self.persistentContainer.viewContext
+        let folder = FoldersPostCoreData(context: self.backgroundContext
         )
         folder.name = name
         self.savePersistentContainerContext()
@@ -120,7 +177,7 @@ class CoreDataCoordinator {
             folderObject = folder!
         }
 
-        let post = PostCoreData(context: self.persistentContainer.viewContext)
+        let post = PostCoreData(context: self.backgroundContext)
         post.author = author
         post.image = image
         post.text = text
@@ -147,14 +204,18 @@ class CoreDataCoordinator {
 
     func deleteFolder(folder: FoldersPostCoreData) {
 
+
         self.persistentContainer.viewContext.delete(folder)
         self.savePersistentContainerContext()
         self.reloadFolders()
     }
 
 
+
     func deletePost(post: PostCoreData) {
-        self.persistentContainer.viewContext.delete(post)
+
+
+        self.backgroundContext.delete(post)
         self.savePersistentContainerContext()
         self.reloadPosts()
     }

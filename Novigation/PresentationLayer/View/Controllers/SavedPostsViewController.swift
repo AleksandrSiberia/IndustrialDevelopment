@@ -94,7 +94,11 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-            return CoreDataCoordinator.shared.savedPosts.count
+       CoreDataCoordinator.shared.reloadPosts()
+
+              print("ssssss", CoreDataCoordinator.shared.savedPosts.count)
+        
+        return CoreDataCoordinator.shared.savedPosts.count
     }
 
 
@@ -123,30 +127,26 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
 
 
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//
-//
-//            let post = CoreDataCoordinator.shared.savedPosts[indexPath.row]
-//            CoreDataCoordinator.shared.deletePost(post: post)
-//            self.tableView.reloadData()
-//    }
-
-
-
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
-        let action = UIContextualAction(style: .normal, title: "Удалить из сохраненного") { [weak self] (uiContextualAction, uiView, completionHandler) in
+        let action = UIContextualAction(style: .destructive, title: "Удалить из сохраненного") { [weak self] (uiContextualAction, uiView, completionHandler) in
 
             let post = CoreDataCoordinator.shared.savedPosts[indexPath.row]
-                        CoreDataCoordinator.shared.deletePost(post: post)
+
+            CoreDataCoordinator.shared.deletePost(post: post)
+
             self!.tableView.reloadData()
 
             completionHandler(true)
+
         }
 
-        action.backgroundColor = UIColor( named: "MyColorSet")
+        //   action.backgroundColor = UIColor( named: "MyColorSet")
 
-        return UISwipeActionsConfiguration(actions: [action])
+        let actionConfiguration = UISwipeActionsConfiguration(actions: [action])
+        actionConfiguration.performsFirstActionWithFullSwipe = true
+
+        return actionConfiguration
     }
 }
 
