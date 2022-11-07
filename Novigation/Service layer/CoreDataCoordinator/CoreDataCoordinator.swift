@@ -116,7 +116,7 @@ final class CoreDataCoordinator {
 
         if searchAuthor != nil {
 
-            request.predicate = NSPredicate(format: "author == %@", searchAuthor!)
+            request.predicate = NSPredicate(format: "author contains[c] %@", searchAuthor!)
         }
 
         do {
