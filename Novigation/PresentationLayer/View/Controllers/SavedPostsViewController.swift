@@ -9,6 +9,11 @@ import UIKit
 
 class SavedPostsViewController: UIViewController {
 
+    var coreDataCoordinator: CoreDataCoordinator!
+
+    private var nameAuthor: String = ""
+
+    private var textFieldSearchAuthor: UITextField?
 
     private lazy var barButtonItemSearch: UIBarButtonItem = {
         var barButtonItemSearch = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(actionBarButtonItemSearch))
@@ -66,23 +71,50 @@ class SavedPostsViewController: UIViewController {
 
     }
 
-    func deleteSavedPost() {
-        print("deleteSavedPost")
-    }
+
+
+
 
     @objc private func actionBarButtonItemSearch() {
         print("actionBarButtonItemSearch")
+        let alert = UIAlertController(title: nil, message: "Напишите имя автора", preferredStyle: .alert)
+
+
+        alert.addTextField { textField in
+
+            textField.clearButtonMode = .whileEditing
+            self.textFieldSearchAuthor = textField
+            }
+
+
+        let actionSearch = UIAlertAction(title: "Найти", style: .default) {action in
+
+            if self.textFieldSearchAuthor?.text != "" {
+                print("search")
+                self.coreDataCoordinator.reloadPosts(searchAuthor: self.textFieldSearchAuthor?.text)
+                self.tableView.reloadData()
+            }
+        }
+ //       actionSearch.isEnabled = false
+
+        let actionCancel = UIAlertAction(title: "Отмена", style: .cancel)
+
+        alert.addAction(actionCancel)
+        alert.addAction(actionSearch)
+
+        present(alert, animated: true)
+
+
     }
+
+
 
 
 
     @objc private func actionBarButtonItemCancelSearch() {
         print("actionBarButtonItemCancelSearch")
     }
-
-
 }
-
 
 
 
@@ -94,11 +126,11 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-       CoreDataCoordinator.shared.reloadPosts()
+        self.coreDataCoordinator.reloadPosts(searchAuthor: nil)
 
-              print("ssssss", CoreDataCoordinator.shared.savedPosts.count)
-        
-        return CoreDataCoordinator.shared.savedPosts.count
+        print("ssssss", self.coreDataCoordinator.savedPosts.count)
+
+        return self.coreDataCoordinator.savedPosts.count
     }
 
 
@@ -112,15 +144,15 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
             return cell
         }
 
-        if  CoreDataCoordinator.shared.savedPosts.isEmpty == true {
+        if  self.coreDataCoordinator.savedPosts.isEmpty == true {
              assertionFailure(CustomErrorNovigation.noPost.rawValue)
         }
 
         let indexPathRow = indexPath.row
 
-        let postCoreData = CoreDataCoordinator.shared.savedPosts[indexPathRow]
+        let postCoreData = self.coreDataCoordinator.savedPosts[indexPathRow]
 
-        cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views)
+        cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views, coreDataCoordinator: self.coreDataCoordinator)
         return cell
         
     }
@@ -131,9 +163,9 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
         let action = UIContextualAction(style: .destructive, title: "Удалить из сохраненного") { [weak self] (uiContextualAction, uiView, completionHandler) in
 
-            let post = CoreDataCoordinator.shared.savedPosts[indexPath.row]
+            let post = self!.coreDataCoordinator.savedPosts[indexPath.row]
 
-            CoreDataCoordinator.shared.deletePost(post: post)
+            self!.coreDataCoordinator.deletePost(post: post)
 
             self!.tableView.reloadData()
 

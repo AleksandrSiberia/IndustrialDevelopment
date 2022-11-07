@@ -14,13 +14,9 @@ final class CoreDataCoordinator {
 
 
 
-    static var shared = CoreDataCoordinator()
-
     lazy var folder: [FoldersPostCoreData] = []
 
     var savedPosts: [PostCoreData] = []
-
-
 
 
 
@@ -46,9 +42,10 @@ final class CoreDataCoordinator {
 
 
 
-    private init() {
+
+    init() {
         self.reloadFolders()
-        self.reloadPosts()
+        self.reloadPosts(searchAuthor: nil)
 
         if  self.folder == [] {
                 self.appendFolder(name: "SavedPosts")
@@ -89,7 +86,6 @@ final class CoreDataCoordinator {
 
 
     func reloadFolders() {
-
         
         let request = FoldersPostCoreData.fetchRequest()
 
@@ -98,7 +94,6 @@ final class CoreDataCoordinator {
             let folderBackgroundQueue = try self.backgroundContext.fetch(request)
 
             self.folder = folderBackgroundQueue
-
 
 //            DispatchQueue.main.async {
 //                self.folder = folderBackgroundQueue
@@ -115,38 +110,31 @@ final class CoreDataCoordinator {
 
 
 
-    func reloadPosts() {
+    func reloadPosts(searchAuthor: String?) {
 
         let request = PostCoreData.fetchRequest()
 
 
-        // сортировка
-        //   request.sortDescriptors = [
-        //   NSSortDescriptor(key: "likes", ascending: true)
-        //    ]
+        if searchAuthor != nil {
 
-        // для фильтрации постов
-       // request.predicate
-
-       // получить 12 элементов
-       // request.fetchLimit = 12
-        // начиная с 11
-        // request.fetchOffset = 11
-
-        // оптимизация это загружаем сохраняем изменяем в бэкграунд контексте а в комплишени обрисовываем в главном
+            request.predicate = NSPredicate(format: "author == %@", searchAuthor!)
+        }
 
 
 
         do {
 
             let savedPosts = try self.backgroundContext.fetch(request)
+
             self.savedPosts = savedPosts
+            print("count", self.savedPosts.count, request)
 
 //            DispatchQueue.main.async {
 //                self.savedPosts = savedPosts
 //                completionHandler(savedPosts)
 //            }
         }
+
         catch {
             print(error.localizedDescription)
         }
@@ -196,10 +184,9 @@ final class CoreDataCoordinator {
             }
         }
         self.savePersistentContainerContext()
-        self.reloadPosts()
-
-
+        self.reloadPosts(searchAuthor: nil)
     }
+
 
 
 
@@ -217,7 +204,7 @@ final class CoreDataCoordinator {
 
         self.backgroundContext.delete(post)
         self.savePersistentContainerContext()
-        self.reloadPosts()
+        self.reloadPosts(searchAuthor: nil)
     }
 
 }

@@ -13,7 +13,7 @@ class PostCell: UITableViewCell {
 
     private var nameImage: String?
 
-
+    var coreDataCoordinator: CoreDataCoordinator!
 
     private lazy var authorLabel: UILabel = {
         var authorLabel = UILabel()
@@ -113,7 +113,7 @@ class PostCell: UITableViewCell {
 
         var errorSave: String?
         
-        CoreDataCoordinator.shared.appendPost(author: self.authorLabel.text, image: self.nameImage, likes: self.likesLabel.text, text: self.descriptionLabel.text, views: self.viewsLabel.text, folder: nil) { error in
+        self.coreDataCoordinator.appendPost(author: self.authorLabel.text, image: self.nameImage, likes: self.likesLabel.text, text: self.descriptionLabel.text, views: self.viewsLabel.text, folder: nil) { error in
             errorSave = error
         }
         return errorSave
@@ -159,7 +159,10 @@ class PostCell: UITableViewCell {
 
 
     
-    func setup(author: String?, image: String?, likes: String?, text: String?, views: String?) {
+    func setup(author: String?, image: String?, likes: String?, text: String?, views: String?, coreDataCoordinator: CoreDataCoordinator) {
+
+        self.coreDataCoordinator = coreDataCoordinator
+
         self.authorLabel.text = author
 
         self.nameImage = image
