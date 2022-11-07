@@ -19,6 +19,7 @@ protocol ProfileViewControllerOutput {
 
 final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 
+    var coreDataCoordinator: CoreDataCoordinator!
 
     var handle: AuthStateDidChangeListenerHandle?
 
@@ -178,7 +179,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             }
 
 
-            if self.posts.isEmpty == true && CoreDataCoordinator.shared.savedPosts.isEmpty == true {
+            if self.posts.isEmpty == true && self.coreDataCoordinator.savedPosts.isEmpty == true {
                 assertionFailure(CustomErrorNovigation.noPost.rawValue)
             }
 
@@ -186,7 +187,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
             let post = self.posts[indexPathRow]
             
-            cell.setup(author: post.author, image: post.image, likes: String(post.likes), text: post.description, views: String(post.views))
+            cell.setup(author: post.author, image: post.image, likes: String(post.likes), text: post.description, views: String(post.views), coreDataCoordinator: self.coreDataCoordinator)
             return cell
         }
     }

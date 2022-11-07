@@ -9,6 +9,26 @@ import UIKit
 
 class SavedPostsViewController: UIViewController {
 
+    var coreDataCoordinator: CoreDataCoordinator!
+
+    private var nameAuthor: String = ""
+
+    private var textFieldSearchAuthor: UITextField?
+
+    private lazy var barButtonItemSearch: UIBarButtonItem = {
+        var barButtonItemSearch = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(actionBarButtonItemSearch))
+        return barButtonItemSearch
+    }()
+
+
+
+
+    private lazy var barButtonItemCancelSearch: UIBarButtonItem = {
+        var barButtonItemCancelSearch = UIBarButtonItem(image: UIImage( systemName: "minus.circle"), style: .plain, target: self, action: #selector(actionBarButtonItemCancelSearch))
+        return barButtonItemCancelSearch
+    }()
+
+
 
 
     private lazy var tableView: UITableView = {
@@ -31,6 +51,8 @@ class SavedPostsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+        self.navigationItem.rightBarButtonItems = [self.barButtonItemCancelSearch, self.barButtonItemSearch ]
         self.view.addSubview(self.tableView)
 
         NSLayoutConstraint.activate([
@@ -46,13 +68,59 @@ class SavedPostsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-
         self.tableView.reloadData()
 
     }
 
+
+
+
+
+    @objc private func actionBarButtonItemSearch() {
+        print("actionBarButtonItemSearch")
+        let alert = UIAlertController(title: nil, message: "Напишите имя автора", preferredStyle: .alert)
+
+
+        alert.addTextField { textField in
+
+            textField.clearButtonMode = .whileEditing
+            self.textFieldSearchAuthor = textField
+            }
+
+
+        let actionSearch = UIAlertAction(title: "Найти", style: .default) {action in
+
+            if self.textFieldSearchAuthor?.text != "" {
+                print("search")
+                self.coreDataCoordinator.reloadPosts(searchAuthor: self.textFieldSearchAuthor?.text)
+                self.tableView.reloadData()
+            }
+        }
+
+        let actionCancel = UIAlertAction(title: "Отмена", style: .cancel)
+
+        alert.addAction(actionCancel)
+        alert.addAction(actionSearch)
+
+        present(alert, animated: true)
+    }
+
+
+
+
+
+    @objc private func actionBarButtonItemCancelSearch() {
+        print("actionBarButtonItemCancelSearch")
+
+        self.coreDataCoordinator.reloadPosts(searchAuthor: nil)
+        self.tableView.reloadData()
+
+
+    }
 }
+
+
+
 
 
 
@@ -61,7 +129,7 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-            return CoreDataCoordinator.shared.savedPosts.count
+        return self.coreDataCoordinator.savedPosts.count
     }
 
 
@@ -75,29 +143,42 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
             return cell
         }
 
-        if  CoreDataCoordinator.shared.savedPosts.isEmpty == true {
+        if  self.coreDataCoordinator.savedPosts.isEmpty == true {
              assertionFailure(CustomErrorNovigation.noPost.rawValue)
         }
 
         let indexPathRow = indexPath.row
 
-        let postCoreData = CoreDataCoordinator.shared.savedPosts[indexPathRow]
+        let postCoreData = self.coreDataCoordinator.savedPosts[indexPathRow]
 
-        cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views)
+        cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views, coreDataCoordinator: self.coreDataCoordinator)
         return cell
         
     }
 
 
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
+        let action = UIContextualAction(style: .destructive, title: "Удалить из сохраненного") { [weak self] (uiContextualAction, uiView, completionHandler) in
 
-            let post = CoreDataCoordinator.shared.savedPosts[indexPath.row]
-            CoreDataCoordinator.shared.deletePost(post: post)
-            self.tableView.reloadData()
+            let post = self!.coreDataCoordinator.savedPosts[indexPath.row]
+
+            self!.coreDataCoordinator.deletePost(post: post)
+
+            self!.tableView.reloadData()
+
+            completionHandler(true)
+
+        }
+
+        //   action.backgroundColor = UIColor( named: "MyColorSet")
+
+        let actionConfiguration = UISwipeActionsConfiguration(actions: [action])
+        actionConfiguration.performsFirstActionWithFullSwipe = true
+
+        return actionConfiguration
     }
-    
 }
 
 

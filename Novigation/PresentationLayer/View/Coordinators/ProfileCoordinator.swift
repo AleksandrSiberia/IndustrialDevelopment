@@ -9,12 +9,14 @@ import UIKit
 
 class ProfileCoordinator: AppCoordinatorProtocol {
     
-
+    var coreDataCoordinator: CoreDataCoordinator!
 
     private weak var transitionHandler: UINavigationController?
     var childs: [AppCoordinatorProtocol] = []
-    init(transitionHandler: UINavigationController) {
+
+    init(transitionHandler: UINavigationController, coreDataCoordinator: CoreDataCoordinator) {
         self.transitionHandler = transitionHandler
+        self.coreDataCoordinator = coreDataCoordinator
     }
 
 
@@ -22,6 +24,7 @@ class ProfileCoordinator: AppCoordinatorProtocol {
 
         let profileViewController = ProfileAssembly.createProfileViewController()
         profileViewController.currentUser = user
+        profileViewController.coreDataCoordinator = self.coreDataCoordinator
 
         self.transitionHandler?.pushViewController(profileViewController, animated: true)
     }

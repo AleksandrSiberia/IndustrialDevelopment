@@ -16,6 +16,8 @@ class RootCoordinator: AppCoordinatorProtocol {
 
     var childs: [AppCoordinatorProtocol] = []
 
+    var coreDataCoordinator = CoreDataCoordinator()
+
 
     init(transitionHandler : UITabBarController) {
         self.transitionHandler = transitionHandler
@@ -45,6 +47,7 @@ class RootCoordinator: AppCoordinatorProtocol {
 
 
         let savedPostsViewController = SavedPostsViewController()
+        savedPostsViewController.coreDataCoordinator = self.coreDataCoordinator
         savedPostsViewController.navigationItem.title = "Сохраненные посты"
         let navSavedPosts = UINavigationController(rootViewController: savedPostsViewController)
         self.navSavedPosts = navSavedPosts
@@ -70,7 +73,7 @@ class RootCoordinator: AppCoordinatorProtocol {
     func startProfileCoordinator(user: User) {
         
 
-        let profileCoordinator = ProfileCoordinator(transitionHandler: self.navLoginView!)
+        let profileCoordinator = ProfileCoordinator(transitionHandler: self.navLoginView!, coreDataCoordinator: self.coreDataCoordinator)
         self.childs.append(profileCoordinator)
         profileCoordinator.start(user: user)
     }
