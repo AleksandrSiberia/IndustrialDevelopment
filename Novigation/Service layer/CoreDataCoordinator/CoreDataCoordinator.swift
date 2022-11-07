@@ -14,13 +14,13 @@ final class CoreDataCoordinator {
 
 
 
-    lazy var folder: [FoldersPostCoreData] = []
+    var folder: [FoldersPostCoreData] = []
 
     var savedPosts: [PostCoreData] = []
 
 
 
-    lazy var persistentContainer: NSPersistentContainer = {
+    private lazy var persistentContainer: NSPersistentContainer = {
 
         var persistentContainer = NSPersistentContainer(name: "CoreDadaModel")
 
@@ -36,7 +36,7 @@ final class CoreDataCoordinator {
 
 
 
-    lazy var backgroundContext: NSManagedObjectContext = {
+    private lazy var backgroundContext: NSManagedObjectContext = {
         return persistentContainer.newBackgroundContext()
     }()
 
@@ -114,20 +114,16 @@ final class CoreDataCoordinator {
 
         let request = PostCoreData.fetchRequest()
 
-
         if searchAuthor != nil {
 
             request.predicate = NSPredicate(format: "author == %@", searchAuthor!)
         }
-
-
 
         do {
 
             let savedPosts = try self.backgroundContext.fetch(request)
 
             self.savedPosts = savedPosts
-            print("count", self.savedPosts.count, request)
 
 //            DispatchQueue.main.async {
 //                self.savedPosts = savedPosts

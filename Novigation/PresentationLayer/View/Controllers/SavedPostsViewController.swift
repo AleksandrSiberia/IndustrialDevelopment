@@ -51,6 +51,7 @@ class SavedPostsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
         self.navigationItem.rightBarButtonItems = [self.barButtonItemCancelSearch, self.barButtonItemSearch ]
         self.view.addSubview(self.tableView)
 
@@ -95,7 +96,6 @@ class SavedPostsViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
- //       actionSearch.isEnabled = false
 
         let actionCancel = UIAlertAction(title: "Отмена", style: .cancel)
 
@@ -103,8 +103,6 @@ class SavedPostsViewController: UIViewController {
         alert.addAction(actionSearch)
 
         present(alert, animated: true)
-
-
     }
 
 
@@ -113,6 +111,11 @@ class SavedPostsViewController: UIViewController {
 
     @objc private func actionBarButtonItemCancelSearch() {
         print("actionBarButtonItemCancelSearch")
+
+        self.coreDataCoordinator.reloadPosts(searchAuthor: nil)
+        self.tableView.reloadData()
+
+
     }
 }
 
@@ -125,10 +128,6 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        self.coreDataCoordinator.reloadPosts(searchAuthor: nil)
-
-        print("ssssss", self.coreDataCoordinator.savedPosts.count)
 
         return self.coreDataCoordinator.savedPosts.count
     }
