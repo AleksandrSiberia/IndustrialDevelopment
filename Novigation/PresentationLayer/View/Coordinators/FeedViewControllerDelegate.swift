@@ -10,7 +10,5 @@ import Foundation
 
 protocol FeedViewControllerDelegate {
 
-
-
     var onSelectAction: (() -> Void)? { get }
 }

@@ -8,8 +8,7 @@
 import Foundation
 
 
-
-protocol CheckerServiceProtocol {
+protocol CheckServiceProtocol {
 
     func checkCredentials(withEmail: String, password: String, completion: @escaping (String?) -> Void )
     

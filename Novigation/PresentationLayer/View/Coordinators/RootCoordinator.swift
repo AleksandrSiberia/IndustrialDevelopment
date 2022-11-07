@@ -8,12 +8,17 @@
 import UIKit
 
 // обертка UITabBarController
-class RootCoordinator: AppCoordinator {
+class RootCoordinator: AppCoordinatorProtocol {
  
 
 
     private weak var transitionHandler: UITabBarController?
-    var childs: [AppCoordinator] = []
+
+    var childs: [AppCoordinatorProtocol] = []
+
+    var coreDataCoordinator = CoreDataCoordinator()
+
+
     init(transitionHandler : UITabBarController) {
         self.transitionHandler = transitionHandler
     }
@@ -28,6 +33,7 @@ class RootCoordinator: AppCoordinator {
     }
 
     var navLoginView: UINavigationController?
+    var navSavedPosts: UINavigationController?
 
 
     fileprivate func showTabBarScreen() -> UITabBarController? {
@@ -36,11 +42,20 @@ class RootCoordinator: AppCoordinator {
         let feedCoordinator = FeedCoordinator(transitionHandler: navFeedView)
 
         let navLoginView = UINavigationController(rootViewController: LoginAssembly.createLoginViewController(coordinator: self))
+        navLoginView.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 2)
+                self.childs.append(feedCoordinator)
+
+
+        let savedPostsViewController = SavedPostsViewController()
+        savedPostsViewController.coreDataCoordinator = self.coreDataCoordinator
+        savedPostsViewController.navigationItem.title = "Сохраненные посты"
+        let navSavedPosts = UINavigationController(rootViewController: savedPostsViewController)
+        self.navSavedPosts = navSavedPosts
+        navSavedPosts.tabBarItem = UITabBarItem(title: "Сохраненные", image: UIImage(systemName: "square.and.arrow.down"), tag: 3)
+
+
 
         self.navLoginView = navLoginView
-        
-        navLoginView.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 2)
-        self.childs.append(feedCoordinator)
 
         // делаем дополнительные настройки
 //        viewModel.input
@@ -50,7 +65,7 @@ class RootCoordinator: AppCoordinator {
         // передаем в transitionHandler
 
         transitionHandler!.tabBar.backgroundColor = .white
-        transitionHandler!.viewControllers = [feedCoordinator.start(), navLoginView]
+        transitionHandler!.viewControllers = [feedCoordinator.start(), navLoginView, navSavedPosts]
         return transitionHandler
     }
 
@@ -58,7 +73,7 @@ class RootCoordinator: AppCoordinator {
     func startProfileCoordinator(user: User) {
         
 
-        let profileCoordinator = ProfileCoordinator(transitionHandler: self.navLoginView!)
+        let profileCoordinator = ProfileCoordinator(transitionHandler: self.navLoginView!, coreDataCoordinator: self.coreDataCoordinator)
         self.childs.append(profileCoordinator)
         profileCoordinator.start(user: user)
     }
