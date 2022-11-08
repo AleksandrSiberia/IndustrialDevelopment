@@ -129,7 +129,10 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return self.coreDataCoordinator.savedPosts.count
+
+
+    //    self.coreDataCoordinator.savedPosts.count
+        return self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[section].numberOfObjects ?? 0
     }
 
 
@@ -143,13 +146,15 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
             return cell
         }
 
-        if  self.coreDataCoordinator.savedPosts.isEmpty == true {
-             assertionFailure(CustomErrorNovigation.noPost.rawValue)
-        }
+//        if  self.coreDataCoordinator.savedPosts.isEmpty == true {
+//             assertionFailure(CustomErrorNovigation.noPost.rawValue)
+//        }
 
-        let indexPathRow = indexPath.row
+      //  let indexPathRow = indexPath.row
 
-        let postCoreData = self.coreDataCoordinator.savedPosts[indexPathRow]
+        let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
+
+  //      let postCoreData = self.coreDataCoordinator.savedPosts[indexPathRow]
 
         cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views, coreDataCoordinator: self.coreDataCoordinator)
         return cell
@@ -158,11 +163,17 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
 
 
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        self.coreDataCoordinator.fetchResultController.sections?.count ?? 0
+//    }
+
+
+
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
         let action = UIContextualAction(style: .destructive, title: "Удалить из сохраненного") { [weak self] (uiContextualAction, uiView, completionHandler) in
 
-            let post = self!.coreDataCoordinator.savedPosts[indexPath.row]
+            let post = self!.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
 
             self!.coreDataCoordinator.deletePost(post: post)
 

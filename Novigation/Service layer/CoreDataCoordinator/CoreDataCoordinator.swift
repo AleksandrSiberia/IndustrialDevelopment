@@ -13,6 +13,8 @@ import CoreData
 final class CoreDataCoordinator {
 
 
+    var searchNameAuthor: String?
+
 
     var folder: [FoldersPostCoreData] = []
 
@@ -43,9 +45,18 @@ final class CoreDataCoordinator {
 
 
 
+
+    lazy var fetchedResultsControllerPostCoreData: NSFetchedResultsController = self.createFetchedResultsControllerPostCoreData()
+
+
+
+
     init() {
+
+        self.performFetchPostCoreData()
+
         self.reloadFolders()
-        self.reloadPosts(searchAuthor: nil)
+//        self.reloadPosts(searchAuthor: nil)
 
         if  self.folder == [] {
                 self.appendFolder(name: "SavedPosts")
@@ -53,6 +64,36 @@ final class CoreDataCoordinator {
 
         }
 
+
+
+
+
+    func performFetchPostCoreData() {
+
+        do {
+            try self.fetchedResultsControllerPostCoreData.performFetch()
+        }
+        catch {
+            print(error)
+        }
+    }
+
+
+
+    func createFetchedResultsControllerPostCoreData() -> NSFetchedResultsController<PostCoreData> {
+
+        let request = PostCoreData.fetchRequest()
+
+        if self.searchNameAuthor != nil {
+            request.predicate = NSPredicate(format: "author contains[c] %@", searchNameAuthor!)
+        }
+
+        request.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
+
+        let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
+
+        return fetchResultController
+    }
 
 
 
@@ -180,7 +221,8 @@ final class CoreDataCoordinator {
             }
         }
         self.savePersistentContainerContext()
-        self.reloadPosts(searchAuthor: nil)
+        self.performFetchPostCoreData()
+  //      self.reloadPosts(searchAuthor: nil)
     }
 
 
@@ -200,7 +242,8 @@ final class CoreDataCoordinator {
 
         self.backgroundContext.delete(post)
         self.savePersistentContainerContext()
-        self.reloadPosts(searchAuthor: nil)
+        self.performFetchPostCoreData()
+ //       self.reloadPosts(searchAuthor: nil)
     }
 
 }
