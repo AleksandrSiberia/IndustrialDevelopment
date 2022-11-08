@@ -46,17 +46,18 @@ final class CoreDataCoordinator {
 
 
 
-    lazy var fetchedResultsControllerPostCoreData: NSFetchedResultsController = self.createFetchedResultsControllerPostCoreData()
+    var fetchedResultsControllerPostCoreData: NSFetchedResultsController<PostCoreData>?
 
 
 
 
     init() {
 
+        self.createFetchedResultsControllerPostCoreData()
+
         self.performFetchPostCoreData()
 
         self.reloadFolders()
-//        self.reloadPosts(searchAuthor: nil)
 
         if  self.folder == [] {
                 self.appendFolder(name: "SavedPosts")
@@ -71,7 +72,7 @@ final class CoreDataCoordinator {
     func performFetchPostCoreData() {
 
         do {
-            try self.fetchedResultsControllerPostCoreData.performFetch()
+            try self.fetchedResultsControllerPostCoreData!.performFetch()
         }
         catch {
             print(error)
@@ -80,7 +81,7 @@ final class CoreDataCoordinator {
 
 
 
-    func createFetchedResultsControllerPostCoreData() -> NSFetchedResultsController<PostCoreData> {
+    func createFetchedResultsControllerPostCoreData() {
 
         let request = PostCoreData.fetchRequest()
 
@@ -92,7 +93,9 @@ final class CoreDataCoordinator {
 
         let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
 
-        return fetchResultController
+        self.fetchedResultsControllerPostCoreData = fetchResultController
+
+      
     }
 
 

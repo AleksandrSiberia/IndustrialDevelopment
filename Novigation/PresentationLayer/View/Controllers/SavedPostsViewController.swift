@@ -90,9 +90,15 @@ class SavedPostsViewController: UIViewController {
 
         let actionSearch = UIAlertAction(title: "Найти", style: .default) {action in
 
+
             if self.textFieldSearchAuthor?.text != "" {
-                print("search")
-                self.coreDataCoordinator.reloadPosts(searchAuthor: self.textFieldSearchAuthor?.text)
+
+                self.coreDataCoordinator.searchNameAuthor = self.textFieldSearchAuthor?.text
+
+                self.coreDataCoordinator.createFetchedResultsControllerPostCoreData()
+                
+                self.coreDataCoordinator.performFetchPostCoreData()
+
                 self.tableView.reloadData()
             }
         }
@@ -112,10 +118,13 @@ class SavedPostsViewController: UIViewController {
     @objc private func actionBarButtonItemCancelSearch() {
         print("actionBarButtonItemCancelSearch")
 
-        self.coreDataCoordinator.reloadPosts(searchAuthor: nil)
+        self.coreDataCoordinator.searchNameAuthor = nil
+
+        self.coreDataCoordinator.createFetchedResultsControllerPostCoreData()
+
+        self.coreDataCoordinator.performFetchPostCoreData()
+
         self.tableView.reloadData()
-
-
     }
 }
 
@@ -129,10 +138,7 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-
-
-    //    self.coreDataCoordinator.savedPosts.count
-        return self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[section].numberOfObjects ?? 0
+        return self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.sections?[section].numberOfObjects ?? 0
     }
 
 
@@ -146,15 +152,9 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
             return cell
         }
 
-//        if  self.coreDataCoordinator.savedPosts.isEmpty == true {
-//             assertionFailure(CustomErrorNovigation.noPost.rawValue)
-//        }
 
-      //  let indexPathRow = indexPath.row
 
-        let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
-
-  //      let postCoreData = self.coreDataCoordinator.savedPosts[indexPathRow]
+        let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData!.object(at: indexPath)
 
         cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views, coreDataCoordinator: self.coreDataCoordinator)
         return cell
@@ -173,7 +173,7 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
         let action = UIContextualAction(style: .destructive, title: "Удалить из сохраненного") { [weak self] (uiContextualAction, uiView, completionHandler) in
 
-            let post = self!.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
+            let post = self!.coreDataCoordinator.fetchedResultsControllerPostCoreData!.object(at: indexPath)
 
             self!.coreDataCoordinator.deletePost(post: post)
 
