@@ -179,7 +179,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             }
 
 
-            if self.posts.isEmpty == true && self.coreDataCoordinator.savedPosts.isEmpty == true {
+            if self.posts.isEmpty == true && self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.sections?[0].objects?.isEmpty == true {
                 assertionFailure(CustomErrorNovigation.noPost.rawValue)
             }
 

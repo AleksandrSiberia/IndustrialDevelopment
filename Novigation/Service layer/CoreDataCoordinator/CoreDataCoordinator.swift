@@ -13,12 +13,13 @@ import CoreData
 final class CoreDataCoordinator {
 
 
+
     var searchNameAuthor: String?
 
+    var fetchedResultsControllerPostCoreData: NSFetchedResultsController<PostCoreData>?
 
-    var folder: [FoldersPostCoreData] = []
-
-    var savedPosts: [PostCoreData] = []
+    var fetchedResultsControllerFoldersPostCoreData:
+    NSFetchedResultsController<FoldersPostCoreData>?
 
 
 
@@ -37,32 +38,26 @@ final class CoreDataCoordinator {
 
 
 
-
     private lazy var backgroundContext: NSManagedObjectContext = {
         return persistentContainer.newBackgroundContext()
     }()
 
 
 
-
-
-    var fetchedResultsControllerPostCoreData: NSFetchedResultsController<PostCoreData>?
-
-
-
-
     init() {
+
+        self.createFetchedResultsControllerFolderPostsCoreData()
+
+        self.performFetchFolderPostsCoreData()
 
         self.createFetchedResultsControllerPostCoreData()
 
         self.performFetchPostCoreData()
 
-        self.reloadFolders()
 
-        if  self.folder == [] {
+        if self.fetchedResultsControllerFoldersPostCoreData?.sections?[0].objects?.isEmpty == true {
                 self.appendFolder(name: "SavedPosts")
             }
-
         }
 
 
@@ -72,13 +67,25 @@ final class CoreDataCoordinator {
     func performFetchPostCoreData() {
 
         do {
-            try self.fetchedResultsControllerPostCoreData!.performFetch()
+            try self.fetchedResultsControllerPostCoreData?.performFetch()
         }
         catch {
             print(error)
         }
     }
 
+
+
+
+    func performFetchFolderPostsCoreData() {
+
+        do {
+            try self.fetchedResultsControllerFoldersPostCoreData?.performFetch()
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+    }
 
 
     func createFetchedResultsControllerPostCoreData() {
@@ -94,8 +101,20 @@ final class CoreDataCoordinator {
         let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
 
         self.fetchedResultsControllerPostCoreData = fetchResultController
+    }
 
-      
+
+
+
+    func createFetchedResultsControllerFolderPostsCoreData() {
+
+        let request = FoldersPostCoreData.fetchRequest()
+
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+
+        let fetchedResultsControllerFolderPostsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
+
+        self.fetchedResultsControllerFoldersPostCoreData = fetchedResultsControllerFolderPostsController
     }
 
 
@@ -129,67 +148,14 @@ final class CoreDataCoordinator {
 
 
 
-    func reloadFolders() {
-        
-        let request = FoldersPostCoreData.fetchRequest()
-
-        do {
-
-            let folderBackgroundQueue = try self.backgroundContext.fetch(request)
-
-            self.folder = folderBackgroundQueue
-
-//            DispatchQueue.main.async {
-//                self.folder = folderBackgroundQueue
-//                completionHandler(folderBackgroundQueue)
-//            }
-        }
-        catch {
-            print(error.localizedDescription)
-
-
-        }
-    }
-
-
-
-
-    func reloadPosts(searchAuthor: String?) {
-
-        let request = PostCoreData.fetchRequest()
-
-        if searchAuthor != nil {
-
-            request.predicate = NSPredicate(format: "author contains[c] %@", searchAuthor!)
-        }
-
-        do {
-
-            let savedPosts = try self.backgroundContext.fetch(request)
-
-            self.savedPosts = savedPosts
-
-//            DispatchQueue.main.async {
-//                self.savedPosts = savedPosts
-//                completionHandler(savedPosts)
-//            }
-        }
-
-        catch {
-            print(error.localizedDescription)
-        }
-    }
-
-
-
-
     func appendFolder(name: String) {
 
         let folder = FoldersPostCoreData(context: self.backgroundContext
         )
         folder.name = name
         self.savePersistentContainerContext()
-        self.reloadFolders()
+        self.performFetchFolderPostsCoreData()
+
     }
 
 
@@ -200,7 +166,8 @@ final class CoreDataCoordinator {
         var folderObject: FoldersPostCoreData
 
         if folder == nil {
-            folderObject = self.folder[0]
+            folderObject = self.fetchedResultsControllerFoldersPostCoreData?.sections?.first?.objects?.first as! FoldersPostCoreData
+
         }
         else {
             folderObject = folder!
@@ -216,7 +183,7 @@ final class CoreDataCoordinator {
 
         post.relationFolder = folderObject
 
-        for postInCoreData in self.savedPosts {
+        for postInCoreData in (self.fetchedResultsControllerPostCoreData?.sections![0].objects) as! [PostCoreData] {
 
             if postInCoreData.text == post.text {
                 self.deletePost(post: post)
@@ -225,7 +192,7 @@ final class CoreDataCoordinator {
         }
         self.savePersistentContainerContext()
         self.performFetchPostCoreData()
-  //      self.reloadPosts(searchAuthor: nil)
+
     }
 
 
@@ -236,7 +203,7 @@ final class CoreDataCoordinator {
 
         self.backgroundContext.delete(folder)
         self.savePersistentContainerContext()
-        self.reloadFolders()
+        self.performFetchFolderPostsCoreData()
     }
 
 
@@ -246,8 +213,63 @@ final class CoreDataCoordinator {
         self.backgroundContext.delete(post)
         self.savePersistentContainerContext()
         self.performFetchPostCoreData()
- //       self.reloadPosts(searchAuthor: nil)
     }
 
 }
 
+
+
+
+
+
+
+
+
+//    func reloadFolders() {
+//
+//        let request = FoldersPostCoreData.fetchRequest()
+//
+//        do {
+//
+//            let folderBackgroundQueue = try self.backgroundContext.fetch(request)
+//
+//            self.folder = folderBackgroundQueue
+//
+////            DispatchQueue.main.async {
+////                self.folder = folderBackgroundQueue
+////                completionHandler(folderBackgroundQueue)
+////            }
+//        }
+//        catch {
+//            print(error.localizedDescription)
+//        }
+//    }
+
+
+
+
+//    func reloadPosts(searchAuthor: String?) {
+//
+//        let request = PostCoreData.fetchRequest()
+//
+//        if searchAuthor != nil {
+//
+//            request.predicate = NSPredicate(format: "author contains[c] %@", searchAuthor!)
+//        }
+//
+//        do {
+//
+//            let savedPosts = try self.backgroundContext.fetch(request)
+//
+//            self.savedPosts = savedPosts
+//
+////            DispatchQueue.main.async {
+////                self.savedPosts = savedPosts
+////                completionHandler(savedPosts)
+////            }
+//        }
+//
+//        catch {
+//            print(error.localizedDescription)
+//        }
+//    }
