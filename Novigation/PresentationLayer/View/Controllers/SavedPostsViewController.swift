@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CoreData
+
 
 class SavedPostsViewController: UIViewController {
 
@@ -50,6 +52,10 @@ class SavedPostsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+        self.coreDataCoordinator.fetchedResultsControllerPostCoreData.delegate = self
+    //    self.coreDataCoordinator.fetchedResultsControllerFoldersPostCoreData?.delegate = self
 
 
         self.navigationItem.rightBarButtonItems = [self.barButtonItemCancelSearch, self.barButtonItemSearch ]
@@ -68,10 +74,8 @@ class SavedPostsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadData()
 
     }
-
 
 
 
@@ -87,16 +91,14 @@ class SavedPostsViewController: UIViewController {
             self.textFieldSearchAuthor = textField
             }
 
-
         let actionSearch = UIAlertAction(title: "Найти", style: .default) {action in
 
 
             if self.textFieldSearchAuthor?.text != "" {
 
-                self.coreDataCoordinator.searchNameAuthor = self.textFieldSearchAuthor?.text
 
-                self.coreDataCoordinator.createFetchedResultsControllerPostCoreData()
-                
+                self.coreDataCoordinator.fetchedResultsControllerPostCoreData.fetchRequest.predicate = NSPredicate(format: "author contains[c] %@", self.textFieldSearchAuthor!.text!)
+
                 self.coreDataCoordinator.performFetchPostCoreData()
 
                 self.tableView.reloadData()
@@ -118,10 +120,7 @@ class SavedPostsViewController: UIViewController {
     @objc private func actionBarButtonItemCancelSearch() {
         print("actionBarButtonItemCancelSearch")
 
-        self.coreDataCoordinator.searchNameAuthor = nil
-
-        self.coreDataCoordinator.createFetchedResultsControllerPostCoreData()
-
+        self.coreDataCoordinator.fetchedResultsControllerPostCoreData.fetchRequest.predicate = nil
         self.coreDataCoordinator.performFetchPostCoreData()
 
         self.tableView.reloadData()
@@ -132,13 +131,12 @@ class SavedPostsViewController: UIViewController {
 
 
 
-
 extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  {
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.sections?[section].numberOfObjects ?? 0
+        return self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[section].numberOfObjects ?? 0
     }
 
 
@@ -153,8 +151,7 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
         }
 
 
-
-        let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData!.object(at: indexPath)
+        let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
 
         cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views, coreDataCoordinator: self.coreDataCoordinator)
         return cell
@@ -169,15 +166,15 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
 
 
+
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
         let action = UIContextualAction(style: .destructive, title: "Удалить из сохраненного") { [weak self] (uiContextualAction, uiView, completionHandler) in
 
-            let post = self!.coreDataCoordinator.fetchedResultsControllerPostCoreData!.object(at: indexPath)
+
+            let post = self!.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
 
             self!.coreDataCoordinator.deletePost(post: post)
-
-            self!.tableView.reloadData()
 
             completionHandler(true)
 
@@ -193,3 +190,16 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 }
 
 
+
+
+
+
+extension SavedPostsViewController: NSFetchedResultsControllerDelegate {
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+
+ //       newIndexPath
+        print(" 🌶️ NSFetchedResultsController<NSFetchRequestResult>, didChange anObject")
+        self.tableView.reloadData()
+    }
+}

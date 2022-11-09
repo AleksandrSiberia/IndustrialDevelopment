@@ -14,14 +14,6 @@ final class CoreDataCoordinator {
 
 
 
-    var searchNameAuthor: String?
-
-    var fetchedResultsControllerPostCoreData: NSFetchedResultsController<PostCoreData>?
-
-    var fetchedResultsControllerFoldersPostCoreData:
-    NSFetchedResultsController<FoldersPostCoreData>?
-
-
 
     private lazy var persistentContainer: NSPersistentContainer = {
 
@@ -33,29 +25,55 @@ final class CoreDataCoordinator {
                 fatalError("\(error), \(error.userInfo)")
             }
         }
+        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         return persistentContainer
     }()
 
 
 
+
+    lazy var fetchedResultsControllerPostCoreData: NSFetchedResultsController<PostCoreData> = {
+
+        let request = PostCoreData.fetchRequest()
+
+        request.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
+
+        let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
+
+        return fetchResultController
+    }()
+
+
+
+
+    lazy var fetchedResultsControllerFoldersPostCoreData:
+    NSFetchedResultsController<FoldersPostCoreData> = {
+
+        let request = FoldersPostCoreData.fetchRequest()
+
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+
+        let fetchedResultsControllerFolderPostsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
+        return fetchedResultsControllerFolderPostsController
+    }()
+
+
+
     private lazy var backgroundContext: NSManagedObjectContext = {
+  //      backgroundContext.automaticallyMergesChangesFromParent = true
         return persistentContainer.newBackgroundContext()
     }()
 
 
 
+    
     init() {
-
-        self.createFetchedResultsControllerFolderPostsCoreData()
 
         self.performFetchFolderPostsCoreData()
 
-        self.createFetchedResultsControllerPostCoreData()
-
         self.performFetchPostCoreData()
 
-
-        if self.fetchedResultsControllerFoldersPostCoreData?.sections?[0].objects?.isEmpty == true {
+        if self.fetchedResultsControllerFoldersPostCoreData.sections?[0].objects?.isEmpty == true {
                 self.appendFolder(name: "SavedPosts")
             }
         }
@@ -67,7 +85,7 @@ final class CoreDataCoordinator {
     func performFetchPostCoreData() {
 
         do {
-            try self.fetchedResultsControllerPostCoreData?.performFetch()
+            try self.fetchedResultsControllerPostCoreData.performFetch()
         }
         catch {
             print(error)
@@ -80,42 +98,13 @@ final class CoreDataCoordinator {
     func performFetchFolderPostsCoreData() {
 
         do {
-            try self.fetchedResultsControllerFoldersPostCoreData?.performFetch()
+            try self.fetchedResultsControllerFoldersPostCoreData.performFetch()
         }
         catch {
             print(error.localizedDescription)
         }
     }
 
-
-    func createFetchedResultsControllerPostCoreData() {
-
-        let request = PostCoreData.fetchRequest()
-
-        if self.searchNameAuthor != nil {
-            request.predicate = NSPredicate(format: "author contains[c] %@", searchNameAuthor!)
-        }
-
-        request.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
-
-        let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
-
-        self.fetchedResultsControllerPostCoreData = fetchResultController
-    }
-
-
-
-
-    func createFetchedResultsControllerFolderPostsCoreData() {
-
-        let request = FoldersPostCoreData.fetchRequest()
-
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-
-        let fetchedResultsControllerFolderPostsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
-
-        self.fetchedResultsControllerFoldersPostCoreData = fetchedResultsControllerFolderPostsController
-    }
 
 
 
@@ -166,7 +155,7 @@ final class CoreDataCoordinator {
         var folderObject: FoldersPostCoreData
 
         if folder == nil {
-            folderObject = self.fetchedResultsControllerFoldersPostCoreData?.sections?.first?.objects?.first as! FoldersPostCoreData
+            folderObject = self.fetchedResultsControllerFoldersPostCoreData.sections?.first?.objects?.first as! FoldersPostCoreData
 
         }
         else {
@@ -183,7 +172,7 @@ final class CoreDataCoordinator {
 
         post.relationFolder = folderObject
 
-        for postInCoreData in (self.fetchedResultsControllerPostCoreData?.sections![0].objects) as! [PostCoreData] {
+        for postInCoreData in (self.fetchedResultsControllerPostCoreData.sections![0].objects) as! [PostCoreData] {
 
             if postInCoreData.text == post.text {
                 self.deletePost(post: post)
@@ -216,8 +205,6 @@ final class CoreDataCoordinator {
     }
 
 }
-
-
 
 
 
