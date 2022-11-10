@@ -11,6 +11,8 @@ import CoreData
 
 class SavedPostsViewController: UIViewController {
 
+ 
+    
     var coreDataCoordinator: CoreDataCoordinator!
 
     private var nameAuthor: String = ""
@@ -52,7 +54,15 @@ class SavedPostsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        print("🍓", self.coreDataCoordinator.fetchedResultsControllerFoldersPostCoreData.sections?.first?.objects?.count)
+
+//        self.coreDataCoordinator.deleteFolder(folder: (self.coreDataCoordinator.fetchedResultsControllerFoldersPostCoreData.sections?.first?.objects?.first)! as! FoldersPostCoreData)
+//
+//        self.coreDataCoordinator.deleteFolder(folder: (self.coreDataCoordinator.fetchedResultsControllerFoldersPostCoreData.sections?.first?.objects?.first)! as! FoldersPostCoreData)
+//
+//        print("🍓", self.coreDataCoordinator.fetchedResultsControllerFoldersPostCoreData.sections?.first?.objects?.count)
+
 
         self.coreDataCoordinator.fetchedResultsControllerPostCoreData.delegate = self
     //    self.coreDataCoordinator.fetchedResultsControllerFoldersPostCoreData?.delegate = self
@@ -136,6 +146,12 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
+//        let folder = self.coreDataCoordinator.getFolderByName(nameFolder: "SavedPosts")
+//
+//        self.coreDataCoordinator.fetchedResultsControllerPostCoreData.fetchRequest.predicate = NSPredicate(format: "relationFolder contains %@", folder!)
+
+        print("🍊", self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[section].numberOfObjects ?? 0)
+
         return self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[section].numberOfObjects ?? 0
     }
 
@@ -150,8 +166,9 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
             return cell
         }
 
-
         let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
+
+        print("🥑", postCoreData.relationFolder)
 
         cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views, coreDataCoordinator: self.coreDataCoordinator)
         return cell
@@ -198,8 +215,23 @@ extension SavedPostsViewController: NSFetchedResultsControllerDelegate {
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
 
- //       newIndexPath
         print(" 🌶️ NSFetchedResultsController<NSFetchRequestResult>, didChange anObject")
-        self.tableView.reloadData()
+
+        switch type {
+
+        case .insert:
+            self.tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .move:
+            self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        case .update:
+            self.tableView.reloadRows(at: [indexPath!], with: .automatic)
+        case .delete:
+            self.tableView.deleteRows(at: [indexPath!], with: .automatic)
+        @unknown default:
+            self.tableView.reloadData()
+        }
+
+
+
     }
 }
