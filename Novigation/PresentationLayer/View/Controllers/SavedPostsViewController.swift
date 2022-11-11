@@ -65,8 +65,6 @@ class SavedPostsViewController: UIViewController {
 
 
         self.coreDataCoordinator.fetchedResultsControllerPostCoreData.delegate = self
-    //    self.coreDataCoordinator.fetchedResultsControllerFoldersPostCoreData?.delegate = self
-
 
         self.navigationItem.rightBarButtonItems = [self.barButtonItemCancelSearch, self.barButtonItemSearch ]
         self.view.addSubview(self.tableView)
@@ -84,10 +82,12 @@ class SavedPostsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.coreDataCoordinator.getSavedPosts(nameFolder: "SavedPosts")
 
     }
 
 
+   
 
 
     @objc private func actionBarButtonItemSearch() {
@@ -130,8 +130,7 @@ class SavedPostsViewController: UIViewController {
     @objc private func actionBarButtonItemCancelSearch() {
         print("actionBarButtonItemCancelSearch")
 
-        self.coreDataCoordinator.fetchedResultsControllerPostCoreData.fetchRequest.predicate = nil
-        self.coreDataCoordinator.performFetchPostCoreData()
+        self.coreDataCoordinator.getSavedPosts(nameFolder: "SavedPosts")
 
         self.tableView.reloadData()
     }
@@ -145,10 +144,6 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-//        let folder = self.coreDataCoordinator.getFolderByName(nameFolder: "SavedPosts")
-//
-//        self.coreDataCoordinator.fetchedResultsControllerPostCoreData.fetchRequest.predicate = NSPredicate(format: "relationFolder contains %@", folder!)
 
         print("🍊", self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[section].numberOfObjects ?? 0)
 
@@ -166,9 +161,10 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
             return cell
         }
 
+
         let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
 
-        print("🥑", postCoreData.relationFolder)
+//        print("🥑", postCoreData.relationFolder)
 
         cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views, coreDataCoordinator: self.coreDataCoordinator)
         return cell
@@ -187,6 +183,7 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
         let action = UIContextualAction(style: .destructive, title: "Удалить из сохраненного") { [weak self] (uiContextualAction, uiView, completionHandler) in
+
 
 
             let post = self!.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
@@ -230,8 +227,5 @@ extension SavedPostsViewController: NSFetchedResultsControllerDelegate {
         @unknown default:
             self.tableView.reloadData()
         }
-
-
-
     }
 }

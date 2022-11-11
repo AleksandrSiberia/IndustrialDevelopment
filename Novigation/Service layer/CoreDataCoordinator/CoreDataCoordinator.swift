@@ -44,11 +44,6 @@ final class CoreDataCoordinator {
 
         let request = PostCoreData.fetchRequest()
 
-        let folder = self.getFolderByName(nameFolder: "SavedPosts")
-
-        print("🍌", folder?.name)
-
- //       request.predicate = NSPredicate(format: "relationFolder contains %@", folder!)
 
         request.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
 
@@ -76,7 +71,7 @@ final class CoreDataCoordinator {
 
 
 
-    
+
     init() {
 
         self.performFetchFolderPostsCoreData()
@@ -94,6 +89,14 @@ final class CoreDataCoordinator {
 
 
 
+    func getSavedPosts(nameFolder: String) {
+
+        let folder = self.getFolderByName(nameFolder: nameFolder)
+
+        self.fetchedResultsControllerPostCoreData.fetchRequest.predicate = NSPredicate(format: "relationFolder contains %@", folder!)
+
+        self.performFetchPostCoreData()
+    }
 
 
 
@@ -189,10 +192,7 @@ final class CoreDataCoordinator {
 
         post.addToRelationFolder(folder!)
 
-
-
    //     post.relationFolder = [folder!]
-
 
         self.savePersistentContainerContext()
         self.performFetchPostCoreData()
