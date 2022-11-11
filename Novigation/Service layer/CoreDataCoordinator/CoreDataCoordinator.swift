@@ -25,7 +25,7 @@ final class CoreDataCoordinator {
                 fatalError("\(error), \(error.userInfo)")
             }
         }
-       persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         return persistentContainer
     }()
 
@@ -33,17 +33,17 @@ final class CoreDataCoordinator {
 
 
     private lazy var backgroundContext: NSManagedObjectContext = {
- //       backgroundContext.automaticallyMergesChangesFromParent = true
+        //       backgroundContext.automaticallyMergesChangesFromParent = true
         return persistentContainer.newBackgroundContext()
     }()
 
 
-    
+
+
 
     lazy var fetchedResultsControllerPostCoreData: NSFetchedResultsController<PostCoreData> = {
 
         let request = PostCoreData.fetchRequest()
-
 
         request.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
 
@@ -57,39 +57,25 @@ final class CoreDataCoordinator {
 
 
 
-    lazy var fetchedResultsControllerFoldersPostCoreData:
-    NSFetchedResultsController<FoldersPostCoreData> = {
-
-        let request = FoldersPostCoreData.fetchRequest()
-
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-
-        let fetchedResultsControllerFolderPostsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
-        return fetchedResultsControllerFolderPostsController
-    }()
-
-
-
-
 
     init() {
 
-        self.performFetchFolderPostsCoreData()
+
+        if self.getFolderByName(nameFolder: "SavedPosts") == nil {
+                    self.appendFolder(name: "SavedPosts")
+                }
+                if self.getFolderByName(nameFolder: "AllPosts") == nil {
+                    self.appendFolder(name: "AllPosts")
+                }
 
         self.performFetchPostCoreData()
 
 
-        if self.getFolderByName(nameFolder: "SavedPosts") == nil {
-            self.appendFolder(name: "SavedPosts")
-        }
-        if self.getFolderByName(nameFolder: "AllPosts") == nil {
-            self.appendFolder(name: "AllPosts")
-        }
     }
 
 
 
-    func getSavedPosts(nameFolder: String) {
+    func getPosts(nameFolder: String) {
 
         let folder = self.getFolderByName(nameFolder: nameFolder)
 
@@ -105,7 +91,7 @@ final class CoreDataCoordinator {
 
         do {
             try self.fetchedResultsControllerPostCoreData.performFetch()
-            print("🦴", self.fetchedResultsControllerPostCoreData.sections?.first?.objects?.count)
+
         }
         catch {
             print(error)
@@ -115,35 +101,14 @@ final class CoreDataCoordinator {
 
 
 
-    func performFetchFolderPostsCoreData() {
-
-        do {
-            try self.fetchedResultsControllerFoldersPostCoreData.performFetch()
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-    }
-
-
-
 
     func savePersistentContainerContext() {
 
-//        if  self.persistentContainer.viewContext.hasChanges {
-//
-//            do {
-//                try persistentContainer.viewContext.save()
-//            }
-//            catch {
-//                let nsError = error as NSError?
-//                fatalError("Error viewContext.save = \(String(describing: nsError)), \(String(describing: nsError?.userInfo))")
-//            }
-//        }
 
         if self.backgroundContext.hasChanges {
 
             do {
+
                 try self.backgroundContext.save()
             }
             catch {
@@ -163,7 +128,7 @@ final class CoreDataCoordinator {
         )
         folder.name = name
         self.savePersistentContainerContext()
-        self.performFetchFolderPostsCoreData()
+//        self.reloadFolders()
 
     }
 
@@ -172,6 +137,7 @@ final class CoreDataCoordinator {
 
     func appendPost(author: String?, image: String?, likes: String?, text: String?, views: String?, folderName: String, completion: (String?) -> Void) {
 
+        self.getPosts(nameFolder: "SavedPosts")
 
         for postInCoreData in (self.fetchedResultsControllerPostCoreData.sections![0].objects) as! [PostCoreData] {
 
@@ -181,6 +147,11 @@ final class CoreDataCoordinator {
             }
         }
 
+        self.getPosts(nameFolder: "AllPosts")
+
+
+
+        
         let post = PostCoreData(context: self.backgroundContext)
         post.author = author
         post.image = image
@@ -196,20 +167,12 @@ final class CoreDataCoordinator {
 
         self.savePersistentContainerContext()
         self.performFetchPostCoreData()
-
     }
 
 
 
+
     func getFolderByName(nameFolder: String) -> FoldersPostCoreData? {
-
-
-//        if self.getFolderByName(nameFolder: "SavedPosts") == nil {
-//            self.appendFolder(name: "SavedPosts")
-//        }
-//        if self.getFolderByName(nameFolder: "AllPosts") == nil {
-//            self.appendFolder(name: "AllPosts")
-//        }
 
 
         let request = FoldersPostCoreData.fetchRequest()
@@ -228,12 +191,28 @@ final class CoreDataCoordinator {
 
 
 
+    func getAllFolders() -> [FoldersPostCoreData]? {
+
+        let request = FoldersPostCoreData.fetchRequest()
+
+        do {
+            return try self.backgroundContext.fetch(request)
+        }
+        catch {
+            print(error.localizedDescription)
+            return nil
+        }
+
+    }
+
+
+
     func deleteFolder(folder: FoldersPostCoreData) {
 
 
         self.backgroundContext.delete(folder)
         self.savePersistentContainerContext()
-        self.performFetchFolderPostsCoreData()
+//        self.reloadFolders()
     }
 
 
@@ -252,26 +231,6 @@ final class CoreDataCoordinator {
 
 
 
-
-//    func reloadFolders() {
-//
-//        let request = FoldersPostCoreData.fetchRequest()
-//
-//        do {
-//
-//            let folderBackgroundQueue = try self.backgroundContext.fetch(request)
-//
-//            self.folder = folderBackgroundQueue
-//
-////            DispatchQueue.main.async {
-////                self.folder = folderBackgroundQueue
-////                completionHandler(folderBackgroundQueue)
-////            }
-//        }
-//        catch {
-//            print(error.localizedDescription)
-//        }
-//    }
 
 
 

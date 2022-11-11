@@ -72,9 +72,11 @@ class RootCoordinator: AppCoordinatorProtocol {
 
     func startProfileCoordinator(user: User) {
         
-
         let profileCoordinator = ProfileCoordinator(transitionHandler: self.navLoginView!, coreDataCoordinator: self.coreDataCoordinator)
         self.childs.append(profileCoordinator)
+
+        profileCoordinator.coreDataCoordinator = self.coreDataCoordinator
+
         profileCoordinator.start(user: user)
     }
 }

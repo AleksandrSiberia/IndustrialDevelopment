@@ -55,15 +55,6 @@ class SavedPostsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("🍓", self.coreDataCoordinator.fetchedResultsControllerFoldersPostCoreData.sections?.first?.objects?.count)
-
-//        self.coreDataCoordinator.deleteFolder(folder: (self.coreDataCoordinator.fetchedResultsControllerFoldersPostCoreData.sections?.first?.objects?.first)! as! FoldersPostCoreData)
-//
-//        self.coreDataCoordinator.deleteFolder(folder: (self.coreDataCoordinator.fetchedResultsControllerFoldersPostCoreData.sections?.first?.objects?.first)! as! FoldersPostCoreData)
-//
-//        print("🍓", self.coreDataCoordinator.fetchedResultsControllerFoldersPostCoreData.sections?.first?.objects?.count)
-
-
         self.coreDataCoordinator.fetchedResultsControllerPostCoreData.delegate = self
 
         self.navigationItem.rightBarButtonItems = [self.barButtonItemCancelSearch, self.barButtonItemSearch ]
@@ -82,7 +73,14 @@ class SavedPostsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.coreDataCoordinator.getSavedPosts(nameFolder: "SavedPosts")
+
+
+
+        self.coreDataCoordinator.getPosts(nameFolder: "SavedPosts")
+
+        self.coreDataCoordinator.performFetchPostCoreData()
+
+        self.tableView.reloadData()
 
     }
 
@@ -130,7 +128,7 @@ class SavedPostsViewController: UIViewController {
     @objc private func actionBarButtonItemCancelSearch() {
         print("actionBarButtonItemCancelSearch")
 
-        self.coreDataCoordinator.getSavedPosts(nameFolder: "SavedPosts")
+        self.coreDataCoordinator.getPosts(nameFolder: "SavedPosts")
 
         self.tableView.reloadData()
     }
@@ -144,8 +142,6 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        print("🍊", self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[section].numberOfObjects ?? 0)
 
         return self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[section].numberOfObjects ?? 0
     }
@@ -161,10 +157,8 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
             return cell
         }
 
-
         let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
 
-//        print("🥑", postCoreData.relationFolder)
 
         cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views, coreDataCoordinator: self.coreDataCoordinator)
         return cell

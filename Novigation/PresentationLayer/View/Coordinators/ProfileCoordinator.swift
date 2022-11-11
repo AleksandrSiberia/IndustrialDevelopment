@@ -22,10 +22,12 @@ class ProfileCoordinator: AppCoordinatorProtocol {
 
     func start(user: User) {
 
+      
+
         let profileViewController = ProfileAssembly.createProfileViewController()
         profileViewController.currentUser = user
         profileViewController.coreDataCoordinator = self.coreDataCoordinator
-
+  
         self.transitionHandler?.pushViewController(profileViewController, animated: true)
     }
 }
