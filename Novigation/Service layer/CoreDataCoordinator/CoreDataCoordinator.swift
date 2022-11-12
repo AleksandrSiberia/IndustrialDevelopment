@@ -14,11 +14,6 @@ final class CoreDataCoordinator {
 
 
 
-    var folder: [FoldersPostCoreData] = []
-
-    var savedPosts: [PostCoreData] = []
-
-
 
     private lazy var persistentContainer: NSPersistentContainer = {
 
@@ -30,6 +25,7 @@ final class CoreDataCoordinator {
                 fatalError("\(error), \(error.userInfo)")
             }
         }
+        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         return persistentContainer
     }()
 
@@ -37,41 +33,82 @@ final class CoreDataCoordinator {
 
 
     private lazy var backgroundContext: NSManagedObjectContext = {
+        //       backgroundContext.automaticallyMergesChangesFromParent = true
         return persistentContainer.newBackgroundContext()
     }()
 
 
 
 
-    init() {
-        self.reloadFolders()
-        self.reloadPosts(searchAuthor: nil)
 
-        if  self.folder == [] {
-                self.appendFolder(name: "SavedPosts")
-            }
+    lazy var fetchedResultsControllerPostCoreData: NSFetchedResultsController<PostCoreData> = {
+
+        let request = PostCoreData.fetchRequest()
+
+        request.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
+
+
+        let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
+
+
+        return fetchResultController
+    }()
+
+
+
+
+
+    init() {
+
+
+        if self.getFolderByName(nameFolder: "SavedPosts") == nil {
+                    self.appendFolder(name: "SavedPosts")
+                }
+                if self.getFolderByName(nameFolder: "AllPosts") == nil {
+                    self.appendFolder(name: "AllPosts")
+                }
+
+        self.performFetchPostCoreData()
+
+
+    }
+
+
+
+    func getPosts(nameFolder: String) {
+
+        let folder = self.getFolderByName(nameFolder: nameFolder)
+
+        self.fetchedResultsControllerPostCoreData.fetchRequest.predicate = NSPredicate(format: "relationFolder contains %@", folder!)
+
+        self.performFetchPostCoreData()
+    }
+
+
+
+
+    func performFetchPostCoreData() {
+
+        do {
+            try self.fetchedResultsControllerPostCoreData.performFetch()
 
         }
+        catch {
+            print(error)
+        }
+    }
+
 
 
 
 
     func savePersistentContainerContext() {
 
-//        if  self.persistentContainer.viewContext.hasChanges {
-//
-//            do {
-//                try persistentContainer.viewContext.save()
-//            }
-//            catch {
-//                let nsError = error as NSError?
-//                fatalError("Error viewContext.save = \(String(describing: nsError)), \(String(describing: nsError?.userInfo))")
-//            }
-//        }
 
         if self.backgroundContext.hasChanges {
 
             do {
+
                 try self.backgroundContext.save()
             }
             catch {
@@ -85,83 +122,36 @@ final class CoreDataCoordinator {
 
 
 
-    func reloadFolders() {
-        
-        let request = FoldersPostCoreData.fetchRequest()
-
-        do {
-
-            let folderBackgroundQueue = try self.backgroundContext.fetch(request)
-
-            self.folder = folderBackgroundQueue
-
-//            DispatchQueue.main.async {
-//                self.folder = folderBackgroundQueue
-//                completionHandler(folderBackgroundQueue)
-//            }
-        }
-        catch {
-            print(error.localizedDescription)
-
-
-        }
-    }
-
-
-
-
-    func reloadPosts(searchAuthor: String?) {
-
-        let request = PostCoreData.fetchRequest()
-
-        if searchAuthor != nil {
-
-            request.predicate = NSPredicate(format: "author contains[c] %@", searchAuthor!)
-        }
-
-        do {
-
-            let savedPosts = try self.backgroundContext.fetch(request)
-
-            self.savedPosts = savedPosts
-
-//            DispatchQueue.main.async {
-//                self.savedPosts = savedPosts
-//                completionHandler(savedPosts)
-//            }
-        }
-
-        catch {
-            print(error.localizedDescription)
-        }
-    }
-
-
-
-
     func appendFolder(name: String) {
 
         let folder = FoldersPostCoreData(context: self.backgroundContext
         )
         folder.name = name
         self.savePersistentContainerContext()
-        self.reloadFolders()
+//        self.reloadFolders()
+
     }
 
 
 
 
-    func appendPost(author: String?, image: String?, likes: String?, text: String?, views: String?, folder: FoldersPostCoreData?, completion: (String?) -> Void) {
+    func appendPost(author: String?, image: String?, likes: String?, text: String?, views: String?, folderName: String, completion: (String?) -> Void) {
 
-        var folderObject: FoldersPostCoreData
+        self.getPosts(nameFolder: "SavedPosts")
 
-        if folder == nil {
-            folderObject = self.folder[0]
+        for postInCoreData in (self.fetchedResultsControllerPostCoreData.sections![0].objects) as! [PostCoreData] {
+
+            if postInCoreData.text == text {
+                completion("Этот пост уже сохранен")
+                return
+            }
         }
-        else {
-            folderObject = folder!
-        }
 
+        self.getPosts(nameFolder: "AllPosts")
+
+
+
+        
         let post = PostCoreData(context: self.backgroundContext)
         post.author = author
         post.image = image
@@ -169,20 +159,51 @@ final class CoreDataCoordinator {
         post.likes = likes
         post.views = views
 
+        let folder = self.getFolderByName(nameFolder: folderName)
 
-        post.relationFolder = folderObject
+        post.addToRelationFolder(folder!)
 
-        for postInCoreData in self.savedPosts {
+   //     post.relationFolder = [folder!]
 
-            if postInCoreData.text == post.text {
-                self.deletePost(post: post)
-                completion("Этот пост уже сохранен")
-            }
-        }
         self.savePersistentContainerContext()
-        self.reloadPosts(searchAuthor: nil)
+        self.performFetchPostCoreData()
     }
 
+
+
+
+    func getFolderByName(nameFolder: String) -> FoldersPostCoreData? {
+
+
+        let request = FoldersPostCoreData.fetchRequest()
+
+        request.predicate = NSPredicate(format: "name == %@", nameFolder)
+
+        do {
+            let folder = try self.backgroundContext.fetch(request).first
+            return folder
+        }
+        catch {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+
+
+
+    func getAllFolders() -> [FoldersPostCoreData]? {
+
+        let request = FoldersPostCoreData.fetchRequest()
+
+        do {
+            return try self.backgroundContext.fetch(request)
+        }
+        catch {
+            print(error.localizedDescription)
+            return nil
+        }
+
+    }
 
 
 
@@ -191,7 +212,7 @@ final class CoreDataCoordinator {
 
         self.backgroundContext.delete(folder)
         self.savePersistentContainerContext()
-        self.reloadFolders()
+//        self.reloadFolders()
     }
 
 
@@ -200,8 +221,42 @@ final class CoreDataCoordinator {
 
         self.backgroundContext.delete(post)
         self.savePersistentContainerContext()
-        self.reloadPosts(searchAuthor: nil)
+        self.performFetchPostCoreData()
     }
 
 }
 
+
+
+
+
+
+
+
+
+
+//    func reloadPosts(searchAuthor: String?) {
+//
+//        let request = PostCoreData.fetchRequest()
+//
+//        if searchAuthor != nil {
+//
+//            request.predicate = NSPredicate(format: "author contains[c] %@", searchAuthor!)
+//        }
+//
+//        do {
+//
+//            let savedPosts = try self.backgroundContext.fetch(request)
+//
+//            self.savedPosts = savedPosts
+//
+////            DispatchQueue.main.async {
+////                self.savedPosts = savedPosts
+////                completionHandler(savedPosts)
+////            }
+//        }
+//
+//        catch {
+//            print(error.localizedDescription)
+//        }
+//    }

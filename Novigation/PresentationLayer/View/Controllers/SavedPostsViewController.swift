@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import CoreData
+
 
 class SavedPostsViewController: UIViewController {
 
+ 
+    
     var coreDataCoordinator: CoreDataCoordinator!
 
     private var nameAuthor: String = ""
@@ -51,6 +55,7 @@ class SavedPostsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.coreDataCoordinator.fetchedResultsControllerPostCoreData.delegate = self
 
         self.navigationItem.rightBarButtonItems = [self.barButtonItemCancelSearch, self.barButtonItemSearch ]
         self.view.addSubview(self.tableView)
@@ -68,12 +73,19 @@ class SavedPostsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+
+
+        self.coreDataCoordinator.getPosts(nameFolder: "SavedPosts")
+
+        self.coreDataCoordinator.performFetchPostCoreData()
+
         self.tableView.reloadData()
 
     }
 
 
-
+   
 
 
     @objc private func actionBarButtonItemSearch() {
@@ -87,12 +99,16 @@ class SavedPostsViewController: UIViewController {
             self.textFieldSearchAuthor = textField
             }
 
-
         let actionSearch = UIAlertAction(title: "Найти", style: .default) {action in
 
+
             if self.textFieldSearchAuthor?.text != "" {
-                print("search")
-                self.coreDataCoordinator.reloadPosts(searchAuthor: self.textFieldSearchAuthor?.text)
+
+
+                self.coreDataCoordinator.fetchedResultsControllerPostCoreData.fetchRequest.predicate = NSPredicate(format: "author contains[c] %@", self.textFieldSearchAuthor!.text!)
+
+                self.coreDataCoordinator.performFetchPostCoreData()
+
                 self.tableView.reloadData()
             }
         }
@@ -112,13 +128,11 @@ class SavedPostsViewController: UIViewController {
     @objc private func actionBarButtonItemCancelSearch() {
         print("actionBarButtonItemCancelSearch")
 
-        self.coreDataCoordinator.reloadPosts(searchAuthor: nil)
+        self.coreDataCoordinator.getPosts(nameFolder: "SavedPosts")
+
         self.tableView.reloadData()
-
-
     }
 }
-
 
 
 
@@ -129,7 +143,7 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return self.coreDataCoordinator.savedPosts.count
+        return self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[section].numberOfObjects ?? 0
     }
 
 
@@ -143,13 +157,8 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
             return cell
         }
 
-        if  self.coreDataCoordinator.savedPosts.isEmpty == true {
-             assertionFailure(CustomErrorNovigation.noPost.rawValue)
-        }
+        let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
 
-        let indexPathRow = indexPath.row
-
-        let postCoreData = self.coreDataCoordinator.savedPosts[indexPathRow]
 
         cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views, coreDataCoordinator: self.coreDataCoordinator)
         return cell
@@ -158,15 +167,22 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
 
 
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        self.coreDataCoordinator.fetchResultController.sections?.count ?? 0
+//    }
+
+
+
+
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
         let action = UIContextualAction(style: .destructive, title: "Удалить из сохраненного") { [weak self] (uiContextualAction, uiView, completionHandler) in
 
-            let post = self!.coreDataCoordinator.savedPosts[indexPath.row]
+
+
+            let post = self!.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
 
             self!.coreDataCoordinator.deletePost(post: post)
-
-            self!.tableView.reloadData()
 
             completionHandler(true)
 
@@ -182,3 +198,28 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 }
 
 
+
+
+
+
+extension SavedPostsViewController: NSFetchedResultsControllerDelegate {
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+
+        print(" 🌶️ NSFetchedResultsController<NSFetchRequestResult>, didChange anObject")
+
+        switch type {
+
+        case .insert:
+            self.tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .move:
+            self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        case .update:
+            self.tableView.reloadRows(at: [indexPath!], with: .automatic)
+        case .delete:
+            self.tableView.deleteRows(at: [indexPath!], with: .automatic)
+        @unknown default:
+            self.tableView.reloadData()
+        }
+    }
+}

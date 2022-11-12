@@ -8,6 +8,7 @@
 import UIKit
 import iOSIntPackage
 import FirebaseAuth
+import CoreData
 
 
 
@@ -78,6 +79,8 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
         
         self.view.addSubview(self.tableView)
         self.view.addGestureRecognizer(self.tapGestureRecogniser)
@@ -91,12 +94,27 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
 
+
+//        self.coreDataCoordinator.fetchedResultsControllerPostCoreData.delegate = self
+
+        
         if self.delegate != nil {
             self.delegate.showPost()
         }
         handle = Auth.auth().addStateDidChangeListener { auth, user in
           // ...
         }
+
+
+        self.coreDataCoordinator.getPosts(nameFolder: "AllPosts")
+
+        if (self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?.first?.objects?.isEmpty)! {
+            for post in arrayModelPost {
+                self.coreDataCoordinator.appendPost(author: post.author, image: post.image, likes: String(post.likes), text: post.description, views: String(post.views), folderName: "AllPosts") { _ in
+                }
+            }
+        }
+
         self.tableView.reloadData()
     }
 
@@ -108,6 +126,9 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
         self.output?.timerStop()
         Auth.auth().removeStateDidChangeListener(handle!)
+
+ 
+
     }
 
 
@@ -158,7 +179,15 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-            return section == 1 ? self.posts.count : 1
+        if section == 0 {
+            return 1
+        }
+        if section == 1 {
+            return self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[0].objects?.count ?? 0
+        }
+        else {
+            return 0
+        }
     }
 
 
@@ -178,16 +207,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
                 return cell
             }
 
+//            if self.posts.isEmpty == true && self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[0].objects?.isEmpty == true {
+//                assertionFailure(CustomErrorNovigation.noPost.rawValue)
+//            }
 
-            if self.posts.isEmpty == true && self.coreDataCoordinator.savedPosts.isEmpty == true {
-                assertionFailure(CustomErrorNovigation.noPost.rawValue)
-            }
-
-            let indexPathRow = indexPath.row
-
-            let post = self.posts[indexPathRow]
+            let post = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?.first?.objects![indexPath.row] as! PostCoreData
             
-            cell.setup(author: post.author, image: post.image, likes: String(post.likes), text: post.description, views: String(post.views), coreDataCoordinator: self.coreDataCoordinator)
+            cell.setup(author: post.author, image: post.image, likes: post.likes, text: post.text, views: post.views, coreDataCoordinator: self.coreDataCoordinator)
             return cell
         }
     }
@@ -221,6 +247,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
     }
 }
 
+
+extension ProfileViewController: NSFetchedResultsControllerDelegate {
+
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        self.tableView.reloadData()
+    }
+}
 
 
 
