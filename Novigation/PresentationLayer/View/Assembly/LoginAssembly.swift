@@ -17,7 +17,7 @@ final class LoginAssembly {
         let view = LoginViewController()
         let viewModel = LoginViewModel(coordinator: coordinator)
         let loginInspector = MyLoginFactory().makeLoginInspector()
-        let checkPassword = CheckPassword()
+        let checkPassword = CheckerPassword()
         checkPassword.view = view
 
         view.loginDelegate = loginInspector

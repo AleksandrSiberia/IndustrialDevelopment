@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FoldersPostCoreData" representedClassName="FoldersPostCoreData" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="relationPost" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PostCoreData" inverseName="relationFolder" inverseEntity="PostCoreData"/>
+    </entity>
+    <entity name="PostCoreData" representedClassName="PostCoreData" syncable="YES" codeGenerationType="class">
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="likes" optional="YES" attributeType="String"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <attribute name="views" optional="YES" attributeType="String"/>
+        <relationship name="relationFolder" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FoldersPostCoreData" inverseName="relationPost" inverseEntity="FoldersPostCoreData"/>
+    </entity>
+</model>

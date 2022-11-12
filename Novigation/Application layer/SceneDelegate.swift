@@ -11,7 +11,7 @@ import FirebaseAuth
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var rootCoordinator: AppCoordinator?
+    var rootCoordinator: AppCoordinatorProtocol?
     var appConfiguration: String?
 
 
