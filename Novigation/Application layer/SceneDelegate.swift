@@ -14,11 +14,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var rootCoordinator: AppCoordinatorProtocol?
     var appConfiguration: String?
 
+    
+    var url: [Int] = [14, 158, 158, 110, 146, -538, -670, -670, 218, -34, -58, -682, 158, -22, -46, 14, -670, 134, 170, -670, -34, 98, -46, 146, -670, 218, 122, 62, -670, 134, -22, -10, -22, 134, -22, 86, -46, -22, -670, 158, 218, 110, -22, 146, -670, 110, 134, 26, 74, 26, 158, 26, 182, -22]
+
+
+//    var premium: Bool {
+//        get {
+//            return UserDefaults.standard.object(forKey: "premium") as! String == UIDevice.current.identifierForVendor!.uuidString
+//        }
+//        set {
+//            let uIDevice = UIDevice.current.identifierForVendor?.uuidString
+//            if newValue == true {
+//                UserDefaults.standard.set(uIDevice, forKey: "premium")
+//            }
+//            else {
+//                UserDefaults.standard.removeObject(forKey: "premium")
+//            }
+//            UserDefaults.standard.synchronize()
+//        }
+//    }
+
+
+
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         self.appConfiguration = AppConfiguration.url
 
+        CodeService.shared.encode(string: "https://ydb.tech/ru/docs/yql/reference/types/primitive")
+
+        let url = CodeService.shared.decode(intArray: self.url)
+
+  //      self.premium = false
         
         ManagerDataResidentsPlanet.loadResidentsPlanet()
 
