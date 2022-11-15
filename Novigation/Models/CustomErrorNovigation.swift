@@ -13,7 +13,7 @@ enum CustomErrorNovigation: String, Error {
     case invalidPasswordOrLogin = "Неправильный пароль или логин"
 
     case noPost = "Отсутствует контент"
-
+    
     case noWord = "Набрано неправильное слово"
 }
 
