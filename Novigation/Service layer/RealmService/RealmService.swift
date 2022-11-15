@@ -7,17 +7,41 @@
 
 import Foundation
 import RealmSwift
+import KeychainSwift
+
+
+
 
 final class RealmService {
 
 
-    let realm = try! Realm()
+
+    lazy var config = Realm.Configuration(encryptionKey: KeychainSwift().getData("realmKey"))
+
+
+    lazy var realm = try! Realm(configuration: config)
 
     static let shared = RealmService()
 
 
+
     private init(){
+
     }
+
+
+    
+    func setRealmKey() -> Data {
+
+        var key = Data(count: 64)
+
+        _ = key.withUnsafeMutableBytes { (pointer:
+                                            UnsafeMutableRawBufferPointer) in
+            SecRandomCopyBytes(kSecRandomDefault, 64, pointer.baseAddress!) }
+
+        return key
+    }
+
 
 
     func setCategory(name: String) {
@@ -49,6 +73,7 @@ final class RealmService {
 
 
     func getAllCategory() -> [RealmCategoryModel] {
+
 
         let arrayRealmCategory = realm.objects(RealmCategoryModel.self)
         let arrayCategory = Array(arrayRealmCategory)

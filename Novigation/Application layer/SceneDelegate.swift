@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import KeychainSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -14,13 +15,44 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var rootCoordinator: AppCoordinatorProtocol?
     var appConfiguration: String?
 
+    var keychainSwift = KeychainSwift()
+    
+
+
+
+//    var premium: Bool {
+//        get {
+//            return UserDefaults.standard.object(forKey: "premium") as! String == UIDevice.current.identifierForVendor!.uuidString
+//        }
+//        set {
+//            let uIDevice = UIDevice.current.identifierForVendor?.uuidString
+//            if newValue == true {
+//                UserDefaults.standard.set(uIDevice, forKey: "premium")
+//            }
+//            else {
+//                UserDefaults.standard.removeObject(forKey: "premium")
+//            }
+//            UserDefaults.standard.synchronize()
+//        }
+//    }
+
+
+
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         self.appConfiguration = AppConfiguration.url
 
+   //     keychainSwift.delete("realmKey")
+
+
+        if keychainSwift.getData("realmKey") == nil {
+            self.keychainSwift.set(RealmService.shared.setRealmKey(), forKey: "realmKey")
+        }
+
         
         ManagerDataResidentsPlanet.loadResidentsPlanet()
+
 
         
         // Код ошибки без интернета:
