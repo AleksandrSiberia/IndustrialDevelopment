@@ -65,6 +65,7 @@
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
 		8B857E1F291FBBDB00ABD4A0 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749BB28EC22CF007DE402 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 */; };
 		8B857E212922248600ABD4A0 /* CodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E202922248600ABD4A0 /* CodeService.swift */; };
+		8B857E252922638C00ABD4A0 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B857E242922638C00ABD4A0 /* KeychainSwift */; };
 		8B975F3228D0A71500CC47D9 /* AppCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinatorProtocol.swift */; };
 		8B975F3B28D0B5E100CC47D9 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */; };
 		8B975F3F28D1B37A00CC47D9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3E28D1B37A00CC47D9 /* ViewModel.swift */; };
@@ -210,6 +211,7 @@
 				8B474A6D290BBC5E007DE402 /* RealmSwift in Frameworks */,
 				8B14FAB828B8AC9B006DE94A /* iOSIntPackage in Frameworks */,
 				8B474A1628FAD9B1007DE402 /* FirebaseAuth in Frameworks */,
+				8B857E252922638C00ABD4A0 /* KeychainSwift in Frameworks */,
 				8B388D4428B37D79000FF22E /* StorageService.framework in Frameworks */,
 				C5099F1DD9B0E11F9C08BD25 /* Pods_Novigation.framework in Frameworks */,
 				8BED12D728C6018D006FF146 /* iOSIntPackage in Frameworks */,
@@ -520,6 +522,7 @@
 				8BED12D628C6018D006FF146 /* iOSIntPackage */,
 				8B474A1528FAD9B1007DE402 /* FirebaseAuth */,
 				8B474A6C290BBC5E007DE402 /* RealmSwift */,
+				8B857E242922638C00ABD4A0 /* KeychainSwift */,
 			);
 			productName = Novigation;
 			productReference = 8B30DF25283A1CC6006763B9 /* Novigation.app */;
@@ -576,6 +579,7 @@
 				8BED12D528C6018D006FF146 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 				8B474A1428FAD9B1007DE402 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				8B474A6B290BBC5D007DE402 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				8B857E232922638C00ABD4A0 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 8B30DF26283A1CC6006763B9 /* Products */;
 			projectDirPath = "";
@@ -1076,6 +1080,14 @@
 				kind = branch;
 			};
 		};
+		8B857E232922638C00ABD4A0 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		8BED12D528C6018D006FF146 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage.git";
@@ -1101,6 +1113,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B474A6B290BBC5D007DE402 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		8B857E242922638C00ABD4A0 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B857E232922638C00ABD4A0 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
 		};
 		8BED12D628C6018D006FF146 /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
