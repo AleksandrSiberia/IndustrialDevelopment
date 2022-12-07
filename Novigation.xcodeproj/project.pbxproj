@@ -91,6 +91,7 @@
 		8BF7CEAD29408666001FD64C /* FeedViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEA929407A96001FD64C /* FeedViewControllerLocalizable.strings */; };
 		8BF7CEB4294096C8001FD64C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F0D1A285728B1008F75C0 /* LoginViewController.swift */; };
 		8BF7CEB5294096CB001FD64C /* LoginViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEB229409575001FD64C /* LoginViewControllerLocalizable.strings */; };
+		8BF7CEBE2940AB72001FD64C /* SavedPostsViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEC02940AB72001FD64C /* SavedPostsViewControllerLocalizable.strings */; };
 		A9FA78F6BCF85A2EB8A42989 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */; };
 		C5099F1DD9B0E11F9C08BD25 /* Pods_Novigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */; };
 /* End PBXBuildFile section */
@@ -205,6 +206,8 @@
 		8BF7CEAB29407AD7001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/FeedViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		8BF7CEB129409575001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LoginViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		8BF7CEB329409579001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LoginViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CEBF2940AB72001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SavedPostsViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CEC12940AB74001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SavedPostsViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Novigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE8B5B8C2056D2BE18FF5E0 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -488,6 +491,7 @@
 			children = (
 				8BF7CEA929407A96001FD64C /* FeedViewControllerLocalizable.strings */,
 				8BF7CEB229409575001FD64C /* LoginViewControllerLocalizable.strings */,
+				8BF7CEC02940AB72001FD64C /* SavedPostsViewControllerLocalizable.strings */,
 			);
 			path = "Localizable ";
 			sourceTree = "<group>";
@@ -626,6 +630,7 @@
 				8BF7CEB5294096CB001FD64C /* LoginViewControllerLocalizable.strings in Resources */,
 				8B4749CF28EEA75A007DE402 /* Siberia.mp4 in Resources */,
 				8B474A1228FAC698007DE402 /* GoogleService-Info.plist in Resources */,
+				8BF7CEBE2940AB72001FD64C /* SavedPostsViewControllerLocalizable.strings in Resources */,
 				8B4749C228EC2335007DE402 /* Tinlicker_Robert_Miles_-_Children.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -817,6 +822,15 @@
 				8BF7CEB329409579001FD64C /* ru */,
 			);
 			name = LoginViewControllerLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		8BF7CEC02940AB72001FD64C /* SavedPostsViewControllerLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BF7CEBF2940AB72001FD64C /* en */,
+				8BF7CEC12940AB74001FD64C /* ru */,
+			);
+			name = SavedPostsViewControllerLocalizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
