@@ -89,6 +89,7 @@
 		8BED12E028C8C01D006FF146 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12DF28C8C01D006FF146 /* CustomButton.swift */; };
 		8BED12E228CA061C006FF146 /* bluePixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12E128CA061C006FF146 /* bluePixel.swift */; };
 		8BED12E628CA1680006FF146 /* CheckWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12E528CA1680006FF146 /* CheckWord.swift */; };
+		8BF7CEAD29408666001FD64C /* FeedViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEA929407A96001FD64C /* FeedViewControllerLocalizable.strings */; };
 		A9FA78F6BCF85A2EB8A42989 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */; };
 		C5099F1DD9B0E11F9C08BD25 /* Pods_Novigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */; };
 /* End PBXBuildFile section */
@@ -198,6 +199,9 @@
 		8BED12DF28C8C01D006FF146 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		8BED12E128CA061C006FF146 /* bluePixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bluePixel.swift; sourceTree = "<group>"; };
 		8BED12E528CA1680006FF146 /* CheckWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckWord.swift; sourceTree = "<group>"; };
+		8BF7CEA22940795A001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		8BF7CEA829407A96001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FeedViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CEAB29407AD7001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/FeedViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Novigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE8B5B8C2056D2BE18FF5E0 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -309,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				8B474A1128FAC697007DE402 /* GoogleService-Info.plist */,
+				8BF7CEAC29407EDE001FD64C /* Localizable  */,
 				8BED12DE28C8BD9B006FF146 /* Application layer */,
 				8B138F3228DA489900ACA1B9 /* Service layer */,
 				8BED12DA28C8BD59006FF146 /* Models */,
@@ -475,6 +480,14 @@
 			path = "Application layer";
 			sourceTree = "<group>";
 		};
+		8BF7CEAC29407EDE001FD64C /* Localizable  */ = {
+			isa = PBXGroup;
+			children = (
+				8BF7CEA929407A96001FD64C /* FeedViewControllerLocalizable.strings */,
+			);
+			path = "Localizable ";
+			sourceTree = "<group>";
+		};
 		91F713A0BD514BC619B6D40D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +585,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 8B30DF1C283A1CC6006763B9;
 			packageReferences = (
@@ -598,6 +612,7 @@
 			files = (
 				8B4749CB28EDA4C9007DE402 /* Record.mp4 in Resources */,
 				8B4749C028EC2310007DE402 /* Paul_Van_Dyk_Aly_Fila_-_SHINE_Ibiza_Anthem.mp3 in Resources */,
+				8BF7CEAD29408666001FD64C /* FeedViewControllerLocalizable.strings in Resources */,
 				8B4749BA28EC22A5007DE402 /* Armin_van_Buuren_-_In_And_Out_Of_Love.mp3 in Resources */,
 				8B4749CE28EEA756007DE402 /* record2.mp4 in Resources */,
 				8B857E1F291FBBDB00ABD4A0 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 in Resources */,
@@ -776,8 +791,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				8B30DF34283A1CC7006763B9 /* Base */,
+				8BF7CEA22940795A001FD64C /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		8BF7CEA929407A96001FD64C /* FeedViewControllerLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BF7CEA829407A96001FD64C /* en */,
+				8BF7CEAB29407AD7001FD64C /* ru */,
+			);
+			name = FeedViewControllerLocalizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -787,6 +812,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -847,6 +873,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
