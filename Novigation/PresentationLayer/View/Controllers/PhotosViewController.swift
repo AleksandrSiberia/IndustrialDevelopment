@@ -44,7 +44,7 @@ class PhotosViewController: UIViewController {
         self.view.backgroundColor = .systemGray6
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.backgroundColor = .systemGray6
-        self.navigationItem.title = "Photos Gallery"
+        self.navigationItem.title = NSLocalizedString("navigationItem.title", tableName: "PhotosViewControllerLocalizable", comment: "")
         self.view.addSubview(self.collectionView)
         setupConstraints()
 

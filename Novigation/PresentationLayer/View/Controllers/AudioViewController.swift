@@ -62,7 +62,7 @@ class AudioViewController: UIViewController {
             self.play = true
         }
         var buttonPlayPauseAudio = UIButton(primaryAction: action)
-        buttonPlayPauseAudio.setTitle("   Играть/ Пауза   ", for: .normal)
+        buttonPlayPauseAudio.setTitle( NSLocalizedString("buttonPlayPauseAudio", tableName: "AudioViewControllerLocalizable", comment: "") , for: .normal)
         buttonPlayPauseAudio.translatesAutoresizingMaskIntoConstraints = false
         buttonPlayPauseAudio.backgroundColor = .white
         buttonPlayPauseAudio.layer.cornerRadius = 12
@@ -77,7 +77,7 @@ class AudioViewController: UIViewController {
             self.play = false
         }
         var buttonStopPlay = UIButton(primaryAction: action)
-        buttonStopPlay.setTitle("   Стоп   ", for: .normal)
+        buttonStopPlay.setTitle( NSLocalizedString("buttonStopPlay", tableName: "AudioViewControllerLocalizable", comment: ""), for: .normal)
         buttonStopPlay.backgroundColor = .white
         buttonStopPlay.layer.cornerRadius = 12
         buttonStopPlay.setTitleColor(.darkGray, for: .normal)
@@ -98,7 +98,7 @@ class AudioViewController: UIViewController {
             else { return }
         }
         var buttonTrackBack = UIButton(primaryAction: action)
-        buttonTrackBack.setTitle("   Назад   ", for: .normal)
+        buttonTrackBack.setTitle(NSLocalizedString("buttonTrackBack", tableName: "AudioViewControllerLocalizable", comment: ""), for: .normal)
         buttonTrackBack.backgroundColor = .white
         buttonTrackBack.layer.cornerRadius = 12
         buttonTrackBack.setTitleColor(.darkGray, for: .normal)
@@ -120,7 +120,7 @@ class AudioViewController: UIViewController {
             else { return }
         }
         var buttonTrackForward = UIButton(primaryAction: action)
-        buttonTrackForward.setTitle("   Вперед   ", for: .normal)
+        buttonTrackForward.setTitle(NSLocalizedString("buttonTrackForward", tableName: "AudioViewControllerLocalizable", comment: "" ), for: .normal)
         buttonTrackForward.backgroundColor = .white
         buttonTrackForward.layer.cornerRadius = 12
         buttonTrackForward.setTitleColor(.darkGray, for: .normal)
@@ -146,7 +146,7 @@ class AudioViewController: UIViewController {
             self.audioPlayerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.audioPlayerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
 
-            self.buttonPlayPauseAudio.centerYAnchor.constraint(equalTo: self.audioPlayerView.centerYAnchor),
+            self.buttonPlayPauseAudio.topAnchor.constraint(equalTo: self.buttonTrackBack.bottomAnchor, constant: 20),
             self.buttonPlayPauseAudio.leadingAnchor.constraint(equalTo: self.audioPlayerView.leadingAnchor, constant: 20),
 
             self.buttonStopPlay.centerYAnchor.constraint(equalTo: self.buttonPlayPauseAudio.centerYAnchor),

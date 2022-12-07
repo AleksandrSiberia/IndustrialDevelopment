@@ -92,6 +92,10 @@
 		8BF7CEB4294096C8001FD64C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F0D1A285728B1008F75C0 /* LoginViewController.swift */; };
 		8BF7CEB5294096CB001FD64C /* LoginViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEB229409575001FD64C /* LoginViewControllerLocalizable.strings */; };
 		8BF7CEBE2940AB72001FD64C /* SavedPostsViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEC02940AB72001FD64C /* SavedPostsViewControllerLocalizable.strings */; };
+		8BF7CEC42940B0D2001FD64C /* PhotosViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEC62940B0D2001FD64C /* PhotosViewControllerLocalizable.strings */; };
+		8BF7CECA2940B242001FD64C /* InfoViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CECC2940B242001FD64C /* InfoViewControllerLocalizable.strings */; };
+		8BF7CED02940B3A6001FD64C /* PostViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CED22940B3A6001FD64C /* PostViewControllerLocalizable.strings */; };
+		8BF7CED62940B543001FD64C /* AudioViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CED82940B543001FD64C /* AudioViewControllerLocalizable.strings */; };
 		A9FA78F6BCF85A2EB8A42989 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */; };
 		C5099F1DD9B0E11F9C08BD25 /* Pods_Novigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */; };
 /* End PBXBuildFile section */
@@ -208,6 +212,14 @@
 		8BF7CEB329409579001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LoginViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		8BF7CEBF2940AB72001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SavedPostsViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		8BF7CEC12940AB74001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SavedPostsViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CEC52940B0D2001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PhotosViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CEC72940B0D4001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PhotosViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CECB2940B242001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CECD2940B246001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CED12940B3A6001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PostViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CED32940B3A8001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PostViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CED72940B543001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AudioViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CED92940B544001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AudioViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Novigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE8B5B8C2056D2BE18FF5E0 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -492,6 +504,10 @@
 				8BF7CEA929407A96001FD64C /* FeedViewControllerLocalizable.strings */,
 				8BF7CEB229409575001FD64C /* LoginViewControllerLocalizable.strings */,
 				8BF7CEC02940AB72001FD64C /* SavedPostsViewControllerLocalizable.strings */,
+				8BF7CEC62940B0D2001FD64C /* PhotosViewControllerLocalizable.strings */,
+				8BF7CECC2940B242001FD64C /* InfoViewControllerLocalizable.strings */,
+				8BF7CED22940B3A6001FD64C /* PostViewControllerLocalizable.strings */,
+				8BF7CED82940B543001FD64C /* AudioViewControllerLocalizable.strings */,
 			);
 			path = "Localizable ";
 			sourceTree = "<group>";
@@ -626,12 +642,16 @@
 				8B857E1F291FBBDB00ABD4A0 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 in Resources */,
 				8B30DF35283A1CC7006763B9 /* LaunchScreen.storyboard in Resources */,
 				8B4749BE28EC22F4007DE402 /* Ben_Gold_-_Xtravaganza.mp3 in Resources */,
+				8BF7CEC42940B0D2001FD64C /* PhotosViewControllerLocalizable.strings in Resources */,
 				8B4749C928EDA32C007DE402 /* Assets.xcassets in Resources */,
+				8BF7CECA2940B242001FD64C /* InfoViewControllerLocalizable.strings in Resources */,
 				8BF7CEB5294096CB001FD64C /* LoginViewControllerLocalizable.strings in Resources */,
 				8B4749CF28EEA75A007DE402 /* Siberia.mp4 in Resources */,
 				8B474A1228FAC698007DE402 /* GoogleService-Info.plist in Resources */,
+				8BF7CED02940B3A6001FD64C /* PostViewControllerLocalizable.strings in Resources */,
 				8BF7CEBE2940AB72001FD64C /* SavedPostsViewControllerLocalizable.strings in Resources */,
 				8B4749C228EC2335007DE402 /* Tinlicker_Robert_Miles_-_Children.mp3 in Resources */,
+				8BF7CED62940B543001FD64C /* AudioViewControllerLocalizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,6 +851,42 @@
 				8BF7CEC12940AB74001FD64C /* ru */,
 			);
 			name = SavedPostsViewControllerLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		8BF7CEC62940B0D2001FD64C /* PhotosViewControllerLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BF7CEC52940B0D2001FD64C /* en */,
+				8BF7CEC72940B0D4001FD64C /* ru */,
+			);
+			name = PhotosViewControllerLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		8BF7CECC2940B242001FD64C /* InfoViewControllerLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BF7CECB2940B242001FD64C /* en */,
+				8BF7CECD2940B246001FD64C /* ru */,
+			);
+			name = InfoViewControllerLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		8BF7CED22940B3A6001FD64C /* PostViewControllerLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BF7CED12940B3A6001FD64C /* en */,
+				8BF7CED32940B3A8001FD64C /* ru */,
+			);
+			name = PostViewControllerLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		8BF7CED82940B543001FD64C /* AudioViewControllerLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BF7CED72940B543001FD64C /* en */,
+				8BF7CED92940B544001FD64C /* ru */,
+			);
+			name = AudioViewControllerLocalizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

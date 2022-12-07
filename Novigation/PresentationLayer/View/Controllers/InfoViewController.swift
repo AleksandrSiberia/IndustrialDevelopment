@@ -42,18 +42,18 @@ class InfoViewController: UIViewController {
 
 
 
-    private lazy var buttonDelete: UIButton = {
-        let button = UIButton()
+    private lazy var buttonExit: UIButton = {
+        let buttonExit = UIButton()
         let screen = UIScreen.main.bounds.width
         let screenH = UIScreen.main.bounds.height
         
-        button.frame = CGRect(x: 20, y: screenH / 2, width: screen - 40, height: 30)
-        button.backgroundColor = .systemPink
-        button.addTarget(self, action: #selector(didTagButton), for: .touchUpInside)
-        button.setTitle("Выйти из акаунта", for: .normal)
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        return button
+        buttonExit.frame = CGRect(x: 20, y: screenH / 2, width: screen - 40, height: 30)
+        buttonExit.backgroundColor = .systemPink
+        buttonExit.addTarget(self, action: #selector(didTagButton), for: .touchUpInside)
+        buttonExit.setTitle( NSLocalizedString("buttonExit", comment: ""), for: .normal)
+        buttonExit.layer.cornerRadius = 10
+        buttonExit.clipsToBounds = true
+        return buttonExit
     }()
 
 
@@ -61,11 +61,11 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
-        self.view.addSubview(self.buttonDelete)
+        self.view.addSubview(self.buttonExit)
         self.view.addSubview(self.label)
         self.view.addSubview(self.labelPlanetOrbitalPeriod)
         self.view.addSubview(self.tableViewPlanetResident)
-        self.navigationItem.title = "Настройки"
+        self.navigationItem.title = NSLocalizedString("navigationItem.title", tableName: "InfoViewControllerLocalizable", comment: "Настройки") 
 
         ManagerDataModelData.requestForModelData { string in
             DispatchQueue.main.async {
@@ -96,7 +96,7 @@ class InfoViewController: UIViewController {
             self.tableViewPlanetResident.topAnchor.constraint(equalTo: self.labelPlanetOrbitalPeriod.bottomAnchor, constant: 30),
             self.tableViewPlanetResident.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.tableViewPlanetResident.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.tableViewPlanetResident.bottomAnchor.constraint(equalTo: self.buttonDelete.topAnchor)
+            self.tableViewPlanetResident.bottomAnchor.constraint(equalTo: self.buttonExit.topAnchor)
         ])
     }
 
