@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B0F0D1B285728B1008F75C0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F0D1A285728B1008F75C0 /* LoginViewController.swift */; };
 		8B0F0D1D285868FA008F75C0 /* ModelPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F0D1C285868FA008F75C0 /* ModelPost.swift */; };
 		8B138F2428D87F8700ACA1B9 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B138F2328D87F8700ACA1B9 /* FeedViewModel.swift */; };
 		8B138F2628D87FDB00ACA1B9 /* FeedViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B138F2528D87FDB00ACA1B9 /* FeedViewDelegate.swift */; };
@@ -90,6 +89,8 @@
 		8BED12E228CA061C006FF146 /* bluePixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12E128CA061C006FF146 /* bluePixel.swift */; };
 		8BED12E628CA1680006FF146 /* CheckWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BED12E528CA1680006FF146 /* CheckWord.swift */; };
 		8BF7CEAD29408666001FD64C /* FeedViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEA929407A96001FD64C /* FeedViewControllerLocalizable.strings */; };
+		8BF7CEB4294096C8001FD64C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F0D1A285728B1008F75C0 /* LoginViewController.swift */; };
+		8BF7CEB5294096CB001FD64C /* LoginViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEB229409575001FD64C /* LoginViewControllerLocalizable.strings */; };
 		A9FA78F6BCF85A2EB8A42989 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */; };
 		C5099F1DD9B0E11F9C08BD25 /* Pods_Novigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */; };
 /* End PBXBuildFile section */
@@ -202,6 +203,8 @@
 		8BF7CEA22940795A001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8BF7CEA829407A96001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FeedViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		8BF7CEAB29407AD7001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/FeedViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CEB129409575001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LoginViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CEB329409579001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LoginViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Novigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE8B5B8C2056D2BE18FF5E0 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -484,6 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				8BF7CEA929407A96001FD64C /* FeedViewControllerLocalizable.strings */,
+				8BF7CEB229409575001FD64C /* LoginViewControllerLocalizable.strings */,
 			);
 			path = "Localizable ";
 			sourceTree = "<group>";
@@ -619,6 +623,7 @@
 				8B30DF35283A1CC7006763B9 /* LaunchScreen.storyboard in Resources */,
 				8B4749BE28EC22F4007DE402 /* Ben_Gold_-_Xtravaganza.mp3 in Resources */,
 				8B4749C928EDA32C007DE402 /* Assets.xcassets in Resources */,
+				8BF7CEB5294096CB001FD64C /* LoginViewControllerLocalizable.strings in Resources */,
 				8B4749CF28EEA75A007DE402 /* Siberia.mp4 in Resources */,
 				8B474A1228FAC698007DE402 /* GoogleService-Info.plist in Resources */,
 				8B4749C228EC2335007DE402 /* Tinlicker_Robert_Miles_-_Children.mp3 in Resources */,
@@ -728,6 +733,7 @@
 				8BEB523228DC356500482193 /* PhotosAssembly.swift in Sources */,
 				8B30E0312849EE7F006763B9 /* ProfileHeaderView.swift in Sources */,
 				8B975F4E28D1FE4400CC47D9 /* FeedCoordinator.swift in Sources */,
+				8BF7CEB4294096C8001FD64C /* LoginViewController.swift in Sources */,
 				8B2D2CA3291429B80090498C /* SavedPostsViewController.swift in Sources */,
 				8B474A782910F19E007DE402 /* CoreDadaModel.xcdatamodeld in Sources */,
 				8B4749D928F82A9F007DE402 /* InfoTableViewCell.swift in Sources */,
@@ -759,7 +765,6 @@
 				8BED12E228CA061C006FF146 /* bluePixel.swift in Sources */,
 				8B353277285DEC1900704D08 /* PhotosViewController.swift in Sources */,
 				8B474A75290BEEB5007DE402 /* RealmService.swift in Sources */,
-				8B0F0D1B285728B1008F75C0 /* LoginViewController.swift in Sources */,
 				8B857E212922248600ABD4A0 /* CodeService.swift in Sources */,
 				8B474A7B2910F386007DE402 /* CoreDataCoordinator.swift in Sources */,
 				8B0F0D1D285868FA008F75C0 /* ModelPost.swift in Sources */,
@@ -803,6 +808,15 @@
 				8BF7CEAB29407AD7001FD64C /* ru */,
 			);
 			name = FeedViewControllerLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		8BF7CEB229409575001FD64C /* LoginViewControllerLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BF7CEB129409575001FD64C /* en */,
+				8BF7CEB329409579001FD64C /* ru */,
+			);
+			name = LoginViewControllerLocalizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
