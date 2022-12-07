@@ -9,7 +9,7 @@ import Foundation
 
 
 struct Post1: ModelPost {
-    var author: String = "  AleksandrSiberia"
+    var author: String = "AleksandrSiberia"
 
     var image: String = "post1"
 
@@ -24,7 +24,7 @@ var post1 = Post1()
 
 
 struct Post2: ModelPost {
-    var author: String = "  AleksandrSiberia"
+    var author: String = "AleksandrSiberia"
 
     var image: String = "post2"
 
@@ -37,7 +37,7 @@ struct Post2: ModelPost {
 var post2 = Post2()
 
 struct Post3: ModelPost {
-    var author: String = "  AleksandrSiberia"
+    var author: String = "Aleksandr"
 
     var image: String = "post3"
 
@@ -50,7 +50,7 @@ struct Post3: ModelPost {
 var post3 = Post3()
 
 struct Post4: ModelPost {
-    var author: String = "  AleksandrSiberia"
+    var author: String = "Aleksandr"
 
     var image: String = "post4"
 

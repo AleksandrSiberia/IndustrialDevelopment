@@ -7,9 +7,12 @@
 
 import UIKit
 import StorageService
+import RealmSwift
+
 
 class FeedViewController: UIViewController {
 
+    
     var delegate: FeedViewDelegate! {
 
         didSet {
@@ -27,26 +30,30 @@ class FeedViewController: UIViewController {
         return viewCheckWord
     }()
 
+
+
     private lazy var textFieldCheckWord: UITextField = {
         var textFieldCheckWord = UITextField()
         textFieldCheckWord.translatesAutoresizingMaskIntoConstraints = false
         textFieldCheckWord.clearButtonMode = .whileEditing
         textFieldCheckWord.backgroundColor = .systemGray5
         textFieldCheckWord.layer.cornerRadius = 12
-        textFieldCheckWord.placeholder = "    Напиши слово"
+        textFieldCheckWord.placeholder = NSLocalizedString("textFieldCheckWord", tableName: "FeedViewControllerLocalizable", comment: "")
         return  textFieldCheckWord
     }()
 
+
     
     private lazy var buttonCheckWord: CustomButton = {
-        var buttonCheckWord = CustomButton(title: "Проверить слово") {
+        var buttonCheckWord = CustomButton(title: NSLocalizedString("buttonCheckWord", tableName: "FeedViewControllerLocalizable",  comment: "")) {
          self.delegate.wordVerification = self.textFieldCheckWord.text
         }
         return buttonCheckWord
     }()
 
+
     private lazy var buttonAudioPlayer: CustomButton = {
-        var buttonAudioPlayer = CustomButton(title: "Аудио плеер", targetAction: {
+        var buttonAudioPlayer = CustomButton(title: NSLocalizedString( "buttonAudioPlayer", tableName: "FeedViewControllerLocalizable", comment: ""), targetAction: {
 
             let audioViewController = AudioViewController()
             audioViewController.view.backgroundColor = .white
@@ -55,8 +62,10 @@ class FeedViewController: UIViewController {
         return buttonAudioPlayer
     }()
 
+
+
     private lazy var buttonVideoPlayer: CustomButton = {
-        var buttonVideoPlayer = CustomButton(title: "Видео плеер", targetAction: { 
+        var buttonVideoPlayer = CustomButton(title: NSLocalizedString("buttonVideoPlayer", tableName: "FeedViewControllerLocalizable" , comment: ""), targetAction: {
 
             let videoViewController = VideoViewController()
             videoViewController.view.backgroundColor = .white
@@ -64,6 +73,7 @@ class FeedViewController: UIViewController {
         })
         return buttonVideoPlayer
     }()
+
 
 
     private lazy var postStack: UIStackView = {
@@ -76,20 +86,26 @@ class FeedViewController: UIViewController {
         return postStack
     }()
 
+
+
     private lazy var buttonRightNavInfo: UIBarButtonItem = {
-        var buttonRightNavInfo = UIBarButtonItem(title: "Информация", style: .done, target: self, action: #selector(actionButtonRightNavInfo))
+        var buttonRightNavInfo = UIBarButtonItem(title: NSLocalizedString("buttonRightNavInfo", tableName: "FeedViewControllerLocalizable",  comment: ""), style: .done, target: self, action: #selector(actionButtonRightNavInfo))
         return buttonRightNavInfo
     }()
+
+
 
     private lazy var postButton: UIButton = {
         var postButton = UIButton()
         postButton.translatesAutoresizingMaskIntoConstraints = false
         postButton.backgroundColor = .systemYellow
-        postButton.setTitle("Пост1", for: .normal)
+        postButton.setTitle( NSLocalizedString("postButton", tableName: "FeedViewControllerLocalizable", comment: ""), for: .normal)
         postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
-   //     postButton.isHidden = true
         return postButton
     }()
+
+
+
 
     private lazy var postButton2: UIButton = {
         var postButton2 = UIButton()
@@ -103,11 +119,17 @@ class FeedViewController: UIViewController {
 
     
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+   
+ //       print(RealmService.shared.realm.configuration.fileURL!)
 
+        setupView()
     }
+
+
+
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -123,12 +145,12 @@ class FeedViewController: UIViewController {
 
     private func setupView() {
         self.view.backgroundColor = .white
-        self.navigationItem.title = "Лента"
+        self.navigationItem.title = NSLocalizedString("navigationItem.title", tableName: "FeedViewControllerLocalizable", comment: "")
+        
         self.view.addSubview(postStack)
         [viewCheckWord, textFieldCheckWord, buttonCheckWord, postButton, postButton2, buttonAudioPlayer, buttonVideoPlayer].forEach({ self.postStack.addArrangedSubview($0)})
+
         self.navigationItem.rightBarButtonItem = buttonRightNavInfo
-
-
 
         NSLayoutConstraint.activate([
 
@@ -148,6 +170,8 @@ class FeedViewController: UIViewController {
         }
     }
 
+
+    
     @objc private func didTapPostButton2() {
         let postViewController = PostViewController()
         self.navigationController?.pushViewController(postViewController, animated: true)
@@ -160,14 +184,6 @@ class FeedViewController: UIViewController {
         let navInfoViewController = UINavigationController(rootViewController: InfoViewController())
         present(navInfoViewController, animated: true, completion: nil)
     }
-
-}
-
-extension FeedViewController: FeedModelSubscribers {
-    func changeTheColor(_ color: UIColor) {
-        self.viewCheckWord.backgroundColor = color
-    }
-
 
 }
 

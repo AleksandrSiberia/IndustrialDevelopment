@@ -1,0 +1,18 @@
+
+// FeedViewController
+
+"textFieldCheckWord" = "    Напиши слово";
+
+"buttonCheckWord" = "Проверить слово";
+
+"buttonAudioPlayer" = "Аудио плеер";
+
+"buttonVideoPlayer" =  "Видео плеер";
+
+"buttonRightNavInfo" = "Настройки";
+
+"postButton" = "Пост1";
+
+"navigationItem.title" = "Лента";
+
+

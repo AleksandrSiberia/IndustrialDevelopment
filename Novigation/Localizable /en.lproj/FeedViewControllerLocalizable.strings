@@ -1,0 +1,16 @@
+
+// FeedViewController
+
+"textFieldCheckWord" = "    Write the word";
+
+"buttonCheckWord" = "Check the word";
+
+"buttonAudioPlayer" = "Audio player";
+
+"buttonVideoPlayer" =  "Video player";
+
+"buttonRightNavInfo" = "Settings";
+
+"postButton" = "Post1";
+
+"navigationItem.title" = "Tape";

@@ -8,12 +8,12 @@
 import Foundation
 
 
-protocol AppCoordinator {
+protocol AppCoordinatorProtocol {
 
     // дерево дочерних координаторов у текущего координатора, дерево скринов
     // также может быть один координатор вместо массива
     // для того чтобы все держалось в памяти
 
-    var childs: [AppCoordinator] { get set }
+    var childs: [AppCoordinatorProtocol] { get set }
  
 }
