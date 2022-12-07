@@ -1,0 +1,14 @@
+
+
+// ProfileViewControllerLocalizable
+
+
+"labelCollectionPhoto" = "Галерея";
+
+"statusTextField" = "   Новый статус";
+
+"statusButton" = "Поменять статус";
+
+"actionTapGestureRecogniser" = "Пост сохранен";
+
+"appendPost" = "Этот пост уже сохранен";

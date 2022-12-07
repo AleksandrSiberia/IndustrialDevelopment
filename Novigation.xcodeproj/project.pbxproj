@@ -96,6 +96,8 @@
 		8BF7CECA2940B242001FD64C /* InfoViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CECC2940B242001FD64C /* InfoViewControllerLocalizable.strings */; };
 		8BF7CED02940B3A6001FD64C /* PostViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CED22940B3A6001FD64C /* PostViewControllerLocalizable.strings */; };
 		8BF7CED62940B543001FD64C /* AudioViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CED82940B543001FD64C /* AudioViewControllerLocalizable.strings */; };
+		8BF7CEDC2940C1F0001FD64C /* TabBarItemLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEDE2940C1F0001FD64C /* TabBarItemLocalizable.strings */; };
+		8BF7CEE22940C557001FD64C /* ProfileViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEE42940C557001FD64C /* ProfileViewControllerLocalizable.strings */; };
 		A9FA78F6BCF85A2EB8A42989 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */; };
 		C5099F1DD9B0E11F9C08BD25 /* Pods_Novigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */; };
 /* End PBXBuildFile section */
@@ -220,6 +222,10 @@
 		8BF7CED32940B3A8001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PostViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		8BF7CED72940B543001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AudioViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		8BF7CED92940B544001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AudioViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CEDD2940C1F0001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TabBarItemLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CEDF2940C1FF001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/TabBarItemLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CEE32940C557001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ProfileViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CEE52940C558001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ProfileViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Novigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE8B5B8C2056D2BE18FF5E0 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -508,6 +514,8 @@
 				8BF7CECC2940B242001FD64C /* InfoViewControllerLocalizable.strings */,
 				8BF7CED22940B3A6001FD64C /* PostViewControllerLocalizable.strings */,
 				8BF7CED82940B543001FD64C /* AudioViewControllerLocalizable.strings */,
+				8BF7CEDE2940C1F0001FD64C /* TabBarItemLocalizable.strings */,
+				8BF7CEE42940C557001FD64C /* ProfileViewControllerLocalizable.strings */,
 			);
 			path = "Localizable ";
 			sourceTree = "<group>";
@@ -641,12 +649,14 @@
 				8B4749CE28EEA756007DE402 /* record2.mp4 in Resources */,
 				8B857E1F291FBBDB00ABD4A0 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 in Resources */,
 				8B30DF35283A1CC7006763B9 /* LaunchScreen.storyboard in Resources */,
+				8BF7CEDC2940C1F0001FD64C /* TabBarItemLocalizable.strings in Resources */,
 				8B4749BE28EC22F4007DE402 /* Ben_Gold_-_Xtravaganza.mp3 in Resources */,
 				8BF7CEC42940B0D2001FD64C /* PhotosViewControllerLocalizable.strings in Resources */,
 				8B4749C928EDA32C007DE402 /* Assets.xcassets in Resources */,
 				8BF7CECA2940B242001FD64C /* InfoViewControllerLocalizable.strings in Resources */,
 				8BF7CEB5294096CB001FD64C /* LoginViewControllerLocalizable.strings in Resources */,
 				8B4749CF28EEA75A007DE402 /* Siberia.mp4 in Resources */,
+				8BF7CEE22940C557001FD64C /* ProfileViewControllerLocalizable.strings in Resources */,
 				8B474A1228FAC698007DE402 /* GoogleService-Info.plist in Resources */,
 				8BF7CED02940B3A6001FD64C /* PostViewControllerLocalizable.strings in Resources */,
 				8BF7CEBE2940AB72001FD64C /* SavedPostsViewControllerLocalizable.strings in Resources */,
@@ -887,6 +897,24 @@
 				8BF7CED92940B544001FD64C /* ru */,
 			);
 			name = AudioViewControllerLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		8BF7CEDE2940C1F0001FD64C /* TabBarItemLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BF7CEDD2940C1F0001FD64C /* en */,
+				8BF7CEDF2940C1FF001FD64C /* ru */,
+			);
+			name = TabBarItemLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		8BF7CEE42940C557001FD64C /* ProfileViewControllerLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BF7CEE32940C557001FD64C /* en */,
+				8BF7CEE52940C558001FD64C /* ru */,
+			);
+			name = ProfileViewControllerLocalizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

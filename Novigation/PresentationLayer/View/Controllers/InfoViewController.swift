@@ -50,7 +50,7 @@ class InfoViewController: UIViewController {
         buttonExit.frame = CGRect(x: 20, y: screenH / 2, width: screen - 40, height: 30)
         buttonExit.backgroundColor = .systemPink
         buttonExit.addTarget(self, action: #selector(didTagButton), for: .touchUpInside)
-        buttonExit.setTitle( NSLocalizedString("buttonExit", comment: ""), for: .normal)
+        buttonExit.setTitle( NSLocalizedString("buttonExit", tableName: "InfoViewControllerLocalizable", comment: ""), for: .normal)
         buttonExit.layer.cornerRadius = 10
         buttonExit.clipsToBounds = true
         return buttonExit
@@ -103,23 +103,24 @@ class InfoViewController: UIViewController {
 
 
     @objc private func didTagButton() {
-        let alertDelete = UIAlertController(title: "Выйти из акаунта", message: "Выйти из аккаунта?", preferredStyle: .alert)
 
-        let cancelAction = UIAlertAction(title: "Отмена",
+        let alertExit = UIAlertController(title: nil, message: NSLocalizedString("buttonExitAlertExit", tableName: "InfoViewControllerLocalizable", comment: "Выйти из аккаунта?"), preferredStyle: .alert)
+
+        let cancelAction = UIAlertAction(title: NSLocalizedString("buttonExitCancelAction", tableName: "InfoViewControllerLocalizable", comment: ""),
                                          style: .cancel,
                                          handler: {_ in
         })
-        alertDelete.addAction(cancelAction)
+        alertExit.addAction(cancelAction)
         
-        let deleteAction = UIAlertAction(title: "Выйти",
+        let exitAction = UIAlertAction(title: NSLocalizedString("buttonExitExitAction", tableName: "InfoViewControllerLocalizable", comment: ""),
                                          style: .destructive,
                                          handler: {_ in
             UserDefaults.standard.removeObject(forKey: "userOnline")
             self.dismiss(animated: true)
 
         })
-        alertDelete.addAction(deleteAction)
-        present(alertDelete, animated: true)
+        alertExit.addAction(exitAction)
+        present(alertExit, animated: true)
     }
 }
 

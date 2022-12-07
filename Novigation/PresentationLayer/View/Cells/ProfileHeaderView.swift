@@ -55,7 +55,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         var statusTextField: UITextField = UITextField()
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
         statusTextField.backgroundColor = .white
-        statusTextField.placeholder = "   Новый статус"
+        statusTextField.placeholder = NSLocalizedString("statusTextField", tableName: "ProfileViewControllerLocalizable", comment: "new status")
         statusTextField.delegate = self
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         statusTextField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
@@ -67,7 +67,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     }()
 
     private lazy var setStatusButton: CustomButton = {
-        var statusButton = CustomButton(title: "Поменять статус") {  self.statusLabel.text = self.statusText }
+        var statusButton = CustomButton(title: NSLocalizedString("statusButton", tableName: "ProfileViewControllerLocalizable", comment: "")) {  self.statusLabel.text = self.statusText }
         return statusButton
     }()
 

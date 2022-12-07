@@ -51,7 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         
-        ManagerDataResidentsPlanet.loadResidentsPlanet()
+   //     ManagerDataResidentsPlanet.loadResidentsPlanet()
 
 
         

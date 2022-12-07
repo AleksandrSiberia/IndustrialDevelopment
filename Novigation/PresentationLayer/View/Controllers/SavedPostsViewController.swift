@@ -55,6 +55,8 @@ class SavedPostsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.title = NSLocalizedString("navigationItem.title", tableName: "SavedPostsViewControllerLocalizable", comment: "Saved posts")
+
         self.coreDataCoordinator.fetchedResultsControllerPostCoreData.delegate = self
 
         self.navigationItem.rightBarButtonItems = [self.barButtonItemCancelSearch, self.barButtonItemSearch ]
@@ -67,7 +69,6 @@ class SavedPostsViewController: UIViewController {
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
-
 
 
 
@@ -84,8 +85,6 @@ class SavedPostsViewController: UIViewController {
 
     }
 
-
-   
 
 
     @objc private func actionBarButtonItemSearch() {
@@ -123,8 +122,6 @@ class SavedPostsViewController: UIViewController {
 
 
 
-
-
     @objc private func actionBarButtonItemCancelSearch() {
         print("actionBarButtonItemCancelSearch")
 
@@ -145,7 +142,6 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
         return self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[section].numberOfObjects ?? 0
     }
-
 
 
 

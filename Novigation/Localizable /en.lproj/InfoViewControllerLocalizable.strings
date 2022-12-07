@@ -4,3 +4,9 @@
 "buttonExit" = "exit account";
 
 "navigationItem.title" = "Settings";
+
+"buttonExitAlertExit" = "Exit from account?";
+
+"buttonExitCancelAction" = "Cancel";
+
+"buttonExitExitAction" = "Exit";

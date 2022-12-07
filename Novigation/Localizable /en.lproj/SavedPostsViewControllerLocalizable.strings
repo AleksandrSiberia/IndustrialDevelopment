@@ -1,5 +1,7 @@
 
-// SavedPostsViewController
+// SavedPostsViewControllerLocalizable
+
+"navigationItem.title" = "Saved posts";
 
 "actionBarButtonItemSearchAlert" = "Write the author's name";
 
