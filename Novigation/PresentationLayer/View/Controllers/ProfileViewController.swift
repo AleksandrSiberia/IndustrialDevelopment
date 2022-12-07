@@ -202,10 +202,24 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
 
 
-            let post = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?.first?.objects![indexPath.row] as! PostCoreData
-            
-            cell.setup(author: post.author, image: post.image, likes: post.likes, text: post.text, views: post.views, coreDataCoordinator: self.coreDataCoordinator)
-            return cell
+
+
+            if let posts = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?.first?.objects as? [PostCoreData] {
+
+                if posts.count >= indexPath.row + 1 {
+
+                    let post = posts[indexPath.row ]
+
+                    cell.setup(author: post.author, image: post.image, likes: post.likes, text: post.text, views: post.views, coreDataCoordinator: self.coreDataCoordinator)
+                    return cell
+                }
+                else {
+                    return cell
+                }
+            }
+            else {
+                return cell
+            }
         }
     }
 
