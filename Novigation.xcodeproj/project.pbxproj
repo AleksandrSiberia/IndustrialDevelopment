@@ -21,7 +21,6 @@
 		8B2D2CA3291429B80090498C /* SavedPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2D2CA2291429B80090498C /* SavedPostsViewController.swift */; };
 		8B30DF29283A1CC6006763B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30DF28283A1CC6006763B9 /* AppDelegate.swift */; };
 		8B30DF2B283A1CC6006763B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30DF2A283A1CC6006763B9 /* SceneDelegate.swift */; };
-		8B30DF35283A1CC7006763B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B30DF33283A1CC7006763B9 /* LaunchScreen.storyboard */; };
 		8B30DFFF283F97D6006763B9 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30DFFE283F97D6006763B9 /* FeedViewController.swift */; };
 		8B30E001283F98C2006763B9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30E000283F98C2006763B9 /* ProfileViewController.swift */; };
 		8B30E003283FAF91006763B9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30E002283FAF91006763B9 /* PostViewController.swift */; };
@@ -146,7 +145,6 @@
 		8B30DF25283A1CC6006763B9 /* Novigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Novigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B30DF28283A1CC6006763B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B30DF2A283A1CC6006763B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8B30DF34283A1CC7006763B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B30DF36283A1CC7006763B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B30DFFE283F97D6006763B9 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		8B30E000283F98C2006763B9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -208,7 +206,6 @@
 		8BED12DF28C8C01D006FF146 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		8BED12E128CA061C006FF146 /* bluePixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bluePixel.swift; sourceTree = "<group>"; };
 		8BED12E528CA1680006FF146 /* CheckWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckWord.swift; sourceTree = "<group>"; };
-		8BF7CEA22940795A001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8BF7CEA829407A96001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FeedViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		8BF7CEAB29407AD7001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/FeedViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		8BF7CEB129409575001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LoginViewControllerLocalizable.strings; sourceTree = "<group>"; };
@@ -345,7 +342,6 @@
 				8B138F3228DA489900ACA1B9 /* Service layer */,
 				8BED12DA28C8BD59006FF146 /* Models */,
 				8B975F4928D1C91200CC47D9 /* PresentationLayer */,
-				8B30DF33283A1CC7006763B9 /* LaunchScreen.storyboard */,
 				8B4749C828EDA32B007DE402 /* Assets.xcassets */,
 				8B4749C728ED9771007DE402 /* Record.mp4 */,
 				8B4749CC28EEA752007DE402 /* record2.mp4 */,
@@ -652,7 +648,6 @@
 				8B4749BA28EC22A5007DE402 /* Armin_van_Buuren_-_In_And_Out_Of_Love.mp3 in Resources */,
 				8B4749CE28EEA756007DE402 /* record2.mp4 in Resources */,
 				8B857E1F291FBBDB00ABD4A0 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 in Resources */,
-				8B30DF35283A1CC7006763B9 /* LaunchScreen.storyboard in Resources */,
 				8BF7CEDC2940C1F0001FD64C /* TabBarItemLocalizable.strings in Resources */,
 				8B4749BE28EC22F4007DE402 /* Ben_Gold_-_Xtravaganza.mp3 in Resources */,
 				8BF7CEC42940B0D2001FD64C /* PhotosViewControllerLocalizable.strings in Resources */,
@@ -832,15 +827,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8B30DF33283A1CC7006763B9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8B30DF34283A1CC7006763B9 /* Base */,
-				8BF7CEA22940795A001FD64C /* ru */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		8BF7CEA929407A96001FD64C /* FeedViewControllerLocalizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
