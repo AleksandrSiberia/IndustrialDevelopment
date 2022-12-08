@@ -1,0 +1,16 @@
+
+// LoginViewController
+
+"textFieldLogin" = "    Email";
+
+"textFieldPassword" = "    Password";
+
+"buttonLogin" = "Authorization";
+
+"buttonLoginAlertAction" = "Enter your password and login";
+
+"buttonSignUp" = "Register";
+
+"buttonSignUpAlert" = "Fill in the registration fields";
+
+"buttonSignUpTextFieldPasswordAlert" = "You have registered";

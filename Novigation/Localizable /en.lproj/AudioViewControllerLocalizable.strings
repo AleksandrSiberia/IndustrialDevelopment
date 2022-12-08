@@ -1,0 +1,11 @@
+
+// AudioViewControllerLocalizable
+
+
+"buttonPlayPauseAudio" = "   Play/ Pause   ";
+
+"buttonStopPlay" = "   Stop   ";
+
+"buttonTrackBack" = "   Back   ";
+
+"buttonTrackForward" = "   Forward   ";

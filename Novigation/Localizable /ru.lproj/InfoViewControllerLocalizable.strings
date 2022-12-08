@@ -1,0 +1,13 @@
+
+// InfoViewControllerLocalizable
+
+
+"buttonExit" = "Выйти из акаунта";
+
+"navigationItem.title" = "Настройки";
+
+"buttonExitAlertExit" = "Выйти из аккаунта?";
+
+"buttonExitCancelAction" = "Отмена";
+
+"buttonExitExitAction" = "Выйти";

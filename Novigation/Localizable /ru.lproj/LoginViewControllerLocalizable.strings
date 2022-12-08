@@ -1,0 +1,16 @@
+
+// LoginViewController
+
+"textFieldLogin" = "    Почта";
+
+"textFieldPassword" = "    Пароль";
+
+"buttonLogin" = "Авторизоваться";
+
+"buttonLoginAlertAction" = "Введите пароль и логин";
+
+"buttonSignUp" = "Зарегистрироваться";
+
+"buttonSignUpAlert" = "Заполните поля для регистрации";
+
+"buttonSignUpTextFieldPasswordAlert" = "Вы зарегистрировались";

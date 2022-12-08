@@ -1,0 +1,12 @@
+
+// SavedPostsViewControllerLocalizable
+
+"navigationItem.title" = "Сохраненные посты";
+
+"actionBarButtonItemSearchAlert" = "Напишите имя автора";
+
+"actionBarButtonItemSearchAlertActionSearch" = "Найти";
+
+"actionBarButtonItemSearchAlertActionCancel" = "Отмена";
+
+"tableViewAction" = "Удалить из сохраненного";

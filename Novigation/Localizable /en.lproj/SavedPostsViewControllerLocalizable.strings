@@ -1,0 +1,13 @@
+
+// SavedPostsViewControllerLocalizable
+
+"navigationItem.title" = "Saved posts";
+
+"actionBarButtonItemSearchAlert" = "Write the author's name";
+
+"actionBarButtonItemSearchAlertActionSearch" = "Search";
+
+"actionBarButtonItemSearchAlertActionCancel" = "Cancel";
+
+"tableViewAction" = "Delete from Saved";
+

@@ -18,7 +18,9 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemOrange
-        let rightBotton = UIBarButtonItem(title: "Настройки", style: .plain, target: self, action: #selector(didTapButton))
+
+        let rightBotton = UIBarButtonItem(title: NSLocalizedString("rightBotton", tableName: "PostViewControllerLocalizable", comment: "Settings"), style: .plain, target: self, action: #selector(didTapButton))
+
         self.navigationItem.rightBarButtonItem = rightBotton
         if let post1: String = self.post?.title {
             self.navigationItem.title = post1
