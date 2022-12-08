@@ -64,7 +64,7 @@ class LoginViewController: UIViewController {
     private lazy var textFieldLogin: UITextField = {
         var textFieldLogin = UITextField()
         textFieldLogin.translatesAutoresizingMaskIntoConstraints = false
-        textFieldLogin.placeholder = NSLocalizedString("textFieldLogin", tableName: "LoginViewControllerLocalizable", comment: "")
+        textFieldLogin.placeholder = "textFieldLogin".loginViewControllerLocalizable
         textFieldLogin.textColor = .black
         textFieldLogin.font = UIFont.systemFont(ofSize: 16)
         textFieldLogin.layer.cornerRadius = 10
@@ -84,7 +84,7 @@ class LoginViewController: UIViewController {
     private lazy var textFieldPassword: UITextField = {
         var textFieldPassword = UITextField()
         textFieldPassword.translatesAutoresizingMaskIntoConstraints = false
-        textFieldPassword.placeholder = NSLocalizedString("textFieldPassword", tableName: "LoginViewControllerLocalizable", comment: "")
+        textFieldPassword.placeholder = "textFieldPassword".loginViewControllerLocalizable
         textFieldPassword.textColor = .black
         textFieldPassword.layer.cornerRadius = 10
         textFieldPassword.layer.borderWidth = 0.5
@@ -102,14 +102,14 @@ class LoginViewController: UIViewController {
 
     
     private lazy var buttonLogin: CustomButton = {
-        var buttonLogin = CustomButton( title: NSLocalizedString("buttonLogin", tableName: "LoginViewControllerLocalizable", comment: ""),
+        var buttonLogin = CustomButton( title: "buttonLogin".loginViewControllerLocalizable,
                                         targetAction: {
 
             if self.textFieldLogin.text != "" && self.textFieldPassword.text != "" {
                 self.actionLoginButton()
             }
             else {
-                let alertAction = UIAlertAction(title: NSLocalizedString("buttonLoginAlertAction", tableName: "LoginViewControllerLocalizable", comment: ""), style: .default)
+                let alertAction = UIAlertAction(title: "buttonLoginAlertAction".loginViewControllerLocalizable, style: .default)
                 let alert = UIAlertController()
                 alert.addAction(alertAction)
                 self.present(alert, animated: true)
@@ -121,7 +121,7 @@ class LoginViewController: UIViewController {
 
 
     private lazy var buttonSignUp: CustomButton = {
-        var buttonSignUp = CustomButton(title: NSLocalizedString("buttonSignUp", tableName: "LoginViewControllerLocalizable", comment: "")) {
+        var buttonSignUp = CustomButton(title: "buttonSignUp".loginViewControllerLocalizable) {
 
             if self.textFieldLogin.text != "" && self.textFieldPassword.text != "" {
                 self.loginDelegate?.signUp(withEmail: self.textFieldLogin.text!, password: self.textFieldPassword.text!) { string in
@@ -403,4 +403,11 @@ extension LoginViewController: CheckPasswordOutput {
         self.textFieldPassword.isSecureTextEntry = false
         self.textFieldPassword.text = self.outputCheckPassword?.thisIsPassword
      }
+}
+
+
+extension String {
+    var loginViewControllerLocalizable: String {
+        NSLocalizedString(self, tableName: "LoginViewControllerLocalizable", comment: "")
+    }
 }

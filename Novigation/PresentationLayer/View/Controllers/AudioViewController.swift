@@ -62,7 +62,7 @@ class AudioViewController: UIViewController {
             self.play = true
         }
         var buttonPlayPauseAudio = UIButton(primaryAction: action)
-        buttonPlayPauseAudio.setTitle( NSLocalizedString("buttonPlayPauseAudio", tableName: "AudioViewControllerLocalizable", comment: "") , for: .normal)
+        buttonPlayPauseAudio.setTitle( "buttonPlayPauseAudio".audioViewControllerLocalizable , for: .normal)
         buttonPlayPauseAudio.translatesAutoresizingMaskIntoConstraints = false
         buttonPlayPauseAudio.backgroundColor = .white
         buttonPlayPauseAudio.layer.cornerRadius = 12
@@ -77,7 +77,7 @@ class AudioViewController: UIViewController {
             self.play = false
         }
         var buttonStopPlay = UIButton(primaryAction: action)
-        buttonStopPlay.setTitle( NSLocalizedString("buttonStopPlay", tableName: "AudioViewControllerLocalizable", comment: ""), for: .normal)
+        buttonStopPlay.setTitle( "buttonStopPlay".audioViewControllerLocalizable, for: .normal)
         buttonStopPlay.backgroundColor = .white
         buttonStopPlay.layer.cornerRadius = 12
         buttonStopPlay.setTitleColor(.darkGray, for: .normal)
@@ -98,7 +98,7 @@ class AudioViewController: UIViewController {
             else { return }
         }
         var buttonTrackBack = UIButton(primaryAction: action)
-        buttonTrackBack.setTitle(NSLocalizedString("buttonTrackBack", tableName: "AudioViewControllerLocalizable", comment: ""), for: .normal)
+        buttonTrackBack.setTitle("buttonTrackBack".audioViewControllerLocalizable, for: .normal)
         buttonTrackBack.backgroundColor = .white
         buttonTrackBack.layer.cornerRadius = 12
         buttonTrackBack.setTitleColor(.darkGray, for: .normal)
@@ -120,7 +120,7 @@ class AudioViewController: UIViewController {
             else { return }
         }
         var buttonTrackForward = UIButton(primaryAction: action)
-        buttonTrackForward.setTitle(NSLocalizedString("buttonTrackForward", tableName: "AudioViewControllerLocalizable", comment: "" ), for: .normal)
+        buttonTrackForward.setTitle("buttonTrackForward".audioViewControllerLocalizable, for: .normal)
         buttonTrackForward.backgroundColor = .white
         buttonTrackForward.layer.cornerRadius = 12
         buttonTrackForward.setTitleColor(.darkGray, for: .normal)
@@ -178,4 +178,10 @@ class AudioViewController: UIViewController {
         self.player.pause()
     }
 
+}
+
+extension String {
+    var audioViewControllerLocalizable: String {
+       return NSLocalizedString(self, tableName: "AudioViewControllerLocalizable", comment: "")
+    }
 }
