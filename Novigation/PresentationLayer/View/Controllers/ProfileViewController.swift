@@ -187,6 +187,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell else { let cell = self.tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
                 return cell
             }
+            cell.selectionStyle = .none
             self.output = cell
             return cell
         }
@@ -196,13 +197,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
                 return cell
             }
 
-            //            if self.posts.isEmpty == true && self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[0].objects?.isEmpty == true {
-            //                assertionFailure(CustomErrorNovigation.noPost.rawValue)
-            //            }
-
-
-
-
+            cell.selectionStyle = .none
 
             if let posts = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?.first?.objects as? [PostCoreData] {
 

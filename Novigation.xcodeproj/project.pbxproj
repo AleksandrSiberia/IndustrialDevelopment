@@ -98,6 +98,7 @@
 		8BF7CED62940B543001FD64C /* AudioViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CED82940B543001FD64C /* AudioViewControllerLocalizable.strings */; };
 		8BF7CEDC2940C1F0001FD64C /* TabBarItemLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEDE2940C1F0001FD64C /* TabBarItemLocalizable.strings */; };
 		8BF7CEE22940C557001FD64C /* ProfileViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEE42940C557001FD64C /* ProfileViewControllerLocalizable.strings */; };
+		8BF7CEF52941FA3C001FD64C /* LocalizableDict.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 8BF7CEF32941F3A5001FD64C /* LocalizableDict.stringsdict */; };
 		A9FA78F6BCF85A2EB8A42989 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */; };
 		C5099F1DD9B0E11F9C08BD25 /* Pods_Novigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */; };
 /* End PBXBuildFile section */
@@ -226,6 +227,8 @@
 		8BF7CEDF2940C1FF001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/TabBarItemLocalizable.strings; sourceTree = "<group>"; };
 		8BF7CEE32940C557001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ProfileViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		8BF7CEE52940C558001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ProfileViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		8BF7CEF22941F3A5001FD64C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/LocalizableDict.stringsdict; sourceTree = "<group>"; };
+		8BF7CEF42941F3A9001FD64C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/LocalizableDict.stringsdict; sourceTree = "<group>"; };
 		A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Novigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE8B5B8C2056D2BE18FF5E0 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -507,6 +510,7 @@
 		8BF7CEAC29407EDE001FD64C /* Localizable  */ = {
 			isa = PBXGroup;
 			children = (
+				8BF7CEF32941F3A5001FD64C /* LocalizableDict.stringsdict */,
 				8BF7CEA929407A96001FD64C /* FeedViewControllerLocalizable.strings */,
 				8BF7CEB229409575001FD64C /* LoginViewControllerLocalizable.strings */,
 				8BF7CEC02940AB72001FD64C /* SavedPostsViewControllerLocalizable.strings */,
@@ -662,6 +666,7 @@
 				8BF7CEBE2940AB72001FD64C /* SavedPostsViewControllerLocalizable.strings in Resources */,
 				8B4749C228EC2335007DE402 /* Tinlicker_Robert_Miles_-_Children.mp3 in Resources */,
 				8BF7CED62940B543001FD64C /* AudioViewControllerLocalizable.strings in Resources */,
+				8BF7CEF52941FA3C001FD64C /* LocalizableDict.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,6 +920,15 @@
 				8BF7CEE52940C558001FD64C /* ru */,
 			);
 			name = ProfileViewControllerLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		8BF7CEF32941F3A5001FD64C /* LocalizableDict.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BF7CEF22941F3A5001FD64C /* en */,
+				8BF7CEF42941F3A9001FD64C /* ru */,
+			);
+			name = LocalizableDict.stringsdict;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

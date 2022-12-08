@@ -152,6 +152,8 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
         else { let cell = self.tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
             return cell
         }
+        cell.selectionStyle = .none
+
 
         let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
 

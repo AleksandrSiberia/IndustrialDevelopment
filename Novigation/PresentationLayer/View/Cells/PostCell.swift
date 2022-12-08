@@ -176,10 +176,20 @@ class PostCell: UITableViewCell {
             filteredImage = outputImage
         }
 
+        let localized = NSLocalizedString("LocalizedLike", tableName: "LocalizableDict", comment: "")
+        let likeValue = Int(likes ?? "") ?? 0
+        let formatLocalized = String(format: localized, likeValue)
+
         self.postImageView.image = filteredImage
         self.descriptionLabel.text = text
-        self.likesLabel.text = "Likes: " + String(likes ?? "")
-        self.viewsLabel.text = "Views: " + String(views ?? "")
+        
+        self.likesLabel.text = formatLocalized
+
+        let localizedViews = NSLocalizedString("LocalizedView", tableName: "LocalizableDict", comment: "")
+        let viewsValue = Int(views ?? "") ?? 0
+        let formatLocalizedViews = String(format: localizedViews, viewsValue)
+
+        self.viewsLabel.text = formatLocalizedViews
             }
 }
 
