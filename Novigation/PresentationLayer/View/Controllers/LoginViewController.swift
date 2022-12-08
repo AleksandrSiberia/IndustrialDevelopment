@@ -62,73 +62,73 @@ class LoginViewController: UIViewController {
 
 
     private lazy var textFieldLogin: UITextField = {
-        var loginTextField = UITextField()
-        loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        loginTextField.placeholder = "    Email"
-        loginTextField.textColor = .black
-        loginTextField.font = UIFont.systemFont(ofSize: 16)
-        loginTextField.layer.cornerRadius = 10
-        loginTextField.layer.borderWidth = 0.5
-        loginTextField.layer.borderColor = UIColor.lightGray.cgColor
-        loginTextField.backgroundColor = .systemGray6
-        loginTextField.autocapitalizationType = .none
-        loginTextField.keyboardType = .namePhonePad
-        loginTextField.clearButtonMode = .whileEditing
-        loginTextField.keyboardType = .emailAddress
-        loginTextField.text = ""
-        return loginTextField
+        var textFieldLogin = UITextField()
+        textFieldLogin.translatesAutoresizingMaskIntoConstraints = false
+        textFieldLogin.placeholder = NSLocalizedString("textFieldLogin", tableName: "LoginViewControllerLocalizable", comment: "")
+        textFieldLogin.textColor = .black
+        textFieldLogin.font = UIFont.systemFont(ofSize: 16)
+        textFieldLogin.layer.cornerRadius = 10
+        textFieldLogin.layer.borderWidth = 0.5
+        textFieldLogin.layer.borderColor = UIColor.lightGray.cgColor
+        textFieldLogin.backgroundColor = .systemGray6
+        textFieldLogin.autocapitalizationType = .none
+        textFieldLogin.keyboardType = .namePhonePad
+        textFieldLogin.clearButtonMode = .whileEditing
+        textFieldLogin.keyboardType = .emailAddress
+        textFieldLogin.text = ""
+        return textFieldLogin
     }()
 
 
 
     private lazy var textFieldPassword: UITextField = {
-        var passwordTextField = UITextField()
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.placeholder = "    Password"
-        passwordTextField.textColor = .black
-        passwordTextField.layer.cornerRadius = 10
-        passwordTextField.layer.borderWidth = 0.5
-        passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
-        passwordTextField.backgroundColor = .systemGray6
-        passwordTextField.font = UIFont.systemFont(ofSize: 16)
-        passwordTextField.autocapitalizationType = .none
-        passwordTextField.keyboardType = .namePhonePad
-        passwordTextField.isSecureTextEntry = true
-        passwordTextField.clearButtonMode = .whileEditing
-        passwordTextField.text = ""
-        return passwordTextField
+        var textFieldPassword = UITextField()
+        textFieldPassword.translatesAutoresizingMaskIntoConstraints = false
+        textFieldPassword.placeholder = NSLocalizedString("textFieldPassword", tableName: "LoginViewControllerLocalizable", comment: "")
+        textFieldPassword.textColor = .black
+        textFieldPassword.layer.cornerRadius = 10
+        textFieldPassword.layer.borderWidth = 0.5
+        textFieldPassword.layer.borderColor = UIColor.lightGray.cgColor
+        textFieldPassword.backgroundColor = .systemGray6
+        textFieldPassword.font = UIFont.systemFont(ofSize: 16)
+        textFieldPassword.autocapitalizationType = .none
+        textFieldPassword.keyboardType = .namePhonePad
+        textFieldPassword.isSecureTextEntry = true
+        textFieldPassword.clearButtonMode = .whileEditing
+        textFieldPassword.text = ""
+        return textFieldPassword
     }()
 
 
     
     private lazy var buttonLogin: CustomButton = {
-        var loginButton = CustomButton( title: "Авторизоваться",
+        var buttonLogin = CustomButton( title: NSLocalizedString("buttonLogin", tableName: "LoginViewControllerLocalizable", comment: ""),
                                         targetAction: {
 
             if self.textFieldLogin.text != "" && self.textFieldPassword.text != "" {
                 self.actionLoginButton()
             }
             else {
-                let alertAction = UIAlertAction(title: "Введите пароль и логин", style: .default)
+                let alertAction = UIAlertAction(title: NSLocalizedString("buttonLoginAlertAction", tableName: "LoginViewControllerLocalizable", comment: ""), style: .default)
                 let alert = UIAlertController()
                 alert.addAction(alertAction)
                 self.present(alert, animated: true)
             }
         })
-        return loginButton
+        return buttonLogin
     }()
 
 
 
     private lazy var buttonSignUp: CustomButton = {
-        var buttonSignUp = CustomButton(title: "Зарегистрироваться") {
+        var buttonSignUp = CustomButton(title: NSLocalizedString("buttonSignUp", tableName: "LoginViewControllerLocalizable", comment: "")) {
 
             if self.textFieldLogin.text != "" && self.textFieldPassword.text != "" {
                 self.loginDelegate?.signUp(withEmail: self.textFieldLogin.text!, password: self.textFieldPassword.text!) { string in
 
                     if string == "Пользователь зарегистрирован" {
                         let alert = UIAlertController()
-                        let alertAction = UIAlertAction(title: "Вы зарегистрировались", style: .default)
+                        let alertAction = UIAlertAction(title: NSLocalizedString("buttonSignUpTextFieldPasswordAlert", tableName: "LoginViewControllerLocalizable",  comment: "Вы зарегистрировались"), style: .default)
                         alert.addAction(alertAction)
                         self.present(alert, animated: true)
                         self.actionLoginButton()
@@ -147,7 +147,7 @@ class LoginViewController: UIViewController {
 
             else {
                 let alert = UIAlertController()
-                let alertAction = UIAlertAction(title: "Заполните поля для ркгистрации", style: .default)
+                let alertAction = UIAlertAction(title: NSLocalizedString("buttonSignUpAlert", tableName: "LoginViewControllerLocalizable", comment: "Заполните поля для регистрации"), style: .default)
                 alert.addAction(alertAction)
                 self.present(alert, animated: true)
                 return

@@ -42,16 +42,16 @@ class RootCoordinator: AppCoordinatorProtocol {
         let feedCoordinator = FeedCoordinator(transitionHandler: navFeedView)
 
         let navLoginView = UINavigationController(rootViewController: LoginAssembly.createLoginViewController(coordinator: self))
-        navLoginView.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 2)
+        navLoginView.tabBarItem = UITabBarItem(title: NSLocalizedString("navLoginView", tableName: "TabBarItemLocalizable", comment: "Profile") , image: UIImage(systemName: "person.circle"), tag: 2)
                 self.childs.append(feedCoordinator)
 
 
         let savedPostsViewController = SavedPostsViewController()
         savedPostsViewController.coreDataCoordinator = self.coreDataCoordinator
-        savedPostsViewController.navigationItem.title = "Сохраненные посты"
+        
         let navSavedPosts = UINavigationController(rootViewController: savedPostsViewController)
         self.navSavedPosts = navSavedPosts
-        navSavedPosts.tabBarItem = UITabBarItem(title: "Сохраненные", image: UIImage(systemName: "square.and.arrow.down"), tag: 3)
+        navSavedPosts.tabBarItem = UITabBarItem(title: NSLocalizedString("navSavedPosts", tableName: "TabBarItemLocalizable", comment: "Saved"), image: UIImage(systemName: "square.and.arrow.down"), tag: 3)
 
 
 

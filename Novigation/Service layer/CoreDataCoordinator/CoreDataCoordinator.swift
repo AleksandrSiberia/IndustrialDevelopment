@@ -142,7 +142,7 @@ final class CoreDataCoordinator {
         for postInCoreData in (self.fetchedResultsControllerPostCoreData.sections![0].objects) as! [PostCoreData] {
 
             if postInCoreData.text == text {
-                completion("Этот пост уже сохранен")
+                completion(NSLocalizedString("appendPost", tableName: "ProfileViewControllerLocalizable", comment: "This post has already been saved"))
                 return
             }
         }

@@ -55,6 +55,8 @@ class SavedPostsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.title = NSLocalizedString("navigationItem.title", tableName: "SavedPostsViewControllerLocalizable", comment: "Saved posts")
+
         self.coreDataCoordinator.fetchedResultsControllerPostCoreData.delegate = self
 
         self.navigationItem.rightBarButtonItems = [self.barButtonItemCancelSearch, self.barButtonItemSearch ]
@@ -67,7 +69,6 @@ class SavedPostsViewController: UIViewController {
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
-
 
 
 
@@ -85,12 +86,10 @@ class SavedPostsViewController: UIViewController {
     }
 
 
-   
-
 
     @objc private func actionBarButtonItemSearch() {
-        print("actionBarButtonItemSearch")
-        let alert = UIAlertController(title: nil, message: "Напишите имя автора", preferredStyle: .alert)
+
+        let alert = UIAlertController(title: nil, message: NSLocalizedString("actionBarButtonItemSearchAlert", tableName: "SavedPostsViewControllerLocalizable", comment: "Напишите имя автора") , preferredStyle: .alert)
 
 
         alert.addTextField { textField in
@@ -99,7 +98,7 @@ class SavedPostsViewController: UIViewController {
             self.textFieldSearchAuthor = textField
             }
 
-        let actionSearch = UIAlertAction(title: "Найти", style: .default) {action in
+        let actionSearch = UIAlertAction(title: NSLocalizedString("actionBarButtonItemSearchAlertActionSearch", tableName: "SavedPostsViewControllerLocalizable", comment: "Найти") , style: .default) {action in
 
 
             if self.textFieldSearchAuthor?.text != "" {
@@ -113,15 +112,13 @@ class SavedPostsViewController: UIViewController {
             }
         }
 
-        let actionCancel = UIAlertAction(title: "Отмена", style: .cancel)
+        let actionCancel = UIAlertAction(title: NSLocalizedString("actionBarButtonItemSearchAlertActionCancel", tableName: "SavedPostsViewControllerLocalizable", comment: "Отмена"), style: .cancel)
 
         alert.addAction(actionCancel)
         alert.addAction(actionSearch)
 
         present(alert, animated: true)
     }
-
-
 
 
 
@@ -148,7 +145,6 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
 
 
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell
@@ -156,6 +152,8 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
         else { let cell = self.tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
             return cell
         }
+        cell.selectionStyle = .none
+
 
         let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
 
@@ -176,7 +174,7 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
-        let action = UIContextualAction(style: .destructive, title: "Удалить из сохраненного") { [weak self] (uiContextualAction, uiView, completionHandler) in
+        let action = UIContextualAction(style: .destructive, title: NSLocalizedString("tableViewAction", tableName: "SavedPostsViewControllerLocalizable", comment: "Удалить из сохраненного") ) { [weak self] (uiContextualAction, uiView, completionHandler) in
 
 
 
@@ -188,7 +186,6 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
         }
 
-        //   action.backgroundColor = UIColor( named: "MyColorSet")
 
         let actionConfiguration = UISwipeActionsConfiguration(actions: [action])
         actionConfiguration.performsFirstActionWithFullSwipe = true
@@ -206,7 +203,6 @@ extension SavedPostsViewController: NSFetchedResultsControllerDelegate {
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
 
-        print(" 🌶️ NSFetchedResultsController<NSFetchRequestResult>, didChange anObject")
 
         switch type {
 

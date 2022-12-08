@@ -1,0 +1,11 @@
+
+// AudioViewControllerLocalizable
+
+
+"buttonPlayPauseAudio" = "   Играть/ Пауза   ";
+
+"buttonStopPlay" = "   Стоп   ";
+
+"buttonTrackBack" = "   Назад   ";
+
+"buttonTrackForward" = "   Вперед   ";

@@ -23,7 +23,7 @@ class PhotosTableViewCell: UITableViewCell {
 
     private lazy var labelCollectionPhoto: UILabel = {
         var labelCollectionPhoto = UILabel()
-        labelCollectionPhoto.text = "Галерея"
+        labelCollectionPhoto.text = NSLocalizedString("labelCollectionPhoto", tableName: "ProfileViewControllerLocalizable", comment: "Gallery")
         labelCollectionPhoto.translatesAutoresizingMaskIntoConstraints = false
         labelCollectionPhoto.numberOfLines = 0
         labelCollectionPhoto.font = .systemFont(ofSize: 20, weight: .bold)

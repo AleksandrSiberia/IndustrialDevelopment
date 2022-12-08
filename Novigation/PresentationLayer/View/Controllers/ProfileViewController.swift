@@ -43,15 +43,12 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
 
 
-
-
     private lazy var tapGestureRecogniser: UITapGestureRecognizer = {
         var tapGestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(self.actionTapGestureRecogniser(recogniser:)))
-            tapGestureRecogniser.delegate = self
+        tapGestureRecogniser.delegate = self
         tapGestureRecogniser.numberOfTapsRequired = 2
         return tapGestureRecogniser
     }()
-
 
 
 
@@ -65,11 +62,11 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
         tableView.register(PostCell.self, forCellReuseIdentifier: "PostCell")
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
 
-        #if DEBUG
+#if DEBUG
         tableView.backgroundColor = .white
-        #else
+#else
         tableView.backgroundColor = .systemGray6
-        #endif
+#endif
 
         return tableView
     }()
@@ -80,8 +77,6 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-        
         self.view.addSubview(self.tableView)
         self.view.addGestureRecognizer(self.tapGestureRecogniser)
         self.setupConstraints()
@@ -89,20 +84,18 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
 
 
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
 
-
-//        self.coreDataCoordinator.fetchedResultsControllerPostCoreData.delegate = self
+        //        self.coreDataCoordinator.fetchedResultsControllerPostCoreData.delegate = self
 
         
         if self.delegate != nil {
             self.delegate.showPost()
         }
         handle = Auth.auth().addStateDidChangeListener { auth, user in
-          // ...
+            // ...
         }
 
 
@@ -126,20 +119,16 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
         self.output?.timerStop()
         Auth.auth().removeStateDidChangeListener(handle!)
-
- 
-
     }
-
 
 
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-        self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
-        self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-        self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-        self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
 
@@ -156,7 +145,7 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
                     var error = tappedCell.savePost()
 
                     if error == nil {
-                        error = "Пост сохранен"
+                        error = NSLocalizedString("actionTapGestureRecogniser", tableName: "ProfileViewControllerLocalizable", comment: "post saved")
                     }
 
                     let alert = UIAlertController(title: error, message: nil, preferredStyle: .alert)
@@ -198,6 +187,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as? PhotosTableViewCell else { let cell = self.tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
                 return cell
             }
+            cell.selectionStyle = .none
             self.output = cell
             return cell
         }
@@ -207,14 +197,24 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
                 return cell
             }
 
-//            if self.posts.isEmpty == true && self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[0].objects?.isEmpty == true {
-//                assertionFailure(CustomErrorNovigation.noPost.rawValue)
-//            }
+            cell.selectionStyle = .none
 
-            let post = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?.first?.objects![indexPath.row] as! PostCoreData
-            
-            cell.setup(author: post.author, image: post.image, likes: post.likes, text: post.text, views: post.views, coreDataCoordinator: self.coreDataCoordinator)
-            return cell
+            if let posts = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?.first?.objects as? [PostCoreData] {
+
+                if posts.count >= indexPath.row + 1 {
+
+                    let post = posts[indexPath.row ]
+
+                    cell.setup(author: post.author, image: post.image, likes: post.likes, text: post.text, views: post.views, coreDataCoordinator: self.coreDataCoordinator)
+                    return cell
+                }
+                else {
+                    return cell
+                }
+            }
+            else {
+                return cell
+            }
         }
     }
 
@@ -240,6 +240,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         if indexPath.section == 0 && indexPath.row == 0 {
 
             self.navigationController?.pushViewController(PhotosAssembly.showPhotosViewController(), animated: true)
@@ -252,6 +253,7 @@ extension ProfileViewController: NSFetchedResultsControllerDelegate {
 
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+
         self.tableView.reloadData()
     }
 }

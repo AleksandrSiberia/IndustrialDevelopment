@@ -1,0 +1,15 @@
+
+
+// ProfileViewControllerLocalizable
+
+
+"labelCollectionPhoto" = "Gallery";
+
+"statusTextField" = "   New status";
+
+"statusButton" = "Change status";
+
+"actionTapGestureRecogniser" = "Post saved";
+
+"appendPost" = "This post has already been saved";
+
