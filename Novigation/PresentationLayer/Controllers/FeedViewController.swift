@@ -78,7 +78,7 @@ class FeedViewController: UIViewController {
 
     private lazy var postStack: UIStackView = {
         var postStack = UIStackView()
-        postStack.backgroundColor = .white
+        postStack.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
         postStack.translatesAutoresizingMaskIntoConstraints = false
         postStack.axis = .vertical
         postStack.distribution = .fillEqually
@@ -97,6 +97,7 @@ class FeedViewController: UIViewController {
 
     private lazy var postButton: UIButton = {
         var postButton = UIButton()
+        postButton.isHidden = true
         postButton.translatesAutoresizingMaskIntoConstraints = false
         postButton.backgroundColor = .systemYellow
         postButton.setTitle( "postButton".feedViewControllerLocalizable, for: .normal)
@@ -122,7 +123,8 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-   
+
+        
 
         setupView()
     }
@@ -143,7 +145,9 @@ class FeedViewController: UIViewController {
 //    }
 
     private func setupView() {
-        self.view.backgroundColor = .white
+
+        self.view.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
+
         self.navigationItem.title = "navigationItem.title".feedViewControllerLocalizable
         
         self.view.addSubview(postStack)

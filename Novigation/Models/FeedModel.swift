@@ -10,5 +10,7 @@ import Foundation
 class FeedModel {
 
     static var secretWord: String = "secretWord"
+
+    
     
 }

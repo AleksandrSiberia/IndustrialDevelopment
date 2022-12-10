@@ -64,7 +64,8 @@ class RootCoordinator: AppCoordinatorProtocol {
 //        }
         // передаем в transitionHandler
 
-        transitionHandler!.tabBar.backgroundColor = .white
+        transitionHandler!.tabBar.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
+        
         transitionHandler!.viewControllers = [feedCoordinator.start(), navLoginView, navSavedPosts]
         return transitionHandler
     }

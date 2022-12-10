@@ -44,7 +44,7 @@ class SavedPostsViewController: UIViewController {
 
         tableView.register(PostCell.self, forCellReuseIdentifier: "PostCell")
 
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
 
         return tableView
     }()
@@ -54,6 +54,8 @@ class SavedPostsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.view.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
 
         self.navigationItem.title = NSLocalizedString("navigationItem.title", tableName: "SavedPostsViewControllerLocalizable", comment: "Saved posts")
 

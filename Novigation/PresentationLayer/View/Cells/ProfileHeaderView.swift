@@ -39,7 +39,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
 
     private lazy var fullNameLabel: UILabel = {
         var titleLabel: UILabel = UILabel()
-        titleLabel.textColor = .black
+        titleLabel.textColor = UIColor.createColorForTheme(lightTheme: .black, darkTheme: .white)
         titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return titleLabel
     }()
@@ -54,7 +54,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     private lazy var statusTextField: UITextField = {
         var statusTextField: UITextField = UITextField()
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
-        statusTextField.backgroundColor = .white
+        statusTextField.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .systemGray4)
         statusTextField.placeholder = NSLocalizedString("statusTextField", tableName: "ProfileViewControllerLocalizable", comment: "new status")
         statusTextField.delegate = self
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
@@ -138,6 +138,8 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
 
 
     private func setupConstraints() {
+
+        self.contentView.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
 
         let profileViewController = ProfileViewController()
 
