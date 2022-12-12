@@ -465,8 +465,8 @@
 				8BED12E128CA061C006FF146 /* bluePixel.swift */,
 				8BEB523328DF0C3100482193 /* CheckerPassword.swift */,
 				8B857E202922248600ABD4A0 /* CodeService.swift */,
-				8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */,
 				8B77B93229448CAC00A8D1A3 /* Theme.swift */,
+				8B510F2C28E4339100698606 /* CustomErrorNovigation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

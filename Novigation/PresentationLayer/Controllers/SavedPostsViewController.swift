@@ -91,6 +91,7 @@ class SavedPostsViewController: UIViewController {
 
     @objc private func actionBarButtonItemSearch() {
 
+
         let alert = UIAlertController(title: nil, message: NSLocalizedString("actionBarButtonItemSearchAlert", tableName: "SavedPostsViewControllerLocalizable", comment: "Напишите имя автора") , preferredStyle: .alert)
 
 
@@ -125,7 +126,7 @@ class SavedPostsViewController: UIViewController {
 
 
     @objc private func actionBarButtonItemCancelSearch() {
-        print("actionBarButtonItemCancelSearch")
+
 
         self.coreDataCoordinator.getPosts(nameFolder: "SavedPosts")
 
