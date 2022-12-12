@@ -213,9 +213,21 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
 
 
+        if #available(iOS 13.0, *) {
+
+            if UITraitCollection.current.userInterfaceStyle == .light {
+                self.imageVkView.image = UIImage(named: "logoVK")
+            }
+
+            else {
+                self.imageVkView.image = UIImage(named: "logoVKBlack-White")
+            }
+        }
+
         handle = Auth.auth().addStateDidChangeListener { auth, user in
           // ...
         }
+
 
         self.navigationController?.navigationBar.isHidden = true
 
@@ -232,6 +244,23 @@ class LoginViewController: UIViewController {
         Auth.auth().removeStateDidChangeListener(handle!)
 
     }
+
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if #available(iOS 13.0, *) {
+            
+            if UITraitCollection.current.userInterfaceStyle == .light {
+                self.imageVkView.image = UIImage(named: "logoVK")
+            }
+            
+            else {
+                self.imageVkView.image = UIImage(named: "logoVKBlack-White")
+            }
+        }
+    }
+
 
 
 
