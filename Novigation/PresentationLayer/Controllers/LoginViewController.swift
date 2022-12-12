@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
 
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
@@ -50,12 +50,12 @@ class LoginViewController: UIViewController {
 
     private lazy var stackView: UIStackView = {
         var stackView = UIStackView()
-        stackView.backgroundColor = .white
+        stackView.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.layer.borderColor = UIColor.lightGray.cgColor
-        stackView.spacing = 0.5
+        stackView.spacing = 13
         return stackView
     }()
 
@@ -64,8 +64,10 @@ class LoginViewController: UIViewController {
     private lazy var textFieldLogin: UITextField = {
         var textFieldLogin = UITextField()
         textFieldLogin.translatesAutoresizingMaskIntoConstraints = false
-        textFieldLogin.placeholder = NSLocalizedString("textFieldLogin", tableName: "LoginViewControllerLocalizable", comment: "")
-        textFieldLogin.textColor = .black
+        textFieldLogin.placeholder = "textFieldLogin".loginViewControllerLocalizable
+
+        textFieldLogin.textColor = UIColor.createColorForTheme(lightTheme: .black, darkTheme: .white)
+
         textFieldLogin.font = UIFont.systemFont(ofSize: 16)
         textFieldLogin.layer.cornerRadius = 10
         textFieldLogin.layer.borderWidth = 0.5
@@ -84,8 +86,10 @@ class LoginViewController: UIViewController {
     private lazy var textFieldPassword: UITextField = {
         var textFieldPassword = UITextField()
         textFieldPassword.translatesAutoresizingMaskIntoConstraints = false
-        textFieldPassword.placeholder = NSLocalizedString("textFieldPassword", tableName: "LoginViewControllerLocalizable", comment: "")
-        textFieldPassword.textColor = .black
+        textFieldPassword.placeholder = "textFieldPassword".loginViewControllerLocalizable
+
+        textFieldPassword.textColor = UIColor.createColorForTheme(lightTheme: .black, darkTheme: .white)
+
         textFieldPassword.layer.cornerRadius = 10
         textFieldPassword.layer.borderWidth = 0.5
         textFieldPassword.layer.borderColor = UIColor.lightGray.cgColor
@@ -102,14 +106,14 @@ class LoginViewController: UIViewController {
 
     
     private lazy var buttonLogin: CustomButton = {
-        var buttonLogin = CustomButton( title: NSLocalizedString("buttonLogin", tableName: "LoginViewControllerLocalizable", comment: ""),
+        var buttonLogin = CustomButton( title: "buttonLogin".loginViewControllerLocalizable,
                                         targetAction: {
 
             if self.textFieldLogin.text != "" && self.textFieldPassword.text != "" {
                 self.actionLoginButton()
             }
             else {
-                let alertAction = UIAlertAction(title: NSLocalizedString("buttonLoginAlertAction", tableName: "LoginViewControllerLocalizable", comment: ""), style: .default)
+                let alertAction = UIAlertAction(title: "buttonLoginAlertAction".loginViewControllerLocalizable, style: .default)
                 let alert = UIAlertController()
                 alert.addAction(alertAction)
                 self.present(alert, animated: true)
@@ -121,7 +125,7 @@ class LoginViewController: UIViewController {
 
 
     private lazy var buttonSignUp: CustomButton = {
-        var buttonSignUp = CustomButton(title: NSLocalizedString("buttonSignUp", tableName: "LoginViewControllerLocalizable", comment: "")) {
+        var buttonSignUp = CustomButton(title: "buttonSignUp".loginViewControllerLocalizable) {
 
             if self.textFieldLogin.text != "" && self.textFieldPassword.text != "" {
                 self.loginDelegate?.signUp(withEmail: self.textFieldLogin.text!, password: self.textFieldPassword.text!) { string in
@@ -175,7 +179,9 @@ class LoginViewController: UIViewController {
         autoAuthorization()
 
         setupGestures()
-        view.backgroundColor = .white
+
+        view.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
+
         self.view.addSubview(scrollView)
         self.scrollView.addSubview(imageVkView)
         self.scrollView.addSubview(stackView)
@@ -206,9 +212,22 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+
+        if #available(iOS 13.0, *) {
+
+            if UITraitCollection.current.userInterfaceStyle == .light {
+                self.imageVkView.image = UIImage(named: "logoVK")
+            }
+
+            else {
+                self.imageVkView.image = UIImage(named: "logoVKBlack-White")
+            }
+        }
+
         handle = Auth.auth().addStateDidChangeListener { auth, user in
           // ...
         }
+
 
         self.navigationController?.navigationBar.isHidden = true
 
@@ -225,6 +244,23 @@ class LoginViewController: UIViewController {
         Auth.auth().removeStateDidChangeListener(handle!)
 
     }
+
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if #available(iOS 13.0, *) {
+            
+            if UITraitCollection.current.userInterfaceStyle == .light {
+                self.imageVkView.image = UIImage(named: "logoVK")
+            }
+            
+            else {
+                self.imageVkView.image = UIImage(named: "logoVKBlack-White")
+            }
+        }
+    }
+
 
 
 
@@ -403,4 +439,11 @@ extension LoginViewController: CheckPasswordOutput {
         self.textFieldPassword.isSecureTextEntry = false
         self.textFieldPassword.text = self.outputCheckPassword?.thisIsPassword
      }
+}
+
+
+extension String {
+    var loginViewControllerLocalizable: String {
+        NSLocalizedString(self, tableName: "LoginViewControllerLocalizable", comment: "")
+    }
 }

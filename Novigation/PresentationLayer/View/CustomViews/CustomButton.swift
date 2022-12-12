@@ -13,13 +13,16 @@ final class CustomButton: UIButton {
 
     var buttonAction: Action
 
-    init(title: String, titleColor: UIColor = .white, bgColor: UIColor = .blue, targetAction: @escaping Action) {
+    init(title: String,
+         titleColor: UIColor = .white,
+         bgColor: UIColor = UIColor.createColorForTheme(lightTheme: UIColor(named: "MyColorSet") ?? .blue, darkTheme: .systemGray4),
+         targetAction: @escaping Action) {
+
         self.buttonAction = targetAction
         super.init(frame: .zero)
         layer.cornerRadius = 12
         clipsToBounds = true
         backgroundColor = bgColor
-        setBackgroundImage(bluePixel, for: .normal)
         setTitleColor(titleColor, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
         setTitle(title, for: .normal)

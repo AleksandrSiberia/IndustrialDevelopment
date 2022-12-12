@@ -60,6 +60,9 @@ class PhotosTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        self.contentView.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
+
         self.contentView.addSubview(labelCollectionPhoto)
         self.contentView.addSubview(arrow)
         self.contentView.addSubview(photoCollectionView)

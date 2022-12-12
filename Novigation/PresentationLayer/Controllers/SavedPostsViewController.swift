@@ -44,7 +44,7 @@ class SavedPostsViewController: UIViewController {
 
         tableView.register(PostCell.self, forCellReuseIdentifier: "PostCell")
 
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
 
         return tableView
     }()
@@ -54,6 +54,8 @@ class SavedPostsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.view.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
 
         self.navigationItem.title = NSLocalizedString("navigationItem.title", tableName: "SavedPostsViewControllerLocalizable", comment: "Saved posts")
 
@@ -89,6 +91,7 @@ class SavedPostsViewController: UIViewController {
 
     @objc private func actionBarButtonItemSearch() {
 
+
         let alert = UIAlertController(title: nil, message: NSLocalizedString("actionBarButtonItemSearchAlert", tableName: "SavedPostsViewControllerLocalizable", comment: "Напишите имя автора") , preferredStyle: .alert)
 
 
@@ -123,7 +126,7 @@ class SavedPostsViewController: UIViewController {
 
 
     @objc private func actionBarButtonItemCancelSearch() {
-        print("actionBarButtonItemCancelSearch")
+
 
         self.coreDataCoordinator.getPosts(nameFolder: "SavedPosts")
 

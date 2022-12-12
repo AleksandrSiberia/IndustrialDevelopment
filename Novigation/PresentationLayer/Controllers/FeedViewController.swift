@@ -38,14 +38,14 @@ class FeedViewController: UIViewController {
         textFieldCheckWord.clearButtonMode = .whileEditing
         textFieldCheckWord.backgroundColor = .systemGray5
         textFieldCheckWord.layer.cornerRadius = 12
-        textFieldCheckWord.placeholder = NSLocalizedString("textFieldCheckWord", tableName: "FeedViewControllerLocalizable", comment: "")
+        textFieldCheckWord.placeholder = "textFieldCheckWord".feedViewControllerLocalizable
         return  textFieldCheckWord
     }()
 
 
     
     private lazy var buttonCheckWord: CustomButton = {
-        var buttonCheckWord = CustomButton(title: NSLocalizedString("buttonCheckWord", tableName: "FeedViewControllerLocalizable",  comment: "")) {
+        var buttonCheckWord = CustomButton(title: "buttonCheckWord".feedViewControllerLocalizable) {
          self.delegate.wordVerification = self.textFieldCheckWord.text
         }
         return buttonCheckWord
@@ -53,7 +53,7 @@ class FeedViewController: UIViewController {
 
 
     private lazy var buttonAudioPlayer: CustomButton = {
-        var buttonAudioPlayer = CustomButton(title: NSLocalizedString( "buttonAudioPlayer", tableName: "FeedViewControllerLocalizable", comment: ""), targetAction: {
+        var buttonAudioPlayer = CustomButton(title: "buttonAudioPlayer".feedViewControllerLocalizable, targetAction: {
 
             let audioViewController = AudioViewController()
             audioViewController.view.backgroundColor = .white
@@ -65,7 +65,7 @@ class FeedViewController: UIViewController {
 
 
     private lazy var buttonVideoPlayer: CustomButton = {
-        var buttonVideoPlayer = CustomButton(title: NSLocalizedString("buttonVideoPlayer", tableName: "FeedViewControllerLocalizable" , comment: ""), targetAction: {
+        var buttonVideoPlayer = CustomButton(title: "buttonVideoPlayer".feedViewControllerLocalizable, targetAction: {
 
             let videoViewController = VideoViewController()
             videoViewController.view.backgroundColor = .white
@@ -78,7 +78,7 @@ class FeedViewController: UIViewController {
 
     private lazy var postStack: UIStackView = {
         var postStack = UIStackView()
-        postStack.backgroundColor = .white
+        postStack.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
         postStack.translatesAutoresizingMaskIntoConstraints = false
         postStack.axis = .vertical
         postStack.distribution = .fillEqually
@@ -89,7 +89,7 @@ class FeedViewController: UIViewController {
 
 
     private lazy var buttonRightNavInfo: UIBarButtonItem = {
-        var buttonRightNavInfo = UIBarButtonItem(title: NSLocalizedString("buttonRightNavInfo", tableName: "FeedViewControllerLocalizable",  comment: ""), style: .done, target: self, action: #selector(actionButtonRightNavInfo))
+        var buttonRightNavInfo = UIBarButtonItem(title: "buttonRightNavInfo".feedViewControllerLocalizable, style: .done, target: self, action: #selector(actionButtonRightNavInfo))
         return buttonRightNavInfo
     }()
 
@@ -97,9 +97,10 @@ class FeedViewController: UIViewController {
 
     private lazy var postButton: UIButton = {
         var postButton = UIButton()
+        postButton.isHidden = true
         postButton.translatesAutoresizingMaskIntoConstraints = false
         postButton.backgroundColor = .systemYellow
-        postButton.setTitle( NSLocalizedString("postButton", tableName: "FeedViewControllerLocalizable", comment: ""), for: .normal)
+        postButton.setTitle( "postButton".feedViewControllerLocalizable, for: .normal)
         postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
         return postButton
     }()
@@ -122,8 +123,8 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-   
 
+       
         setupView()
     }
 
@@ -143,8 +144,10 @@ class FeedViewController: UIViewController {
 //    }
 
     private func setupView() {
-        self.view.backgroundColor = .white
-        self.navigationItem.title = NSLocalizedString("navigationItem.title", tableName: "FeedViewControllerLocalizable", comment: "")
+
+        self.view.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
+
+        self.navigationItem.title = "navigationItem.title".feedViewControllerLocalizable
         
         self.view.addSubview(postStack)
         [viewCheckWord, textFieldCheckWord, buttonCheckWord, postButton, postButton2, buttonAudioPlayer, buttonVideoPlayer].forEach({ self.postStack.addArrangedSubview($0)})
@@ -176,6 +179,8 @@ class FeedViewController: UIViewController {
         self.navigationController?.pushViewController(postViewController, animated: true)
         if let title = postButton2.titleLabel?.text {
             postViewController.post = Post(title: title)
+
+
         }
     }
 
@@ -187,3 +192,8 @@ class FeedViewController: UIViewController {
 }
 
 
+extension String {
+    var feedViewControllerLocalizable: String {
+        NSLocalizedString(self, tableName: "FeedViewControllerLocalizable", comment: "")
+    }
+}

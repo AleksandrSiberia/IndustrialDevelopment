@@ -63,9 +63,10 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
 
 #if DEBUG
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
 #else
-        tableView.backgroundColor = .systemGray6
+        tableView.backgroundColor =  UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
+
 #endif
 
         return tableView
