@@ -12,11 +12,13 @@ class ProfileViewModel: ProfileViewDelegate {
 
     var director: AnyObject
 
+
     var posts: [ModelPost]? {
         didSet {
             self.didChange?(self)
         }
     }
+
 
     var didChange: ((ProfileViewDelegate) -> Void)?
 

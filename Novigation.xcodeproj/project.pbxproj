@@ -340,6 +340,7 @@
 				8BED12DE28C8BD9B006FF146 /* Application layer */,
 				8B138F3228DA489900ACA1B9 /* Service layer */,
 				8BED12DA28C8BD59006FF146 /* Models */,
+				8B975F3328D0A87A00CC47D9 /* Coordinators */,
 				8B975F4928D1C91200CC47D9 /* PresentationLayer */,
 				8B4749C828EDA32B007DE402 /* Assets.xcassets */,
 				8B4749C728ED9771007DE402 /* Record.mp4 */,
@@ -435,7 +436,6 @@
 			isa = PBXGroup;
 			children = (
 				8B975F4A28D1CAFE00CC47D9 /* Assembly */,
-				8B975F3328D0A87A00CC47D9 /* Coordinators */,
 				8BED12DD28C8BD84006FF146 /* Controllers */,
 				8B138F2228D87EAF00ACA1B9 /* View */,
 				8B138F1F28D87E1B00ACA1B9 /* ViewModel */,
