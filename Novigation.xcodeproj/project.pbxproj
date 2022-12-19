@@ -63,6 +63,8 @@
 		8B695C5528BCEED9008F0414 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B695C5428BCEED9008F0414 /* TestUserService.swift */; };
 		8B77B93329448CAC00A8D1A3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B93229448CAC00A8D1A3 /* Theme.swift */; };
 		8B77B9802950607A00A8D1A3 /* ManagerDataModelDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B97F2950607A00A8D1A3 /* ManagerDataModelDataTests.swift */; };
+		8B77B9822950772100A8D1A3 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B9812950772100A8D1A3 /* NetworkMonitor.swift */; };
+		8B77B983295077B800A8D1A3 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B9812950772100A8D1A3 /* NetworkMonitor.swift */; };
 		8B857E1F291FBBDB00ABD4A0 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749BB28EC22CF007DE402 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 */; };
 		8B857E212922248600ABD4A0 /* CodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E202922248600ABD4A0 /* CodeService.swift */; };
 		8B857E252922638C00ABD4A0 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B857E242922638C00ABD4A0 /* KeychainSwift */; };
@@ -195,6 +197,7 @@
 		8B77B93229448CAC00A8D1A3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		8B77B969294F3C6D00A8D1A3 /* NovigationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NovigationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B77B97F2950607A00A8D1A3 /* ManagerDataModelDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerDataModelDataTests.swift; sourceTree = "<group>"; };
+		8B77B9812950772100A8D1A3 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		8B857E202922248600ABD4A0 /* CodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
@@ -315,6 +318,7 @@
 				8B474A71290BC455007DE402 /* Users */,
 				8B14FAB928BC9043006DE94A /* UsersStarWars */,
 				8B4749D228F58C1A007DE402 /* ManagerDataModelData.swift */,
+				8B77B9812950772100A8D1A3 /* NetworkMonitor.swift */,
 			);
 			path = "Service layer";
 			sourceTree = "<group>";
@@ -838,6 +842,7 @@
 				8BED12D928C6848D006FF146 /* ArrayFoto.swift in Sources */,
 				8B30E0052840E5BA006763B9 /* InfoViewController.swift in Sources */,
 				8B14FABD28BC90A7006DE94A /* User.swift in Sources */,
+				8B77B9822950772100A8D1A3 /* NetworkMonitor.swift in Sources */,
 				8B138F2E28D9E86000ACA1B9 /* LoginViewProtocol.swift in Sources */,
 				8BED12C828BF3802006FF146 /* CheckService.swift in Sources */,
 				8BED12D428C5DD91006FF146 /* Post.swift in Sources */,
@@ -882,6 +887,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B77B9802950607A00A8D1A3 /* ManagerDataModelDataTests.swift in Sources */,
+				8B77B983295077B800A8D1A3 /* NetworkMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

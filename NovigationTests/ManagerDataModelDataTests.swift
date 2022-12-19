@@ -6,14 +6,14 @@
 //
 
 import XCTest
+import Network
 
 
 
 final class ManagerDataModelDataTests: XCTestCase {
 
-
     var cut: URLSession!
-
+    var networkMonitor = NetworkMonitor.shared
 
 
 
@@ -32,7 +32,14 @@ final class ManagerDataModelDataTests: XCTestCase {
 
 
 
-    func  testCheckingStatusCode() {
+    func  testCheckingStatusCode() throws {
+
+
+       try XCTSkipUnless(
+            networkMonitor.isReachable,
+            "Network connectivity needed for this test."
+        )
+
 
         // given
 
@@ -74,7 +81,16 @@ final class ManagerDataModelDataTests: XCTestCase {
 
 
 
-    func testApiCallCompletes() {
+
+    func testApiCallCompletes() throws{
+
+        try XCTSkipUnless(
+
+            networkMonitor.isReachable,
+            "Network connectivity needed for this test."
+        )
+
+
 
         // given
 
