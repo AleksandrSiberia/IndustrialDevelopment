@@ -143,6 +143,7 @@ class FeedViewController: UIViewController {
 //            return true })
 //    }
 
+
     private func setupView() {
 
         self.view.backgroundColor = UIColor.createColorForTheme(lightTheme: .white, darkTheme: .black)
@@ -184,11 +185,11 @@ class FeedViewController: UIViewController {
         }
     }
 
+
     @objc private func actionButtonRightNavInfo() {
         let navInfoViewController = UINavigationController(rootViewController: InfoViewController())
         present(navInfoViewController, animated: true, completion: nil)
     }
-
 }
 
 

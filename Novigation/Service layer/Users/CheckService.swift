@@ -51,7 +51,7 @@ extension CheckService: CheckServiceProtocol {
                 completion(error.localizedDescription)
             }
 
-            if let authDataResult {
+            if authDataResult != nil {
 
                 completion("Пользователь зарегистрирован")
             }
