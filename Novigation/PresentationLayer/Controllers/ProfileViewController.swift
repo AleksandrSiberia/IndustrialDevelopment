@@ -18,9 +18,9 @@ protocol ProfileViewControllerOutput {
 
 
 
-final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
+final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate, ProfileViewControllable {
 
-    var coreDataCoordinator: CoreDataCoordinator!
+    var coreDataCoordinator: CoreDataCoordinatorProtocol!
 
     var handle: AuthStateDidChangeListenerHandle?
 
@@ -108,7 +108,7 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
         self.coreDataCoordinator.getPosts(nameFolder: "AllPosts")
 
-        if (self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?.first?.objects?.isEmpty)! {
+        if (self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.sections?.first?.objects?.isEmpty)! {
             for post in arrayModelPost {
                 self.coreDataCoordinator.appendPost(author: post.author, image: post.image, likes: String(post.likes), text: post.description, views: String(post.views), folderName: "AllPosts") { _ in
                 }
@@ -180,7 +180,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             return 1
         }
         if section == 1 {
-            return self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[0].objects?.count ?? 0
+            return self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.sections?[0].objects?.count ?? 0
         }
         else {
             return 0
@@ -207,7 +207,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
             cell.selectionStyle = .none
 
-            if let posts = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?.first?.objects as? [PostCoreData] {
+            if let posts = self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.sections?.first?.objects as? [PostCoreData] {
 
                 if posts.count >= indexPath.row + 1 {
 

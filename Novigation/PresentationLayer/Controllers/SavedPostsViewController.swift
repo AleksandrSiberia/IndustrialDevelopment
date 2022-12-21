@@ -13,7 +13,7 @@ class SavedPostsViewController: UIViewController {
 
  
     
-    var coreDataCoordinator: CoreDataCoordinator!
+    var coreDataCoordinator: CoreDataCoordinatorProtocol!
 
     private var nameAuthor: String = ""
 
@@ -59,7 +59,7 @@ class SavedPostsViewController: UIViewController {
 
         self.navigationItem.title = NSLocalizedString("navigationItem.title", tableName: "SavedPostsViewControllerLocalizable", comment: "Saved posts")
 
-        self.coreDataCoordinator.fetchedResultsControllerPostCoreData.delegate = self
+        self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.delegate = self
 
         self.navigationItem.rightBarButtonItems = [self.barButtonItemCancelSearch, self.barButtonItemSearch ]
         self.view.addSubview(self.tableView)
@@ -107,7 +107,7 @@ class SavedPostsViewController: UIViewController {
             if self.textFieldSearchAuthor?.text != "" {
 
 
-                self.coreDataCoordinator.fetchedResultsControllerPostCoreData.fetchRequest.predicate = NSPredicate(format: "author contains[c] %@", self.textFieldSearchAuthor!.text!)
+                self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.fetchRequest.predicate = NSPredicate(format: "author contains[c] %@", self.textFieldSearchAuthor!.text!)
 
                 self.coreDataCoordinator.performFetchPostCoreData()
 
@@ -143,7 +143,7 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[section].numberOfObjects ?? 0
+        return self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.sections?[section].numberOfObjects ?? 0
     }
 
 
@@ -158,10 +158,10 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
         cell.selectionStyle = .none
 
 
-        let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
+        let postCoreData = self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.object(at: indexPath)
 
 
-        cell.setup(author: postCoreData.author, image: postCoreData.image, likes: postCoreData.likes, text: postCoreData.text, views: postCoreData.views, coreDataCoordinator: self.coreDataCoordinator)
+        cell.setup(author: postCoreData?.author, image: postCoreData?.image, likes: postCoreData?.likes, text: postCoreData?.text, views: postCoreData?.views, coreDataCoordinator: self.coreDataCoordinator)
         return cell
         
     }
@@ -181,12 +181,14 @@ extension SavedPostsViewController: UITableViewDelegate, UITableViewDataSource  
 
 
 
-            let post = self!.coreDataCoordinator.fetchedResultsControllerPostCoreData.object(at: indexPath)
+            let post = self!.coreDataCoordinator.fetchedResultsControllerPostCoreData?.object(at: indexPath)
 
-            self!.coreDataCoordinator.deletePost(post: post)
-
-            completionHandler(true)
-
+            if let post {
+                self!.coreDataCoordinator.deletePost(post: post)
+                
+                completionHandler(true)
+                
+            }
         }
 
 

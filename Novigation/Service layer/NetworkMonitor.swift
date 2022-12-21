@@ -16,6 +16,7 @@ class NetworkMonitor {
   private let monitor = NWPathMonitor()
   private var status = NWPath.Status.requiresConnection
 
+    
   private init() {
     startMonitoring()
   }

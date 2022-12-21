@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import Network
+
 
 
 
@@ -102,6 +102,8 @@ final class ManagerDataModelDataTests: XCTestCase {
 
         var statusCode: Int?
 
+
+        
         // when
 
         let dataTask = cut.dataTask(with: url!) { _, responder, error in
@@ -115,16 +117,12 @@ final class ManagerDataModelDataTests: XCTestCase {
         dataTask.resume()
         wait(for: [expectation], timeout: 5)
 
+
+
         // then
 
         XCTAssertNil(errorLocalized, "ошибка при загрузке данных")
         XCTAssertEqual(statusCode, 200, "статус код")
 
     }
-
-
-    
-
-
-
 }

@@ -10,7 +10,8 @@ import CoreData
 
 
 
-final class CoreDataCoordinator {
+
+final class CoreDataCoordinator: CoreDataCoordinatorProtocol {
 
 
 
@@ -41,15 +42,13 @@ final class CoreDataCoordinator {
 
 
 
-    lazy var fetchedResultsControllerPostCoreData: NSFetchedResultsController<PostCoreData> = {
+    lazy var fetchedResultsControllerPostCoreData: NSFetchedResultsController<PostCoreData>? = {
 
         let request = PostCoreData.fetchRequest()
 
         request.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
 
-
         let fetchResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
-
 
         return fetchResultController
     }()
@@ -57,9 +56,7 @@ final class CoreDataCoordinator {
 
 
 
-
     init() {
-
 
         if self.getFolderByName(nameFolder: "SavedPosts") == nil {
                     self.appendFolder(name: "SavedPosts")
@@ -70,7 +67,6 @@ final class CoreDataCoordinator {
 
         self.performFetchPostCoreData()
 
-
     }
 
 
@@ -79,7 +75,7 @@ final class CoreDataCoordinator {
 
         let folder = self.getFolderByName(nameFolder: nameFolder)
 
-        self.fetchedResultsControllerPostCoreData.fetchRequest.predicate = NSPredicate(format: "relationFolder contains %@", folder!)
+        self.fetchedResultsControllerPostCoreData?.fetchRequest.predicate = NSPredicate(format: "relationFolder contains %@", folder!)
 
         self.performFetchPostCoreData()
     }
@@ -90,7 +86,7 @@ final class CoreDataCoordinator {
     func performFetchPostCoreData() {
 
         do {
-            try self.fetchedResultsControllerPostCoreData.performFetch()
+            try self.fetchedResultsControllerPostCoreData?.performFetch()
 
         }
         catch {
@@ -103,7 +99,6 @@ final class CoreDataCoordinator {
 
 
     func savePersistentContainerContext() {
-
 
         if self.backgroundContext.hasChanges {
 
@@ -139,7 +134,7 @@ final class CoreDataCoordinator {
 
         self.getPosts(nameFolder: "SavedPosts")
 
-        for postInCoreData in (self.fetchedResultsControllerPostCoreData.sections![0].objects) as! [PostCoreData] {
+        for postInCoreData in (self.fetchedResultsControllerPostCoreData?.sections![0].objects) as! [PostCoreData] {
 
             if postInCoreData.text == text {
                 completion(NSLocalizedString("appendPost", tableName: "ProfileViewControllerLocalizable", comment: "This post has already been saved"))
@@ -151,7 +146,6 @@ final class CoreDataCoordinator {
 
 
 
-        
         let post = PostCoreData(context: self.backgroundContext)
         post.author = author
         post.image = image
@@ -191,6 +185,7 @@ final class CoreDataCoordinator {
 
 
 
+
     func getAllFolders() -> [FoldersPostCoreData]? {
 
         let request = FoldersPostCoreData.fetchRequest()
@@ -202,13 +197,11 @@ final class CoreDataCoordinator {
             print(error.localizedDescription)
             return nil
         }
-
     }
 
 
 
     func deleteFolder(folder: FoldersPostCoreData) {
-
 
         self.backgroundContext.delete(folder)
         self.savePersistentContainerContext()

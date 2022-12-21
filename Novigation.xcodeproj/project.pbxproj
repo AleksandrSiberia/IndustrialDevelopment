@@ -65,6 +65,17 @@
 		8B77B9802950607A00A8D1A3 /* ManagerDataModelDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B97F2950607A00A8D1A3 /* ManagerDataModelDataTests.swift */; };
 		8B77B9822950772100A8D1A3 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B9812950772100A8D1A3 /* NetworkMonitor.swift */; };
 		8B77B983295077B800A8D1A3 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B9812950772100A8D1A3 /* NetworkMonitor.swift */; };
+		8B77B9852951BF1E00A8D1A3 /* ProfileCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B9842951BF1E00A8D1A3 /* ProfileCoordinatorTests.swift */; };
+		8B77B98C2951E0AC00A8D1A3 /* CoreDataCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B98B2951E0AC00A8D1A3 /* CoreDataCoordinatorProtocol.swift */; };
+		8B77B98F2951E23200A8D1A3 /* CoreDataCoordinatorDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B98E2951E23200A8D1A3 /* CoreDataCoordinatorDummy.swift */; };
+		8B77B9912951EEBD00A8D1A3 /* CoreDataCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B98B2951E0AC00A8D1A3 /* CoreDataCoordinatorProtocol.swift */; };
+		8B77B9932952F4C400A8D1A3 /* CoreDadaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A762910F19E007DE402 /* CoreDadaModel.xcdatamodeld */; };
+		8B77B9942952F65B00A8D1A3 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F4F28D1FE8100CC47D9 /* ProfileCoordinator.swift */; };
+		8B77B9952952F71600A8D1A3 /* AppCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinatorProtocol.swift */; };
+		8B77B9962952F73B00A8D1A3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B14FABC28BC90A7006DE94A /* User.swift */; };
+		8B77B99D29530DAC00A8D1A3 /* ProfileViewControllerDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B99C29530DAC00A8D1A3 /* ProfileViewControllerDummy.swift */; };
+		8B77B9A029530E4E00A8D1A3 /* ProfileViewControllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B99F29530E4E00A8D1A3 /* ProfileViewControllable.swift */; };
+		8B77B9A129530E5B00A8D1A3 /* ProfileViewControllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B99F29530E4E00A8D1A3 /* ProfileViewControllable.swift */; };
 		8B857E1F291FBBDB00ABD4A0 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749BB28EC22CF007DE402 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 */; };
 		8B857E212922248600ABD4A0 /* CodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E202922248600ABD4A0 /* CodeService.swift */; };
 		8B857E252922638C00ABD4A0 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B857E242922638C00ABD4A0 /* KeychainSwift */; };
@@ -198,6 +209,11 @@
 		8B77B969294F3C6D00A8D1A3 /* NovigationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NovigationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B77B97F2950607A00A8D1A3 /* ManagerDataModelDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerDataModelDataTests.swift; sourceTree = "<group>"; };
 		8B77B9812950772100A8D1A3 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		8B77B9842951BF1E00A8D1A3 /* ProfileCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorTests.swift; sourceTree = "<group>"; };
+		8B77B98B2951E0AC00A8D1A3 /* CoreDataCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		8B77B98E2951E23200A8D1A3 /* CoreDataCoordinatorDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCoordinatorDummy.swift; sourceTree = "<group>"; };
+		8B77B99C29530DAC00A8D1A3 /* ProfileViewControllerDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerDummy.swift; sourceTree = "<group>"; };
+		8B77B99F29530E4E00A8D1A3 /* ProfileViewControllable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllable.swift; sourceTree = "<group>"; };
 		8B857E202922248600ABD4A0 /* CodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
@@ -437,6 +453,7 @@
 		8B474A792910F1B2007DE402 /* CoreDataCoordinator */ = {
 			isa = PBXGroup;
 			children = (
+				8B77B98B2951E0AC00A8D1A3 /* CoreDataCoordinatorProtocol.swift */,
 				8B474A7A2910F386007DE402 /* CoreDataCoordinator.swift */,
 			);
 			path = CoreDataCoordinator;
@@ -446,8 +463,27 @@
 			isa = PBXGroup;
 			children = (
 				8B77B97F2950607A00A8D1A3 /* ManagerDataModelDataTests.swift */,
+				8B77B9842951BF1E00A8D1A3 /* ProfileCoordinatorTests.swift */,
+				8B77B98D2951E10800A8D1A3 /* TestDoubles */,
 			);
 			path = NovigationTests;
+			sourceTree = "<group>";
+		};
+		8B77B98D2951E10800A8D1A3 /* TestDoubles */ = {
+			isa = PBXGroup;
+			children = (
+				8B77B98E2951E23200A8D1A3 /* CoreDataCoordinatorDummy.swift */,
+				8B77B99C29530DAC00A8D1A3 /* ProfileViewControllerDummy.swift */,
+			);
+			path = TestDoubles;
+			sourceTree = "<group>";
+		};
+		8B77B99B295308A100A8D1A3 /* Interfase */ = {
+			isa = PBXGroup;
+			children = (
+				8B77B99F29530E4E00A8D1A3 /* ProfileViewControllable.swift */,
+			);
+			path = Interfase;
 			sourceTree = "<group>";
 		};
 		8B975F3328D0A87A00CC47D9 /* Coordinators */ = {
@@ -466,6 +502,7 @@
 		8B975F4928D1C91200CC47D9 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				8B77B99B295308A100A8D1A3 /* Interfase */,
 				8B975F4A28D1CAFE00CC47D9 /* Assembly */,
 				8BED12DD28C8BD84006FF146 /* Controllers */,
 				8B138F2228D87EAF00ACA1B9 /* View */,
@@ -818,6 +855,7 @@
 				8B4749C428ED5FBD007DE402 /* VideoViewController.swift in Sources */,
 				8B138F3028D9E8C600ACA1B9 /* LoginViewModel.swift in Sources */,
 				8BED12E028C8C01D006FF146 /* CustomButton.swift in Sources */,
+				8B77B9A029530E4E00A8D1A3 /* ProfileViewControllable.swift in Sources */,
 				8B138F2828D8890A00ACA1B9 /* FeedModel.swift in Sources */,
 				8B30DF29283A1CC6006763B9 /* AppDelegate.swift in Sources */,
 				8B4749D328F58C1A007DE402 /* ManagerDataModelData.swift in Sources */,
@@ -871,6 +909,7 @@
 				8B0F0D1D285868FA008F75C0 /* ModelPost.swift in Sources */,
 				8B4749D128F018EF007DE402 /* NetworkService.swift in Sources */,
 				8B138F2428D87F8700ACA1B9 /* FeedViewModel.swift in Sources */,
+				8B77B98C2951E0AC00A8D1A3 /* CoreDataCoordinatorProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,7 +926,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B77B9802950607A00A8D1A3 /* ManagerDataModelDataTests.swift in Sources */,
+				8B77B9A129530E5B00A8D1A3 /* ProfileViewControllable.swift in Sources */,
+				8B77B9942952F65B00A8D1A3 /* ProfileCoordinator.swift in Sources */,
 				8B77B983295077B800A8D1A3 /* NetworkMonitor.swift in Sources */,
+				8B77B9932952F4C400A8D1A3 /* CoreDadaModel.xcdatamodeld in Sources */,
+				8B77B98F2951E23200A8D1A3 /* CoreDataCoordinatorDummy.swift in Sources */,
+				8B77B9962952F73B00A8D1A3 /* User.swift in Sources */,
+				8B77B99D29530DAC00A8D1A3 /* ProfileViewControllerDummy.swift in Sources */,
+				8B77B9912951EEBD00A8D1A3 /* CoreDataCoordinatorProtocol.swift in Sources */,
+				8B77B9952952F71600A8D1A3 /* AppCoordinatorProtocol.swift in Sources */,
+				8B77B9852951BF1E00A8D1A3 /* ProfileCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

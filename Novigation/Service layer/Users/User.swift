@@ -7,6 +7,16 @@
 
 import UIKit
 
+
+//protocol Userable {
+//
+//    var userFullName: String { get set
+//    }
+//    var userStatus: String { get set }
+//    var userImage: UIImage { get set }
+//
+//}
+
 class User {
     var userFullName: String
     var userStatus: String

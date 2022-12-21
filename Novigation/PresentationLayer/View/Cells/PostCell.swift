@@ -13,7 +13,7 @@ class PostCell: UITableViewCell {
 
     private var nameImage: String?
 
-    var coreDataCoordinator: CoreDataCoordinator!
+    var coreDataCoordinator: CoreDataCoordinatorProtocol!
 
     private lazy var authorLabel: UILabel = {
         var authorLabel = UILabel()
@@ -160,7 +160,7 @@ class PostCell: UITableViewCell {
 
 
     
-    func setup(author: String?, image: String?, likes: String?, text: String?, views: String?, coreDataCoordinator: CoreDataCoordinator) {
+    func setup(author: String?, image: String?, likes: String?, text: String?, views: String?, coreDataCoordinator: CoreDataCoordinatorProtocol) {
 
         self.coreDataCoordinator = coreDataCoordinator
 

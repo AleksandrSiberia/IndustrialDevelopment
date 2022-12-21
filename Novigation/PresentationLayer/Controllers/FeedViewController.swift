@@ -12,6 +12,7 @@ import RealmSwift
 
 class FeedViewController: UIViewController {
 
+
     
     var delegate: FeedViewDelegate! {
 
@@ -50,6 +51,7 @@ class FeedViewController: UIViewController {
         }
         return buttonCheckWord
     }()
+
 
 
     private lazy var buttonAudioPlayer: CustomButton = {
@@ -118,13 +120,11 @@ class FeedViewController: UIViewController {
         return postButton2
     }()
 
-    
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
         setupView()
     }
 
@@ -135,13 +135,14 @@ class FeedViewController: UIViewController {
         super.viewDidLayoutSubviews()
         self.postButton.layer.cornerRadius = self.postButton.frame.height / 2
         self.postButton2.layer.cornerRadius = self.postButton2.frame.height / 2
-
     }
+
 
 //    deinit {
 //        self.publisher?.delete(subscriber: { _ in
 //            return true })
 //    }
+
 
 
     private func setupView() {
@@ -180,10 +181,9 @@ class FeedViewController: UIViewController {
         self.navigationController?.pushViewController(postViewController, animated: true)
         if let title = postButton2.titleLabel?.text {
             postViewController.post = Post(title: title)
-
-
         }
     }
+
 
 
     @objc private func actionButtonRightNavInfo() {
