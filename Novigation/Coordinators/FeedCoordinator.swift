@@ -27,7 +27,8 @@ class FeedCoordinator: AppCoordinatorProtocol {
     
     fileprivate func showFeedScreen() -> UINavigationController {
         
-        let feedScreen = transitionHandler
+        let feedScreen = self.transitionHandler
+        
         feedScreen?.tabBarItem = UITabBarItem(title: NSLocalizedString("feedScreen", tableName: "TabBarItemLocalizable", comment: "Лента") , image: UIImage(systemName: "house"), tag: 1)
         
         return feedScreen ?? UINavigationController()

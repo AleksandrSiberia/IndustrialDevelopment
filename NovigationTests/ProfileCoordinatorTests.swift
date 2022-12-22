@@ -9,6 +9,7 @@ import XCTest
 
 
 
+
 final class ProfileCoordinatorTests: XCTestCase {
 
     var sut: ProfileCoordinator!
@@ -17,7 +18,7 @@ final class ProfileCoordinatorTests: XCTestCase {
 
     override func setUpWithError() throws {
 
-        self.sut = ProfileCoordinator(transitionHandler: UINavigationController(), coreDataCoordinator: CoreDataCoordinatorDummy(fetchedResultsControllerPostCoreData: nil), profileViewController: ProfileViewControllerDummy())
+        self.sut = ProfileCoordinator(transitionHandler: UINavigationController(), coreDataCoordinator: CoreDataCoordinatorDummy(), profileViewController: ProfileViewControllerDummy())
     }
 
 
@@ -33,9 +34,7 @@ final class ProfileCoordinatorTests: XCTestCase {
 
         // given
 
-        let controller = UIViewController()
-
-
+      
 
         //when
 

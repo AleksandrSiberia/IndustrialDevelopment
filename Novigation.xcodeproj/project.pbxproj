@@ -76,6 +76,11 @@
 		8B77B99D29530DAC00A8D1A3 /* ProfileViewControllerDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B99C29530DAC00A8D1A3 /* ProfileViewControllerDummy.swift */; };
 		8B77B9A029530E4E00A8D1A3 /* ProfileViewControllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B99F29530E4E00A8D1A3 /* ProfileViewControllable.swift */; };
 		8B77B9A129530E5B00A8D1A3 /* ProfileViewControllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B99F29530E4E00A8D1A3 /* ProfileViewControllable.swift */; };
+		8B77B9A5295333FE00A8D1A3 /* CoreDataCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B474A7A2910F386007DE402 /* CoreDataCoordinator.swift */; };
+		8B77B9A72953345E00A8D1A3 /* CoreDataCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B9A62953345E00A8D1A3 /* CoreDataCoordinatorTests.swift */; };
+		8B77B9AE295454E400A8D1A3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B77B9AD295454E400A8D1A3 /* RealmSwift */; };
+		8B77B9B02954552200A8D1A3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8B77B9AF2954552200A8D1A3 /* Realm */; };
+		8B77B9B22954553900A8D1A3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8B77B9B12954553900A8D1A3 /* FirebaseAuth */; };
 		8B857E1F291FBBDB00ABD4A0 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749BB28EC22CF007DE402 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 */; };
 		8B857E212922248600ABD4A0 /* CodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E202922248600ABD4A0 /* CodeService.swift */; };
 		8B857E252922638C00ABD4A0 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B857E242922638C00ABD4A0 /* KeychainSwift */; };
@@ -214,6 +219,8 @@
 		8B77B98E2951E23200A8D1A3 /* CoreDataCoordinatorDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCoordinatorDummy.swift; sourceTree = "<group>"; };
 		8B77B99C29530DAC00A8D1A3 /* ProfileViewControllerDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerDummy.swift; sourceTree = "<group>"; };
 		8B77B99F29530E4E00A8D1A3 /* ProfileViewControllable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllable.swift; sourceTree = "<group>"; };
+		8B77B9A62953345E00A8D1A3 /* CoreDataCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCoordinatorTests.swift; sourceTree = "<group>"; };
+		8B77B9B32954556E00A8D1A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		8B857E202922248600ABD4A0 /* CodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
@@ -289,6 +296,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B77B9B02954552200A8D1A3 /* Realm in Frameworks */,
+				8B77B9B22954553900A8D1A3 /* FirebaseAuth in Frameworks */,
+				8B77B9AE295454E400A8D1A3 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +308,7 @@
 		3B24A89D2EC0707086369545 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B77B9B32954556E00A8D1A3 /* CoreData.framework */,
 				A2AD4EF15171D0709952D9DC /* Pods_Novigation.framework */,
 				FE6E2A834230DFBF43BC8716 /* Pods_StorageService.framework */,
 			);
@@ -355,6 +366,7 @@
 				8B30DF27283A1CC6006763B9 /* Novigation */,
 				8B77B96A294F3C6D00A8D1A3 /* NovigationTests */,
 				8B30DF26283A1CC6006763B9 /* Products */,
+				8B77B9A829543F6800A8D1A3 /* AudioVideo */,
 				8B388D3F28B37D79000FF22E /* StorageService */,
 				91F713A0BD514BC619B6D40D /* Pods */,
 				3B24A89D2EC0707086369545 /* Frameworks */,
@@ -382,14 +394,6 @@
 				8B975F3328D0A87A00CC47D9 /* Coordinators */,
 				8B975F4928D1C91200CC47D9 /* PresentationLayer */,
 				8B4749C828EDA32B007DE402 /* Assets.xcassets */,
-				8B4749C728ED9771007DE402 /* Record.mp4 */,
-				8B4749CC28EEA752007DE402 /* record2.mp4 */,
-				8B4749CD28EEA752007DE402 /* Siberia.mp4 */,
-				8B4749C128EC2335007DE402 /* Tinlicker_Robert_Miles_-_Children.mp3 */,
-				8B4749BF28EC2310007DE402 /* Paul_Van_Dyk_Aly_Fila_-_SHINE_Ibiza_Anthem.mp3 */,
-				8B4749BD28EC22F4007DE402 /* Ben_Gold_-_Xtravaganza.mp3 */,
-				8B4749BB28EC22CF007DE402 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 */,
-				8B4749B928EC22A5007DE402 /* Armin_van_Buuren_-_In_And_Out_Of_Love.mp3 */,
 				8B30DF36283A1CC7006763B9 /* Info.plist */,
 			);
 			path = Novigation;
@@ -464,6 +468,7 @@
 			children = (
 				8B77B97F2950607A00A8D1A3 /* ManagerDataModelDataTests.swift */,
 				8B77B9842951BF1E00A8D1A3 /* ProfileCoordinatorTests.swift */,
+				8B77B9A62953345E00A8D1A3 /* CoreDataCoordinatorTests.swift */,
 				8B77B98D2951E10800A8D1A3 /* TestDoubles */,
 			);
 			path = NovigationTests;
@@ -484,6 +489,21 @@
 				8B77B99F29530E4E00A8D1A3 /* ProfileViewControllable.swift */,
 			);
 			path = Interfase;
+			sourceTree = "<group>";
+		};
+		8B77B9A829543F6800A8D1A3 /* AudioVideo */ = {
+			isa = PBXGroup;
+			children = (
+				8B4749C728ED9771007DE402 /* Record.mp4 */,
+				8B4749CD28EEA752007DE402 /* Siberia.mp4 */,
+				8B4749CC28EEA752007DE402 /* record2.mp4 */,
+				8B4749C128EC2335007DE402 /* Tinlicker_Robert_Miles_-_Children.mp3 */,
+				8B4749BF28EC2310007DE402 /* Paul_Van_Dyk_Aly_Fila_-_SHINE_Ibiza_Anthem.mp3 */,
+				8B4749B928EC22A5007DE402 /* Armin_van_Buuren_-_In_And_Out_Of_Love.mp3 */,
+				8B4749BB28EC22CF007DE402 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 */,
+				8B4749BD28EC22F4007DE402 /* Ben_Gold_-_Xtravaganza.mp3 */,
+			);
+			path = AudioVideo;
 			sourceTree = "<group>";
 		};
 		8B975F3328D0A87A00CC47D9 /* Coordinators */ = {
@@ -677,6 +697,11 @@
 				8B77B96E294F3C6D00A8D1A3 /* PBXTargetDependency */,
 			);
 			name = NovigationTests;
+			packageProductDependencies = (
+				8B77B9AD295454E400A8D1A3 /* RealmSwift */,
+				8B77B9AF2954552200A8D1A3 /* Realm */,
+				8B77B9B12954553900A8D1A3 /* FirebaseAuth */,
+			);
 			productName = NovigationTests;
 			productReference = 8B77B969294F3C6D00A8D1A3 /* NovigationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -932,9 +957,11 @@
 				8B77B9932952F4C400A8D1A3 /* CoreDadaModel.xcdatamodeld in Sources */,
 				8B77B98F2951E23200A8D1A3 /* CoreDataCoordinatorDummy.swift in Sources */,
 				8B77B9962952F73B00A8D1A3 /* User.swift in Sources */,
+				8B77B9A5295333FE00A8D1A3 /* CoreDataCoordinator.swift in Sources */,
 				8B77B99D29530DAC00A8D1A3 /* ProfileViewControllerDummy.swift in Sources */,
 				8B77B9912951EEBD00A8D1A3 /* CoreDataCoordinatorProtocol.swift in Sources */,
 				8B77B9952952F71600A8D1A3 /* AppCoordinatorProtocol.swift in Sources */,
+				8B77B9A72953345E00A8D1A3 /* CoreDataCoordinatorTests.swift in Sources */,
 				8B77B9852951BF1E00A8D1A3 /* ProfileCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1299,13 +1326,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AAF6RWS5XJ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.aleksandrsiberia.NovigationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Novigation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Novigation";
 			};
 			name = Debug;
@@ -1319,13 +1346,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AAF6RWS5XJ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.aleksandrsiberia.NovigationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Novigation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Novigation";
 			};
 			name = Release;
@@ -1429,6 +1456,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B474A6B290BBC5D007DE402 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		8B77B9AD295454E400A8D1A3 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B474A6B290BBC5D007DE402 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		8B77B9AF2954552200A8D1A3 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B474A6B290BBC5D007DE402 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		8B77B9B12954553900A8D1A3 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B474A1428FAD9B1007DE402 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 		8B857E242922638C00ABD4A0 /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -15,9 +15,6 @@ class CoreDataCoordinatorDummy: CoreDataCoordinatorProtocol {
 
     var fetchedResultsControllerPostCoreData: NSFetchedResultsController<PostCoreData>?
 
-    init(fetchedResultsControllerPostCoreData: NSFetchedResultsController<PostCoreData>?) {
-        self.fetchedResultsControllerPostCoreData = fetchedResultsControllerPostCoreData
-    }
 
 
     func getPosts(nameFolder: String) {}

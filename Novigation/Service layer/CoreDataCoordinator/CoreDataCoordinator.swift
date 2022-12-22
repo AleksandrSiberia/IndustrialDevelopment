@@ -174,8 +174,19 @@ final class CoreDataCoordinator: CoreDataCoordinatorProtocol {
         request.predicate = NSPredicate(format: "name == %@", nameFolder)
 
         do {
-            let folder = try self.backgroundContext.fetch(request).first
-            return folder
+            let folders = try self.backgroundContext.fetch(request) as NSArray
+
+
+            if folders.count >= 1 {
+
+                print("🥀", folders, folders.count)
+                let folder = (folders.filter { ($0 as AnyObject).name == nameFolder }).first
+
+                return folder as? FoldersPostCoreData
+            }
+            else {
+                return nil
+            }
         }
         catch {
             print(error.localizedDescription)
