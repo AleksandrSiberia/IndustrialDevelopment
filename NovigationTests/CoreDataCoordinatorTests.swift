@@ -32,9 +32,9 @@ final class CoreDataCoordinatorTests: XCTestCase {
 
 
 
-    func testPersistentContainer() throws {
+    func testInitPersistentContainer() throws {
 
-        // given
+        //
 
         let pc = sut.fetchedResultsControllerPostCoreData
 
@@ -42,27 +42,68 @@ final class CoreDataCoordinatorTests: XCTestCase {
 
     }
 
-    
-    func testIWantToSaveTheFolderInCoreData() throws {
+
+    func testSaveFolder() throws {
+
+        // given
 
         sut.appendFolder(name: "TestPosts")
 
 
+        // when
 
-        let folder = sut.getFolderByName(nameFolder: "TestPosts")
+        let folder = sut.getFolderByName(nameFolder: "TestPosts") as AnyObject
 
+        //then
 
-        XCTAssertNotNil(folder, "Error folder TestPosts == nil")
+        XCTAssertNotNil(folder, "папка не сохранилась")
+
 
     }
 
-//    func testIWantToSaveThePostInCoreData() {
-//
-//        sut.appendPost(author: "Tom", image: "", likes: "2", text: "", views: "", folderName: "TestFolder") { string in
-//
-//            print("✨", string ?? "nil")
-//        }
-//    }
+
+
+        func testIWantToSaveThePostInCoreData() {
+
+            sut.appendPost(author: "Tom", image: "", likes: "2", text: "", views: "", folderName: "TestFolder") { string in
+            }
+
+            
+        }
+
+
+
+
+    func testDeleteAllTestPostsFoldersInCoreData() throws {
+
+        // given
+
+        let foldersSwiftArray = sut.getAllFolders()! as NSArray
+
+
+        // when
+
+        for _ in foldersSwiftArray {
+
+            if let folder = sut.getFolderByName(nameFolder: "TestPosts") {
+
+                sut.deleteFolder(folder: folder )
+            }
+            
+        }
+
+        let foldersNSArray = sut.getFolderByName(nameFolder: "TestPosts")
+
+
+        // then
+
+        XCTAssertNil(foldersNSArray, "папка не удалилась")
+    }
+
+
+
+
+
 
 
     
