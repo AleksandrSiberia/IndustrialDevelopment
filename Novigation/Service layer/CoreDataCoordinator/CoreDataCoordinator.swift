@@ -33,7 +33,7 @@ final class CoreDataCoordinator: CoreDataCoordinatorProtocol {
 
 
 
-    private lazy var backgroundContext: NSManagedObjectContext = {
+    lazy var backgroundContext: NSManagedObjectContext = {
         //       backgroundContext.automaticallyMergesChangesFromParent = true
         return persistentContainer.newBackgroundContext()
     }()
@@ -75,6 +75,7 @@ final class CoreDataCoordinator: CoreDataCoordinatorProtocol {
 
         let folder = self.getFolderByName(nameFolder: nameFolder)
 
+        
         self.fetchedResultsControllerPostCoreData?.fetchRequest.predicate = NSPredicate(format: "relationFolder contains %@", folder!)
 
         self.performFetchPostCoreData()

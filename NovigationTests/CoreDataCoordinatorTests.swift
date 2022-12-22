@@ -32,45 +32,48 @@ final class CoreDataCoordinatorTests: XCTestCase {
 
 
 
-    func testInitPersistentContainer() throws {
 
-        //
+    func testInitFetchedResultsControllerPostCoreData() throws {
 
-        let pc = sut.fetchedResultsControllerPostCoreData
+        // when
 
-        XCTAssertNotNil(pc, "PersistentContainer == nil")
+        let fetchedResultsControllerPostCoreData = sut.fetchedResultsControllerPostCoreData
+
+        // then
+
+        XCTAssertNotNil(fetchedResultsControllerPostCoreData, "PersistentContainer == nil")
+    }
+
+
+
+    
+    func testInitBackgroundContext() throws {
+
+        // when
+        let backgroundContext = sut.backgroundContext
+
+        //then
+
+        XCTAssertNotNil(backgroundContext)
 
     }
 
 
+
     func testSaveFolder() throws {
-
-        // given
-
-        sut.appendFolder(name: "TestPosts")
-
 
         // when
 
+        sut.appendFolder(name: "TestPosts")
+
         let folder = sut.getFolderByName(nameFolder: "TestPosts") as AnyObject
+
 
         //then
 
         XCTAssertNotNil(folder, "папка не сохранилась")
 
-
     }
-
-
-
-        func testIWantToSaveThePostInCoreData() {
-
-            sut.appendPost(author: "Tom", image: "", likes: "2", text: "", views: "", folderName: "TestFolder") { string in
-            }
-
-            
-        }
-
 
 
 
@@ -99,15 +102,5 @@ final class CoreDataCoordinatorTests: XCTestCase {
 
         XCTAssertNil(foldersNSArray, "папка не удалилась")
     }
-
-
-
-
-
-
-
-    
-
-
 
 }
