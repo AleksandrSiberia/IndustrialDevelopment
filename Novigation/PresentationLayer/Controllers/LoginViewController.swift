@@ -16,6 +16,8 @@ class LoginViewController: UIViewController {
 
     private var localAuthorizationService = LocalAuthorizationService()
 
+  
+
     var output: LoginViewProtocol!
 
     var loginDelegate: LoginViewControllerDelegate?
@@ -180,20 +182,54 @@ class LoginViewController: UIViewController {
     private lazy var buttonBiometric: UIButton = {
 
         let action = UIAction { action in
-            print("go")
 
-            self.localAuthorizationService.canEvaluateBiometric { bool, error in
+            if (UserDefaults.standard.object(forKey: "userOnline") != nil) {
 
-                if bool == true {
-                    print("✈️")
-                }
+                self.localAuthorizationService.canEvaluateBiometric { bool, error in
 
-                else {
-                    print(error?.localizedDescription)
+                    if bool == true {
 
-                    
+                        self.localAuthorizationService.evaluateBiometric { bool, error in
+
+
+                            if let error {
+                                print(error.localizedDescription)
+                                return
+                            }
+
+                            if  bool == true {
+
+                                self.autoAuthorization()
+
+                            }
+                        }
+                    }
+
+                    else {
+
+                        let alert = UIAlertController(title: nil, message: error?.localizedDescription ?? "Biometry is not enrolled", preferredStyle: .actionSheet)
+
+                        let action = UIAlertAction(title: "ok", style: .cancel, handler: nil)
+
+                        alert.addAction(action)
+
+                        self.present(alert, animated: true)
+
+                    }
                 }
             }
+
+            else {
+
+                let alert = UIAlertController(title: nil, message: "Для входа с помощью биометрии нужно авторизоваться", preferredStyle: .actionSheet)
+
+                let action = UIAlertAction(title: "ok", style: .cancel, handler: nil)
+
+                alert.addAction(action)
+
+                self.present(alert, animated: true)
+            }
+
         }
 
 
@@ -222,7 +258,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        autoAuthorization()
 
         setupGestures()
 

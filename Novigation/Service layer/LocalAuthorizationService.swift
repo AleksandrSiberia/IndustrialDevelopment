@@ -64,7 +64,7 @@ class LocalAuthorizationService {
     init() {
 
         self.canEvaluateBiometric { bool, error in
-            print("🚗", bool, error?.localizedDescription)
+
         }
     }
 
@@ -89,8 +89,26 @@ class LocalAuthorizationService {
 
 
     
-    func evaluateBiometric() {
+    func evaluateBiometric(completion: @escaping (Bool, NSError?) -> Void ) {
 
+        self.context.evaluatePolicy(self.policy, localizedReason: "Подтвердите свою личность") { bool, error in
+
+            guard bool == true
+
+            else {
+
+                if let error {
+                    completion(false, error as NSError)
+                    return
+                }
+                else {
+                    completion(false, nil)
+                    return
+                }
+            }
+            completion(true, nil)
+
+        }
 
     }
 }
