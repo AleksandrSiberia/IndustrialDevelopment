@@ -193,7 +193,15 @@ class LoginViewController: UIViewController {
 
 
                             if let error {
-                                print(error.localizedDescription)
+                                
+                                let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .actionSheet)
+
+                                let action = UIAlertAction(title: "ok", style: .cancel, handler: nil)
+
+                                alert.addAction(action)
+
+                                self.present(alert, animated: true)
+
                                 return
                             }
 
@@ -205,6 +213,7 @@ class LoginViewController: UIViewController {
                         }
                     }
 
+                    
                     else {
 
                         let alert = UIAlertController(title: nil, message: error?.localizedDescription ?? "Biometry is not enrolled", preferredStyle: .actionSheet)

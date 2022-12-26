@@ -93,23 +93,25 @@ class LocalAuthorizationService {
 
         self.context.evaluatePolicy(self.policy, localizedReason: "Подтвердите свою личность") { bool, error in
 
-            guard bool == true
+            DispatchQueue.main.async {
 
-            else {
+                guard bool == true
 
-                if let error {
-                    completion(false, error as NSError)
-                    return
-                }
                 else {
-                    completion(false, nil)
-                    return
+
+                    if let error {
+                        completion(false, error as NSError)
+                        return
+                    }
+                    else {
+                        completion(false, nil)
+                        return
+                    }
                 }
+                completion(true, nil)
+
             }
-            completion(true, nil)
-
         }
-
     }
 }
 
