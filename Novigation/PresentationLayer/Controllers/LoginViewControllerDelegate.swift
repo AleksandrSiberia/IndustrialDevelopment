@@ -11,6 +11,7 @@ import Foundation
 protocol LoginViewControllerDelegate {
 
     func checkCredentials(withEmail: String, password: String, completion: @escaping (String?) -> Void)
+    
     func signUp(withEmail: String, password: String, completion: @escaping (String?) -> Void) 
 
 }

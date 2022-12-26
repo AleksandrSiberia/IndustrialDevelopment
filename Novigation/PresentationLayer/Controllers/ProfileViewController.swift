@@ -18,19 +18,23 @@ protocol ProfileViewControllerOutput {
 
 
 
-final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
+final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate, ProfileViewControllable {
 
-    var coreDataCoordinator: CoreDataCoordinator!
+    var coreDataCoordinator: CoreDataCoordinatorProtocol!
 
     var handle: AuthStateDidChangeListenerHandle?
+
 
     var delegate: ProfileViewDelegate! {
 
         didSet {
-
+        
             self.delegate.didChange = { [ unowned self ] delegate in
-                self.posts = delegate.posts!
-                self.tableView.reloadData()
+                
+                if delegate.posts != nil {
+                    self.posts = delegate.posts!
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -78,6 +82,8 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+
         self.view.addSubview(self.tableView)
         self.view.addGestureRecognizer(self.tapGestureRecogniser)
         self.setupConstraints()
@@ -102,7 +108,7 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
         self.coreDataCoordinator.getPosts(nameFolder: "AllPosts")
 
-        if (self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?.first?.objects?.isEmpty)! {
+        if (self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.sections?.first?.objects?.isEmpty)! {
             for post in arrayModelPost {
                 self.coreDataCoordinator.appendPost(author: post.author, image: post.image, likes: String(post.likes), text: post.description, views: String(post.views), folderName: "AllPosts") { _ in
                 }
@@ -117,6 +123,7 @@ final class ProfileViewController: UIViewController, UIGestureRecognizerDelegate
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
 
         self.output?.timerStop()
         Auth.auth().removeStateDidChangeListener(handle!)
@@ -173,7 +180,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
             return 1
         }
         if section == 1 {
-            return self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?[0].objects?.count ?? 0
+            return self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.sections?[0].objects?.count ?? 0
         }
         else {
             return 0
@@ -200,7 +207,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource  {
 
             cell.selectionStyle = .none
 
-            if let posts = self.coreDataCoordinator.fetchedResultsControllerPostCoreData.sections?.first?.objects as? [PostCoreData] {
+            if let posts = self.coreDataCoordinator.fetchedResultsControllerPostCoreData?.sections?.first?.objects as? [PostCoreData] {
 
                 if posts.count >= indexPath.row + 1 {
 

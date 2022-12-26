@@ -10,7 +10,7 @@ import Foundation
 
 final class ProfileAssembly {
 
-    static func createProfileViewController() -> ProfileViewController {
+    static func createProfileViewController() -> ProfileViewControllable {
 
         let view = ProfileViewController()
      

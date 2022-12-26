@@ -91,7 +91,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         buttonOffAnimation.layer.cornerRadius = 20
         buttonOffAnimation.layer.opacity = 0.5
         buttonOffAnimation.layer.masksToBounds = true
-        buttonOffAnimation.addTarget(self, action: #selector(buttonOffAnimationTarget), for: .touchUpInside)
+        buttonOffAnimation.addTarget( self, action: #selector(buttonOffAnimationTarget), for: .touchUpInside)
         return buttonOffAnimation
     }()
 
