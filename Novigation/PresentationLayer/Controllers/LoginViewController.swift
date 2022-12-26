@@ -221,7 +221,7 @@ class LoginViewController: UIViewController {
 
             else {
 
-                let alert = UIAlertController(title: nil, message: "Для входа с помощью биометрии нужно авторизоваться", preferredStyle: .actionSheet)
+                let alert = UIAlertController(title: nil, message: "Чтобы входить с помощью биометрии, вначале нужно авторизоваться с помощью логина и пароля", preferredStyle: .actionSheet)
 
                 let action = UIAlertAction(title: "ok", style: .cancel, handler: nil)
 
