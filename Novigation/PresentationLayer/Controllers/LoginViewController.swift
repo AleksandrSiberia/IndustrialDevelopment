@@ -12,6 +12,10 @@ import RealmSwift
 
 class LoginViewController: UIViewController {
 
+    
+
+    private var localAuthorizationService = LocalAuthorizationService()
+
     var output: LoginViewProtocol!
 
     var loginDelegate: LoginViewControllerDelegate?
@@ -173,6 +177,48 @@ class LoginViewController: UIViewController {
 
 
 
+    private lazy var buttonBiometric: UIButton = {
+
+        let action = UIAction { action in
+            print("go")
+
+            self.localAuthorizationService.canEvaluateBiometric { bool, error in
+
+                if bool == true {
+                    print("✈️")
+                }
+
+                else {
+                    print(error?.localizedDescription)
+
+                    
+                }
+            }
+        }
+
+
+
+        var buttonBiometric = UIButton(frame: CGRect(), primaryAction: action)
+
+        if self.localAuthorizationService.biometricType == .faceID {
+            buttonBiometric.setImage(UIImage(systemName: "faceid"), for: .normal)
+        }
+
+        else if self.localAuthorizationService.biometricType == .touchID {
+            buttonBiometric.setImage(UIImage(systemName: "touchid"), for: .normal)
+        }
+
+        else {
+            buttonBiometric.isHidden = true
+        }
+
+        return buttonBiometric
+
+
+    }()
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -190,6 +236,7 @@ class LoginViewController: UIViewController {
         self.stackView.addArrangedSubview(buttonCheckPassword)
         self.stackView.addArrangedSubview(buttonLogin)
         self.stackView.addArrangedSubview(buttonSignUp)
+        self.stackView.addArrangedSubview(self.buttonBiometric)
         self.textFieldPassword.addSubview(activityIndicator)
 
         let scrollViewConstraint: [NSLayoutConstraint] = scrollViewConstraint()

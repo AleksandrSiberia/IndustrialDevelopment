@@ -81,6 +81,7 @@
 		8B77B9AE295454E400A8D1A3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B77B9AD295454E400A8D1A3 /* RealmSwift */; };
 		8B77B9B02954552200A8D1A3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8B77B9AF2954552200A8D1A3 /* Realm */; };
 		8B77B9B22954553900A8D1A3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8B77B9B12954553900A8D1A3 /* FirebaseAuth */; };
+		8B77B9B629570BE500A8D1A3 /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77B9B529570BE500A8D1A3 /* LocalAuthorizationService.swift */; };
 		8B857E1F291FBBDB00ABD4A0 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749BB28EC22CF007DE402 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 */; };
 		8B857E212922248600ABD4A0 /* CodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E202922248600ABD4A0 /* CodeService.swift */; };
 		8B857E252922638C00ABD4A0 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B857E242922638C00ABD4A0 /* KeychainSwift */; };
@@ -221,6 +222,7 @@
 		8B77B99F29530E4E00A8D1A3 /* ProfileViewControllable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllable.swift; sourceTree = "<group>"; };
 		8B77B9A62953345E00A8D1A3 /* CoreDataCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCoordinatorTests.swift; sourceTree = "<group>"; };
 		8B77B9B32954556E00A8D1A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		8B77B9B529570BE500A8D1A3 /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
 		8B857E202922248600ABD4A0 /* CodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				8B14FAB928BC9043006DE94A /* UsersStarWars */,
 				8B4749D228F58C1A007DE402 /* ManagerDataModelData.swift */,
 				8B77B9812950772100A8D1A3 /* NetworkMonitor.swift */,
+				8B77B9B529570BE500A8D1A3 /* LocalAuthorizationService.swift */,
 			);
 			path = "Service layer";
 			sourceTree = "<group>";
@@ -903,6 +906,7 @@
 				8B975F3228D0A71500CC47D9 /* AppCoordinatorProtocol.swift in Sources */,
 				8B4749D728F7FB13007DE402 /* ManagerDataResidentsPlanet.swift in Sources */,
 				8BED12D928C6848D006FF146 /* ArrayFoto.swift in Sources */,
+				8B77B9B629570BE500A8D1A3 /* LocalAuthorizationService.swift in Sources */,
 				8B30E0052840E5BA006763B9 /* InfoViewController.swift in Sources */,
 				8B14FABD28BC90A7006DE94A /* User.swift in Sources */,
 				8B77B9822950772100A8D1A3 /* NetworkMonitor.swift in Sources */,
@@ -1203,6 +1207,7 @@
 				DEVELOPMENT_TEAM = AAF6RWS5XJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Novigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Разрешите доступ к биометрии ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1233,6 +1238,7 @@
 				DEVELOPMENT_TEAM = AAF6RWS5XJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Novigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Разрешите доступ к биометрии ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
