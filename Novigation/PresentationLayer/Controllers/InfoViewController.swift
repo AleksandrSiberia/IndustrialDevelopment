@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class InfoViewController: UIViewController {
     
@@ -115,7 +116,10 @@ class InfoViewController: UIViewController {
         let exitAction = UIAlertAction(title: NSLocalizedString("buttonExitExitAction", tableName: "InfoViewControllerLocalizable", comment: ""),
                                          style: .destructive,
                                          handler: {_ in
-            UserDefaults.standard.removeObject(forKey: "userOnline")
+
+          //  UserDefaults.standard.removeObject(forKey: "userOnline")
+
+            KeychainSwift().delete("userOnline")
             self.dismiss(animated: true)
 
         })

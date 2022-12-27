@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import RealmSwift
+import KeychainSwift
 
 
 class LoginViewController: UIViewController {
@@ -16,7 +17,7 @@ class LoginViewController: UIViewController {
 
     private var localAuthorizationService = LocalAuthorizationService()
 
-  
+    private var keychain = KeychainSwift()
 
     var output: LoginViewProtocol!
 
@@ -183,7 +184,9 @@ class LoginViewController: UIViewController {
 
         let action = UIAction { action in
 
-            if (UserDefaults.standard.object(forKey: "userOnline") != nil) {
+            if
+    //            (UserDefaults.standard.object(forKey: "userOnline") != nil)
+                self.keychain.get("userOnline") != nil   {
 
                 self.localAuthorizationService.canEvaluateBiometric { bool, error in
 
@@ -358,7 +361,9 @@ class LoginViewController: UIViewController {
 
     func autoAuthorization() {
 
-        if (UserDefaults.standard.object(forKey: "userOnline") != nil) {
+        if self.keychain.get("userOnline") != nil
+    //        (UserDefaults.standard.object(forKey: "userOnline") != nil)
+        {
 
             let currentUserService = CurrentUserService()
             let testUserService = TestUserService()
@@ -369,7 +374,9 @@ class LoginViewController: UIViewController {
             let userService = currentUserService
     #endif
 
-            let loginUserOnline = UserDefaults.standard.object(forKey: "userOnline") as! String
+    //        let loginUserOnline = UserDefaults.standard.object(forKey: "userOnline") as! String
+
+            let loginUserOnline = keychain.get("userOnline")
 
             if RealmService.shared.getAllUsers() != nil && RealmService.shared.getAllUsers()?.isEmpty == false {
 
@@ -426,7 +433,9 @@ class LoginViewController: UIViewController {
                 return
             }
 
-            UserDefaults.standard.set(self.textFieldLogin.text, forKey: "userOnline")
+ //           UserDefaults.standard.set(self.textFieldLogin.text, forKey: "userOnline")
+
+            self.keychain.set(self.textFieldLogin.text ?? "", forKey: "userOnline")
 
             for (index, user) in RealmService.shared.getAllUsers()!.enumerated() {
                 if user.login == self.textFieldLogin.text {
