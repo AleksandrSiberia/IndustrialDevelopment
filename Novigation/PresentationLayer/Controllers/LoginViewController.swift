@@ -11,9 +11,9 @@ import RealmSwift
 import KeychainSwift
 
 
+
 class LoginViewController: UIViewController {
 
-    
 
     private var localAuthorizationService = LocalAuthorizationService()
 
@@ -164,6 +164,7 @@ class LoginViewController: UIViewController {
                 return
             }
         }
+        buttonSignUp.translatesAutoresizingMaskIntoConstraints = false
         return buttonSignUp
     }()
 
@@ -185,7 +186,7 @@ class LoginViewController: UIViewController {
         let action = UIAction { action in
 
             if
-    //            (UserDefaults.standard.object(forKey: "userOnline") != nil)
+                //            (UserDefaults.standard.object(forKey: "userOnline") != nil)
                 self.keychain.get("userOnline") != nil   {
 
                 self.localAuthorizationService.canEvaluateBiometric { bool, error in
@@ -216,7 +217,7 @@ class LoginViewController: UIViewController {
                         }
                     }
 
-                    
+
                     else {
 
                         let alert = UIAlertController(title: nil, message: error?.localizedDescription ?? "Biometry is not enrolled", preferredStyle: .actionSheet)
@@ -244,24 +245,24 @@ class LoginViewController: UIViewController {
 
         }
 
-
-
         var buttonBiometric = UIButton(frame: CGRect(), primaryAction: action)
 
         if self.localAuthorizationService.biometricType == .faceID {
-            buttonBiometric.setImage(UIImage(systemName: "faceid"), for: .normal)
+            buttonBiometric.setBackgroundImage(UIImage(systemName: "faceid"), for: .normal)
         }
 
         else if self.localAuthorizationService.biometricType == .touchID {
-            buttonBiometric.setImage(UIImage(systemName: "touchid"), for: .normal)
+            buttonBiometric.setBackgroundImage(UIImage(systemName: "touchid"), for: .normal)
         }
 
         else {
             buttonBiometric.isHidden = true
         }
 
-        return buttonBiometric
+        //   buttonBiometric.frame.size = CGSize(width: 40, height: 40)
+        buttonBiometric.translatesAutoresizingMaskIntoConstraints = false
 
+        return buttonBiometric
 
     }()
 
@@ -269,7 +270,6 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
         setupGestures()
 
@@ -283,23 +283,55 @@ class LoginViewController: UIViewController {
         self.stackView.addArrangedSubview(buttonCheckPassword)
         self.stackView.addArrangedSubview(buttonLogin)
         self.stackView.addArrangedSubview(buttonSignUp)
-        self.stackView.addArrangedSubview(self.buttonBiometric)
+        self.scrollView.addSubview(buttonBiometric)
         self.textFieldPassword.addSubview(activityIndicator)
 
-        let scrollViewConstraint: [NSLayoutConstraint] = scrollViewConstraint()
-        let logoVkViewConstraint: [NSLayoutConstraint] = logoVkViewConstraint()
-        let stackViewConstraints: [NSLayoutConstraint] = stackViewConstraints()
-        let loginButtonConstraints: [NSLayoutConstraint] = loginButtonConstraints()
-        let loginTextFieldConstraints: [NSLayoutConstraint] = loginTextFieldConstraints()
+        setupConstrains()
+
+    }
+
+
+
+
+    func setupConstrains() {
 
         NSLayoutConstraint.activate(
-            scrollViewConstraint +
-            logoVkViewConstraint +
-            stackViewConstraints +
-            loginTextFieldConstraints +
-            loginButtonConstraints
-            )
-        }
+            [
+
+                self.stackView.topAnchor.constraint(equalTo: self.imageVkView.bottomAnchor, constant: 120),
+                self.stackView.heightAnchor.constraint(equalToConstant: 230),
+
+                self.buttonLogin.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+                self.buttonLogin.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+
+                self.imageVkView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant:  90),
+                self.imageVkView.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
+                self.imageVkView.widthAnchor.constraint(equalToConstant: 100),
+                self.imageVkView.heightAnchor.constraint(equalToConstant: 100),
+
+                self.textFieldLogin.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+                self.textFieldLogin.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+
+                self.activityIndicator.centerXAnchor.constraint(equalTo: self.textFieldPassword.centerXAnchor),
+                self.activityIndicator.centerYAnchor.constraint(equalTo: self.textFieldPassword.centerYAnchor),
+
+
+                self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+
+
+                self.buttonBiometric.topAnchor.constraint(equalTo: self.buttonSignUp.bottomAnchor, constant: 5),
+                self.buttonBiometric.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
+                self.buttonBiometric.widthAnchor.constraint(equalToConstant: 40),
+                self.buttonBiometric.heightAnchor.constraint(equalToConstant: 40),
+                self.buttonBiometric.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
+
+            ])
+
+    }
+
 
 
 
@@ -319,7 +351,7 @@ class LoginViewController: UIViewController {
         }
 
         handle = Auth.auth().addStateDidChangeListener { auth, user in
-          // ...
+            // ...
         }
 
 
@@ -362,19 +394,19 @@ class LoginViewController: UIViewController {
     func autoAuthorization() {
 
         if self.keychain.get("userOnline") != nil
-    //        (UserDefaults.standard.object(forKey: "userOnline") != nil)
+        //        (UserDefaults.standard.object(forKey: "userOnline") != nil)
         {
 
             let currentUserService = CurrentUserService()
             let testUserService = TestUserService()
 
-    #if DEBUG
+#if DEBUG
             let userService = testUserService
-    #else
+#else
             let userService = currentUserService
-    #endif
+#endif
 
-    //        let loginUserOnline = UserDefaults.standard.object(forKey: "userOnline") as! String
+            //        let loginUserOnline = UserDefaults.standard.object(forKey: "userOnline") as! String
 
             let loginUserOnline = keychain.get("userOnline")
 
@@ -396,13 +428,7 @@ class LoginViewController: UIViewController {
 
 
 
-    private func scrollViewConstraint() -> [NSLayoutConstraint] {
-        let topAnchor = scrollView.topAnchor.constraint(equalTo: self.view.topAnchor)
-        let leadingAnchor = scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
-        let trailingAnchor = scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        let bottomAnchor = scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        return [topAnchor, leadingAnchor, trailingAnchor, bottomAnchor]
-    }
+
 
 
 
@@ -433,7 +459,7 @@ class LoginViewController: UIViewController {
                 return
             }
 
- //           UserDefaults.standard.set(self.textFieldLogin.text, forKey: "userOnline")
+            //           UserDefaults.standard.set(self.textFieldLogin.text, forKey: "userOnline")
 
             self.keychain.set(self.textFieldLogin.text ?? "", forKey: "userOnline")
 
@@ -455,42 +481,7 @@ class LoginViewController: UIViewController {
     }
 
 
-    
-    private func logoVkViewConstraint() -> [NSLayoutConstraint] {
-        let topAnchor = imageVkView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant:  120)
-        let centerXAnchor = imageVkView.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor)
-        let widthAnchor = imageVkView.widthAnchor.constraint(equalToConstant: 100)
-        let heightAnchor = imageVkView.heightAnchor.constraint(equalToConstant: 100)
-        return [topAnchor, centerXAnchor, widthAnchor, heightAnchor]
-    }
 
-
-
-    private func stackViewConstraints() -> [NSLayoutConstraint] {
-        let topAnchor = stackView.topAnchor.constraint(equalTo: self.imageVkView.bottomAnchor, constant: 120)
-        let heightAnchor = stackView.heightAnchor.constraint(equalToConstant: 230)
-        return [topAnchor, heightAnchor]
-    }
-
-
-
-    private func loginTextFieldConstraints() -> [NSLayoutConstraint] {
-        let trailingAnchor = self.textFieldLogin.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
-        let leadingAnchor = self.textFieldLogin.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
-
-        let activityIndicatorX  = self.activityIndicator.centerXAnchor.constraint(equalTo: self.textFieldPassword.centerXAnchor)
-        let activityIndicatorY  = self.activityIndicator.centerYAnchor.constraint(equalTo: self.textFieldPassword.centerYAnchor)
-
-        return [trailingAnchor, leadingAnchor, activityIndicatorX, activityIndicatorY]
-    }
-
-
-
-    private func loginButtonConstraints() -> [NSLayoutConstraint] {
-        let leadingAnchor = self.buttonLogin.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
-        let trailingAnchor =  self.buttonLogin.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
-        return [ leadingAnchor, trailingAnchor]
-    }
 
 
 
@@ -529,16 +520,16 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: CheckPasswordOutput {
 
-   func activityIndicatorOn() {
-       self.activityIndicator.startAnimating()
+    func activityIndicatorOn() {
+        self.activityIndicator.startAnimating()
     }
 
-   func activityIndicatorOff() {
+    func activityIndicatorOff() {
         self.activityIndicator.stopAnimating()
         self.buttonCheckPassword.isHidden = true
         self.textFieldPassword.isSecureTextEntry = false
         self.textFieldPassword.text = self.outputCheckPassword?.thisIsPassword
-     }
+    }
 }
 
 
