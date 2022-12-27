@@ -298,7 +298,7 @@ class LoginViewController: UIViewController {
         NSLayoutConstraint.activate(
             [
 
-                self.stackView.topAnchor.constraint(equalTo: self.imageVkView.bottomAnchor, constant: 120),
+                self.stackView.topAnchor.constraint(equalTo: self.imageVkView.bottomAnchor, constant: 70),
                 self.stackView.heightAnchor.constraint(equalToConstant: 230),
 
                 self.buttonLogin.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
@@ -322,7 +322,7 @@ class LoginViewController: UIViewController {
                 self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
 
 
-                self.buttonBiometric.topAnchor.constraint(equalTo: self.buttonSignUp.bottomAnchor, constant: 5),
+                self.buttonBiometric.topAnchor.constraint(equalTo: self.buttonSignUp.bottomAnchor, constant: 9),
                 self.buttonBiometric.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
                 self.buttonBiometric.widthAnchor.constraint(equalToConstant: 40),
                 self.buttonBiometric.heightAnchor.constraint(equalToConstant: 40),
