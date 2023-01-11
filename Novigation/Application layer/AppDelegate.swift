@@ -14,8 +14,17 @@ import RealmSwift
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    private let localNotificationsService = LocalNotificationsService()
+
+
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        localNotificationsService.registerForLatestUpdatesIfPossible { string , localNotificationsService in
+        }
+
+   //     localNotificationsService.unCenter.delegate = self
+        
         FirebaseApp.configure()
 
 

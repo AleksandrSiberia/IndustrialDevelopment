@@ -85,6 +85,7 @@
 		8B857E1F291FBBDB00ABD4A0 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B4749BB28EC22CF007DE402 /* Armin_van_Buuren_Wrabel_-_Feel_Again.mp3 */; };
 		8B857E212922248600ABD4A0 /* CodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E202922248600ABD4A0 /* CodeService.swift */; };
 		8B857E252922638C00ABD4A0 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B857E242922638C00ABD4A0 /* KeychainSwift */; };
+		8B8870D6295DACC20066884E /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8870D5295DACC20066884E /* LocalNotificationsService.swift */; };
 		8B975F3228D0A71500CC47D9 /* AppCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3128D0A71500CC47D9 /* AppCoordinatorProtocol.swift */; };
 		8B975F3B28D0B5E100CC47D9 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */; };
 		8B975F3F28D1B37A00CC47D9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B975F3E28D1B37A00CC47D9 /* ViewModel.swift */; };
@@ -224,6 +225,7 @@
 		8B77B9B32954556E00A8D1A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		8B77B9B529570BE500A8D1A3 /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
 		8B857E202922248600ABD4A0 /* CodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeService.swift; sourceTree = "<group>"; };
+		8B8870D5295DACC20066884E /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		8B975F3128D0A71500CC47D9 /* AppCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		8B975F3A28D0B5E100CC47D9 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		8B975F3E28D1B37A00CC47D9 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				8B4749D228F58C1A007DE402 /* ManagerDataModelData.swift */,
 				8B77B9812950772100A8D1A3 /* NetworkMonitor.swift */,
 				8B77B9B529570BE500A8D1A3 /* LocalAuthorizationService.swift */,
+				8B8870D5295DACC20066884E /* LocalNotificationsService.swift */,
 			);
 			path = "Service layer";
 			sourceTree = "<group>";
@@ -928,6 +931,7 @@
 				8B14FABF28BC9E87006DE94A /* CurrentUserService.swift in Sources */,
 				8B4749B828EC1757007DE402 /* AudioViewController.swift in Sources */,
 				8B138F2628D87FDB00ACA1B9 /* FeedViewDelegate.swift in Sources */,
+				8B8870D6295DACC20066884E /* LocalNotificationsService.swift in Sources */,
 				8B35326D2859F47200704D08 /* PostCell.swift in Sources */,
 				8B975F5028D1FE8100CC47D9 /* ProfileCoordinator.swift in Sources */,
 				8BED12E228CA061C006FF146 /* bluePixel.swift in Sources */,

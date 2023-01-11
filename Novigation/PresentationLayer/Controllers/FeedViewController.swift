@@ -12,8 +12,6 @@ import RealmSwift
 
 class FeedViewController: UIViewController {
 
-
-    
     var delegate: FeedViewDelegate! {
 
         didSet {
@@ -135,6 +133,7 @@ class FeedViewController: UIViewController {
         super.viewDidLayoutSubviews()
         self.postButton.layer.cornerRadius = self.postButton.frame.height / 2
         self.postButton2.layer.cornerRadius = self.postButton2.frame.height / 2
+
     }
 
 
