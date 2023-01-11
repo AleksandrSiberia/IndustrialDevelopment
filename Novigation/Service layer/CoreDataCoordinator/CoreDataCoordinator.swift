@@ -55,6 +55,20 @@ final class CoreDataCoordinator: CoreDataCoordinatorProtocol {
 
 
 
+    lazy var fetchedResultsControllerSavePostCoreData: NSFetchedResultsController<PostCoreData>? = {
+
+        let request = PostCoreData.fetchRequest()
+
+        request.sortDescriptors = [ NSSortDescriptor(key: "author", ascending: true) ]
+
+        request.predicate = NSPredicate(format: "relationFolder contains %@", "SavedPosts")
+
+        let fetchedResultsControllerSavePostCoreData = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
+
+        return fetchedResultsControllerSavePostCoreData
+    }()
+
+
 
     init() {
 
@@ -91,7 +105,16 @@ final class CoreDataCoordinator: CoreDataCoordinatorProtocol {
 
         }
         catch {
-            print(error)
+            print(error.localizedDescription)
+        }
+
+
+        do {
+            try self.fetchedResultsControllerSavePostCoreData?.performFetch()
+        }
+
+        catch {
+            print(error.localizedDescription)
         }
     }
 
@@ -180,7 +203,7 @@ final class CoreDataCoordinator: CoreDataCoordinatorProtocol {
 
             if folders.count >= 1 {
 
-                print("🥀", folders, folders.count)
+              //  print("🥀", folders, folders.count)
                 let folder = (folders.filter { ($0 as AnyObject).name == nameFolder }).first
 
                 return folder as? FoldersPostCoreData
